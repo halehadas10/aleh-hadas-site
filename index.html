@@ -3,12 +3,236 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>עלה הדס - תורה נוער הדר גנים</title>
-<meta name="description" content="בית מדרש לנוער בשכונת הדר גנים בפתח תקווה, מרשת תורה נוער.">
-<link rel="stylesheet" href="./entry.css">
+<title>עלה הדס - בית מדרש לנוער</title>
+<meta name="description" content="עלה הדס - בית מדרש לנוער בשכונת הדר גנים בפתח תקווה, מרשת תורהנוער.">
+<link rel="preload" as="image" href="./assets/image-0cc9df18-PVXUTW4T.jpg">
+<link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-<div id="root"></div>
-<script type="module" src="./entry.js"></script>
+
+<header class="site-header" id="siteHeader">
+  <a class="brand" href="#home" aria-label="עלה הדס - לדף הבית">
+    <img src="./assets/logo-aleh-hadas.png" alt="לוגו עלה הדס" class="brand-logo">
+    <span class="brand-name">עלה הדס</span>
+  </a>
+  <nav class="main-nav" id="mainNav" aria-label="ניווט ראשי">
+    <a href="#home" class="nav-link is-active">ראשי</a>
+    <a href="#activities" class="nav-link">מה נעשה בבית המדרש</a>
+    <a href="#story" class="nav-link">הסיפור שלנו</a>
+    <a href="#programs" class="nav-link">תכניות</a>
+    <a href="#donate" class="nav-link">תרומה</a>
+    <a href="#contact" class="nav-link">יצירת קשר</a>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="תפריט" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<main id="home">
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-carousel" id="heroCarousel">
+      <div class="hero-slide is-on" style="background-image:url('./assets/image-0cc9df18-PVXUTW4T.jpg')"></div>
+      <div class="hero-slide" style="background-image:url('./assets/image-29cac70e-DJ7VWVTO.jpg')"></div>
+      <div class="hero-slide" style="background-image:url('./assets/image-3159434a-ZRZI62BM.jpg')"></div>
+      <div class="hero-slide" style="background-image:url('./assets/image-dd6be447-IFEJVPKN.jpg')"></div>
+      <div class="hero-slide" style="background-image:url('./assets/image-f8f475e3-ZCNN4L5H.jpg')"></div>
+    </div>
+    <div class="hero-overlay"></div>
+    <img src="./assets/logo-aleh-hadas.png" alt="" class="hero-logo float-anim">
+    <div class="hero-content">
+      <h1 class="hero-title">עלה הדס</h1>
+      <p class="hero-subtitle">בית מדרש לנוער</p>
+      <p class="hero-meta">כל השבוע · חנה רובינא 23, הדר גנים, פתח תקווה</p>
+    </div>
+    <div class="hero-dots" id="heroDots" role="tablist" aria-label="תמונות רקע"></div>
+    <a class="hero-scroll" href="#story" aria-label="גלול למטה"><span></span></a>
+  </section>
+
+  <!-- הסיפור שלנו -->
+  <section class="section story" id="story">
+    <div class="container">
+      <h2 class="section-title reveal">הסיפור שלנו</h2>
+      <p class="story-banner reveal"><span class="banner-word">הסניף הגדול בתנועה</span></p>
+      <div class="story-grid">
+        <figure class="story-photo reveal">
+          <img src="./assets/image-dd6be447-IFEJVPKN.jpg" alt="בית המדרש מבפנים">
+        </figure>
+        <div class="story-text reveal">
+          <p>בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה.</p>
+          <p>בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה.</p>
+          <p>בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Promo video -->
+  <section class="section video" id="video">
+    <div class="container">
+      <h2 class="section-title reveal">הסרטון שלנו</h2>
+      <div class="video-frame reveal" id="videoFrame">
+        <div class="video-placeholder">
+          <span class="video-play" aria-hidden="true">&#9654;</span>
+          <p>הסרטון בדרך אלינו - יעלה כאן בהמשך</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 16 square tiles -->
+  <section class="section stats" id="stats">
+    <div class="container">
+      <div class="tiles-grid" id="tilesGrid"></div>
+    </div>
+  </section>
+
+  <!-- מה נעשה בבית המדרש -->
+  <section class="section activities" id="activities">
+    <div class="container">
+      <h2 class="section-title reveal">מה נעשה בבית המדרש</h2>
+      <div class="carousel reveal" id="actCarousel">
+        <button class="carousel-btn prev" data-dir="1" aria-label="לתמונה הקודמת">&#8249;</button>
+        <div class="carousel-track" id="actTrack">
+          <figure class="carousel-item"><img src="./assets/image-0e3dc762-2IN77BPZ.jpg" alt="שיעור בבית המדרש"></figure>
+          <figure class="carousel-item"><img src="./assets/image-0cc9df18-PVXUTW4T.jpg" alt="בית המדרש בשעת לימוד"></figure>
+          <figure class="carousel-item"><img src="./assets/image-29cac70e-DJ7VWVTO.jpg" alt="בחורים לומדים בחברותא"></figure>
+          <figure class="carousel-item"><img src="./assets/image-3159434a-ZRZI62BM.jpg" alt="חברותות בבית המדרש"></figure>
+          <figure class="carousel-item"><img src="./assets/image-368e697e-O5SY3JXP.jpg" alt="בית המדרש בפעילות"></figure>
+          <figure class="carousel-item"><img src="./assets/image-4596ba74-Q7NRSI5B.jpg" alt="שיעור לבנות בבית המדרש"></figure>
+          <figure class="carousel-item"><img src="./assets/image-5137ceb8-4GAXYAU2.jpg" alt="מתוך הפעילות בבית המדרש"></figure>
+          <figure class="carousel-item"><img src="./assets/image-777f653d-XVFATFRN.jpg" alt="תמונות מהפעילות"></figure>
+          <figure class="carousel-item"><img src="./assets/image-b44ea2c5-T754RWKM.jpg" alt="בחורים לומדים בבית המדרש"></figure>
+          <figure class="carousel-item"><img src="./assets/image-dd6be447-IFEJVPKN.jpg" alt="חברותות ליד ארון הקודש"></figure>
+          <figure class="carousel-item"><img src="./assets/image-f8f475e3-ZCNN4L5H.jpg" alt="בית המדרש, ארון הקודש וחברותות"></figure>
+          <figure class="carousel-item"><img src="./assets/room-TI5NBXWC.jpg" alt="השבוע בבית המדרש"></figure>
+        </div>
+        <button class="carousel-btn next" data-dir="-1" aria-label="לתמונה הבאה">&#8250;</button>
+      </div>
+      <div class="carousel-dots" id="actDots"></div>
+    </div>
+  </section>
+
+  <!-- שיעורים קרובים -->
+  <section class="section news" id="news">
+    <div class="container">
+      <h2 class="section-title reveal">שיעורים קרובים</h2>
+      <p class="section-sub reveal">מהמודעות שלנו - לחצו על מודעה לצפייה בגודל מלא</p>
+      <div class="news-grid reveal">
+        <button class="news-card" data-full="./assets/poster-image-0ce6255f-FLSCAJDJ.jpg">
+          <img src="./assets/poster-image-0ce6255f-FLSCAJDJ.jpg" alt="מודעת עונג שבת, ערב שבת נח, שיעור מפי בצלאל סמוטריץ">
+          <span class="news-caption">ערב שבת נח · בצלאל סמוטריץ</span>
+        </button>
+        <button class="news-card" data-full="./assets/poster-image-37bfa56c-HDLEFTOF.jpg">
+          <img src="./assets/poster-image-37bfa56c-HDLEFTOF.jpg" alt="מודעת שיעור מוצאי שבת, פרשת כי תבוא, הרב רונן טמיר">
+          <span class="news-caption">שיעור מוצאי שבת · הרב רונן טמיר</span>
+        </button>
+        <button class="news-card" data-full="./assets/poster-image-aeacb9d7-RB6ANSD7.jpg">
+          <img src="./assets/poster-image-aeacb9d7-RB6ANSD7.jpg" alt="מודעת עונג שבת, הרב יוני לביא">
+          <span class="news-caption">עונג שבת · הרב יוני לביא</span>
+        </button>
+        <button class="news-card" data-full="./assets/poster-image-cafff218-BY7VW5CU.jpg">
+          <img src="./assets/poster-image-cafff218-BY7VW5CU.jpg" alt="מודעת שיעור מוצאי שבת, הרב גבע ראפ">
+          <span class="news-caption">שיעור מוצאי שבת · הרב גבע ראפ</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- זמנים ומקום -->
+  <section class="section times" id="times">
+    <div class="container">
+      <h2 class="section-title reveal">זמנים ומקום</h2>
+      <div class="times-grid reveal">
+        <div class="time-row"><span class="time-label">ימי פעילות</span><span class="time-value">כל השבוע ולאורך כל שעות היום</span></div>
+        <div class="time-row"><span class="time-label">כתובת</span><span class="time-value">חנה רובינא 23, הדר גנים, פתח תקווה</span></div>
+        <div class="time-row"><span class="time-label">רשת</span><span class="time-value">תורהנוער, מבית סולמות</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- יצירת קשר + תרומה -->
+  <section class="section contact-donate" id="contact">
+    <div class="container">
+      <div class="contact-block reveal">
+        <h2 class="section-title">יצירת קשר</h2>
+        <p class="section-sub">נשמח לענות על כל שאלה על בית המדרש והפעילות. בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה.</p>
+        <div class="contact-cards">
+          <div class="contact-card">
+            <h3>דוד גרינפלד</h3>
+            <a class="btn btn-ghost" href="tel:+972546193797">054-619-3797 · חייג</a>
+            <a class="btn btn-green" href="https://wa.me/972546193797?text=%D7%A9%D7%9C%D7%95%D7%9D+%D7%93%D7%95%D7%93%2C+%D7%90%D7%A9%D7%9E%D7%97+%D7%9C%D7%A9%D7%9E%D7%95%D7%A2+%D7%A2%D7%95%D7%93+%D7%A2%D7%9C+%D7%91%D7%99%D7%AA+%D7%94%D7%9E%D7%93%D7%A8%D7%A9+%D7%A2%D7%9C%D7%94+%D7%94%D7%93%D7%A1" target="_blank" rel="noopener">וואטסאפ</a>
+          </div>
+          <div class="contact-card">
+            <h3>רועי גלנץ</h3>
+            <a class="btn btn-ghost" href="tel:+972556869913">055-686-9913 · חייג</a>
+            <a class="btn btn-green" href="https://wa.me/972556869913?text=%D7%A9%D7%9C%D7%95%D7%9D+%D7%A8%D7%95%D7%A2%D7%99%2C+%D7%90%D7%A9%D7%9E%D7%97+%D7%9C%D7%A9%D7%9E%D7%95%D7%A2+%D7%A2%D7%95%D7%93+%D7%A2%D7%9C+%D7%91%D7%99%D7%AA+%D7%94%D7%9E%D7%93%D7%A8%D7%A9+%D7%A2%D7%9C%D7%94+%D7%94%D7%93%D7%A1" target="_blank" rel="noopener">וואטסאפ</a>
+          </div>
+        </div>
+      </div>
+      <div class="donate-block reveal" id="donate">
+        <h2 class="section-title">תרומה</h2>
+        <p class="section-sub">חולמים להגדיל תורה ולהאדירה. בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה.</p>
+        <a class="btn btn-donate" href="https://www.jgive.com/new/he/ils/donation-targets/60540" target="_blank" rel="noopener">לתרומה</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- תכניות -->
+  <section class="section programs" id="programs">
+    <div class="container">
+      <h2 class="section-title reveal">תכניות</h2>
+      <p class="section-sub reveal">התכניות של בית המדרש - בקרוב. בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה.</p>
+    </div>
+  </section>
+
+  <!-- Social -->
+  <section class="section social" id="social">
+    <div class="container">
+      <h2 class="section-title reveal">עקבו אחרינו</h2>
+      <div class="social-rows reveal">
+        <div class="social-row">
+          <a class="social-link" href="https://www.youtube.com/@%D7%A2%D7%9C%D7%94_%D7%94%D7%93%D7%A1" target="_blank" rel="noopener" aria-label="יוטיוב">
+            <svg viewBox="0 0 24 24" class="social-icon"><path fill="currentColor" d="M23 12s0-3.85-.49-5.7a2.9 2.9 0 0 0-2.05-2.05C18.6 3.75 12 3.75 12 3.75s-6.6 0-8.46.5A2.9 2.9 0 0 0 1.5 6.3C1 8.15 1 12 1 12s0 3.85.5 5.7a2.9 2.9 0 0 0 2.04 2.05c1.86.5 8.46.5 8.46.5s6.6 0 8.46-.5a2.9 2.9 0 0 0 2.05-2.05C23 15.85 23 12 23 12ZM9.75 15.5v-7l6 3.5-6 3.5Z"/></svg>
+            <span>יוטיוב</span><span class="social-handle">עלה הדס</span>
+          </a>
+          <a class="social-link" href="https://www.tiktok.com/@halehadas10" target="_blank" rel="noopener" aria-label="טיקטוק">
+            <svg viewBox="0 0 24 24" class="social-icon"><path fill="currentColor" d="M16.6 3c.36 1.98 1.7 3.6 3.9 3.9v3.06c-1.5.06-2.9-.4-3.9-1.1v5.6c0 3.5-2.5 6.04-5.8 6.04A5.63 5.63 0 0 1 5 14.9c0-3.3 2.7-5.8 6-5.7v3.1a2.8 2.8 0 0 0-2 .8 2.77 2.77 0 0 0 2 4.8c1.7 0 2.5-1.2 2.5-3V3h3.1Z"/></svg>
+            <span>טיקטוק</span><span class="social-handle">halehadas10@</span>
+          </a>
+        </div>
+        <div class="social-row">
+          <a class="social-link" href="https://open.spotify.com/show/6t4UTEzvBWhBWbpb82krkd" target="_blank" rel="noopener" aria-label="ספוטיפיי">
+            <svg viewBox="0 0 24 24" class="social-icon"><path fill="currentColor" d="M12 1a11 11 0 1 0 0 22 11 11 0 0 0 0-22Zm4.9 15.85a.7.7 0 0 1-.95.25c-2.6-1.6-5.9-1.95-9.75-1.05a.7.7 0 1 1-.3-1.4c4.25-1 8-.6 11 1.25.3.2.4.65.2.95h-.2Zm1.3-2.9a.9.9 0 0 1-1.2.3c-3-1.85-7.5-2.4-11-1.3a.9.9 0 1 1-.5-1.7c4-1.25 9-.65 12.4 1.5.4.25.5.8.3 1.2Zm.1-3c-3.6-2.1-9.5-2.3-12.9-1.3a1.05 1.05 0 1 1-.6-2c3.9-1.2 10.3-1 14.4 1.6a1.05 1.05 0 0 1-1 1.7h.1Z"/></svg>
+            <span>ספוטיפיי</span><span class="social-handle">שיעור שבועי | תורה נוער סניף עלה הדס</span>
+          </a>
+        </div>
+        <div class="social-row">
+          <a class="social-link" href="https://www.instagram.com/halehadas10/" target="_blank" rel="noopener" aria-label="אינסטגרם">
+            <svg viewBox="0 0 24 24" class="social-icon"><path fill="currentColor" d="M12 2.2c3.2 0 3.6 0 4.85.06 3.25.15 4.75 1.7 4.9 4.9.06 1.26.06 1.64.06 4.85s0 3.6-.06 4.85c-.15 3.2-1.65 4.75-4.9 4.9-1.25.06-1.64.06-4.85.06s-3.6 0-4.85-.06c-3.25-.15-4.75-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.06-4.85C2.4 3.95 3.9 2.4 7.15 2.26 8.4 2.2 8.8 2.2 12 2.2Zm0 3.63a6.17 6.17 0 1 0 0 12.34 6.17 6.17 0 0 0 0-12.34Zm0 10.18a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88Z"/></svg>
+            <span>אינסטגרם</span><span class="social-handle">halehadas10@</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="./assets/logo-aleh-hadas.png" alt="לוגו עלה הדס" class="footer-logo">
+    <p>עלה הדס · בית מדרש לנוער · הדר גנים, פתח תקווה</p>
+    <p class="footer-note">האתר לא שומר שום פרטים.</p>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose" aria-label="סגור">&times;</button>
+  <img src="" alt="מודעה בגודל מלא" id="lightboxImg">
+</div>
+
+<script src="./js/main.js"></script>
 </body>
 </html>
