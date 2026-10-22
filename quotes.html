@@ -11,6 +11,14 @@
   .quotes-kicker { text-align: center; color: var(--gold); font-size: 0.95rem; letter-spacing: 0.06em; margin-bottom: 14px; }
   .quotes-page .section-title { margin-bottom: 14px; }
   .quotes-sub { text-align: center; color: var(--text-dim); max-width: 720px; margin: 0 auto 54px; line-height: 1.8; }
+  .stats-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-bottom: 76px; }
+  .stat-card { background: linear-gradient(150deg, var(--navy-700), var(--navy-950));
+               border: 1px solid rgba(98,180,137,0.22); border-radius: var(--radius);
+               padding: 34px 18px 26px; text-align: center; }
+  .stat-num { display: block; color: var(--blue-light); font-size: 2.6rem; font-weight: 800;
+              line-height: 1.15; margin-bottom: 10px; font-variant-numeric: tabular-nums; }
+  .stat-label { color: var(--text-dim); font-size: 0.95rem; line-height: 1.6; }
+  @media (max-width: 860px) { .stats-strip { grid-template-columns: 1fr; gap: 16px; margin-bottom: 60px; } }
   .quotes-said { text-align: center; margin-bottom: 40px; }
   .quotes-said h2 { color: var(--blue-light); font-size: 1.7rem; margin-bottom: 10px; }
   .quotes-said p { color: var(--text-dim); font-size: 0.98rem; }
@@ -77,6 +85,25 @@
       <p class="quotes-kicker">עלה הדס · בית מדרש לנוער · הדר גנים</p>
       <h1 class="section-title">מה אומרים עלינו</h1>
       <p class="quotes-sub">רבנים, אנשי ציבור ותקשורת - על בית המדרש, על רשת תורהנוער שצמחה ממנו, ועל הדס בן שושן ואריאל דרסינובר ז״ל</p>
+
+      <div class="stats-strip">
+        <div class="stat-card">
+          <span class="stat-num">הראשון</span>
+          <span class="stat-label">הסניף שהקים את רשת תורהנוער</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num" data-target="16" data-suffix="">0</span>
+          <span class="stat-label">חברי צוות</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num" data-target="2" data-suffix="">0</span>
+          <span class="stat-label">רכזים</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num" data-target="1000" data-suffix="+">0</span>
+          <span class="stat-label">משתתפים</span>
+        </div>
+      </div>
 
       <div class="quotes-said">
         <h2>אמרו עלינו</h2>
@@ -172,6 +199,31 @@
   var header = document.getElementById('siteHeader');
   window.addEventListener('scroll', function () { header.classList.toggle('is-scrolled', window.scrollY > 40); }, { passive: true });
   header.classList.add('is-scrolled');
+  /* Count-up stats: animate once when the strip scrolls into view */
+  function countUp(el) {
+    var target = parseInt(el.getAttribute('data-target'), 10);
+    var suffix = el.getAttribute('data-suffix') || '';
+    var dur = 1400, t0 = null;
+    function frame(t) {
+      if (t0 === null) t0 = t;
+      var p = Math.min(1, (t - t0) / dur);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased).toLocaleString('en-US') + (p === 1 ? suffix : '');
+      if (p < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+  var statObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) {
+        en.target.querySelectorAll('.stat-num[data-target]').forEach(countUp);
+        statObs.unobserve(en.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  var strip = document.querySelector('.stats-strip');
+  if (strip) statObs.observe(strip);
+
   var toggle = document.getElementById('navToggle');
   var nav = document.getElementById('mainNav');
   toggle.addEventListener('click', function () {
