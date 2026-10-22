@@ -41,6 +41,7 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+section[id], div[id].donate-block { scroll-margin-top: calc(var(--header-h) + 16px); }
 body {
   font-family: 'Heebo', system-ui, sans-serif;
   background: var(--navy-900);

@@ -48,6 +48,11 @@ if (!window.SITE_PHOTOS) {
       y = y - header.offsetHeight - 14;
       window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
       history.replaceState(null, '', '#' + id);
+      /* Reveal the target right away so content is never left hidden after a jump */
+      var scope = target.closest('section') || target;
+      scope.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-visible'); });
+      if (scope.classList.contains('reveal')) scope.classList.add('is-visible');
+      if (target.classList.contains('reveal')) target.classList.add('is-visible');
     });
   });
 
