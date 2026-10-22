@@ -949,3 +949,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .news-card-real img { aspect-ratio: 113 / 160; }
 .no-photos .news-card-real::after { display: none; }
 .news-grid-posters .news-caption { text-align: center; }
+
+/* v17 batch: lift hover for contact cards, deeper donate anchor landing */
+.contact-card { transition: transform .3s ease, box-shadow .3s ease; }
+.contact-card:hover { transform: translateY(-8px); box-shadow: 0 22px 50px rgba(0,0,0,.45); }
+#donate { scroll-margin-top: calc(var(--header-h) + 100px); }

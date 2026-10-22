@@ -45,7 +45,8 @@ if (!window.SITE_PHOTOS) {
       if (!target) return;
       var title = target.querySelector('.section-title') || target;
       var y = 0; for (var n = title; n; n = n.offsetParent) y += n.offsetTop;
-      y = y - header.offsetHeight - 14;
+      var extra = (id === 'donate') ? 100 : 14;
+      y = y - header.offsetHeight - extra;
       window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
       history.replaceState(null, '', '#' + id);
       /* Reveal the target right away so content is never left hidden after a jump */
