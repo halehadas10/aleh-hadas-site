@@ -52,6 +52,26 @@
   .stat-label { color: var(--text-dim); font-size: 0.95rem; line-height: 1.6; }
   .story .video-frame { margin-top: clamp(30px, 4vw, 54px); }
   @media (max-width: 860px) { .stats-strip { grid-template-columns: 1fr 1fr; gap: 14px; } }
+  .sc-kicker { text-align: center; color: var(--gold); margin: 38px 0 20px; font-size: 1.05rem; letter-spacing: .04em; }
+  .sc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .sc-card { display: flex; flex-direction: column; background: linear-gradient(150deg, var(--navy-700), var(--navy-950));
+             border: 1px solid rgba(98,180,137,0.22); border-radius: var(--radius); overflow: hidden;
+             transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
+  .sc-card:hover { transform: translateY(-8px); box-shadow: 0 22px 50px rgba(0,0,0,.45); border-color: var(--green-soft); }
+  .sc-thumb { position: relative; aspect-ratio: 16/9; background: var(--navy-800); }
+  .sc-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .sc-bubble { position: absolute; bottom: 10px; left: 10px; width: 38px; height: 38px; border-radius: 50%;
+               background: rgba(10,18,28,0.88); border: 1px solid rgba(98,180,137,0.55);
+               display: flex; align-items: center; justify-content: center; color: var(--green-soft); }
+  .sc-bubble svg { width: 20px; height: 20px; }
+  .sc-body { padding: 16px 16px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .sc-platform { color: var(--text-dim); font-size: 0.82rem; letter-spacing: .03em; }
+  .sc-title { color: var(--text); font-weight: 700; font-size: 0.98rem; line-height: 1.5; }
+  .sc-desc { color: var(--text-dim); font-size: 0.88rem; line-height: 1.6; flex: 1; }
+  .sc-cta { margin-top: 6px; color: var(--gold); font-weight: 700; font-size: 0.9rem; }
+  .sc-card:hover .sc-cta { text-decoration: underline; }
+  @media (max-width: 1020px) { .sc-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .sc-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -387,6 +407,46 @@
           <a class="social-link" href="https://www.instagram.com/halehadas10/" target="_blank" rel="noopener" aria-label="אינסטגרם">
             <svg viewBox="0 0 24 24" class="social-icon"><path fill="currentColor" d="M12 2.2c3.2 0 3.6 0 4.85.06 3.25.15 4.75 1.7 4.9 4.9.06 1.26.06 1.64.06 4.85s0 3.6-.06 4.85c-.15 3.2-1.65 4.75-4.9 4.9-1.25.06-1.64.06-4.85.06s-3.6 0-4.85-.06c-3.25-.15-4.75-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.06-4.85C2.4 3.95 3.9 2.4 7.15 2.26 8.4 2.2 8.8 2.2 12 2.2Zm0 3.63a6.17 6.17 0 1 0 0 12.34 6.17 6.17 0 0 0 0-12.34Zm0 10.18a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88Z"/></svg>
             <span>אינסטגרם</span><span class="social-handle">halehadas10@</span>
+          </a>
+        </div>
+
+        <p class="sc-kicker reveal">התוכן האחרון שלנו ברשתות</p>
+        <div class="sc-grid">
+          <a class="sc-card reveal" href="https://www.youtube.com/watch?v=XLRdDVe6Xfk" target="_blank" rel="noopener">
+            <span class="sc-thumb"><img src="./assets/social-youtube.jpg" alt="הסרטון האחרון ביוטיוב" loading="lazy"><span class="sc-bubble"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M23 12s0-3.85-.49-5.7a2.9 2.9 0 0 0-2.05-2.05C18.6 3.75 12 3.75 12 3.75s-6.6 0-8.46.5A2.9 2.9 0 0 0 1.5 6.3C1 8.15 1 12 1 12s0 3.85.5 5.7a2.9 2.9 0 0 0 2.04 2.05c1.86.5 8.46.5 8.46.5s6.6 0 8.46-.5a2.9 2.9 0 0 0 2.05-2.05C23 15.85 23 12 23 12ZM9.75 15.5v-7l6 3.5-6 3.5Z"/></svg></span></span>
+            <span class="sc-body">
+              <span class="sc-platform">יוטיוב · הסרטון האחרון</span>
+              <span class="sc-title">הרב חיים גוטסדינר | פרשת לך-לך | בית מדרש ״עלה הדס״</span>
+              <span class="sc-desc">שיעור בסגנון ״חבורה״ העוסק בפרשת השבוע לעומקה</span>
+              <span class="sc-cta">לצפייה ביוטיוב</span>
+            </span>
+          </a>
+          <a class="sc-card reveal" href="https://open.spotify.com/episode/7kiVXvBtdN26XQQsMU66DS" target="_blank" rel="noopener">
+            <span class="sc-thumb"><img src="./assets/social-spotify.jpg" alt="הפרק האחרון בספוטיפיי" loading="lazy"><span class="sc-bubble"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 1a11 11 0 1 0 0 22 11 11 0 0 0 0-22Zm4.9 15.85a.7.7 0 0 1-.95.25c-2.6-1.6-5.9-1.95-9.75-1.05a.7.7 0 1 1-.3-1.4c4.25-1 8-.6 11 1.25.3.2.4.65.2.95h-.2Zm1.3-2.9a.9.9 0 0 1-1.2.3c-3-1.85-7.5-2.4-11-1.3a.9.9 0 1 1-.5-1.7c4-1.25 9-.65 12.4 1.5.4.25.5.8.3 1.2Zm.1-3c-3.6-2.1-9.5-2.3-12.9-1.3a1.05 1.05 0 1 1-.6-2c3.9-1.2 10.3-1 14.4 1.6a1.05 1.05 0 0 1-1 1.7h.1Z"/></svg></span></span>
+            <span class="sc-body">
+              <span class="sc-platform">ספוטיפיי · הפרק האחרון</span>
+              <span class="sc-title">הרב חיים גוטסדינר | פרשת לך-לך | בית מדרש ״עלה הדס״</span>
+              <span class="sc-desc">פרק מלא · כ-45 דקות האזנה</span>
+              <span class="sc-cta">להאזנה בספוטיפיי</span>
+            </span>
+          </a>
+          <a class="sc-card reveal" href="https://www.tiktok.com/@halehadas10" target="_blank" rel="noopener">
+            <span class="sc-thumb"><img src="./assets/social-tiktok.jpg" alt="הפרופיל שלנו בטיקטוק" loading="lazy"><span class="sc-bubble"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M16.6 3c.36 1.98 1.7 3.6 3.9 3.9v3.06c-1.5.06-2.9-.4-3.9-1.1v5.6c0 3.5-2.5 6.04-5.8 6.04A5.63 5.63 0 0 1 5 14.9c0-3.3 2.7-5.8 6-5.7v3.1a2.8 2.8 0 0 0-2 .8 2.77 2.77 0 0 0 2 4.8c1.7 0 2.5-1.2 2.5-3V3h3.1Z"/></svg></span></span>
+            <span class="sc-body">
+              <span class="sc-platform">טיקטוק · הפרופיל שלנו</span>
+              <span class="sc-title">בית מדרש עלה הדס בטיקטוק</span>
+              <span class="sc-desc">5 סרטונים בערוץ · 11 לייקים</span>
+              <span class="sc-cta">לצפייה בטיקטוק</span>
+            </span>
+          </a>
+          <a class="sc-card reveal" href="https://www.instagram.com/halehadas10/reel/DdJT9iIzzON/" target="_blank" rel="noopener">
+            <span class="sc-thumb"><img src="./assets/social-instagram.jpg" alt="הפוסט האחרון באינסטגרם" loading="lazy"><span class="sc-bubble"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.2c3.2 0 3.6 0 4.85.06 3.25.15 4.75 1.7 4.9 4.9.06 1.26.06 1.64.06 4.85s0 3.6-.06 4.85c-.15 3.2-1.65 4.75-4.9 4.9-1.25.06-1.64.06-4.85.06s-3.6 0-4.85-.06c-3.25-.15-4.75-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.06-4.85C2.4 3.95 3.9 2.4 7.15 2.26 8.4 2.2 8.8 2.2 12 2.2Zm0 3.63a6.17 6.17 0 1 0 0 12.34 6.17 6.17 0 0 0 0-12.34Zm0 10.18a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88Z"/></svg></span></span>
+            <span class="sc-body">
+              <span class="sc-platform">אינסטגרם · הפוסט האחרון</span>
+              <span class="sc-title">ראש השנה - יום ההולדת האישית שלי</span>
+              <span class="sc-desc">סרטון · 11 בספטמבר 2026</span>
+              <span class="sc-cta">לצפייה באינסטגרם</span>
+            </span>
           </a>
         </div>
       </div>
