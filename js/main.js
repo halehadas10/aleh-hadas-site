@@ -34,29 +34,39 @@ if (!window.SITE_PHOTOS) {
     }
   });
 
-  /* Active nav link on scroll */
+  /* Active nav link on scroll: position-based, follows the real top-to-bottom
+     section order (#home maps to the hero). Re-mapped after the section reorder. */
   var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-link'));
-  var sections = navLinks
-    .map(function (l) { return document.querySelector(l.getAttribute('href')); })
-    .filter(Boolean);
-  var spy = new IntersectionObserver(function (entries) {
-    entries.forEach(function (en) {
-      if (en.isIntersecting) {
-        navLinks.forEach(function (l) {
-          l.classList.toggle('is-active', l.getAttribute('href') === '#' + en.target.id);
-        });
-      }
-    });
-  }, { rootMargin: '-45% 0px -50% 0px' });
-  sections.forEach(function (s) { spy.observe(s); });
+  var spyPairs = navLinks.map(function (l) {
+    var sel = l.getAttribute('href');
+    var el = sel === '#home' ? document.getElementById('hero') : document.querySelector(sel);
+    return el ? { link: l, el: el } : null;
+  }).filter(Boolean).sort(function (a, b) { return a.el.offsetTop - b.el.offsetTop; });
+  function spyUpdate() {
+    var pos = window.scrollY + window.innerHeight * 0.35;
+    var current = spyPairs[0];
+    for (var i = 0; i < spyPairs.length; i++) {
+      if (spyPairs[i].el.offsetTop - 90 <= pos) current = spyPairs[i];
+    }
+    navLinks.forEach(function (l) { l.classList.toggle('is-active', l === current.link); });
+  }
+  window.addEventListener('scroll', spyUpdate, { passive: true });
+  window.addEventListener('resize', spyUpdate);
+  spyUpdate();
 
-  /* Reveal on scroll */
-  /* Reveal replays every time a section re-enters the viewport */
+  /* Reveal on scroll: replays on every re-entry, with hysteresis so the
+     enter (15% visible) and exit (fully out) thresholds differ - this stops
+     the show/hide oscillation that made sections jitter at the viewport edge. */
   var revealObs = new IntersectionObserver(function (entries) {
     entries.forEach(function (en) {
-      en.target.classList.toggle('is-visible', en.isIntersecting);
+      var r = en.intersectionRatio;
+      if (en.isIntersecting && (r >= 0.15 || en.boundingClientRect.height > window.innerHeight)) {
+        en.target.classList.add('is-visible');
+      } else if (r === 0) {
+        en.target.classList.remove('is-visible');
+      }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: [0, 0.15] });
   document.querySelectorAll('.reveal').forEach(function (el) { revealObs.observe(el); });
 
   /* Hero carousel */

@@ -22,7 +22,7 @@
   --navy-700: #12354c;
   --text: #d8e5ec;
   --text-dim: #bfd0d9;
-  --blue-light: #a9c9ea;
+  --blue-light: #a8dcb9; /* accent switched from blue to light green (Torah Noar green/white palette) */
   --green: #1f8f5f;
   --green-soft: #62b489;
   --teal-soft: #73a89a;
@@ -401,14 +401,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .times-grid { display: flex; flex-direction: column; }
 .time-row {
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 24px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
   padding: clamp(16px, 2.4vw, 28px) 4px;
   border-bottom: 1px solid rgba(169,201,234,.16);
 }
 .time-row:first-child { border-top: 1px solid rgba(169,201,234,.16); }
-.time-label { color: var(--text-dim); font-size: clamp(1rem, 1.4vw, 1.2rem); }
+.time-label { color: var(--text-dim); font-size: clamp(1rem, 1.4vw, 1.2rem); text-align: center; }
 .time-value {
   font-weight: 700;
   font-size: clamp(1.05rem, 1.7vw, 1.45rem);
@@ -704,3 +706,48 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
   color: #93a5b1; font-weight: 700; font-size: clamp(1rem, 1.6vw, 1.3rem);
 }
+
+/* ===== 22.10 desktop batch ===== */
+/* Centered section titles on desktop: מי אנחנו + מה נעשה בבית המדרש */
+#video .section-title, #activities .section-title { text-align: center; }
+
+/* Raised sections (less top padding) */
+#programs, #times, #contact { padding-top: clamp(28px, 4vw, 56px); }
+
+/* תכניות: tighter gap, centered description, note under grid */
+#programs .news-grid { gap: clamp(10px, 1.4vw, 18px); }
+#programs .section-sub { text-align: center; }
+.programs-note { text-align: center; color: var(--text-dim); margin: clamp(18px, 2.4vw, 30px) 0 clamp(10px, 2vw, 20px); }
+
+/* יצירת קשר: the two cards centered in the middle */
+.contact-cards { justify-content: center; }
+
+/* Program cards: square maayan-style cards - centered icon-zone, gold caption,
+   thin green underline, staggered reveal; green tint so they don't blend into the navy bg */
+.program-card {
+  aspect-ratio: 1 / 1;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 1.2vw, 16px);
+  padding: clamp(14px, 1.8vw, 24px);
+  background: rgba(31,143,95,.16);
+  border: 1px solid rgba(98,180,137,.55);
+  text-align: center;
+}
+.program-card .program-thumb { width: 44%; aspect-ratio: 1 / 1; border-radius: 14px; }
+.program-card .program-thumb::after { font-size: .8rem; }
+.program-card .news-caption { background: none; color: var(--gold); padding: 0; font-size: clamp(.9rem, 1.1vw, 1.05rem); }
+.program-underline { width: 46px; height: 3px; border-radius: 2px; background: var(--green-soft); }
+.program-card:hover { box-shadow: 0 22px 50px rgba(31,143,95,.45); }
+.program-card:hover .program-underline { background: var(--gold); }
+.no-photos .program-card::after { display: none; }
+/* staggered reveal for the program cards */
+.program-card:nth-child(2) { transition-delay: .06s; }
+.program-card:nth-child(3) { transition-delay: .12s; }
+.program-card:nth-child(4) { transition-delay: .18s; }
+.program-card:nth-child(5) { transition-delay: .24s; }
+.program-card:nth-child(6) { transition-delay: .30s; }
+.program-card:nth-child(7) { transition-delay: .36s; }
+.program-card:nth-child(8) { transition-delay: .42s; }
+.program-card:nth-child(9) { transition-delay: .48s; }
+.program-card:nth-child(10) { transition-delay: .54s; }
