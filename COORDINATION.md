@@ -55,3 +55,12 @@
 - Buttons verified correct (צפייה->watch page, האזנה בספוטיפיי->Spotify) - never swapped in code; user confusion likely from auto-resume audio (now removed).
 - HELD: lessons count text (both-platforms question pending), הסיפור שלנו buttons comment, all other deletions until the next video is analyzed.
 - Cache: css v27, lessons.js v25, lesson-player.js v4.
+
+## 2026-10-23 01:25 - Avraham's agent: video-2 corrections batch, live (05300b5 + stat fix)
+- Nav: בית מדרש וירטואלי moved to after עקבו אחרינו, before זמנים ומקום (all 5 pages).
+- Home: story kicker deleted; 16/2 stat cards deleted (strip now 2 centered tiles: הסניף הראשון בתנועה green, +1,000 חניכים); story photo+text reveal together; reveal is now one-shot globally (no re-animation); promo video autoplays on section entry (threshold 0); #quotes title/sub spacing raised; JGive note trimmed; virtual subtitle trimmed.
+- Quotes page: kicker/subtitle/אמרו עלינו/ציטוטים מקוריים deleted; content raised (84px); strip KEPT with 4 tiles (per item 9) with הראשון green/בתנועה; Greenberg photo spaced+scaled; prize-ceremony photo shrunk (max 230px); marathon-boy crop (object-position 25% 15%) + ידידיה מאיר source line deleted.
+- Programs: one icon size (96px), orange titles fixed 2-line height, descriptions aligned, one-shot reveal.
+- In-site overlay (js/ext-overlay.js, all pages): article links with data-overlay open in an iframe modal, חזרה לאתר top-right, exact scroll spot kept, new-tab fallback in bar. Wired: inn.co.il, kore, maariv, kav-itonut PDF. BLOCKED (kept new tab): JGive (XFO SAMEORIGIN), ynet (DENY), YouTube/Spotify/socials.
+- HELD: A stat cards position, B rabbi photo shift, C quotes card order, D programs grid, gallery captions (style prep), lessons count text.
+- Cache: css v28, main.js v19, ext-overlay.js v1.
