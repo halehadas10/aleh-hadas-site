@@ -29,6 +29,27 @@
   .qp-src a { color: var(--green-soft); text-decoration: underline; text-underline-offset: 3px; }
   .qp-more { text-align: center; margin-top: 36px; }
   @media (max-width: 860px) { .qp-cards { grid-template-columns: 1fr; } .qp-card { padding: 46px 22px 22px; } }
+
+  /* Experimental Har-Hamor-style story layout (pending user verdict) */
+  .story-v2-wrap { display: grid; grid-template-columns: repeat(12, 1fr); align-items: center; }
+  .story-v2-card { grid-column: 1 / span 7; grid-row: 1; z-index: 2;
+                   background: linear-gradient(150deg, var(--navy-700), var(--navy-950));
+                   border: 1px solid rgba(98,180,137,0.22); border-radius: var(--radius);
+                   padding: clamp(26px, 3vw, 44px);
+                   box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+                   font-size: clamp(1.02rem, 1.35vw, 1.25rem); color: var(--text-dim); line-height: 1.9; }
+  .story-v2-card p + p { margin-top: 1em; }
+  .story-v2-photo { grid-column: 7 / span 6; grid-row: 1; z-index: 1; margin: 0; }
+  .story-v2-photo img { width: 100%; aspect-ratio: 4 / 3.4; object-fit: cover;
+                        border-radius: 22px; box-shadow: 0 30px 70px rgba(0,0,0,0.45);
+                        transform: rotate(-1.6deg); transition: transform .5s ease; display: block; }
+  .story-v2-photo:hover img { transform: rotate(0deg) scale(1.02); }
+  @media (max-width: 860px) {
+    .story-v2-wrap { grid-template-columns: 1fr; }
+    .story-v2-photo { grid-column: 1; grid-row: 1; }
+    .story-v2-photo img { aspect-ratio: 4 / 3; }
+    .story-v2-card { grid-column: 1; grid-row: 2; margin-top: -44px; margin-right: 14px; margin-left: 14px; }
+  }
 </style>
 </head>
 <body>
@@ -78,15 +99,17 @@
   <section class="section story" id="story">
     <div class="container">
       <h2 class="section-title reveal">הסיפור שלנו</h2>
-      <div class="story-grid">
-        <div class="story-text reveal">
+      <div class="story-v2-wrap">
+        <figure class="story-v2-photo reveal">
+          <img src="./assets/story-shiur.jpg?v=11" alt="שיעור בבית המדרש">
+        </figure>
+        <div class="story-v2-card reveal">
+
           <p>בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה.</p>
           <p>בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה.</p>
           <p>בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה.</p>
         </div>
-        <figure class="story-photo reveal">
-          <img src="./assets/story-shiur.jpg?v=11" alt="שיעור בבית המדרש">
-        </figure>
+        </div>
       </div>
     </div>
   </section>
