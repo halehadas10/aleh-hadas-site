@@ -84,6 +84,28 @@
     revealObs.observe(tile);
   }
 
+  /* Promo video - YouTube embed, autoplays muted in view, pauses out of view */
+  var videoFrame = document.getElementById('videoFrame');
+  if (videoFrame) {
+    var ytFrame = document.createElement('iframe');
+    ytFrame.src = 'https://www.youtube-nocookie.com/embed/tCTWXSj6ksc?enablejsapi=1&rel=0&modestbranding=1&playsinline=1&mute=1';
+    ytFrame.title = 'הסרטון שלנו';
+    ytFrame.allow = 'autoplay; encrypted-media; picture-in-picture';
+    ytFrame.allowFullscreen = true;
+    ytFrame.setAttribute('loading', 'lazy');
+    videoFrame.appendChild(ytFrame);
+    var ytCmd = function (func) {
+      ytFrame.contentWindow.postMessage(JSON.stringify({ event: 'command', func: func, args: [] }), '*');
+    };
+    var videoObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.intersectionRatio >= 0.4) { ytCmd('playVideo'); }
+        else { ytCmd('pauseVideo'); }
+      });
+    }, { threshold: [0, 0.4] });
+    videoObs.observe(videoFrame);
+  }
+
   /* Activities carousel */
   var track = document.getElementById('actTrack');
   var items = track.children.length;
