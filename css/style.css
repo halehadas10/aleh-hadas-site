@@ -941,3 +941,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 @media (max-width: 560px) {
   .gallery-grid { grid-template-columns: 1fr; }
 }
+
+/* ===== 22.10 batch 8: real shiur flyers (variable count), exempt from no-photos ===== */
+.news-grid-posters { grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 300px)); justify-content: center; }
+.no-photos .news-card-real img { visibility: visible; }
+.no-photos .news-card-real::after { display: none; }

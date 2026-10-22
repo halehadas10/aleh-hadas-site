@@ -1,6 +1,6 @@
 /* Photo placeholder mode: poster lightbox shows the placeholder while SITE_PHOTOS=false */
 if (!window.SITE_PHOTOS) {
-  document.querySelectorAll('.news-card:not(.program-card)').forEach(function (card) {
+  document.querySelectorAll('.news-card:not(.program-card):not(.news-card-real)').forEach(function (card) {
     card.setAttribute('data-full', './assets/no-image.svg');
   });
 }
