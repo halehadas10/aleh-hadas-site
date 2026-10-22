@@ -88,16 +88,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .brand-logo {
   height: 56px; width: auto;
   filter: drop-shadow(0 2px 8px rgba(0,0,0,.45));
-}
-.brand-name {
-  font-family: 'Suez One', serif;
-  font-size: 1.35rem;
-  color: #fff;
-  letter-spacing: .5px;
   opacity: 0;
   transition: opacity .35s ease;
 }
-.site-header.is-scrolled .brand-name { opacity: 1; }
+.site-header.is-scrolled .brand-logo { opacity: 1; }
 .main-nav { display: flex; gap: clamp(14px, 2vw, 34px); align-items: center; }
 .nav-link {
   position: relative;
@@ -283,6 +277,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .carousel-track {
   display: flex;
+  direction: ltr;
   transition: transform .6s cubic-bezier(.22,.8,.32,1);
 }
 .carousel-item {
@@ -595,7 +590,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .tiles-grid { grid-template-columns: repeat(2, 1fr); }
   .time-row { flex-direction: column; gap: 4px; }
   .carousel-btn { width: 42px; height: 42px; font-size: 1.4rem; }
-  .brand-name { font-size: 1.02rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

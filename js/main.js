@@ -118,8 +118,8 @@
   }
   function go(i) {
     idx = (i + items) % items;
-    /* RTL: track flows right-to-left, so shifting right (positive X) moves forward */
-    track.style.transform = 'translateX(' + (idx * 100) + '%)';
+    /* Track is LTR: shifting left (negative X) moves forward, matching swipe + arrow glyphs */
+    track.style.transform = 'translateX(' + (-idx * 100) + '%)';
     for (var k = 0; k < items; k++) dots.children[k].classList.toggle('is-on', k === idx);
   }
   function restart() {
