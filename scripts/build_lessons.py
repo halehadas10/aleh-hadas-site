@@ -99,7 +99,7 @@ def main():
             if m: rabbi = m.group(0)
         parts = [p.strip() for p in re.split(r'\|', title)]
         topic = parts[1] if len(parts) > 1 else title
-        series = "שיעורי פרשת השבוע" if "פרשת" in title else ("שיעורים כלליים")
+        series = "שיעורי פרשת השבוע" if "פרשת" in title else ("מוצ״ש בבית המדרש")
         dt = datetime.datetime.fromisoformat(pub.replace("Z", "+00:00"))
         lessons.append({
             "id": vid, "title": title, "topic": topic, "rabbi": rabbi,

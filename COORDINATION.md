@@ -24,3 +24,8 @@
 - Cards: צפייה / האזנה בספוטיפיי actions; shaveihevron lessons-UX as the model (series, rabbi, Hebrew date, counts)
 - Marathon prize card: user's photo (boy with glasses) cropped 4:5.3
 - RESOLVED: lessons.yml added via GitHub web UI (89ed5c9); manual run #1 Success; daily 06:15 IL active
+
+## סטטוס סנכרון עם רועי (00:31)
+- (א) שחזור תצוגת המודעות (פליירים) - מתנגש עם החלטת המשתמש להסיר את "שיעורים קרובים" - לא משחזרים.
+- (ב) תוכן לכרטיסי/עמודי התכניות - ממתין להחלטת המשתמש.
+- (ג) העברת גישות - חסום על המשתמש.

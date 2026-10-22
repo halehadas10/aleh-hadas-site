@@ -117,8 +117,25 @@
   }
   window.AHsaveState = saveState;
 
+  const RET_KEY = 'ah-return';
+  document.addEventListener('click', e => {
+    const a = e.target.closest && e.target.closest('a.ls-main, a.ls-act');
+    if (a && a.href && a.href.indexOf('lesson.html') !== -1) {
+      try { sessionStorage.setItem(RET_KEY, JSON.stringify({ url: location.pathname, y: window.scrollY })); } catch (_) {}
+    }
+  });
+  function restoreScroll() {
+    let st = null;
+    try { st = JSON.parse(sessionStorage.getItem(RET_KEY) || 'null'); } catch (_) {}
+    if (!st) return;
+    if (!location.pathname.endsWith(String(st.url).split('/').pop())) return;
+    sessionStorage.removeItem(RET_KEY);
+    try { history.scrollRestoration = 'manual'; } catch (_) {}
+    window.scrollTo({ top: st.y, behavior: 'instant' });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
-    loadData().then(d => { renderCarousel(d); renderPage(d); }).catch(() => {});
+    loadData().then(d => { renderCarousel(d); renderPage(d); restoreScroll(); }).catch(() => {});
     miniPlayer();
   });
 })();
