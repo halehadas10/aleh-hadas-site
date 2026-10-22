@@ -34,6 +34,22 @@ if (!window.SITE_PHOTOS) {
     }
   });
 
+  /* Nav clicks land with the section title just under the fixed header */
+  document.querySelectorAll('.main-nav a[href^="#"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var id = link.getAttribute('href').slice(1);
+      if (!id) return;
+      e.preventDefault();
+      if (id === 'home') { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+      var target = document.getElementById(id);
+      if (!target) return;
+      var title = target.querySelector('.section-title') || target;
+      var y = title.getBoundingClientRect().top + window.scrollY - header.offsetHeight - 12;
+      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+      history.replaceState(null, '', '#' + id);
+    });
+  });
+
   /* Active nav link on scroll: position-based, follows the real top-to-bottom
      section order (#home maps to the hero). Re-mapped after the section reorder. */
   var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-link'));
