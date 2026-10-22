@@ -56,21 +56,11 @@
 
   /* Hero carousel */
   var heroSlides = Array.prototype.slice.call(document.querySelectorAll('.hero-slide'));
-  var heroDots = document.getElementById('heroDots');
   var heroIdx = 0;
-  heroSlides.forEach(function (_, i) {
-    var b = document.createElement('button');
-    b.setAttribute('aria-label', 'תמונה ' + (i + 1));
-    if (i === 0) b.classList.add('is-on');
-    b.addEventListener('click', function () { heroGo(i); });
-    heroDots.appendChild(b);
-  });
   function heroGo(i) {
     heroSlides[heroIdx].classList.remove('is-on');
-    heroDots.children[heroIdx].classList.remove('is-on');
     heroIdx = (i + heroSlides.length) % heroSlides.length;
     heroSlides[heroIdx].classList.add('is-on');
-    heroDots.children[heroIdx].classList.add('is-on');
   }
   setInterval(function () { heroGo(heroIdx + 1); }, 5500);
 
