@@ -688,7 +688,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   z-index: 1;
 }
 .no-photos .story-photo, .no-photos .carousel-item, .no-photos .news-card { position: relative; }
-.no-photos .story-photo img, .no-photos .carousel-item img, .no-photos .news-card img { visibility: hidden; }
+.no-photos .carousel-item img, .no-photos .news-card img { visibility: hidden; }
 .no-photos .news-card::after { inset: 0 0 auto 0; aspect-ratio: 3 / 4; }
 .no-photos .contact-donate {
   background: linear-gradient(180deg, rgba(7,22,33,.88), rgba(10,31,46,.96));
