@@ -11,7 +11,7 @@
   window.SITE_PHOTOS = false;
   if (!window.SITE_PHOTOS) document.documentElement.classList.add('no-photos');
 </script>
-<link rel="stylesheet" href="./css/style.css?v=27">
+<link rel="stylesheet" href="./css/style.css?v=28">
 <style>
   .quotes-preview { background: var(--navy-800); }
   .qp-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 10px; }
@@ -40,7 +40,7 @@
   .qp-card { transition: transform .3s ease, box-shadow .3s ease; }
   .qp-card:hover { transform: translateY(-8px); box-shadow: 0 22px 50px rgba(0,0,0,.45); }
   .story-kicker { text-align: center; color: var(--gold); font-size: 0.95rem; letter-spacing: 0.06em; margin-bottom: 12px; }
-  .stats-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin: 10px 0 46px; }
+  .stats-strip { display: grid; grid-template-columns: repeat(2, minmax(0, 260px)); justify-content: center; gap: 22px; margin: 10px 0 46px; }
   .stat-card { background: linear-gradient(150deg, var(--navy-700), var(--navy-950));
                border: 1px solid rgba(98,180,137,0.22); border-radius: var(--radius);
                padding: 30px 16px 24px; text-align: center;
@@ -77,11 +77,11 @@
     <a href="#story" class="nav-link">הסיפור שלנו</a>
     <a href="./quotes.html" class="nav-link">מה אומרים עלינו</a>
     <a href="#activities" class="nav-link">מהנעשה בבית המדרש</a>
-    <a href="./lessons.html" class="nav-link">בית מדרש וירטואלי</a>
     <a href="#programs" class="nav-link">תכניות</a>
     <a href="#contact" class="nav-link">יצירת קשר</a>
     <a href="#donate" class="nav-link">תרומה</a>
     <a href="#social" class="nav-link">עקבו אחרינו</a>
+    <a href="./lessons.html" class="nav-link">בית מדרש וירטואלי</a>
     <a href="#times" class="nav-link">זמנים ומקום</a>
   </nav>
   <a class="brand brand-medal-link" href="#home" aria-label="מדליית זיכרון - אריאל דרסינובר ז״ל - לדף הבית">
@@ -112,13 +112,12 @@
   <!-- הסיפור שלנו -->
   <section class="section story" id="story">
     <div class="container">
-      <p class="story-kicker reveal">הסניף הראשון של רשת תורהנוער · הדר גנים, פתח תקווה</p>
       <h2 class="section-title reveal">הסיפור שלנו</h2>
       <div class="stats-strip story-stats reveal">
         <div class="stat-card">
           <span class="stat-pre">הסניף</span>
-          <span class="stat-num gold bob">הראשון</span>
-          <span class="stat-label">ברשת</span>
+          <span class="stat-num bob">הראשון</span>
+          <span class="stat-label">בתנועה</span>
         </div>
         <div class="stat-card">
           <span class="stat-num" data-target="16" data-suffix="">0</span>
@@ -133,13 +132,13 @@
           <span class="stat-label">חניכים</span>
         </div>
       </div>
-      <div class="story-grid">
-        <div class="story-text reveal">
+      <div class="story-grid reveal">
+        <div class="story-text">
           <p>בית המדרש ״עלה הדס״ הוקם בשכונת הדר גנים בפתח תקווה על ידי חובב אוזן ואריאל דרסינובר ז״ל, לעילוי נשמת הדס בן שושן ז״ל.</p>
           <p>אריאל נהרג שלושה שבועות לפני חתונתו, והפעילות מוקדשת לעילוי נשמתו. מהסניף הראשון בהדר גנים צמחה רשת ״תורהנוער״ הארצית, מבית עמותת סולמות.</p>
           <p>בבית המדרש שיעורים ותכניות שבועיות לבני נוער - בחורים ובנות, מכיתות ה׳ ועד י״ב - לימוד תורה מתוך חיבור, בחירה ושייכות.</p>
         </div>
-        <figure class="story-photo reveal">
+        <figure class="story-photo">
           <img src="./assets/story-shiur.jpg?v=11" alt="שיעור בבית המדרש">
         </figure>
       </div>
@@ -345,7 +344,7 @@
         <h2 class="section-title">תרומה</h2>
         <p class="section-sub">רוצים לעזור להגדיל את פעילות בית המדרש ולתמוך בלימוד התורה?</p>
         <a class="btn btn-donate" href="https://www.jgive.com/new/he/ils/donation-targets/60540" target="_blank" rel="noopener">תרמו עכשיו</a>
-        <p class="donate-note">התרומה מתבצעת בדף תרומות מאובטח של JGive · נפתח בחלון חדש</p>
+        <p class="donate-note">התרומה מתבצעת בדף תרומות מאובטח של JGive</p>
       </div>
     </div>
   </section>
@@ -386,7 +385,7 @@
       <div class="ls-home" id="virtual">
         <p class="ls-kicker reveal">בית מדרש וירטואלי</p>
         <h3 class="ls-home-title reveal">שיעורים להאזנה וצפייה</h3>
-        <p class="section-sub reveal" style="text-align:center">השיעורים של בית המדרש מיוטיוב ומספוטיפיי, מתעדכן אוטומטית כל יום</p>
+        <p class="section-sub reveal" style="text-align:center">השיעורים של בית המדרש מיוטיוב ומספוטיפיי</p>
         <p class="ls-count" id="lsCount"></p>
         <div class="ls-strip reveal">
           <button class="ls-arrow" id="lsNext" aria-label="שיעורים נוספים">‹</button>
@@ -459,7 +458,8 @@
     if (strip) statObs.observe(strip);
   })();
 </script>
-<script src="./js/main.js?v=18"></script>
+<script src="./js/main.js?v=19"></script>
 <script src="./js/lessons.js?v=25"></script>
+<script src="./js/ext-overlay.js?v=1"></script>
 </body>
 </html>
