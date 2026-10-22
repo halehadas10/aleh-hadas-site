@@ -614,3 +614,33 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   height: 100%;
   border: 0;
 }
+
+/* Ariel Dresinover memorial medal - paired with the Torah Noar logo */
+.brand-medal {
+  height: 42px; width: auto;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.45));
+}
+@media (max-width: 560px) {
+  .brand-medal { height: 32px; }
+}
+.hero-medal-ariel {
+  left: auto;
+  right: clamp(18px, 3vw, 40px);
+  border-radius: 0;
+  box-shadow: none;
+  aspect-ratio: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 22px rgba(0,0,0,.55));
+}
+.footer-brand {
+  display: flex; align-items: center; justify-content: center;
+  gap: 22px; margin-bottom: 16px;
+}
+.footer-brand .footer-logo { margin: 0; }
+.footer-medal {
+  height: 64px; width: auto;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,.45));
+}
+@media (max-width: 560px) {
+  .footer-medal { height: 52px; }
+}
