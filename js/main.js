@@ -44,7 +44,8 @@ if (!window.SITE_PHOTOS) {
       var target = document.getElementById(id);
       if (!target) return;
       var title = target.querySelector('.section-title') || target;
-      var y = title.getBoundingClientRect().top + window.scrollY - header.offsetHeight - 12;
+      var y = 0; for (var n = title; n; n = n.offsetParent) y += n.offsetTop;
+      y = y - header.offsetHeight - 14;
       window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
       history.replaceState(null, '', '#' + id);
     });
