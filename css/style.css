@@ -102,7 +102,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .main-nav { display: flex; gap: clamp(14px, 2vw, 34px); align-items: center; }
 .nav-link {
   position: relative;
-  font-weight: 700;
+  font-weight: 500;
   font-size: clamp(.95rem, 1.1vw, 1.1rem);
   color: var(--text);
   padding: 6px 2px;
@@ -780,3 +780,112 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .program-sub { color: var(--text-dim); font-size: .8rem; line-height: 1.5; }
 .program-card.reveal { transform: translateY(24px); transition-duration: .6s; }
 .program-card.reveal.is-visible { transform: none; }
+
+/* ===== 22.10 batch 3: exact maayan-pt.com replica + header swap + arrows + centering ===== */
+
+/* Header: logo left, menu right (desktop; mobile keeps RTL convention) */
+@media (min-width: 821px) {
+  .site-header { flex-direction: row-reverse; }
+}
+
+/* Carousel arrows: guillemets are bidi-mirrored in RTL - force LTR so chevrons point outward
+   (left button shows < , right button shows >) and match their travel direction */
+.carousel-btn { direction: ltr; }
+
+/* All section titles and descriptions centered */
+.section-title, .section-sub { text-align: center; }
+
+/* Hero entrance: staggered rise on load (medal untouched) */
+@keyframes heroRise { from { opacity: 0; transform: translate3d(0, 40px, 0); } to { opacity: 1; transform: none; } }
+.hero-logo { animation: heroRise .9s ease .15s backwards, floatY 5s ease-in-out 1.3s infinite; }
+.hero-content .hero-title { animation: heroRise .9s ease .3s backwards; }
+.hero-content .hero-subtitle { animation: heroRise .9s ease .45s backwards; }
+
+/* --- Program squares: one-to-one maayan-pt.com --- */
+.program-card {
+  aspect-ratio: auto;
+  overflow: visible;
+  background: #062E47;
+  border: 1px solid rgba(43,144,163,.35);
+  border-radius: 22px 22px 0 0;
+  padding: 50px 20px;
+  gap: 0;
+  position: relative;
+  transition: background .3s, border .3s, border-radius .3s, box-shadow .3s;
+}
+.program-card:hover { transform: none; box-shadow: none; }
+.program-card::after,
+.no-photos .program-card::after {
+  content: '';
+  display: block;
+  width: 50%; height: 2px;
+  position: absolute;
+  bottom: -15px; left: 50%;
+  top: auto; right: auto;
+  transform: translate(-50%, -50%);
+  background: #2B90A3;
+  color: transparent;
+  letter-spacing: normal;
+  font-size: 0;
+  transition: .3s;
+  z-index: 2;
+}
+.program-card:hover::after,
+.no-photos .program-card:hover::after { width: 80%; }
+.program-icon { width: 45%; max-width: 121px; aspect-ratio: 1 / 1; color: #2B90A3; flex-shrink: 0; margin-bottom: 18px; }
+.program-card .news-caption {
+  font-family: 'Heebo', system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 25px;
+  color: #F17909;
+  padding: 0;
+  background: none;
+  margin-bottom: 10px;
+}
+.program-sub { font-family: 'Heebo', system-ui, sans-serif; font-weight: 400; font-size: 18px; color: #ffffff; line-height: 1.4; }
+#programs .news-grid { grid-template-columns: repeat(4, 1fr); gap: 34px 20px; }
+/* entrance: maayan fadeInUp (rise full height, 1s) */
+.program-card.reveal { transform: translate3d(0, 100%, 0); transition: opacity 1s ease, transform 1s ease; }
+.program-card.reveal.is-visible { transform: none; }
+
+/* --- Team-extra: same maayan squares, 4 per row --- */
+.contact-cards.team-extra { grid-template-columns: repeat(4, 1fr); gap: 34px 20px; justify-content: stretch; }
+.team-card {
+  background: #062E47;
+  border: 1px solid rgba(43,144,163,.35);
+  border-radius: 22px 22px 0 0;
+  padding: 50px 20px;
+  position: relative;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  transition: background .3s, border .3s, border-radius .3s, box-shadow .3s;
+  animation: teamRise .8s ease both;
+}
+.team-card::after {
+  content: '';
+  width: 50%; height: 2px;
+  position: absolute;
+  bottom: -15px; left: 50%;
+  transform: translate(-50%, -50%);
+  background: #2B90A3;
+  transition: .3s;
+}
+.team-card:hover { cursor: pointer; }
+.team-card:hover::after { width: 80%; }
+.team-icon { width: 45%; max-width: 121px; aspect-ratio: 1 / 1; color: #2B90A3; margin-bottom: 18px; }
+.team-card h3 { font-family: 'Heebo', system-ui, sans-serif; font-weight: 500; font-size: 25px; color: #F17909; margin: 0 0 10px; }
+.team-card .contact-role { font-family: 'Heebo', system-ui, sans-serif; font-weight: 400; font-size: 18px; color: #ffffff; margin: 0; }
+@keyframes teamRise { from { opacity: 0; transform: translate3d(0, 100%, 0); } to { opacity: 1; transform: none; } }
+.team-card:nth-child(2) { animation-delay: .08s; } .team-card:nth-child(3) { animation-delay: .16s; }
+.team-card:nth-child(4) { animation-delay: .24s; } .team-card:nth-child(5) { animation-delay: .32s; }
+.team-card:nth-child(6) { animation-delay: .4s; } .team-card:nth-child(7) { animation-delay: .48s; }
+.team-card:nth-child(8) { animation-delay: .56s; } .team-card:nth-child(9) { animation-delay: .64s; }
+.team-card:nth-child(10) { animation-delay: .72s; } .team-card:nth-child(11) { animation-delay: .8s; }
+.team-card:nth-child(12) { animation-delay: .88s; }
+
+@media (max-width: 820px) {
+  #programs .news-grid, .contact-cards.team-extra { grid-template-columns: repeat(2, 1fr); gap: 26px 14px; }
+  .program-card, .team-card { padding: 32px 12px; border-radius: 16px 16px 0 0; }
+  .program-card .news-caption, .team-card h3 { font-size: 19px; }
+  .program-sub, .team-card .contact-role { font-size: 14px; }
+  .program-icon, .team-icon { max-width: 72px; }
+}
