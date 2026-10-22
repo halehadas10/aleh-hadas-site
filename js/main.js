@@ -1,6 +1,6 @@
 /* Photo placeholder mode: poster lightbox shows the placeholder while SITE_PHOTOS=false */
 if (!window.SITE_PHOTOS) {
-  document.querySelectorAll('#news .news-card').forEach(function (card) {
+  document.querySelectorAll('.news-card').forEach(function (card) {
     card.setAttribute('data-full', './assets/no-image.svg');
   });
 }
@@ -63,13 +63,32 @@ if (!window.SITE_PHOTOS) {
 
   /* Hero carousel */
   var heroSlides = Array.prototype.slice.call(document.querySelectorAll('.hero-slide'));
-  var heroIdx = 0;
+  var heroDots = document.getElementById('heroDots');
+  var heroIdx = 0, heroTimer;
+  if (heroDots) {
+    for (var hd = 0; hd < heroSlides.length; hd++) {
+      (function (i) {
+        var b = document.createElement('button');
+        b.setAttribute('aria-label', 'שקופית ' + (i + 1));
+        if (i === 0) b.classList.add('is-on');
+        b.addEventListener('click', function () { heroGo(i); heroRestart(); });
+        heroDots.appendChild(b);
+      })(hd);
+    }
+  }
   function heroGo(i) {
     heroSlides[heroIdx].classList.remove('is-on');
     heroIdx = (i + heroSlides.length) % heroSlides.length;
     heroSlides[heroIdx].classList.add('is-on');
+    if (heroDots) {
+      for (var hk = 0; hk < heroSlides.length; hk++) heroDots.children[hk].classList.toggle('is-on', hk === heroIdx);
+    }
   }
-  setInterval(function () { heroGo(heroIdx + 1); }, 5500);
+  function heroRestart() {
+    clearInterval(heroTimer);
+    heroTimer = setInterval(function () { heroGo(heroIdx + 1); }, 5500);
+  }
+  heroRestart();
 
 
   /* Promo video - self-hosted: autoplays muted in view, pauses out of view, resumes where it stopped */
