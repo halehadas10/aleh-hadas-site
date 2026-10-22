@@ -948,3 +948,4 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .no-photos .news-card-real img { visibility: visible; }
 .news-card-real img { aspect-ratio: 113 / 160; }
 .no-photos .news-card-real::after { display: none; }
+.news-grid-posters .news-caption { text-align: center; }
