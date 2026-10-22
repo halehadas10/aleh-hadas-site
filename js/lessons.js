@@ -1,7 +1,7 @@
 /* Virtual midrash: renders lesson cards from data/lessons.json (homepage carousel + lessons page) */
 (function () {
   const PS_KEY = 'ah-player';
-  const fmtDur = s => { const m = Math.round(s / 60); return m + ' דקות'; };
+  const fmtDur = s => { s = Math.floor(s || 0); const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), ss = String(s % 60).padStart(2, '0'); return h ? h + ':' + String(m).padStart(2, '0') + ':' + ss : m + ':' + ss; };
 
   async function loadData() {
     const base = document.body.dataset.base || '.';
@@ -64,41 +64,6 @@
     if (cnt) cnt.textContent = both.length + ' שיעורים · מתעדכן אוטומטית כל יום';
   }
 
-  /* mini-player: resume a lesson that was playing on another lessons page */
-  function miniPlayer() {
-    let st = null;
-    try { st = JSON.parse(localStorage.getItem(PS_KEY) || 'null'); } catch (e) {}
-    if (!st || !st.v || !st.playing) return;
-    if (Date.now() - (st.ts || 0) > 24 * 3600 * 1000) return;
-    const cur = new URLSearchParams(location.search).get('v');
-    if (cur === st.v) return; /* lesson page handles its own resume */
-    if (!document.getElementById('lsPage') && !document.getElementById('lsCarousel')) return;
-    const bar = document.createElement('div');
-    bar.className = 'ls-mini';
-    bar.innerHTML = '<div class="ls-mini-frame" id="lsMiniFrame"></div>' +
-      '<div class="ls-mini-info"><b>ממשיכים מאיפה שהפסקת</b><span id="lsMiniTitle"></span></div>' +
-      '<button class="ls-mini-close" aria-label="סגירה">×</button>';
-    document.body.appendChild(bar);
-    bar.querySelector('.ls-mini-close').onclick = () => {
-      localStorage.removeItem(PS_KEY); bar.remove();
-    };
-    const tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    document.head.appendChild(tag);
-    const prev = window.onYouTubeIframeAPIReady;
-    window.onYouTubeIframeAPIReady = function () {
-      if (prev) prev();
-      new YT.Player('lsMiniFrame', {
-        videoId: st.v, playerVars: { autoplay: 1, start: Math.floor(st.t || 0), rel: 0 },
-        events: { onStateChange: ev => saveState(ev.target, st.v) }
-      });
-    };
-    fetch('./data/lessons.json').then(r => r.json()).then(d => {
-      const l = d.lessons.find(x => x.id === st.v);
-      if (l) bar.querySelector('#lsMiniTitle').textContent = l.topic;
-    }).catch(() => {});
-  }
-
   function saveState(player, v) {
     if (!player || !player.getCurrentTime) return;
     let hasPlayed = false;
@@ -117,8 +82,24 @@
   }
   window.AHsaveState = saveState;
 
+  const RET_KEY = 'ah-return';
+  document.addEventListener('click', e => {
+    const a = e.target.closest && e.target.closest('a.ls-main, a.ls-act');
+    if (a && a.href && a.href.indexOf('lesson.html') !== -1) {
+      try { sessionStorage.setItem(RET_KEY, JSON.stringify({ url: location.pathname, y: window.scrollY })); } catch (_) {}
+    }
+  });
+  function restoreScroll() {
+    let st = null;
+    try { st = JSON.parse(sessionStorage.getItem(RET_KEY) || 'null'); } catch (_) {}
+    if (!st) return;
+    if (!location.pathname.endsWith(String(st.url).split('/').pop())) return;
+    sessionStorage.removeItem(RET_KEY);
+    try { history.scrollRestoration = 'manual'; } catch (_) {}
+    window.scrollTo({ top: st.y, behavior: 'instant' });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
-    loadData().then(d => { renderCarousel(d); renderPage(d); }).catch(() => {});
-    miniPlayer();
+    loadData().then(d => { renderCarousel(d); renderPage(d); restoreScroll(); }).catch(() => {});
   });
 })();

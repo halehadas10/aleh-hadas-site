@@ -109,7 +109,7 @@ def main():
             "youtubeUrl": f"https://www.youtube.com/watch?v={vid}",
             "spotifyUrl": f"https://open.spotify.com/episode/{smap[vid]}" if vid in smap else None,
             "onSpotify": vid in smap,
-            "thumbnail": f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg",
+            "thumbnail": f"https://i.ytimg.com/vi/{vid}/hq720.jpg",
         })
         time.sleep(0.4)
     lessons.sort(key=lambda l: l["published"], reverse=True)

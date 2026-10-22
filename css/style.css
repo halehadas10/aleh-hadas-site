@@ -1020,14 +1020,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
             border: 1px solid rgba(98,180,137,.35); border-radius: 30px; padding: 12px 30px;
             color: var(--text); font-weight: 700; transition: border-color .3s ease, transform .3s ease; }
 .btn-back:hover { border-color: var(--green-soft); transform: translateY(-3px); }
-.ls-mini { position: fixed; bottom: 18px; left: 18px; z-index: 300; display: flex; align-items: center; gap: 12px;
-           background: linear-gradient(150deg, var(--navy-700), var(--navy-950));
-           border: 1px solid var(--green-soft); border-radius: 16px; padding: 10px 14px;
-           box-shadow: 0 20px 60px rgba(0,0,0,.6); max-width: min(92vw, 460px); }
-.ls-mini-frame, iframe#lsMiniFrame { width: 140px; height: auto; aspect-ratio: 16/9; border-radius: 10px; overflow: hidden; flex: none; border: 0; display: block; }
-.ls-mini-info { display: flex; flex-direction: column; gap: 2px; font-size: .85rem; }
-.ls-mini-info span { color: var(--text-dim); }
-.ls-mini-close { background: none; border: none; color: var(--text-dim); font-size: 1.5rem; cursor: pointer; line-height: 1; }
 /* lesson page */
 .lp-wrap { padding-top: clamp(90px, 12vw, 130px); }
 .lp-title { font-size: clamp(1.5rem, 3.4vw, 2.3rem); text-align: center; margin: 0 0 8px; }
@@ -1035,20 +1027,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .lp-player { max-width: 900px; margin: 0 auto; border-radius: var(--radius); overflow: hidden;
              border: 1px solid rgba(98,180,137,.3); background: var(--navy-950); }
 .lp-frame, iframe#lpFrame { width: 100%; height: auto; aspect-ratio: 16/9; border: 0; display: block; }
-.lp-controls { display: flex; align-items: center; gap: 14px; padding: 12px 18px;
-               background: linear-gradient(150deg, var(--navy-700), var(--navy-950)); flex-wrap: wrap; }
-.lp-play { width: 44px; height: 44px; border-radius: 50%; border: none; cursor: pointer; flex: none;
-           background: var(--green-soft); color: var(--navy-950); display: flex; align-items: center; justify-content: center;
-           transition: transform .2s ease; }
-.lp-play:hover { transform: scale(1.08); }
-.lp-play svg { width: 22px; height: 22px; }
-.lp-time { color: var(--text-dim); font-size: .85rem; direction: ltr; flex: none; }
-.lp-seek { flex: 1; min-width: 120px; accent-color: var(--green-soft); height: 4px; }
-.lp-volwrap { display: flex; align-items: center; gap: 6px; flex: none; }
-.lp-ic { width: 20px; height: 20px; color: var(--text-dim); }
-.lp-vol { width: 90px; accent-color: var(--green-soft); }
-.lp-speed { background: var(--navy-800); color: var(--text); border: 1px solid rgba(98,180,137,.3);
-            border-radius: 8px; padding: 6px 8px; font-family: inherit; flex: none; }
+.lp-audio { max-width: 900px; margin: 14px auto 0; background: linear-gradient(150deg, var(--navy-700), var(--navy-950));
+             border: 1px solid rgba(98,180,137,.3); border-radius: 16px; padding: 10px 14px; }
+.lp-audio-label { display: block; color: var(--text-dim); font-size: .85rem; margin-bottom: 8px; }
+.lp-audio iframe { border-radius: 12px; display: block; }
 .lp-actions { display: flex; gap: 12px; justify-content: center; margin: 22px 0 8px; flex-wrap: wrap; }
 .lp-share, .lp-ext { border-radius: 30px; padding: 11px 24px; font-weight: 700; font-size: .95rem;
                      border: 1px solid rgba(98,180,137,.35); background: linear-gradient(150deg, var(--navy-700), var(--navy-950));
@@ -1058,6 +1040,4 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .lp-series { text-align: center; color: var(--gold); margin: 18px 0 6px; }
 .lp-desc { max-width: 760px; margin: 12px auto 30px; color: var(--text-dim); line-height: 1.9; white-space: pre-line; }
 @media (max-width: 640px) {
-  .lp-volwrap { display: none; }
-  .ls-mini { left: 8px; right: 8px; bottom: 8px; }
 }

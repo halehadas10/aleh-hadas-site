@@ -1,4 +1,5 @@
-/* Lesson page: custom YouTube player (volume + speed), share/copy, platform links, resume */
+/* Lesson page: native YouTube player (YouTube settings: captions + speed), audio-only Spotify bar,
+   share/copy, platform links, resume, stop-on-leave, back-restore */
 (function () {
   const q = new URLSearchParams(location.search);
   const vid = q.get('v');
@@ -6,34 +7,53 @@
   const $ = id => document.getElementById(id);
   let player = null, lesson = null;
 
-  const fmt = s => { s = Math.floor(s || 0); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); };
+  const fmtDur = s => { s = Math.floor(s || 0); const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), ss = String(s % 60).padStart(2, '0'); return h ? h + ':' + String(m).padStart(2, '0') + ':' + ss : m + ':' + ss; };
 
   fetch('./data/lessons.json').then(r => r.json()).then(d => {
-    lesson = (d.lessons || []).find(l => l.id === vid);
+    const all = (d.lessons || []).filter(l => l.onSpotify);
+    lesson = all.find(l => l.id === vid);
     if (!lesson) { $('lpTitle').textContent = 'השיעור לא נמצא'; return; }
     document.title = lesson.topic + ' | עלה הדס';
     $('lpTitle').textContent = lesson.topic;
     $('lpRabbi').textContent = lesson.rabbi || '';
     $('lpDate').textContent = lesson.hebrewDate;
-    $('lpDur').textContent = Math.round(lesson.durationSec / 60) + ' דקות';
+    $('lpDur').textContent = fmtDur(lesson.durationSec);
     $('lpDesc').textContent = lesson.description || '';
     $('lpSeries').textContent = 'עוד מהשיעורים: ' + lesson.series;
     $('lpYouTube').href = lesson.youtubeUrl;
     if (lesson.spotifyUrl) { $('lpSpotify').href = lesson.spotifyUrl; }
     else { $('lpSpotify').style.display = 'none'; }
-    /* more from this series */
-    const more = d.lessons.filter(l => l.series === lesson.series && l.id !== vid && l.onSpotify).slice(0, 4);
+
+    /* audio-only bar: Spotify embed (true audio-only playback, no video, no ripping) */
+    const m = (lesson.spotifyUrl || '').match(/episode\/([A-Za-z0-9]+)/);
+    if (m) {
+      const bar = $('lpAudio');
+      bar.hidden = false;
+      bar.innerHTML = '<span class="lp-audio-label">האזנה בלבד, ללא וידאו</span>' +
+        '<iframe src="https://open.spotify.com/embed/episode/' + m[1] + '?utm_source=generator&theme=0" ' +
+        'width="100%" height="80" frameborder="0" title="האזנה בלבד" loading="lazy" ' +
+        'allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>';
+    }
+
+    /* עוד שיעורים: every remaining lesson, nearest date after this lesson first, then wrapping around */
+    const rest = all.filter(l => l.id !== vid)
+      .sort((a, b) => new Date(a.published) - new Date(b.published));
+    const curT = new Date(lesson.published).getTime();
+    let start = rest.findIndex(l => new Date(l.published).getTime() > curT);
+    if (start === -1) start = 0;
+    const ordered = rest.slice(start).concat(rest.slice(0, start));
     const grid = $('lpMore');
-    more.forEach(l => {
+    ordered.forEach(l => {
       const a = document.createElement('a');
       a.className = 'ls-card';
       a.href = './lesson.html?v=' + encodeURIComponent(l.id);
       a.innerHTML = '<span class="ls-thumb"><img src="' + l.thumbnail + '" alt="' + l.topic + '" loading="lazy">' +
-        '<span class="ls-dur">' + Math.round(l.durationSec / 60) + ' דקות</span></span>' +
+        '<span class="ls-dur">' + fmtDur(l.durationSec) + '</span></span>' +
         '<span class="ls-body"><span class="ls-topic">' + l.topic + '</span>' +
         '<span class="ls-meta">' + (l.rabbi ? l.rabbi + ' · ' : '') + l.hebrewDate + '</span></span>';
       grid.appendChild(a);
     });
+
     initPlayer();
   }).catch(() => { $('lpTitle').textContent = 'שגיאה בטעינת השיעור'; });
 
@@ -49,43 +69,33 @@
     window.onYouTubeIframeAPIReady = () => {
       player = new YT.Player('lpFrame', {
         videoId: vid,
-        playerVars: { controls: 0, rel: 0, start: startAt, modestbranding: 1 },
-        events: { onReady: onReady, onStateChange: onState }
+        playerVars: { controls: 1, rel: 0, start: startAt, modestbranding: 1 },
+        events: { onStateChange: ev => { if (window.AHsaveState) AHsaveState(ev.target, vid); } }
       });
     };
   }
 
-  function onReady() {
-    const seek = $('lpSeek'), vol = $('lpVol'), spd = $('lpSpeed');
-    vol.value = player.getVolume();
-    setInterval(() => {
-      if (!player.getDuration) return;
-      const d = player.getDuration(), c = player.getCurrentTime();
-      if (d) seek.value = (c / d) * 1000;
-      $('lpTime').textContent = fmt(c) + ' / ' + fmt(d);
-    }, 500);
-    seek.addEventListener('input', () => {
-      const d = player.getDuration();
-      if (d) player.seekTo((seek.value / 1000) * d, true);
-    });
-    vol.addEventListener('input', () => player.setVolume(vol.value));
-    spd.addEventListener('change', () => player.setPlaybackRate(parseFloat(spd.value)));
-    if (window.AHsaveState) AHsaveState(player, vid);
+  /* stop playback when leaving the page (audio kept playing, mostly on phones) */
+  function stopPlayback() {
+    try { if (player && player.stopVideo) player.stopVideo(); } catch (e) {}
+    try {
+      const st = JSON.parse(localStorage.getItem(PS_KEY) || 'null');
+      if (st && st.v === vid) { st.playing = false; localStorage.setItem(PS_KEY, JSON.stringify(st)); }
+    } catch (e) {}
   }
-
-  function onState(ev) {
-    const btn = $('lpPlay');
-    btn.innerHTML = ev.data === 1
-      ? '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>'
-      : '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>';
-  }
+  window.addEventListener('pagehide', stopPlayback);
+  window.addEventListener('beforeunload', stopPlayback);
 
   document.addEventListener('DOMContentLoaded', () => {
-    $('lpPlay').addEventListener('click', () => {
-      if (!player) return;
-      const s = player.getPlayerState();
-      s === 1 ? player.pauseVideo() : player.playVideo();
-    });
+    /* חזרה לאתר: go back to the lessons section the visitor came from */
+    try {
+      const st = JSON.parse(sessionStorage.getItem('ah-return') || 'null');
+      if (st && st.url) {
+        const back = document.querySelector('a.btn-back[href="./index.html"]');
+        if (back) back.href = st.url;
+      }
+    } catch (e) {}
+
     $('lpShare').addEventListener('click', async () => {
       const url = location.href;
       const data = { title: lesson ? lesson.topic : 'שיעור', text: lesson ? lesson.title : '', url };
