@@ -100,7 +100,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transition: opacity .35s ease;
 }
 .site-header.is-scrolled .brand-logo { opacity: 1; }
-.main-nav { display: flex; gap: clamp(10px, 1.5vw, 28px); align-items: center; }
+.main-nav { display: flex; gap: clamp(8px, 1.2vw, 24px); align-items: center; }
 .nav-link {
   position: relative;
   font-weight: 500;
