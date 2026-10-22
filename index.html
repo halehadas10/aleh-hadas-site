@@ -6,12 +6,13 @@
 <title>עלה הדס - בית מדרש לנוער</title>
 <meta name="description" content="עלה הדס - בית מדרש לנוער בשכונת הדר גנים בפתח תקווה, מרשת תורהנוער.">
 <link rel="preload" as="image" href="./assets/hero-main.jpg?v=11">
+<link rel="preload" as="image" href="./assets/story-shiur.jpg?v=11">
 <script>
   /* Photo toggle: set SITE_PHOTOS = true to restore all original photos (files kept in /assets) */
   window.SITE_PHOTOS = false;
   if (!window.SITE_PHOTOS) document.documentElement.classList.add('no-photos');
 </script>
-<link rel="stylesheet" href="./css/style.css?v=24">
+<link rel="stylesheet" href="./css/style.css?v=25">
 <style>
   .quotes-preview { background: var(--navy-800); }
   .qp-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 10px; }
@@ -58,7 +59,9 @@
   .qp-text { color: #cfe0ee; }
   .donate-note { color: var(--text-dim); font-size: 0.82rem; margin-top: 14px; }
   .story-photo { margin-top: 6px; }
-  .story .video-frame { margin-top: clamp(30px, 4vw, 54px); }
+  .story .video-frame { margin-top: clamp(16px, 2.4vw, 28px); }
+  .story-stats-duo { display: flex; gap: 22px; justify-content: center; margin: 30px 0 6px; flex-wrap: wrap; }
+  .story-stats-duo .stat-card { width: min(230px, 42vw); padding: 20px 12px 16px; }
   @media (max-width: 860px) { .stats-strip { grid-template-columns: 1fr 1fr; gap: 14px; } }
              border: 1px solid rgba(98,180,137,0.22); border-radius: var(--radius); overflow: hidden;
              transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
@@ -112,36 +115,22 @@
   <!-- הסיפור שלנו -->
   <section class="section story" id="story">
     <div class="container">
-      <p class="story-kicker reveal">הסניף הראשון של רשת תורהנוער · הדר גנים, פתח תקווה</p>
       <h2 class="section-title reveal">הסיפור שלנו</h2>
-      <div class="stats-strip story-stats reveal">
+
+        <figure class="story-photo reveal">
+          <img src="./assets/story-shiur.jpg?v=11" alt="שיעור בבית המדרש">
+        </figure>
+      </div>
+      <div class="story-stats-duo reveal">
         <div class="stat-card">
           <span class="stat-pre">הסניף</span>
           <span class="stat-num gold bob">הראשון</span>
           <span class="stat-label">ברשת</span>
         </div>
         <div class="stat-card">
-          <span class="stat-num" data-target="16" data-suffix="">0</span>
-          <span class="stat-label">חברי צוות</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-num" data-target="2" data-suffix="">0</span>
-          <span class="stat-label">רכזים</span>
-        </div>
-        <div class="stat-card">
           <span class="stat-num" data-target="1000" data-suffix="+">0</span>
           <span class="stat-label">חניכים</span>
         </div>
-      </div>
-      <div class="story-grid">
-        <div class="story-text reveal">
-          <p>בית המדרש ״עלה הדס״ הוקם בשכונת הדר גנים בפתח תקווה על ידי חובב אוזן ואריאל דרסינובר ז״ל, לעילוי נשמת הדס בן שושן ז״ל.</p>
-          <p>אריאל נהרג שלושה שבועות לפני חתונתו, והפעילות מוקדשת לעילוי נשמתו. מהסניף הראשון בהדר גנים צמחה רשת ״תורהנוער״ הארצית, מבית עמותת סולמות.</p>
-          <p>בבית המדרש שיעורים ותכניות שבועיות לבני נוער - בחורים ובנות, מכיתות ה׳ ועד י״ב - לימוד תורה מתוך חיבור, בחירה ושייכות.</p>
-        </div>
-        <figure class="story-photo reveal">
-          <img src="./assets/story-shiur.jpg?v=11" alt="שיעור בבית המדרש">
-        </figure>
       </div>
       <div class="video-frame reveal" id="videoFrame">
               <video id="promoVideo" src="./assets/promo.mp4" poster="./assets/promo-poster.jpg" muted playsinline preload="auto" loop></video>
@@ -460,6 +449,6 @@
   })();
 </script>
 <script src="./js/main.js?v=17"></script>
-<script src="./js/lessons.js?v=22"></script>
+<script src="./js/lessons.js?v=23"></script>
 </body>
 </html>

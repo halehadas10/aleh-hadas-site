@@ -22,8 +22,8 @@
       '<span class="ls-topic">' + l.topic + '</span>' +
       '<span class="ls-meta">' + (l.rabbi ? l.rabbi + ' · ' : '') + l.hebrewDate + '</span>' +
       (l.description ? '<span class="ls-desc">' + l.description.replace(/</g, '&lt;').slice(0, 110) + (l.description.length > 110 ? '…' : '') + '</span>' : '') +
-      '<span class="ls-series">עוד מהשיעורים: ' + l.series + '</span>' +
       '</span></a>' +
+      '<a class="ls-series" href="' + (l.seriesUrl || '#') + '" target="_blank" rel="noopener">עוד מהשיעורים: ' + l.series + '</a>' +
       '<span class="ls-actions">' +
       '<a class="ls-act" href="' + url + '">▶ צפייה</a>' +
       (l.spotifyUrl ? '<a class="ls-act ls-act-sp" href="' + l.spotifyUrl + '" target="_blank" rel="noopener">האזנה בספוטיפיי</a>' : '') +
@@ -52,7 +52,8 @@
     Object.keys(bySeries).forEach(name => {
       const sec = document.createElement('section');
       sec.className = 'ls-series-sec';
-      sec.innerHTML = '<h2 class="ls-series-title">' + name + '</h2>' +
+      const surl = bySeries[name][0].seriesUrl || '#';
+      sec.innerHTML = '<h2 class="ls-series-title"><a href="' + surl + '" target="_blank" rel="noopener">' + name + '</a></h2>' +
         '<p class="ls-series-count">' + bySeries[name].length + ' שיעורים</p>';
       const grid = document.createElement('div');
       grid.className = 'ls-grid';
