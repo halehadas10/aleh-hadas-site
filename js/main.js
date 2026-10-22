@@ -61,6 +61,7 @@ if (!window.SITE_PHOTOS) {
   var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-link'));
   var spyPairs = navLinks.map(function (l) {
     var sel = l.getAttribute('href');
+    if (!sel || sel.charAt(0) !== '#') return null;
     var el = sel === '#home' ? document.getElementById('hero') : document.querySelector(sel);
     return el ? { link: l, el: el } : null;
   }).filter(Boolean).sort(function (a, b) { return a.el.offsetTop - b.el.offsetTop; });
