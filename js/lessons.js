@@ -20,6 +20,7 @@
       '<span class="ls-body">' +
       '<span class="ls-topic">' + l.topic + '</span>' +
       '<span class="ls-meta">' + (l.rabbi ? l.rabbi + ' · ' : '') + l.hebrewDate + '</span>' +
+      (l.description ? '<span class="ls-desc">' + l.description.replace(/</g, '&lt;').slice(0, 110) + (l.description.length > 110 ? '…' : '') + '</span>' : '') +
       '<span class="ls-series">עוד מהשיעורים: ' + l.series + '</span>' +
       '</span>';
     return a;
@@ -92,12 +93,16 @@
 
   function saveState(player, v) {
     if (!player || !player.getCurrentTime) return;
+    let hasPlayed = false;
     clearInterval(player._ahSave);
     player._ahSave = setInterval(() => {
       try {
+        const stt = player.getPlayerState();
+        if (stt === 1) hasPlayed = true;
+        if (!hasPlayed) return; /* autoplay blocked: keep the saved resume state */
         localStorage.setItem(PS_KEY, JSON.stringify({
           v, t: player.getCurrentTime(),
-          playing: player.getPlayerState() === 1, ts: Date.now()
+          playing: stt === 1, ts: Date.now()
         }));
       } catch (e) {}
     }, 3000);
