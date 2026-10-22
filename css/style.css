@@ -592,7 +592,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   /* Mobile: center all section headings and the times label/value rows */
   .section-title { text-align: center; }
   .time-row { flex-direction: column; gap: 4px; align-items: center; text-align: center; }
-  .programs-grid { grid-template-columns: 1fr; }
   .time-label, .time-value { text-align: center; }
   .carousel-btn { width: 42px; height: 42px; font-size: 1.4rem; }
 }
@@ -697,13 +696,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .team-more-wrap { margin-top: clamp(18px, 2.5vw, 28px); text-align: center; }
 .contact-cards.team-extra { margin-top: clamp(16px, 2.4vw, 30px); grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
 .contact-cards.team-extra[hidden] { display: none; }
-.programs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: clamp(16px, 2.4vw, 28px); margin: clamp(20px, 3vw, 34px) 0 clamp(34px, 5vw, 60px); }
-.program-slot { display: block; text-decoration: none; }
+.program-card { text-decoration: none; color: inherit; cursor: pointer; }
+.program-card .program-thumb { border-radius: 0; }
 .program-thumb { position: relative; display: block; aspect-ratio: 3 / 4; background: #fff; border-radius: var(--radius); overflow: hidden; }
 .program-thumb::after {
   content: "\05D0\05D9\05DF\0020\05EA\05DE\05D5\05E0\05D4";
   position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
   color: #93a5b1; font-weight: 700; font-size: clamp(1rem, 1.6vw, 1.3rem);
 }
-.program-caption { display: block; text-align: center; color: var(--text-dim); margin-top: 10px; }
-.program-slot:hover .program-thumb { outline: 2px solid var(--green, #3cb878); }
