@@ -11,14 +11,13 @@
   window.SITE_PHOTOS = false;
   if (!window.SITE_PHOTOS) document.documentElement.classList.add('no-photos');
 </script>
-<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./css/style.css?v=7">
 </head>
 <body>
 
 <header class="site-header" id="siteHeader">
-  <a class="brand" href="#home" aria-label="עלה הדס - לדף הבית">
+  <a class="brand brand-word" href="#home" aria-label="עלה הדס - לדף הבית">
     <img src="./assets/logo-wordmark-light.png" alt="לוגו עלה הדס" class="brand-logo">
-    <img src="./assets/logo-medal-ariel.png?v=6" alt="מדליית זיכרון - אריאל דרסינובר ז\'\'ל" class="brand-medal">
   </a>
   <nav class="main-nav" id="mainNav" aria-label="ניווט ראשי">
     <a href="#home" class="nav-link is-active">ראשי</a>
@@ -29,6 +28,9 @@
     <a href="#donate" class="nav-link">תרומה</a>
     <a href="#contact" class="nav-link">יצירת קשר</a>
   </nav>
+  <a class="brand brand-medal-link" href="#home" aria-label="מדליית זיכרון - אריאל דרסינובר ז״ל - לדף הבית">
+    <img src="./assets/logo-medal-ariel.png?v=6" alt="מדליית זיכרון - אריאל דרסינובר ז״ל" class="brand-medal">
+  </a>
   <button class="nav-toggle" id="navToggle" aria-label="תפריט" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
@@ -194,8 +196,6 @@
           <span class="program-sub">בלה בלה בלה בלה בלה בלה בלה בלה בלה בלה</span>
         </a>
       </div>
-      <p class="section-sub reveal" style="text-align:center">התכניות של בית המדרש</p>
-
     </div>
   </section>
 
@@ -235,6 +235,10 @@
             <button class="btn btn-green" id="teamMore" type="button">לשאר חברי הצוות</button>
           </div>
           <div class="contact-cards team-extra" id="teamExtra" hidden>
+            <div class="team-card"><svg class="team-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5"/></svg><h3>בלה בלה</h3><p class="contact-role">בלה בלה</p></div>
+            <div class="team-card"><svg class="team-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5"/></svg><h3>בלה בלה</h3><p class="contact-role">בלה בלה</p></div>
+            <div class="team-card"><svg class="team-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5"/></svg><h3>בלה בלה</h3><p class="contact-role">בלה בלה</p></div>
+            <div class="team-card"><svg class="team-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5"/></svg><h3>בלה בלה</h3><p class="contact-role">בלה בלה</p></div>
             <div class="team-card"><svg class="team-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5"/></svg><h3>בלה בלה</h3><p class="contact-role">בלה בלה</p></div>
             <div class="team-card"><svg class="team-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5"/></svg><h3>בלה בלה</h3><p class="contact-role">בלה בלה</p></div>
             <div class="team-card"><svg class="team-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5"/></svg><h3>בלה בלה</h3><p class="contact-role">בלה בלה</p></div>
@@ -307,6 +311,6 @@
   <img src="" alt="מודעה בגודל מלא" id="lightboxImg">
 </div>
 
-<script src="./js/main.js"></script>
+<script src="./js/main.js?v=7"></script>
 </body>
 </html>

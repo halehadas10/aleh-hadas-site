@@ -42,11 +42,16 @@ if (!window.SITE_PHOTOS) {
     var el = sel === '#home' ? document.getElementById('hero') : document.querySelector(sel);
     return el ? { link: l, el: el } : null;
   }).filter(Boolean).sort(function (a, b) { return a.el.offsetTop - b.el.offsetTop; });
+  /* Live document-absolute tops: offsetTop is offsetParent-relative and breaks for
+     nested targets (#donate lives inside #contact), which made the highlight jump
+     to תרומה at the top of the page. Measure each target live instead. */
   function spyUpdate() {
     var pos = window.scrollY + window.innerHeight * 0.35;
     var current = spyPairs[0];
+    var bestTop = -Infinity;
     for (var i = 0; i < spyPairs.length; i++) {
-      if (spyPairs[i].el.offsetTop - 90 <= pos) current = spyPairs[i];
+      var top = spyPairs[i].el.getBoundingClientRect().top + window.scrollY;
+      if (top - 90 <= pos && top > bestTop) { bestTop = top; current = spyPairs[i]; }
     }
     navLinks.forEach(function (l) { l.classList.toggle('is-active', l === current.link); });
   }

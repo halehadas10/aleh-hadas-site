@@ -889,3 +889,53 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .program-sub, .team-card .contact-role { font-size: 14px; }
   .program-icon, .team-icon { max-width: 72px; }
 }
+
+/* ===== 22.10 batch 4: split header logos, truly centered subs, entrance animation on scroll-into-view, centered last programs row, 16 square team cards ===== */
+
+/* Header: Torah Noar wordmark at the RIGHT corner, nav centered, Ariel medal at the LEFT corner (desktop) */
+@media (min-width: 821px) {
+  .site-header { display: grid; grid-template-columns: 1fr auto 1fr; }
+  .brand-word { justify-self: start; }
+  .site-header .main-nav { justify-self: center; }
+  .brand-medal-link { justify-self: end; display: flex; align-items: center; }
+}
+/* Mobile keeps RTL convention: logos right, hamburger at the far left */
+@media (max-width: 820px) {
+  .site-header { justify-content: flex-start; gap: 12px; }
+  .brand-medal-link { display: flex; align-items: center; }
+  .nav-toggle { margin-inline-start: auto; }
+}
+
+/* Section descriptions truly centered under their titles (the 62ch box hugged the right edge) */
+.section-sub { margin-inline: auto; }
+
+/* Programs: the two squares of the last row move to the middle, each directly under a square above it */
+@media (min-width: 1025px) {
+  #programs .news-grid .program-card:nth-child(9) { grid-column: 2; }
+  #programs .news-grid .program-card:nth-child(10) { grid-column: 3; }
+}
+
+/* Entrance animation exactly like maayan-pt.com (Elementor fadeInUp: rise full height, 1s),
+   bound to .is-visible so it fires every time the section scrolls into view, not once at page load */
+@keyframes fadeInUpExact { from { opacity: 0; transform: translate3d(0, 100%, 0); } to { opacity: 1; transform: none; } }
+#story .reveal { transition: none; }
+#story .reveal.is-visible { animation: fadeInUpExact 1s ease both; }
+#story .story-text.reveal.is-visible { animation-delay: .15s; }
+#story .story-photo.reveal.is-visible { animation-delay: .3s; }
+
+.program-card.reveal { transition: none; }
+.program-card.reveal.is-visible { animation: fadeInUpExact 1s ease both; }
+.program-card.reveal:nth-child(2).is-visible { animation-delay: .06s; }
+.program-card.reveal:nth-child(3).is-visible { animation-delay: .12s; }
+.program-card.reveal:nth-child(4).is-visible { animation-delay: .18s; }
+.program-card.reveal:nth-child(5).is-visible { animation-delay: .24s; }
+.program-card.reveal:nth-child(6).is-visible { animation-delay: .3s; }
+.program-card.reveal:nth-child(7).is-visible { animation-delay: .36s; }
+.program-card.reveal:nth-child(8).is-visible { animation-delay: .42s; }
+.program-card.reveal:nth-child(9).is-visible { animation-delay: .48s; }
+.program-card.reveal:nth-child(10).is-visible { animation-delay: .54s; }
+
+/* Team: 16 squares exactly like the program squares (square proportions), staggered rise on open */
+.team-card { aspect-ratio: 1 / 1; justify-content: center; }
+.team-card:nth-child(13) { animation-delay: .96s; } .team-card:nth-child(14) { animation-delay: 1.04s; }
+.team-card:nth-child(15) { animation-delay: 1.12s; } .team-card:nth-child(16) { animation-delay: 1.2s; }
