@@ -12,6 +12,24 @@
   if (!window.SITE_PHOTOS) document.documentElement.classList.add('no-photos');
 </script>
 <link rel="stylesheet" href="./css/style.css?v=16">
+<style>
+  .quotes-preview { background: var(--navy-800); }
+  .qp-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 10px; }
+  .qp-card { position: relative; background: linear-gradient(150deg, var(--navy-700), var(--navy-950));
+             border: 1px solid rgba(98,180,137,0.22); border-radius: var(--radius);
+             padding: 52px 30px 26px; display: flex; flex-direction: column; }
+  .qp-card::before { content: "״"; position: absolute; top: 6px; right: 22px;
+                     font-size: 3.2rem; color: var(--gold); line-height: 1; font-family: serif; }
+  .qp-text { font-size: 1.06rem; line-height: 1.9; color: var(--text); margin-bottom: 22px; }
+  .qp-name { color: var(--blue-light); font-weight: 700; }
+  .qp-role { color: var(--text-dim); font-size: 0.92rem; line-height: 1.7; }
+  .qp-src { margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(216,229,236,0.12);
+            color: var(--text-dim); font-size: 0.85rem; display: flex; justify-content: space-between;
+            align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .qp-src a { color: var(--green-soft); text-decoration: underline; text-underline-offset: 3px; }
+  .qp-more { text-align: center; margin-top: 36px; }
+  @media (max-width: 860px) { .qp-cards { grid-template-columns: 1fr; } .qp-card { padding: 46px 22px 22px; } }
+</style>
 </head>
 <body>
 
@@ -137,6 +155,30 @@
   </section>
 
   <!-- תכניות -->
+  <section class="section quotes-preview" id="quotes">
+    <div class="container">
+      <h2 class="section-title reveal">מה אומרים עלינו</h2>
+      <p class="section-sub reveal">רבנים ואנשי ציבור - על רשת תורהנוער שצמחה מעלה הדס</p>
+      <div class="qp-cards">
+        <article class="qp-card reveal">
+          <p class="qp-text">הצימאון הזה לא יפסיק, הוא רק יגדל - ואתם צריכים להיות הרבנים והמחנכים, אתם צריכים לגדול בתורה ולצמוח. זה להביא את האור של התורה לכל עם ישראל.</p>
+          <p class="qp-name">הרב שמואל אליהו</p>
+          <p class="qp-role">רבה של צפת, בהתוועדות לבני תורהנוער בליל הושענא רבה (על הרשת שצמחה מעלה הדס)</p>
+          <p class="qp-src"><span>ערוץ 7, 6.10.2023</span><a href="https://www.inn.co.il/news/615811" target="_blank" rel="noopener">לכתבה המלאה</a></p>
+        </article>
+        <article class="qp-card reveal">
+          <p class="qp-text">לפני כמה שנים, שרק התחלנו את תורהנוער, מי היה מאמין שבשלב הזה נהיה עם למעלה מ-50 סניפים ואלפי בני נוער שבכל שבוע כורתים ברית עם התורה. ההשפעה של התהליך הזה היא לא רק נקודתית אלא מעידה על שייכות עמוקה - בזמן שכולם יוצאים לבילויים, אתם אומרים: הבילוי שלי הוא עם התורה.</p>
+          <p class="qp-name">הרב יוסף צבי רימון</p>
+          <p class="qp-role">יו״ר עמותת סולמות, בליל הושענא רבה המרכזי של רשת תורהנוער (על הרשת שצמחה מעלה הדס)</p>
+          <p class="qp-src"><span>ערוץ 7, 6.10.2023</span><a href="https://www.inn.co.il/news/615811" target="_blank" rel="noopener">לכתבה המלאה</a></p>
+        </article>
+      </div>
+      <div class="qp-more reveal">
+        <a class="btn btn-green" href="./quotes.html">לשאר ההמלצות והכתבות</a>
+      </div>
+    </div>
+  </section>
+
   <section class="section programs" id="programs">
     <div class="container">
       <h2 class="section-title reveal">תכניות</h2>
