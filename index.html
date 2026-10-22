@@ -17,7 +17,7 @@
   .qp-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 10px; }
   .qp-card { position: relative; background: linear-gradient(150deg, var(--navy-700), var(--navy-950));
              border: 1px solid rgba(98,180,137,0.22); border-radius: var(--radius);
-             padding: 52px 30px 26px; display: flex; flex-direction: column; }
+             padding: 20px 30px 26px; display: flex; flex-direction: column; }
   .qp-card::before { content: "״"; position: absolute; top: 6px; right: 22px;
                      font-size: 3.2rem; color: var(--gold); line-height: 1; font-family: serif; }
   .qp-text { font-size: 1.06rem; line-height: 1.9; color: var(--text); margin-bottom: 22px; }
@@ -27,8 +27,15 @@
             color: var(--text-dim); font-size: 0.85rem; display: flex; justify-content: space-between;
             align-items: baseline; gap: 12px; flex-wrap: wrap; }
   .qp-src a { color: var(--green-soft); text-decoration: underline; text-underline-offset: 3px; }
+  .qp-photo { width: clamp(120px, 13vw, 170px); aspect-ratio: 4 / 5; object-fit: cover;
+              border-radius: 16px; border: 3px solid rgba(98,180,137,0.35);
+              box-shadow: 0 18px 44px rgba(0,0,0,0.5); transform: rotate(-3deg);
+              margin-top: -64px; margin-bottom: 18px; align-self: flex-end;
+              transition: transform .5s ease; }
+  .qp-photo:hover { transform: rotate(0deg) scale(1.03); }
   .qp-more { text-align: center; margin-top: 36px; }
   @media (max-width: 860px) { .qp-cards { grid-template-columns: 1fr; } .qp-card { padding: 46px 22px 22px; } }
+  @media (max-width: 860px) { .qp-photo { margin-top: -56px; } }
 </style>
 </head>
 <body>
@@ -161,12 +168,14 @@
       <p class="section-sub reveal">רבנים ואנשי ציבור - על רשת תורהנוער שצמחה מעלה הדס</p>
       <div class="qp-cards">
         <article class="qp-card reveal">
+          <img class="qp-photo" src="./assets/rabbi-eliyahu.jpg" alt="הרב שמואל אליהו" loading="lazy">
           <p class="qp-text">הצימאון הזה לא יפסיק, הוא רק יגדל - ואתם צריכים להיות הרבנים והמחנכים, אתם צריכים לגדול בתורה ולצמוח. זה להביא את האור של התורה לכל עם ישראל.</p>
           <p class="qp-name">הרב שמואל אליהו</p>
           <p class="qp-role">רבה של צפת, בהתוועדות לבני תורהנוער בליל הושענא רבה (על הרשת שצמחה מעלה הדס)</p>
           <p class="qp-src"><span>ערוץ 7, 6.10.2023</span><a href="https://www.inn.co.il/news/615811" target="_blank" rel="noopener">לכתבה המלאה</a></p>
         </article>
         <article class="qp-card reveal">
+          <img class="qp-photo" src="./assets/rabbi-rimon.jpg" alt="הרב יוסף צבי רימון" loading="lazy">
           <p class="qp-text">לפני כמה שנים, שרק התחלנו את תורהנוער, מי היה מאמין שבשלב הזה נהיה עם למעלה מ-50 סניפים ואלפי בני נוער שבכל שבוע כורתים ברית עם התורה. ההשפעה של התהליך הזה היא לא רק נקודתית אלא מעידה על שייכות עמוקה - בזמן שכולם יוצאים לבילויים, אתם אומרים: הבילוי שלי הוא עם התורה.</p>
           <p class="qp-name">הרב יוסף צבי רימון</p>
           <p class="qp-role">יו״ר עמותת סולמות, בליל הושענא רבה המרכזי של רשת תורהנוער (על הרשת שצמחה מעלה הדס)</p>
