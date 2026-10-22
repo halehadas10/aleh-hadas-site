@@ -606,6 +606,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .chav-grid { margin-top: 8px; }
 
+/* iOS <15 has no aspect-ratio: padding-top fallback keeps the frame height */
+@supports not (aspect-ratio: 16 / 9) {
+  .video-frame { display: block; padding-top: 56.25%; }
+}
+
 /* Promo video iframe */
 .video-frame iframe {
   position: absolute;

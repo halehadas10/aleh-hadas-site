@@ -79,10 +79,9 @@
   if (videoFrame) {
     var ytFrame = document.createElement('iframe');
     ytFrame.src = 'https://www.youtube-nocookie.com/embed/tCTWXSj6ksc?enablejsapi=1&rel=0&modestbranding=1&playsinline=1&mute=1';
-    ytFrame.title = 'הסרטון שלנו';
+    ytFrame.title = 'מי אנחנו';
     ytFrame.allow = 'autoplay; encrypted-media; picture-in-picture';
     ytFrame.allowFullscreen = true;
-    ytFrame.setAttribute('loading', 'lazy');
     videoFrame.appendChild(ytFrame);
     var ytCmd = function (func) {
       ytFrame.contentWindow.postMessage(JSON.stringify({ event: 'command', func: func, args: [] }), '*');
