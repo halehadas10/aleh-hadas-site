@@ -38,3 +38,10 @@
 - Back-restore: card click saves {url,y} to sessionStorage ah-return; restore after render, scrollRestoration=manual. Verified: back from lesson.html returns to y=7806 at the strip.
 - Fix: countUp observer retargeted (.story-stats -> .story-stats,.story-stats-duo) after strip removal; verified "+1,000" animates.
 - Commits: 141ba33, c58a351, a65d143, 8df69d1, b773f21.
+
+## 2026-10-23 00:46 - Avraham's agent: FULL REVERT of 00:40 batch per user (00:43)
+- User: "תבטל את העדכון הזה ותחזיר למה שהיה". Reverted (git revert, no history rewrite): 141ba33, c58a351, a65d143, 8df69d1, b773f21. Revert commits: f312009 + 38850e9 (a65d143 needed its own revert - it predates c58a351).
+- Restored: stats strip with "16 חברי צוות" + "2 רכזים", story kicker, quotes kicker/"אמרו עלינו"/subtitle, text-glyph arrows (‹ ›), series label "שיעורים כלליים" (JSON + pipeline), no playlist links, no back-restore.
+- KEPT: daily lessons workflow (lessons.yml), marathon prize photo (6f3781e), virtual midrash build, שיעורים קרובים removal, Roi sync status above.
+- Cache bumped: css v26, lessons.js v24, main.js v18, lesson-player.js v3.
+- NOTE: none of the reverted changes may be re-applied until the user says so.
