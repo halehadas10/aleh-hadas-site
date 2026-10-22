@@ -657,3 +657,28 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 @media (max-width: 560px) {
   .footer-medal { height: 52px; }
 }
+
+/* ===== Photo placeholders (active while SITE_PHOTOS=false in index.html) ===== */
+.no-photos .hero-slide { background-image: none !important; background-color: #fff; }
+.no-photos .story-photo::after,
+.no-photos .carousel-item::after,
+.no-photos #news .news-card::after {
+  content: "\05D0\05D9\05DF \05EA\05DE\05D5\05E0\05D4"; /* "אין תמונה" */
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: #93a5b1;
+  font-weight: 700;
+  font-size: clamp(1.05rem, 2vw, 1.6rem);
+  letter-spacing: .02em;
+  z-index: 1;
+}
+.no-photos .story-photo, .no-photos .carousel-item, .no-photos #news .news-card { position: relative; }
+.no-photos .story-photo img, .no-photos .carousel-item img, .no-photos #news .news-card img { visibility: hidden; }
+.no-photos #news .news-card::after { inset: 0 0 auto 0; aspect-ratio: 3 / 4; }
+.no-photos .contact-donate {
+  background: linear-gradient(180deg, rgba(7,22,33,.88), rgba(10,31,46,.96));
+}
