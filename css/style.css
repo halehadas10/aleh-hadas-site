@@ -671,7 +671,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ===== Photo placeholders (active while SITE_PHOTOS=false in index.html) ===== */
-.no-photos .hero-slide { background-image: none !important; background-color: #fff; }
+/* hero shows the real main-screen photo even while SITE_PHOTOS is off */
 .no-photos .story-photo::after,
 .no-photos .carousel-item::after,
 .no-photos .news-card::after {
