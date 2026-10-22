@@ -23,4 +23,4 @@
 - Carousel: hidden scrollbar, ‹ › arrow buttons
 - Cards: צפייה / האזנה בספוטיפיי actions; shaveihevron lessons-UX as the model (series, rabbi, Hebrew date, counts)
 - Marathon prize card: user's photo (boy with glasses) cropped 4:5.3
-- PENDING INFRA: .github/workflows/lessons.yml cannot be pushed (PAT lacks workflow scope) - must be added via GitHub web UI; file lives in repo workspace, content shared with Roi
+- RESOLVED: lessons.yml added via GitHub web UI (89ed5c9); manual run #1 Success; daily 06:15 IL active
