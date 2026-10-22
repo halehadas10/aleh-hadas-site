@@ -45,3 +45,13 @@
 - KEPT: daily lessons workflow (lessons.yml), marathon prize photo (6f3781e), virtual midrash build, שיעורים קרובים removal, Roi sync status above.
 - Cache bumped: css v26, lessons.js v24, main.js v18, lesson-player.js v3.
 - NOTE: none of the reverted changes may be re-applied until the user says so.
+
+## 2026-10-23 01:12 - Avraham's agent: corrections batch (video 01:04), live (0ef88d2)
+- Real durations from YouTube watch pages (durationSec in lessons.json + pipeline keeps them); badge format MM:SS / H:MM:SS, word "דקות" dropped.
+- Thumbnails switched to hq720.jpg (true 16:9) in JSON + pipeline; no letterbox.
+- Lesson page: native YouTube controls (controls=1: captions + speed menu); custom transport bar removed; audio-only bar = Spotify embed (legal audio-only, no ripping); playback stopped on pagehide/beforeunload; mini-player removed.
+- "עוד מהשיעורים" -> "עוד שיעורים", shows ALL remaining lessons ordered from nearest date after the current lesson forward (wraps to earlier ones).
+- Back-restore re-applied per explicit re-request (sessionStorage ah-return; חזרה לאתר honors it).
+- Buttons verified correct (צפייה->watch page, האזנה בספוטיפיי->Spotify) - never swapped in code; user confusion likely from auto-resume audio (now removed).
+- HELD: lessons count text (both-platforms question pending), הסיפור שלנו buttons comment, all other deletions until the next video is analyzed.
+- Cache: css v27, lessons.js v25, lesson-player.js v4.
