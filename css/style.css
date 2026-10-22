@@ -604,3 +604,19 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 @media (max-width: 560px) {
   .hero-medal { width: 58px; bottom: 90px; }
 }
+
+/* Programs - chavurot noar */
+.program-block { max-width: 1100px; margin: 0 auto; }
+.program-title {
+  color: #cfe3ef;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin: 10px 0 14px;
+}
+.program-desc {
+  color: #aebfd0;
+  line-height: 1.9;
+  max-width: 780px;
+  margin: 0 auto 26px;
+  font-size: 1.05rem;
+}
+.chav-grid { margin-top: 8px; }
