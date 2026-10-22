@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>גלריית תמונות - מה שנעשה בבית המדרש - עלה הדס</title>
+<meta name="description" content="גלריית תמונות מהפעילות בבית המדרש עלה הדס, הדר גנים, פתח תקווה.">
+<link rel="stylesheet" href="./css/style.css?v=12">
+</head>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <a class="brand brand-word" href="./index.html" aria-label="עלה הדס - לדף הבית">
+    <img src="./assets/logo-wordmark-light.png" alt="לוגו עלה הדס" class="brand-logo">
+  </a>
+  <nav class="main-nav" id="mainNav" aria-label="ניווט ראשי">
+    <a href="./index.html#home" class="nav-link">ראשי</a>
+    <a href="./index.html#story" class="nav-link">הסיפור שלנו</a>
+    <a href="./index.html#video" class="nav-link">מי אנחנו</a>
+    <a href="./index.html#activities" class="nav-link is-active">מה שנעשה בבית המדרש</a>
+    <a href="./index.html#programs" class="nav-link">תכניות</a>
+    <a href="./index.html#donate" class="nav-link">תרומה</a>
+    <a href="./index.html#contact" class="nav-link">יצירת קשר</a>
+  </nav>
+  <a class="brand brand-medal-link" href="./index.html" aria-label="מדליית זיכרון - אריאל דרסינובר ז״ל - לדף הבית">
+    <img src="./assets/logo-medal-ariel.png?v=6" alt="מדליית זיכרון - אריאל דרסינובר ז״ל" class="brand-medal">
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="תפריט" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<main>
+  <section class="section gallery-page" id="gallery">
+    <div class="container">
+      <div class="gallery-back">
+        <a class="btn btn-ghost" href="./index.html#activities">חזרה לאתר</a>
+      </div>
+      <h2 class="section-title">גלריית תמונות</h2>
+      <p class="gallery-sub">מה שנעשה בבית המדרש</p>
+      <div class="gallery-grid">
+        <figure><img src="./assets/gallery/act-b1.jpg" alt="בחורים בשיעור בבית המדרש" loading="lazy"></figure>
+        <figure><img src="./assets/gallery/act-g1.jpg" alt="בנות בשיעור בבית המדרש" loading="lazy"></figure>
+        <figure><img src="./assets/gallery/act-b2.jpg" alt="שיעור לבחורים בבית המדרש" loading="lazy"></figure>
+        <figure><img src="./assets/gallery/act-g2.jpg" alt="שיעור לבנות עם הרב" loading="lazy"></figure>
+        <figure><img src="./assets/gallery/act-b3.jpg" alt="בחורים סביב שולחן בבית המדרש" loading="lazy"></figure>
+        <figure><img src="./assets/gallery/act-g3.jpg" alt="בנות בערב פעילות" loading="lazy"></figure>
+        <figure><img src="./assets/gallery/act-b4.jpg" alt="בחורים לומדים בחברותא" loading="lazy"></figure>
+        <figure><img src="./assets/gallery/act-g4.jpg" alt="בנות בשיעור, מבט מהקהל" loading="lazy"></figure>
+        <figure><img src="./assets/gallery/act-b5.jpg" alt="בית המדרש מלא בשיעור" loading="lazy"></figure>
+        <figure><img src="./assets/gallery/act-g5.jpg" alt="בנות לומדות בבית המדרש" loading="lazy"></figure>
+        <figure><img src="./assets/gallery/side-1.jpg" alt="בחורים בבית המדרש" loading="lazy"></figure>
+        <figure><img src="./assets/gallery/side-2.jpg" alt="שיעור בבית המדרש" loading="lazy"></figure>
+        <figure><img src="./assets/gallery/side-3.jpg" alt="בית המדרש וארון הקודש" loading="lazy"></figure>
+        <figure><img src="./assets/gallery/side-4.jpg" alt="ערב פעילות בבית המדרש" loading="lazy"></figure>
+        <figure><img src="./assets/gallery/side-5.jpg" alt="סעודה משותפת בבית המדרש" loading="lazy"></figure>
+        <figure><img src="./assets/gallery/side-6.jpg" alt="בנות בבית המדרש" loading="lazy"></figure>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-brand">
+      <img src="./assets/logo-aleh-hadas-light.png" alt="לוגו עלה הדס" class="footer-logo">
+      <img src="./assets/logo-medal-ariel.png?v=6" alt="מדליית זיכרון - אריאל דרסינובר ז״ל, מייסד בית המדרש" class="footer-medal">
+    </div>
+    <p>עלה הדס · בית מדרש לנוער · הדר גנים, פתח תקווה</p>
+    <p class="footer-note">כל הזכויות שמורות לאברהם יונה ורועי גלנץ</p>
+  </div>
+</footer>
+
+<script>
+  var header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', function () { header.classList.toggle('is-scrolled', window.scrollY > 40); }, { passive: true });
+  header.classList.add('is-scrolled');
+  var toggle = document.getElementById('navToggle');
+  var nav = document.getElementById('mainNav');
+  toggle.addEventListener('click', function () {
+    var open = nav.classList.toggle('is-open');
+    toggle.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+</script>
+</body>
+</html>
