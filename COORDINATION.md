@@ -29,3 +29,12 @@
 - (א) שחזור תצוגת המודעות (פליירים) - מתנגש עם החלטת המשתמש להסיר את "שיעורים קרובים" - לא משחזרים.
 - (ב) תוכן לכרטיסי/עמודי התכניות - ממתין להחלטת המשתמש.
 - (ג) העברת גישות - חסום על המשתמש.
+
+## 2026-10-23 00:39 - Avraham's agent: video-2 batch + fixes (DONE, live)
+- Homepage: story kicker deleted; stats strip removed; kept 2 tiles (הסניף הראשון / +1,000 חניכים) as centered .story-stats-duo inside הסיפור שלנו above the video; story photo preload; video raised.
+- Quotes page: kicker + "אמרו עלינו" heading + subtitle deleted; 16/2 stat squares removed (strip kept with the 2 remaining tiles - הסיפור שלנו exists only on homepage); Greenberg card full width (q-card wide). HELD: subtitle "רבנים, אנשי ציבור ותקשורת..." per user.
+- Series wired to real playlists with exact names: "שיעור פרשת שבוע שבועי הרב חיים גוטסדינר" (PLJNguypfQibs), "מוצ״ש בבית המדרש" (PLWynLIr8qI2Q). Series lines link to playlists (lessons grid, lessons.html sections, lesson page).
+- Strip arrows: SVG chevrons pointing outward (prev right-edge >, next left-edge <), bidi-proof.
+- Back-restore: card click saves {url,y} to sessionStorage ah-return; restore after render, scrollRestoration=manual. Verified: back from lesson.html returns to y=7806 at the strip.
+- Fix: countUp observer retargeted (.story-stats -> .story-stats,.story-stats-duo) after strip removal; verified "+1,000" animates.
+- Commits: 141ba33, c58a351, a65d143, 8df69d1, b773f21.
