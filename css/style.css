@@ -589,7 +589,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 @media (max-width: 560px) {
   .news-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
   .tiles-grid { grid-template-columns: repeat(2, 1fr); }
-  .time-row { flex-direction: column; gap: 4px; }
+  /* Mobile: center all section headings and the times label/value rows */
+  .section-title { text-align: center; }
+  .time-row { flex-direction: column; gap: 4px; align-items: center; text-align: center; }
+  .programs-grid { grid-template-columns: 1fr; }
+  .time-label, .time-value { text-align: center; }
   .carousel-btn { width: 42px; height: 42px; font-size: 1.4rem; }
 }
 
@@ -689,7 +693,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 #programs .section-title { text-align: center; }
 .time-value { flex: 1; text-align: center; }
 .contact-role { margin: 0; color: var(--text-dim); font-size: 1rem; }
-.team-more-wrap { margin-top: clamp(18px, 2.5vw, 28px); }
+.contact-card h3 + .contact-role { margin-top: -10px; }
+.team-more-wrap { margin-top: clamp(18px, 2.5vw, 28px); text-align: center; }
 .contact-cards.team-extra { margin-top: clamp(16px, 2.4vw, 30px); grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
 .contact-cards.team-extra[hidden] { display: none; }
 .programs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: clamp(16px, 2.4vw, 28px); margin: clamp(20px, 3vw, 34px) 0 clamp(34px, 5vw, 60px); }
