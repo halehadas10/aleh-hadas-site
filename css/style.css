@@ -10,9 +10,16 @@
   font-weight: 700; font-display: swap;
 }
 @font-face {
-  font-family: 'Suez One';
-  src: url('../assets/SuezOne-400-7UFD23OH.woff2') format('woff2');
+  font-family: 'Secular One';
+  src: url('../assets/SecularOne-400-hebrew.woff2') format('woff2');
   font-weight: 400; font-display: swap;
+  unicode-range: U+0590-05FF, U+FB1D-FB4F;
+}
+@font-face {
+  font-family: 'Secular One';
+  src: url('../assets/SecularOne-400-latin.woff2') format('woff2');
+  font-weight: 400; font-display: swap;
+  unicode-range: U+0000-00FF, U+2000-206F;
 }
 
 :root {
@@ -53,7 +60,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .section { padding: clamp(64px, 9vw, 130px) 0; position: relative; }
 
 .section-title {
-  font-family: 'Suez One', 'Heebo', serif;
+  font-family: 'Secular One', 'Heebo', serif;
   font-size: clamp(2rem, 4.2vw, 3.4rem);
   color: var(--blue-light);
   margin-bottom: clamp(18px, 2.5vw, 34px);
@@ -161,7 +168,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .hero-content { position: relative; padding-inline: 20px; }
 .hero-title {
-  font-family: 'Suez One', serif;
+  font-family: 'Secular One', serif;
   font-size: clamp(3.4rem, 10vw, 8.5rem);
   color: #fff;
   line-height: 1.05;
@@ -205,7 +212,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .story-banner { margin-bottom: clamp(28px, 4vw, 56px); overflow: hidden; }
 .banner-word {
   display: inline-block;
-  font-family: 'Suez One', serif;
+  font-family: 'Secular One', serif;
   font-size: clamp(1.8rem, 4.5vw, 3.6rem);
   background: linear-gradient(90deg, var(--green-soft), var(--blue-light), var(--gold), var(--green-soft));
   background-size: 300% 100%;
@@ -262,7 +269,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   box-shadow: 0 18px 40px rgba(0,0,0,.4);
 }
 .tile-num {
-  font-family: 'Suez One', serif;
+  font-family: 'Secular One', serif;
   font-size: clamp(1.7rem, 3.4vw, 3rem);
   color: var(--blue-light);
 }
@@ -438,7 +445,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: flex; flex-direction: column; gap: 14px;
 }
 .contact-card h3 {
-  font-family: 'Suez One', serif;
+  font-family: 'Secular One', serif;
   font-size: clamp(1.3rem, 2vw, 1.7rem);
   color: var(--blue-light);
 }
@@ -599,7 +606,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   html { scroll-behavior: auto; }
 }
 
@@ -699,13 +705,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .contact-cards.team-extra { margin-top: clamp(16px, 2.4vw, 30px); grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
 .contact-cards.team-extra[hidden] { display: none; }
 .program-card { text-decoration: none; color: inherit; cursor: pointer; }
-.program-card .program-thumb { border-radius: 0; }
-.program-thumb { position: relative; display: block; aspect-ratio: 3 / 4; background: #fff; border-radius: var(--radius); overflow: hidden; }
-.program-thumb::after {
-  content: "\05D0\05D9\05DF\0020\05EA\05DE\05D5\05E0\05D4";
-  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-  color: #93a5b1; font-weight: 700; font-size: clamp(1rem, 1.6vw, 1.3rem);
-}
 
 /* ===== 22.10 desktop batch ===== */
 /* Centered section titles on desktop: מי אנחנו + מה נעשה בבית המדרש */
@@ -734,9 +733,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border: 1px solid rgba(98,180,137,.55);
   text-align: center;
 }
-.program-card .program-thumb { width: 44%; aspect-ratio: 1 / 1; border-radius: 14px; }
-.program-card .program-thumb::after { font-size: .8rem; }
-.program-card .news-caption { background: none; color: var(--gold); padding: 0; font-size: clamp(.9rem, 1.1vw, 1.05rem); }
+.program-card .program-card .news-caption { background: none; color: var(--gold); padding: 0; font-size: clamp(.9rem, 1.1vw, 1.05rem); }
 .program-underline { width: 46px; height: 3px; border-radius: 2px; background: var(--green-soft); }
 .program-card:hover { box-shadow: 0 22px 50px rgba(31,143,95,.45); }
 .program-card:hover .program-underline { background: var(--gold); }
@@ -751,3 +748,35 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .program-card:nth-child(8) { transition-delay: .42s; }
 .program-card:nth-child(9) { transition-delay: .48s; }
 .program-card:nth-child(10) { transition-delay: .54s; }
+
+/* ===== 22.10 desktop batch 2 ===== */
+/* Raised sections */
+#story, #video, #activities { padding-top: clamp(28px, 4vw, 56px); }
+
+/* Centered titles/subs */
+#news .section-title, #news .section-sub,
+#times .section-title,
+#contact .contact-block .section-title, #contact .contact-block .section-sub { text-align: center; }
+
+/* Section separation: alternating shades + hairline divider */
+.news { background: var(--navy-800); }
+.section + .section { border-top: 1px solid rgba(168,220,185,.10); }
+
+/* תרומה: distinct band */
+.donate-block {
+  background: rgba(31,143,95,.12);
+  border: 1px solid rgba(98,180,137,.40);
+  border-radius: var(--radius);
+  padding: clamp(24px, 3.5vw, 44px);
+  margin-top: clamp(30px, 4vw, 52px);
+}
+
+/* Team expanded cards: same size as David/Noa cards, two per row, centered */
+.contact-cards.team-extra { grid-template-columns: repeat(2, minmax(260px, 420px)); justify-content: center; }
+
+/* Program cards: exact maayan-style - thin-line icon, gold title, small body, underline */
+.program-card .news-caption { color: var(--gold); }
+.program-icon { width: 30%; max-width: 84px; aspect-ratio: 1 / 1; color: var(--green-soft); flex-shrink: 0; }
+.program-sub { color: var(--text-dim); font-size: .8rem; line-height: 1.5; }
+.program-card.reveal { transform: translateY(24px); transition-duration: .6s; }
+.program-card.reveal.is-visible { transform: none; }

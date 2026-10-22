@@ -1,6 +1,6 @@
 /* Photo placeholder mode: poster lightbox shows the placeholder while SITE_PHOTOS=false */
 if (!window.SITE_PHOTOS) {
-  document.querySelectorAll('.news-card').forEach(function (card) {
+  document.querySelectorAll('.news-card:not(.program-card)').forEach(function (card) {
     card.setAttribute('data-full', './assets/no-image.svg');
   });
 }
@@ -63,7 +63,12 @@ if (!window.SITE_PHOTOS) {
       if (en.isIntersecting && (r >= 0.15 || en.boundingClientRect.height > window.innerHeight)) {
         en.target.classList.add('is-visible');
       } else if (r === 0) {
-        en.target.classList.remove('is-visible');
+        /* remove only when the element is at least 60px outside the viewport -
+           the 36px reveal shift can then never pull it back in (no oscillation) */
+        var b = en.boundingClientRect;
+        if (b.bottom < -60 || b.top > window.innerHeight + 60) {
+          en.target.classList.remove('is-visible');
+        }
       }
     });
   }, { threshold: [0, 0.15] });
@@ -161,20 +166,28 @@ if (!window.SITE_PHOTOS) {
   /* Lightbox for posters */
   var lightbox = document.getElementById('lightbox');
   var lightboxImg = document.getElementById('lightboxImg');
-  document.querySelectorAll('.news-card').forEach(function (card) {
+  document.querySelectorAll('.news-card:not(.program-card)').forEach(function (card) {
     card.addEventListener('click', function () {
       lightboxImg.src = card.getAttribute('data-full');
       lightbox.classList.add('is-open');
       lightbox.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+      history.pushState({ lightbox: true }, '');
     });
   });
-  function closeLightbox() {
+  function closeLightbox(fromPopstate) {
     lightbox.classList.remove('is-open');
     lightbox.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
     lightboxImg.src = '';
+    if (!fromPopstate && history.state && history.state.lightbox) {
+      history.back();
+    }
   }
+  /* Browser/mouse Back closes the lightbox instead of leaving the page */
+  window.addEventListener('popstate', function () {
+    if (lightbox.classList.contains('is-open')) closeLightbox(true);
+  });
   document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
   lightbox.addEventListener('click', function (e) { if (e.target === lightbox) closeLightbox(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLightbox(); });
