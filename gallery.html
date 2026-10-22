@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>גלריית תמונות - מהנעשה בבית המדרש - עלה הדס</title>
 <meta name="description" content="גלריית תמונות מהפעילות בבית המדרש עלה הדס, הדר גנים, פתח תקווה.">
-<link rel="stylesheet" href="./css/style.css?v=17">
+<link rel="stylesheet" href="./css/style.css?v=18">
 </head>
 <body>
 
@@ -16,9 +16,9 @@
   <nav class="main-nav" id="mainNav" aria-label="ניווט ראשי">
     <a href="./index.html#home" class="nav-link">ראשי</a>
     <a href="./index.html#story" class="nav-link">הסיפור שלנו</a>
+    <a href="./quotes.html" class="nav-link">מה אומרים עלינו</a>
     <a href="./index.html#activities" class="nav-link is-active">מהנעשה בבית המדרש</a>
     <a href="./index.html#news" class="nav-link">שיעורים קרובים</a>
-    <a href="./quotes.html" class="nav-link">מה אומרים עלינו</a>
     <a href="./index.html#programs" class="nav-link">תכניות</a>
     <a href="./index.html#contact" class="nav-link">יצירת קשר</a>
     <a href="./index.html#donate" class="nav-link">תרומה</a>
@@ -71,6 +71,7 @@
     </div>
     <p>עלה הדס · בית מדרש לנוער · הדר גנים, פתח תקווה</p>
     <p class="footer-note">כל הזכויות שמורות לאברהם יונה ורועי גלנץ</p>
+    <p class="footer-rights">כל הזכויות בתמונות שמורות לבעליהן</p>
   </div>
 </footer>
 
@@ -87,5 +88,36 @@
     document.body.style.overflow = open ? 'hidden' : '';
   });
 </script>
+
+  <div class="lb" id="lb" hidden>
+    <button class="lb-close" id="lbClose" aria-label="סגירת התמונה">&#215;</button>
+    <img id="lbImg" alt="">
+    <p class="lb-cap" id="lbCap"></p>
+  </div>
+  <style>
+  .lb { position: fixed; inset: 0; background: rgba(5,10,16,0.93); z-index: 300;
+        display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4vh 4vw; }
+  .lb[hidden] { display: none; }
+  .lb img { max-width: 92vw; max-height: 80vh; border-radius: 14px; box-shadow: 0 30px 80px rgba(0,0,0,0.6); }
+  .lb-cap { color: var(--text-dim); margin-top: 14px; font-size: 0.9rem; }
+  .lb-close { position: absolute; top: 16px; left: 16px; width: 44px; height: 44px; border-radius: 50%;
+              background: rgba(255,255,255,0.1); color: #fff; font-size: 26px; border: 1px solid rgba(255,255,255,0.25); cursor: pointer; }
+  .gallery-grid figure img { cursor: zoom-in; }
+  </style>
+  <script>
+  (function () {
+    var lb = document.getElementById('lb'), img = document.getElementById('lbImg'), cap = document.getElementById('lbCap'), y = 0;
+    document.querySelectorAll('.gallery-grid figure img').forEach(function (im) {
+      im.addEventListener('click', function () {
+        y = window.scrollY;
+        img.src = im.currentSrc || im.src; img.alt = im.alt; cap.textContent = im.alt;
+        lb.hidden = false; document.body.style.overflow = 'hidden';
+      });
+    });
+    function close() { lb.hidden = true; document.body.style.overflow = ''; window.scrollTo({ top: y, behavior: 'instant' }); }
+    lb.addEventListener('click', function (e) { if (e.target !== img) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !lb.hidden) close(); });
+  })();
+  </script>
 </body>
 </html>
