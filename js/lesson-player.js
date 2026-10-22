@@ -17,7 +17,7 @@
     $('lpDate').textContent = lesson.hebrewDate;
     $('lpDur').textContent = Math.round(lesson.durationSec / 60) + ' דקות';
     $('lpDesc').textContent = lesson.description || '';
-    $('lpSeries').innerHTML = 'עוד מהשיעורים: <a href="' + (lesson.seriesUrl || '#') + '" target="_blank" rel="noopener">' + lesson.series + '</a>';
+    $('lpSeries').textContent = 'עוד מהשיעורים: ' + lesson.series;
     $('lpYouTube').href = lesson.youtubeUrl;
     if (lesson.spotifyUrl) { $('lpSpotify').href = lesson.spotifyUrl; }
     else { $('lpSpotify').style.display = 'none'; }

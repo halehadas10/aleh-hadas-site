@@ -99,16 +99,13 @@ def main():
             if m: rabbi = m.group(0)
         parts = [p.strip() for p in re.split(r'\|', title)]
         topic = parts[1] if len(parts) > 1 else title
-        if "פרשת" in title:
-            series, series_url = "שיעור פרשת שבוע שבועי הרב חיים גוטסדינר", "https://www.youtube.com/playlist?list=PLJNguypfQibs"
-        else:
-            series, series_url = "מוצ״ש בבית המדרש", "https://www.youtube.com/playlist?list=PLWynLIr8qI2Q"
+        series = "שיעורי פרשת השבוע" if "פרשת" in title else ("מוצ״ש בבית המדרש")
         dt = datetime.datetime.fromisoformat(pub.replace("Z", "+00:00"))
         lessons.append({
             "id": vid, "title": title, "topic": topic, "rabbi": rabbi,
             "description": desc[:1200], "published": pub,
             "hebrewDate": hebrew_date(dt), "durationSec": dur,
-            "series": series, "seriesUrl": series_url,
+            "series": series,
             "youtubeUrl": f"https://www.youtube.com/watch?v={vid}",
             "spotifyUrl": f"https://open.spotify.com/episode/{smap[vid]}" if vid in smap else None,
             "onSpotify": vid in smap,
