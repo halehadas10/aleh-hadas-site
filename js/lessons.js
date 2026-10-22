@@ -10,10 +10,11 @@
   }
 
   function card(l, base) {
-    const a = document.createElement('a');
-    a.className = 'ls-card reveal is-visible';
-    a.href = base + '/lesson.html?v=' + encodeURIComponent(l.id);
-    a.innerHTML =
+    const d = document.createElement('div');
+    d.className = 'ls-card reveal is-visible';
+    const url = base + '/lesson.html?v=' + encodeURIComponent(l.id);
+    d.innerHTML =
+      '<a class="ls-main" href="' + url + '">' +
       '<span class="ls-thumb"><img src="' + l.thumbnail + '" alt="' + l.topic + '" loading="lazy">' +
       '<span class="ls-dur">' + fmtDur(l.durationSec) + '</span>' +
       '<span class="ls-play"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg></span></span>' +
@@ -22,8 +23,12 @@
       '<span class="ls-meta">' + (l.rabbi ? l.rabbi + ' · ' : '') + l.hebrewDate + '</span>' +
       (l.description ? '<span class="ls-desc">' + l.description.replace(/</g, '&lt;').slice(0, 110) + (l.description.length > 110 ? '…' : '') + '</span>' : '') +
       '<span class="ls-series">עוד מהשיעורים: ' + l.series + '</span>' +
+      '</span></a>' +
+      '<span class="ls-actions">' +
+      '<a class="ls-act" href="' + url + '">▶ צפייה</a>' +
+      (l.spotifyUrl ? '<a class="ls-act ls-act-sp" href="' + l.spotifyUrl + '" target="_blank" rel="noopener">האזנה בספוטיפיי</a>' : '') +
       '</span>';
-    return a;
+    return d;
   }
 
   function renderCarousel(data) {
@@ -33,6 +38,9 @@
     both.slice(0, 8).forEach(l => host.appendChild(card(l, '.')));
     const cnt = document.getElementById('lsCount');
     if (cnt) cnt.textContent = both.length + ' שיעורים זמינים לצפייה ולהאזנה';
+    const next = document.getElementById('lsNext'), prev = document.getElementById('lsPrev');
+    if (next) next.onclick = () => host.scrollBy({ left: -host.clientWidth * 0.85, behavior: 'smooth' });
+    if (prev) prev.onclick = () => host.scrollBy({ left: host.clientWidth * 0.85, behavior: 'smooth' });
   }
 
   function renderPage(data) {

@@ -972,8 +972,25 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .ls-kicker { text-align: center; color: var(--gold); font-size: 1.05rem; letter-spacing: .06em; margin: 0 0 10px; }
 .ls-hero { padding-bottom: 10px; }
 .ls-count { text-align: center; color: var(--text-dim); font-size: .95rem; margin-top: 10px; }
+.ls-strip { display: flex; align-items: center; gap: 12px; }
 .ls-carousel { display: grid; grid-auto-flow: column; grid-auto-columns: clamp(240px, 26vw, 320px);
-               gap: 18px; overflow-x: auto; padding: 6px 4px 18px; scroll-snap-type: x mandatory; }
+               gap: 18px; overflow-x: auto; padding: 6px 4px 18px; scroll-snap-type: x mandatory;
+               scrollbar-width: none; -ms-overflow-style: none; }
+.ls-carousel::-webkit-scrollbar { display: none; }
+.ls-arrow { flex: none; width: 46px; height: 46px; border-radius: 50%; cursor: pointer; line-height: 1;
+            border: 1px solid rgba(98,180,137,.35); background: linear-gradient(150deg, var(--navy-700), var(--navy-950));
+            color: var(--green-soft); font-size: 1.7rem; padding-bottom: 4px;
+            transition: transform .25s ease, border-color .25s ease; }
+.ls-arrow:hover { border-color: var(--green-soft); transform: scale(1.1); }
+.ls-main { display: flex; flex-direction: column; flex: 1; color: inherit; text-decoration: none; }
+.ls-actions { display: flex; gap: 8px; padding: 0 14px 14px; }
+.ls-act { flex: 1; text-align: center; font-size: .85rem; font-weight: 700; padding: 8px 10px; border-radius: 20px;
+          border: 1px solid rgba(98,180,137,.35); color: var(--text); background: rgba(98,180,137,.08);
+          transition: border-color .25s ease; }
+.ls-act:hover { border-color: var(--green-soft); }
+.ls-act-sp { color: var(--green-soft); }
+.ls-home { margin-top: clamp(34px, 5vw, 56px); }
+.ls-home-title { text-align: center; font-size: clamp(1.4rem, 2.8vw, 2rem); margin: 0 0 8px; }
 .ls-carousel .ls-card { scroll-snap-align: start; }
 .ls-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin-bottom: 44px; }
 .ls-card { display: flex; flex-direction: column; background: linear-gradient(150deg, var(--navy-700), var(--navy-950));
