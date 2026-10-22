@@ -663,7 +663,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .no-photos .story-photo::after,
 .no-photos .carousel-item::after,
 .no-photos #news .news-card::after {
-  content: "\05D0\05D9\05DF \05EA\05DE\05D5\05E0\05D4"; /* "אין תמונה" */
+  content: "\05D0\05D9\05DF\0020\05EA\05DE\05D5\05E0\05D4"; /* "אין תמונה" */
   position: absolute;
   inset: 0;
   display: flex;
@@ -682,3 +682,22 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .no-photos .contact-donate {
   background: linear-gradient(180deg, rgba(7,22,33,.88), rgba(10,31,46,.96));
 }
+
+/* ===== 22.10 batch: centering, team expand, program slots ===== */
+#story .section-title, #story .story-banner { text-align: center; }
+#programs .section-title { text-align: center; }
+.time-value { flex: 1; text-align: center; }
+.contact-role { margin: 0; color: var(--text-dim); font-size: 1rem; }
+.team-more-wrap { margin-top: clamp(18px, 2.5vw, 28px); }
+.contact-cards.team-extra { margin-top: clamp(16px, 2.4vw, 30px); grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.contact-cards.team-extra[hidden] { display: none; }
+.programs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: clamp(16px, 2.4vw, 28px); margin: clamp(20px, 3vw, 34px) 0 clamp(34px, 5vw, 60px); }
+.program-slot { display: block; text-decoration: none; }
+.program-thumb { position: relative; display: block; aspect-ratio: 3 / 4; background: #fff; border-radius: var(--radius); overflow: hidden; }
+.program-thumb::after {
+  content: "\05D0\05D9\05DF\0020\05EA\05DE\05D5\05E0\05D4";
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  color: #93a5b1; font-weight: 700; font-size: clamp(1rem, 1.6vw, 1.3rem);
+}
+.program-caption { display: block; text-align: center; color: var(--text-dim); margin-top: 10px; }
+.program-slot:hover .program-thumb { outline: 2px solid var(--green, #3cb878); }

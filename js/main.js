@@ -71,15 +71,6 @@ if (!window.SITE_PHOTOS) {
   }
   setInterval(function () { heroGo(heroIdx + 1); }, 5500);
 
-  /* 16 tiles (placeholders, למילוי בהמשך) */
-  var tilesGrid = document.getElementById('tilesGrid');
-  for (var t = 0; t < 16; t++) {
-    var tile = document.createElement('div');
-    tile.className = 'tile reveal';
-    tile.innerHTML = '<span class="tile-num">—</span><span class="tile-label">יתמלא בקרוב</span>';
-    tilesGrid.appendChild(tile);
-    revealObs.observe(tile);
-  }
 
   /* Promo video - self-hosted: autoplays muted in view, pauses out of view, resumes where it stopped */
   var videoFrame = document.getElementById('videoFrame');
@@ -180,3 +171,20 @@ if (!window.SITE_PHOTOS) {
   lightbox.addEventListener('click', function (e) { if (e.target === lightbox) closeLightbox(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLightbox(); });
 })();
+
+/* Team: show/hide the rest of the team cards */
+document.addEventListener('DOMContentLoaded', function () {
+  var teamMore = document.getElementById('teamMore');
+  var teamExtra = document.getElementById('teamExtra');
+  if (teamMore && teamExtra) {
+    teamMore.addEventListener('click', function () {
+      if (teamExtra.hasAttribute('hidden')) {
+        teamExtra.removeAttribute('hidden');
+        teamMore.textContent = 'סגירת הרשימה';
+      } else {
+        teamExtra.setAttribute('hidden', '');
+        teamMore.textContent = 'לשאר חברי הצוות';
+      }
+    });
+  }
+});
