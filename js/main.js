@@ -74,22 +74,29 @@
     revealObs.observe(tile);
   }
 
-  /* Promo video - YouTube embed, autoplays muted in view, pauses out of view */
+  /* Promo video - self-hosted: autoplays muted in view, pauses out of view, resumes where it stopped */
   var videoFrame = document.getElementById('videoFrame');
-  if (videoFrame) {
-    var ytFrame = document.createElement('iframe');
-    ytFrame.src = 'https://www.youtube-nocookie.com/embed/tCTWXSj6ksc?enablejsapi=1&rel=0&modestbranding=1&playsinline=1&mute=1';
-    ytFrame.title = 'מי אנחנו';
-    ytFrame.allow = 'autoplay; encrypted-media; picture-in-picture';
-    ytFrame.allowFullscreen = true;
-    videoFrame.appendChild(ytFrame);
-    var ytCmd = function (func) {
-      ytFrame.contentWindow.postMessage(JSON.stringify({ event: 'command', func: func, args: [] }), '*');
+  var promo = document.getElementById('promoVideo');
+  if (videoFrame && promo) {
+    var muteBtn = document.getElementById('videoMute');
+    var setMuteUI = function () {
+      muteBtn.classList.toggle('is-on', !promo.muted);
+      muteBtn.setAttribute('aria-pressed', promo.muted ? 'false' : 'true');
+      muteBtn.setAttribute('aria-label', promo.muted ? 'הפעלת צליל' : 'השתקה');
     };
+    muteBtn.addEventListener('click', function () {
+      promo.muted = !promo.muted;
+      if (!promo.muted) { var pr = promo.play(); if (pr && pr.catch) pr.catch(function () {}); }
+      setMuteUI();
+    });
     var videoObs = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.intersectionRatio >= 0.4) { ytCmd('playVideo'); }
-        else { ytCmd('pauseVideo'); }
+        if (entry.intersectionRatio >= 0.4) {
+          var p = promo.play();
+          if (p && p.catch) p.catch(function () {});
+        } else {
+          promo.pause();
+        }
       });
     }, { threshold: [0, 0.4] });
     videoObs.observe(videoFrame);
@@ -125,6 +132,24 @@
       restart();
     });
   });
+  /* Touch swipe (mobile): swipe left = next image, swipe right = previous (RTL forward) */
+  var carousel = document.getElementById('actCarousel');
+  var touchX = null, touchY = null;
+  carousel.addEventListener('touchstart', function (e) {
+    touchX = e.touches[0].clientX;
+    touchY = e.touches[0].clientY;
+    clearInterval(timer);
+  }, { passive: true });
+  carousel.addEventListener('touchend', function (e) {
+    if (touchX === null) { restart(); return; }
+    var dx = e.changedTouches[0].clientX - touchX;
+    var dy = e.changedTouches[0].clientY - touchY;
+    touchX = null; touchY = null;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      go(dx < 0 ? idx + 1 : idx - 1);
+    }
+    restart();
+  }, { passive: true });
   restart();
 
   /* Lightbox for posters */

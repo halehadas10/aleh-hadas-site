@@ -94,7 +94,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-size: 1.35rem;
   color: #fff;
   letter-spacing: .5px;
+  opacity: 0;
+  transition: opacity .35s ease;
 }
+.site-header.is-scrolled .brand-name { opacity: 1; }
 .main-nav { display: flex; gap: clamp(14px, 2vw, 34px); align-items: center; }
 .nav-link {
   position: relative;
@@ -343,7 +346,34 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   0%, 100% { box-shadow: 0 0 0 0 rgba(169,201,234,.25); }
   50% { box-shadow: 0 0 0 22px rgba(169,201,234,0); }
 }
-.video-frame video { width: 100%; height: 100%; object-fit: cover; }
+.video-frame video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000;
+}
+.video-mute {
+  position: absolute;
+  bottom: 14px;
+  inset-inline-start: 14px;
+  z-index: 4;
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.35);
+  background: rgba(7,22,33,.68);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background .25s ease, transform .25s ease;
+}
+.video-mute:hover { background: rgba(31,143,95,.75); transform: scale(1.06); }
+.video-mute .icon-sound { display: none; }
+.video-mute.is-on .icon-sound { display: block; }
+.video-mute.is-on .icon-muted { display: none; }
 
 /* ===== News (שיעורים קרובים) ===== */
 .news { background: var(--navy-900); }
@@ -565,29 +595,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .tiles-grid { grid-template-columns: repeat(2, 1fr); }
   .time-row { flex-direction: column; gap: 4px; }
   .carousel-btn { width: 42px; height: 42px; font-size: 1.4rem; }
-  .brand-name { display: none; }
+  .brand-name { font-size: 1.02rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   html { scroll-behavior: auto; }
-}
-
-/* Medal badge (memory of Hadas ben Shoshan) in hero corner */
-.hero-medal {
-  position: absolute;
-  bottom: clamp(18px, 3vw, 40px);
-  left: clamp(18px, 3vw, 40px);
-  width: clamp(64px, 7vw, 96px);
-  height: auto;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: 50%;
-  box-shadow: 0 10px 30px rgba(0,0,0,.5);
-  z-index: 3;
-}
-@media (max-width: 560px) {
-  .hero-medal { width: 58px; bottom: 90px; }
 }
 
 /* Programs - chavurot noar */
@@ -622,13 +635,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 /* Ariel Dresinover memorial medal - paired with the Torah Noar logo */
 .brand-medal {
-  height: 54px; width: auto;
+  height: 66px; width: auto;
   filter: drop-shadow(0 2px 6px rgba(0,0,0,.45));
   opacity: 0; transition: opacity .35s ease;
 }
 .site-header.is-scrolled .brand-medal { opacity: 1; }
 @media (max-width: 560px) {
-  .brand-medal { height: 40px; }
+  .brand-medal { height: 48px; }
 }
 .hero-medal-center {
   position: relative;

@@ -49,7 +49,6 @@
       <p class="hero-subtitle">בית מדרש לנוער</p>
       <p class="hero-meta">כל השבוע · חנה רובינא 23, הדר גנים, פתח תקווה</p>
     </div>
-    <img src="./assets/logo-medal-hadas.png" alt="מדליית זיכרון - הדס בן שושן ז\'\'ל" class="hero-medal float-anim">
     <a class="hero-scroll" href="#story" aria-label="גלול למטה"><span></span></a>
   </section>
 
@@ -75,7 +74,13 @@
   <section class="section video" id="video">
     <div class="container">
       <h2 class="section-title reveal">מי אנחנו</h2>
-      <div class="video-frame reveal" id="videoFrame"></div>
+      <div class="video-frame reveal" id="videoFrame">
+        <video id="promoVideo" src="./assets/promo.mp4" poster="./assets/promo-poster.jpg" muted playsinline preload="auto" loop></video>
+        <button class="video-mute" id="videoMute" aria-label="הפעלת צליל" aria-pressed="false">
+          <svg class="icon-muted" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z" fill="currentColor" stroke="none"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+          <svg class="icon-sound" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z" fill="currentColor" stroke="none"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+        </button>
+      </div>
     </div>
   </section>
 
