@@ -702,7 +702,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .contact-role { margin: 0; color: var(--text-dim); font-size: 1rem; }
 .contact-card h3 + .contact-role { margin-top: -10px; }
 .team-more-wrap { margin-top: clamp(18px, 2.5vw, 28px); text-align: center; }
-.contact-cards.team-extra { margin-top: clamp(16px, 2.4vw, 30px); grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.contact-cards.team-extra { margin-top: clamp(16px, 2.4vw, 30px); grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
 .contact-cards.team-extra[hidden] { display: none; }
 .program-card { text-decoration: none; color: inherit; cursor: pointer; }
 
@@ -772,7 +772,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* Team expanded cards: same size as David/Noa cards, two per row, centered */
-.contact-cards.team-extra { grid-template-columns: repeat(2, minmax(260px, 420px)); justify-content: center; }
 
 /* Program cards: exact maayan-style - thin-line icon, gold title, small body, underline */
 .program-card .news-caption { color: var(--gold); }
@@ -848,46 +847,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .program-card.reveal { transform: translate3d(0, 100%, 0); transition: opacity 1s ease, transform 1s ease; }
 .program-card.reveal.is-visible { transform: none; }
 
-/* --- Team-extra: same maayan squares, 4 per row --- */
-.contact-cards.team-extra { grid-template-columns: repeat(4, 1fr); gap: 34px 20px; justify-content: stretch; }
-.team-card {
-  background: #062E47;
-  border: 1px solid rgba(43,144,163,.35);
-  border-radius: 22px 22px 0 0;
-  padding: 50px 20px;
-  position: relative;
-  display: flex; flex-direction: column; align-items: center; text-align: center;
-  transition: background .3s, border .3s, border-radius .3s, box-shadow .3s;
-  animation: teamRise .8s ease both;
-}
-.team-card::after {
-  content: '';
-  width: 50%; height: 2px;
-  position: absolute;
-  bottom: -15px; left: 50%;
-  transform: translate(-50%, -50%);
-  background: #2B90A3;
-  transition: .3s;
-}
-.team-card:hover { cursor: pointer; }
-.team-card:hover::after { width: 80%; }
-.team-icon { width: 45%; max-width: 121px; aspect-ratio: 1 / 1; color: #2B90A3; margin-bottom: 18px; }
-.team-card h3 { font-family: 'Heebo', system-ui, sans-serif; font-weight: 500; font-size: 25px; color: #F17909; margin: 0 0 10px; }
-.team-card .contact-role { font-family: 'Heebo', system-ui, sans-serif; font-weight: 400; font-size: 18px; color: #ffffff; margin: 0; }
 @keyframes teamRise { from { opacity: 0; transform: translate3d(0, 100%, 0); } to { opacity: 1; transform: none; } }
-.team-card:nth-child(2) { animation-delay: .08s; } .team-card:nth-child(3) { animation-delay: .16s; }
-.team-card:nth-child(4) { animation-delay: .24s; } .team-card:nth-child(5) { animation-delay: .32s; }
-.team-card:nth-child(6) { animation-delay: .4s; } .team-card:nth-child(7) { animation-delay: .48s; }
-.team-card:nth-child(8) { animation-delay: .56s; } .team-card:nth-child(9) { animation-delay: .64s; }
-.team-card:nth-child(10) { animation-delay: .72s; } .team-card:nth-child(11) { animation-delay: .8s; }
-.team-card:nth-child(12) { animation-delay: .88s; }
 
 @media (max-width: 820px) {
-  #programs .news-grid, .contact-cards.team-extra { grid-template-columns: repeat(2, 1fr); gap: 26px 14px; }
-  .program-card, .team-card { padding: 32px 12px; border-radius: 16px 16px 0 0; }
-  .program-card .news-caption, .team-card h3 { font-size: 19px; }
-  .program-sub, .team-card .contact-role { font-size: 14px; }
-  .program-icon, .team-icon { max-width: 72px; }
+  #programs .news-grid { grid-template-columns: repeat(2, 1fr); gap: 26px 14px; }
+  .program-card { padding: 32px 12px; border-radius: 16px 16px 0 0; }
+  .program-card .news-caption { font-size: 19px; }
+  .program-sub { font-size: 14px; }
+  .program-icon { max-width: 72px; }
 }
 
 /* ===== 22.10 batch 4: split header logos, truly centered subs, entrance animation on scroll-into-view, centered last programs row, 16 square team cards ===== */
@@ -936,6 +903,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .program-card.reveal:nth-child(10).is-visible { animation-delay: .54s; }
 
 /* Team: 16 squares exactly like the program squares (square proportions), staggered rise on open */
-.team-card { aspect-ratio: 1 / 1; justify-content: center; }
-.team-card:nth-child(13) { animation-delay: .96s; } .team-card:nth-child(14) { animation-delay: 1.04s; }
-.team-card:nth-child(15) { animation-delay: 1.12s; } .team-card:nth-child(16) { animation-delay: 1.2s; }
+
+/* ===== 22.10 batch 5: team-extra = exact copies of the contact card (user video 18:03), staggered rise on open ===== */
+.team-extra:not([hidden]) .contact-card { animation: teamRise .8s ease both; }
+.team-extra:not([hidden]) .contact-card:nth-child(2) { animation-delay: 0.08s; }
+.team-extra:not([hidden]) .contact-card:nth-child(3) { animation-delay: 0.16s; }
+.team-extra:not([hidden]) .contact-card:nth-child(4) { animation-delay: 0.24s; }
+.team-extra:not([hidden]) .contact-card:nth-child(5) { animation-delay: 0.32s; }
+.team-extra:not([hidden]) .contact-card:nth-child(6) { animation-delay: 0.4s; }
+.team-extra:not([hidden]) .contact-card:nth-child(7) { animation-delay: 0.48s; }
+.team-extra:not([hidden]) .contact-card:nth-child(8) { animation-delay: 0.56s; }
+.team-extra:not([hidden]) .contact-card:nth-child(9) { animation-delay: 0.64s; }
+.team-extra:not([hidden]) .contact-card:nth-child(10) { animation-delay: 0.72s; }
+.team-extra:not([hidden]) .contact-card:nth-child(11) { animation-delay: 0.8s; }
+.team-extra:not([hidden]) .contact-card:nth-child(12) { animation-delay: 0.88s; }
