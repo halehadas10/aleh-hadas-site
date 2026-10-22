@@ -11,7 +11,7 @@
   window.SITE_PHOTOS = false;
   if (!window.SITE_PHOTOS) document.documentElement.classList.add('no-photos');
 </script>
-<link rel="stylesheet" href="./css/style.css?v=18">
+<link rel="stylesheet" href="./css/style.css?v=19">
 <style>
   .quotes-preview { background: var(--navy-800); }
   .qp-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 10px; }
@@ -97,6 +97,7 @@
     <a href="./quotes.html" class="nav-link">מה אומרים עלינו</a>
     <a href="#activities" class="nav-link">מהנעשה בבית המדרש</a>
     <a href="#news" class="nav-link">שיעורים קרובים</a>
+    <a href="./lessons.html" class="nav-link">בית מדרש וירטואלי</a>
     <a href="#programs" class="nav-link">תכניות</a>
     <a href="#contact" class="nav-link">יצירת קשר</a>
     <a href="#donate" class="nav-link">תרומה</a>
@@ -243,6 +244,20 @@
           <img src="./assets/flyer-smotrich.jpg" alt="מודעת ערב שבת, בצלאל סמוטריץ'">
           <span class="news-caption">ערב שבת. בצלאל סמוטריץ'</span>
         </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Virtual midrash -->
+  <section class="section ls-home" id="virtual">
+    <div class="container">
+      <p class="ls-kicker reveal">בית מדרש וירטואלי</p>
+      <h2 class="section-title reveal">שיעורים להאזנה וצפייה</h2>
+      <p class="section-sub reveal" style="text-align:center">השיעורים של בית המדרש מיוטיוב ומספוטיפיי, מתעדכן אוטומטית כל יום</p>
+      <p class="ls-count" id="lsCount"></p>
+      <div class="ls-carousel reveal" id="lsCarousel"></div>
+      <div class="ls-backwrap">
+        <a class="btn btn-back" href="./lessons.html">לכל השיעורים</a>
       </div>
     </div>
   </section>
@@ -520,5 +535,6 @@
   })();
 </script>
 <script src="./js/main.js?v=17"></script>
+<script src="./js/lessons.js?v=19"></script>
 </body>
 </html>

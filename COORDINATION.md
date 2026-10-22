@@ -8,3 +8,11 @@
 ## באצ'ים שהועלו
 - 22.10 23:15 — סדר עמוד, סיפור אמיתי, 6 תכניות, תמונות ציטוטים, כרטיסי רשתות (1db24e0, b5a7f5c, 6ede4e4)
 - 22.10 23:58 — סדר לשוניות, אנימציית "הסניף הראשון", חיתוך תמונות, שורת זכויות, כפתור חזרה, לייטבוקס בגלריה, עיצוב תכניות, כרטיס צוות 13, טקסט תרומה, כרטיסי רשתות אחידים, מדליה לכרטיס הפרס (4c797d0)
+
+## 2026-10-23 בית מדרש וירטואלי (user approved "הופ לעבודה")
+- Data pipeline: scripts/build_lessons.py (YouTube RSS + watch pages, Spotify latest via embed, Hebcal dates) -> data/lessons.json
+- Daily refresh: .github/workflows/lessons.yml (06:15 IL)
+- Both-platforms rule: lesson shows only with Spotify match in data/spotify-map.json
+- Pages: lessons.html (series grid), lesson.html?v= (custom player: volume+speed, share/copy, YouTube/Spotify links, mini-player resume inside lessons pages)
+- Homepage: "בית מדרש וירטואלי" section after שיעורים קרובים + nav link (all pages)
+- Skipped per user/parent: file downloads, cross-page persistence beyond mini-player
