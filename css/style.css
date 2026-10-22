@@ -672,7 +672,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 /* ===== Photo placeholders (active while SITE_PHOTOS=false in index.html) ===== */
 /* hero shows the real main-screen photo even while SITE_PHOTOS is off */
-.no-photos .story-photo::after,
 .no-photos .carousel-item::after,
 .no-photos .news-card::after {
   content: "\05D0\05D9\05DF\0020\05EA\05DE\05D5\05E0\05D4"; /* "אין תמונה" */
