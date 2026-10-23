@@ -91,3 +91,16 @@
 - Program card underline: bottom -15px -> -4px (was dipping onto next row's card after gap tightening).
 - TRIAL (user may revert): program cards filled with palette colors - checkerboard blue #00506e / green #427651, white caption/sub/icon/underline. ROLLBACK = delete the marked trial block only.
 - css v38.
+
+## 23.10 ~10:35 batch (commit 042884f, css v40, lesson-player v5) - 10:18 video corrections
+- Programs: 2 fill tiles DELETED; all tiles sage-green gradient + blue #00506e titles; עונג שבת→row2 col2, מוצ״שים→row2 col3 (desktop); underline restored in gap below card (green, hover widens).
+- Story stats: הראשון blue again (gold removed); both tiles equal height.
+- Homepage quotes: title+sub lifted (smaller padding-top, bigger sub margin); reveal neutralized inside #quotes (sync fix); לכתבה המלאה links now use data-overlay (in-site iframe overlay; inn/maariv/kore have no XFO headers).
+- Lessons: promo Dqp7iOoyEQA + short mK85KXUHtSM REMOVED from lessons.json; build_lessons.py skips 'תדמית' + <180s (Shorts); series renamed שיעורים כלליים→מוצא״ש בבית מדרש, שיעורי פרשת השבוע→שיעור שבועי.
+- Lesson page: SHARE BUG fixed (lookup was onSpotify-filtered → non-Spotify lessons 404'd); לתרומה לבית מדרש button (JGive 60540); recommendations: עוד מ<series> + עוד שיעורים (minus series row); חזרה לאתר uses history.back() on same-origin referrer, ah-return fallback.
+- NO download button: no authorized media route (no originals hosted; ripping YT not permitted). Studio-owner route feasibility deferred to media task (saved channel login may exist in browser profile).
+- Quotes page: stats row DELETED (הסניף הראשון בתנועה / 16 חברי צוות / 2 רכזים / 1000+ חניכים); medal+q-prize moved boy card→ceremony card; Greenberg photo wider (140-170px, 4/4.2); Lavi 4/3.4 shows torso; boy object-position 10% 10%; ceremony photo full-width 21/9 (mobile 16/9).
+- Gallery: lightbox prev/next arrows (RTL-aware, direction:ltr glyphs) + keyboard.
+- logo-medal-ariel.png darkened x0.80 (too bright on white), ?v=7 on all pages.
+- Cancelled mid-note (NOT implemented): inline Spotify embed play button; רוצים להמליץ עלינו option.
+- Separate future outcome (NOT started): upload all full YT lessons to Spotify same title+desc automatically (video ~7:05-7:30); Motzei Shabbat lesson upload voice note also pending.

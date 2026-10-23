@@ -109,7 +109,7 @@ def main():
         parts = [p.strip() for p in re.split(r'\|', title)]
         topic = parts[1] if len(parts) > 1 else title
         # 23.10: user - full lessons only, no promos/shorts
-        if 'תדמית' in title or (dur and dur < 300):
+        if 'תדמית' in title or (dur and dur < 180):  # <3min = YouTube Shorts; full lessons run longer
             print("skip promo/short:", vid, title, dur); continue
         series = "שיעור שבועי" if "פרשת" in title else ("מוצא״ש בבית מדרש")
         dt = datetime.datetime.fromisoformat(pub.replace("Z", "+00:00"))
