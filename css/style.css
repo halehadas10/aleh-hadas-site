@@ -1126,3 +1126,7 @@ section[id], main [id] { scroll-margin-top: 84px; }
 /* 23.10: card underline hugs its own card (was bottom:-15px, dipped onto the
    next row's card when row gaps tightened) */
 .program-card::after, .no-photos .program-card::after { bottom: -4px; height: 3px; }
+
+/* 23.10: arrow glyphs must render as written - single angle quotes are
+   bidi-mirrored under RTL, so without this the DOM char flips visually */
+.ls-arrow { direction: ltr; }
