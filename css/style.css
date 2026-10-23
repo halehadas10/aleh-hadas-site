@@ -27,9 +27,9 @@
      secondary = Ariel Dresinover medal green #427651. Legacy var names kept so rules don't change:
      navy-* = light surfaces, green/green-soft = logo blue (primary), gold/teal-soft = Ariel green (secondary). */
   --navy-950: #ffffff;
-  --navy-900: #f2f7fa;
-  --navy-800: #e9f1f7;
-  --navy-700: #dce8f1;
+  --navy-900: #ffffff;
+  --navy-800: #ffffff;
+  --navy-700: #f0f6fa;
   --text: #14293a;
   --text-dim: #50667a;
   --blue-light: #17729d;
@@ -157,7 +157,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   position: absolute; inset: 0;
   background:
     radial-gradient(ellipse 60% 55% at 50% 52%, rgba(0,40,62,.5) 0%, rgba(0,40,62,0) 70%),
-    linear-gradient(180deg, rgba(0,40,62,.5) 0%, rgba(0,40,62,.32) 45%, rgba(242,247,250,.95) 100%);
+    linear-gradient(180deg, rgba(0,40,62,.5) 0%, rgba(0,40,62,.32) 45%, rgba(255,255,255,.96) 100%);
 }
 .hero-logo {
   position: relative;
@@ -431,7 +431,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ===== Contact + Donate ===== */
 .contact-donate {
   background:
-    linear-gradient(180deg, rgba(255,255,255,.92), rgba(242,247,250,.96)),
+    linear-gradient(180deg, rgba(255,255,255,.90), rgba(255,255,255,.95)),
     url('../assets/image-f8f475e3-ZCNN4L5H.jpg') center/cover fixed;
 }
 .contact-block { margin-bottom: clamp(48px, 6vw, 84px); }
