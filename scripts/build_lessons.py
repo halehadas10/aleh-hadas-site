@@ -108,9 +108,34 @@ def main():
             if m: rabbi = m.group(0)
         parts = [p.strip() for p in re.split(r'\|', title)]
         topic = parts[1] if len(parts) > 1 else title
-        # 23.10: user - full lessons only, no promos/shorts
-        if 'תדמית' in title or (dur and dur < 180):  # <3min = YouTube Shorts; full lessons run longer
-            print("skip promo/short:", vid, title, dur); continue
+        # 23.10: user - full lessons only, no promos/shorts.
+        # Exclusions must be source-backed, never duration alone:
+        #  a) explicit known IDs (promo + Short the user named);
+        #  b) 'תדמית' in title = promo by naming;
+        #  c) <=3min videos are checked against YouTube's own Shorts player
+        #     (/shorts/<id> returns 200 only for real Shorts); short FULL
+        #     lessons pass the check and stay in the list.
+        EXCLUDE_IDS = {"Dqp7iOoyEQA", "mK85KXUHtSM"}
+        class _NoRedirect(urllib.request.HTTPRedirectHandler):
+            def redirect_request(self, *a, **k):
+                return None
+        _opener = urllib.request.build_opener(_NoRedirect)
+        def is_short(v):
+            try:
+                req = urllib.request.Request(f"https://www.youtube.com/shorts/{v}", headers={"User-Agent": "Mozilla/5.0"})
+                r = _opener.open(req, timeout=10)
+                return r.status == 200
+            except urllib.error.HTTPError as e:
+                return False  # 3xx redirect = not a Short
+            except Exception:
+                return False  # undetermined -> keep the lesson, flagged in log
+        if vid in EXCLUDE_IDS or 'תדמית' in title:
+            print("skip promo (explicit):", vid, title); continue
+        if dur and dur <= 180:
+            if is_short(vid):
+                print("skip short (verified via /shorts/):", vid, title, dur); continue
+            else:
+                print("KEEP short-duration full lesson (not a YouTube Short):", vid, title, dur)
         series = "שיעור שבועי" if "פרשת" in title else ("מוצא״ש בבית מדרש")
         dt = datetime.datetime.fromisoformat(pub.replace("Z", "+00:00"))
         lessons.append({
