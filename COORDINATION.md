@@ -72,3 +72,4 @@
 - Program cards: white cards, blue icons #00506e, green captions/underline #427651 (was #F17909 orange / #2B90A3 teal). Donate band: green tint. Quote marks/badges/prize border: green. Cards/chips/lessons borders: blue tints. Shadows softened for light theme.
 - Hero overlay blue-tinted, fades to page white at bottom; hero text kept white on the photo. Contact/donate section: white veil over the photo, white cards.
 - Cache: css v29 (all 5 pages).
+  - Follow-up (09a0fd7): הראשון stat tiles (home + quotes strips) now carry class stat-num.gold so they render in the Ariel green secondary, preserving the video-2 green emphasis under the new palette.
