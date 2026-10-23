@@ -11,7 +11,7 @@
   window.SITE_PHOTOS = false;
   if (!window.SITE_PHOTOS) document.documentElement.classList.add('no-photos');
 </script>
-<link rel="stylesheet" href="./css/style.css?v=39">
+<link rel="stylesheet" href="./css/style.css?v=40">
 <style>
   .quotes-preview { background: var(--navy-800); }
   .qp-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 10px; }
@@ -40,6 +40,13 @@
   .qp-card { transition: transform .3s ease, box-shadow .3s ease; }
   .qp-card:hover { transform: translateY(-8px); box-shadow: 0 22px 50px rgba(0,50,80,.22); }
   .story-kicker { text-align: center; color: var(--gold); font-size: 0.95rem; letter-spacing: 0.06em; margin-bottom: 12px; }
+  .story-stats { align-items: stretch; }
+  .story-stats .stat-card { height: 100%; display: flex; flex-direction: column; justify-content: center; }
+  /* 23.10 v40: quotes section must be fully in sync when arriving - no reveal gating */
+  #quotes .reveal, #quotes .reveal.is-visible { opacity: 1 !important; transform: none !important; transition: none !important; animation: none !important; }
+  /* 23.10 v40: lift the title+sub block up, open a gap above the rabbi photo */
+  .quotes-preview { padding-top: clamp(40px, 5.5vw, 78px); }
+  .quotes-preview .section-sub { margin-bottom: clamp(48px, 5.5vw, 74px); }
   .stats-strip { display: grid; grid-template-columns: repeat(2, minmax(0, 260px)); justify-content: center; gap: 22px; margin: 10px 0 46px; }
   .story-text .stats-strip { margin: 26px 0 0; justify-content: stretch; grid-template-columns: 1fr 1fr; gap: 14px; }
   .story-text .stat-card { padding: 20px 12px 16px; }
@@ -87,7 +94,7 @@
     <a href="#times" class="nav-link">זמנים ומקום</a>
   </nav>
   <a class="brand brand-medal-link" href="#home" aria-label="מדליית זיכרון - אריאל דרסינובר ז״ל - לדף הבית">
-    <img src="./assets/logo-medal-ariel.png?v=6" alt="מדליית זיכרון - אריאל דרסינובר ז״ל" class="brand-medal">
+    <img src="./assets/logo-medal-ariel.png?v=7" alt="מדליית זיכרון - אריאל דרסינובר ז״ל" class="brand-medal">
   </a>
   <button class="nav-toggle" id="navToggle" aria-label="תפריט" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -103,7 +110,7 @@
     </div>
     <div class="hero-overlay"></div>
     <img src="./assets/logo-aleh-hadas-light.png" alt="לוגו עלה הדס" class="hero-logo float-anim">
-    <img src="./assets/logo-medal-ariel.png?v=6" alt="מדליית זיכרון - אריאל דרסינובר ז\'\'ל, מייסד בית המדרש" class="hero-medal-center float-anim">
+    <img src="./assets/logo-medal-ariel.png?v=7" alt="מדליית זיכרון - אריאל דרסינובר ז\'\'ל, מייסד בית המדרש" class="hero-medal-center float-anim">
     <div class="hero-content">
       <h1 class="hero-title">עלה הדס</h1>
       <p class="hero-subtitle">בית מדרש לנוער</p>
@@ -122,7 +129,7 @@
 <div class="stats-strip story-stats reveal">
         <div class="stat-card">
           <span class="stat-pre">הסניף</span>
-          <span class="stat-num gold bob">הראשון</span>
+          <span class="stat-num bob">הראשון</span>
           <span class="stat-label">בתנועה</span>
         </div>
         <div class="stat-card">
@@ -155,14 +162,14 @@
           <p class="qp-text">הצימאון הזה לא יפסיק, הוא רק יגדל - ואתם צריכים להיות הרבנים והמחנכים, אתם צריכים לגדול בתורה ולצמוח. זה להביא את האור של התורה לכל עם ישראל.</p>
           <p class="qp-name">הרב שמואל אליהו</p>
           <p class="qp-role">רבה של צפת, בהתוועדות לבני תורהנוער בליל הושענא רבה (על הרשת שצמחה מעלה הדס)</p>
-          <p class="qp-src"><span>ערוץ 7, 6.10.2023</span><a href="https://www.inn.co.il/news/615811" target="_blank" rel="noopener">לכתבה המלאה</a></p>
+          <p class="qp-src"><span>ערוץ 7, 6.10.2023</span><a href="https://www.inn.co.il/news/615811" data-overlay target="_blank" rel="noopener">לכתבה המלאה</a></p>
         </article>
         <article class="qp-card reveal">
           <img class="qp-photo" src="./assets/rabbi-rimon.jpg" alt="הרב יוסף צבי רימון" loading="lazy">
           <p class="qp-text">לפני כמה שנים, שרק התחלנו את תורהנוער, מי היה מאמין שבשלב הזה נהיה עם למעלה מ-50 סניפים ואלפי בני נוער שבכל שבוע כורתים ברית עם התורה. ההשפעה של התהליך הזה היא לא רק נקודתית אלא מעידה על שייכות עמוקה - בזמן שכולם יוצאים לבילויים, אתם אומרים: הבילוי שלי הוא עם התורה.</p>
           <p class="qp-name">הרב יוסף צבי רימון</p>
           <p class="qp-role">יו״ר עמותת סולמות, בליל הושענא רבה המרכזי של רשת תורהנוער (על הרשת שצמחה מעלה הדס)</p>
-          <p class="qp-src"><span>ערוץ 7, 6.10.2023</span><a href="https://www.inn.co.il/news/615811" target="_blank" rel="noopener">לכתבה המלאה</a></p>
+          <p class="qp-src"><span>ערוץ 7, 6.10.2023</span><a href="https://www.inn.co.il/news/615811" data-overlay target="_blank" rel="noopener">לכתבה המלאה</a></p>
         </article>
       </div>
       <div class="qp-more reveal">
@@ -233,13 +240,11 @@
           <span class="news-caption">עונג שבת עם הרב יוני לביא</span>
           <span class="program-sub">עונג שבת המתקיים בביתו של הרב יוני לביא</span>
         </a>
-        <div class="program-fill" aria-hidden="true"></div>
         <a class="news-card program-card reveal" href="./programs/program-6.html">
           <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-2-1.5-5-2-8-2v14c3 0 6 .5 8 2 2-1.5 5-2 8-2V4c-3 0-6 .5-8 2z"/><path d="M12 6v14"/></svg>
           <span class="news-caption">מוצ״שים</span>
           <span class="program-sub">שיעור המתקיים מדי מוצ״ש בבית המדרש, נושאים מתחלפים מדי שבוע</span>
         </a>
-        <div class="program-fill" aria-hidden="true"></div>
         
       </div>
     </div>
@@ -414,7 +419,7 @@
   <div class="container">
     <div class="footer-brand">
       <img src="./assets/logo-aleh-hadas-light.png" alt="לוגו עלה הדס" class="footer-logo">
-      <img src="./assets/logo-medal-ariel.png?v=6" alt="מדליית זיכרון - אריאל דרסינובר ז\'\'ל, מייסד בית המדרש" class="footer-medal">
+      <img src="./assets/logo-medal-ariel.png?v=7" alt="מדליית זיכרון - אריאל דרסינובר ז\'\'ל, מייסד בית המדרש" class="footer-medal">
     </div>
     <p>עלה הדס · בית מדרש לנוער · הדר גנים, פתח תקווה</p>
     <p class="footer-note">כל הזכויות שמורות לאברהם יונה ורועי גלנץ</p>

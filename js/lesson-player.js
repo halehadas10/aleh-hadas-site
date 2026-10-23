@@ -10,7 +10,7 @@
   const fmtDur = s => { s = Math.floor(s || 0); const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), ss = String(s % 60).padStart(2, '0'); return h ? h + ':' + String(m).padStart(2, '0') + ':' + ss : m + ':' + ss; };
 
   fetch('./data/lessons.json').then(r => r.json()).then(d => {
-    const all = (d.lessons || []).filter(l => l.onSpotify);
+    const all = d.lessons || []; /* 23.10 v40: shared links to non-Spotify lessons must open too */
     lesson = all.find(l => l.id === vid);
     if (!lesson) { $('lpTitle').textContent = 'השיעור לא נמצא'; return; }
     document.title = lesson.topic + ' | עלה הדס';
@@ -19,7 +19,6 @@
     $('lpDate').textContent = lesson.hebrewDate;
     $('lpDur').textContent = fmtDur(lesson.durationSec);
     $('lpDesc').textContent = lesson.description || '';
-    $('lpSeries').textContent = 'עוד מהשיעורים: ' + lesson.series;
     $('lpYouTube').href = lesson.youtubeUrl;
     if (lesson.spotifyUrl) { $('lpSpotify').href = lesson.spotifyUrl; }
     else { $('lpSpotify').style.display = 'none'; }
@@ -35,24 +34,36 @@
         'allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>';
     }
 
-    /* עוד שיעורים: every remaining lesson, nearest date after this lesson first, then wrapping around */
+    /* עוד מהסדרה: this lesson's series first (nearest date after this lesson, wrapping),
+       then עוד שיעורים: everything not already shown in the series row */
     const rest = all.filter(l => l.id !== vid)
       .sort((a, b) => new Date(a.published) - new Date(b.published));
     const curT = new Date(lesson.published).getTime();
     let start = rest.findIndex(l => new Date(l.published).getTime() > curT);
     if (start === -1) start = 0;
-    const ordered = rest.slice(start).concat(rest.slice(0, start));
+    const orderedAll = rest.slice(start).concat(rest.slice(0, start));
+    const seriesRest = orderedAll.filter(l => l.series === lesson.series);
+    const others = orderedAll.filter(l => l.series !== lesson.series);
+    const st = $('lpSeriesTitle');
+    if (seriesRest.length) {
+      st.textContent = 'עוד מ' + lesson.series;
+      $('lpSeriesGrid').id = 'lpSeriesGrid';
+      renderCards($('lpSeriesGrid'), seriesRest);
+    } else { st.style.display = 'none'; }
     const grid = $('lpMore');
-    ordered.forEach(l => {
-      const a = document.createElement('a');
-      a.className = 'ls-card';
-      a.href = './lesson.html?v=' + encodeURIComponent(l.id);
-      a.innerHTML = '<span class="ls-thumb"><img src="' + l.thumbnail + '" alt="' + l.topic + '" loading="lazy">' +
-        '<span class="ls-dur">' + fmtDur(l.durationSec) + '</span></span>' +
-        '<span class="ls-body"><span class="ls-topic">' + l.topic + '</span>' +
-        '<span class="ls-meta">' + (l.rabbi ? l.rabbi + ' · ' : '') + l.hebrewDate + '</span></span>';
-      grid.appendChild(a);
-    });
+    renderCards(grid, others);
+    function renderCards(host, list) {
+      list.forEach(l => {
+        const a = document.createElement('a');
+        a.className = 'ls-card';
+        a.href = './lesson.html?v=' + encodeURIComponent(l.id);
+        a.innerHTML = '<span class="ls-thumb"><img src="' + l.thumbnail + '" alt="' + l.topic + '" loading="lazy">' +
+          '<span class="ls-dur">' + fmtDur(l.durationSec) + '</span></span>' +
+          '<span class="ls-body"><span class="ls-topic">' + l.topic + '</span>' +
+          '<span class="ls-meta">' + (l.rabbi ? l.rabbi + ' · ' : '') + l.hebrewDate + '</span></span>';
+        host.appendChild(a);
+      });
+    }
 
     initPlayer();
   }).catch(() => { $('lpTitle').textContent = 'שגיאה בטעינת השיעור'; });
@@ -87,12 +98,16 @@
   window.addEventListener('beforeunload', stopPlayback);
 
   document.addEventListener('DOMContentLoaded', () => {
-    /* חזרה לאתר: go back to the lessons section the visitor came from */
+    /* חזרה לאתר: return to the exact prior spot. Same-origin referrer -> history.back()
+       restores the page WITH its scroll position; otherwise the stored ah-return url. */
+    const backBtn = document.querySelector('a.btn-back[href="./index.html"]');
     try {
-      const st = JSON.parse(sessionStorage.getItem('ah-return') || 'null');
-      if (st && st.url) {
-        const back = document.querySelector('a.btn-back[href="./index.html"]');
-        if (back) back.href = st.url;
+      const ref = document.referrer ? new URL(document.referrer) : null;
+      if (backBtn && ref && ref.origin === location.origin && history.length > 1) {
+        backBtn.addEventListener('click', function (e) { e.preventDefault(); history.back(); });
+      } else {
+        const st = JSON.parse(sessionStorage.getItem('ah-return') || 'null');
+        if (st && st.url && backBtn) backBtn.href = st.url;
       }
     } catch (e) {}
 

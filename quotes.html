@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>מה אומרים עלינו | עלה הדס - בית מדרש לנוער</title>
 <meta name="description" content="רבנים, אנשי ציבור ותקשורת על בית המדרש עלה הדס, על רשת תורהנוער שצמחה ממנו, ועל הדס בן שושן ואריאל דרסינובר ז״ל.">
-<link rel="stylesheet" href="./css/style.css?v=39">
+<link rel="stylesheet" href="./css/style.css?v=40">
 <style>
   .quotes-page { padding-top: 84px; padding-bottom: 90px; background: var(--navy-900); }
   .quotes-kicker { text-align: center; color: var(--gold); font-size: 0.95rem; letter-spacing: 0.06em; margin-bottom: 14px; }
@@ -51,15 +51,17 @@
     .q-cards { grid-template-columns: 1fr; }
     .q-card { padding: 46px 22px 22px; }
     .q-text { font-size: 1rem; }
+    .q-photo-wide { aspect-ratio: 16/9; }
   }
   .q-photo { width: clamp(110px, 10vw, 140px); aspect-ratio: 4/5; object-fit: cover; object-position: 50% 15%;
              border-radius: 16px; border: 3px solid rgba(0,80,110,0.35); box-shadow: 0 18px 44px rgba(0,50,80,0.25);
              transform: rotate(-3deg); margin-top: -76px; margin-bottom: 18px; align-self: flex-end;
              transition: transform .5s ease; }
   .q-photo:hover { transform: rotate(0) scale(1.03); }
-  .q-photo-boy { object-position: 25% 15%; }
-  .q-photo-wide { width: clamp(150px, 18vw, 230px); aspect-ratio: 16/10; margin-bottom: 22px; }
-  .q-card-greenberg .q-photo { width: clamp(96px, 8.5vw, 118px); margin-bottom: 26px; }
+  .q-photo-boy { object-position: 10% 10%; }
+  .q-card-lavi .q-photo { width: clamp(130px, 12vw, 165px); aspect-ratio: 4/3.4; object-position: 55% 30%; }
+  .q-photo-wide { width: 100%; align-self: stretch; aspect-ratio: 21/9; object-position: 50% 42%; margin-top: -30px; margin-bottom: 22px; }
+  .q-card-greenberg .q-photo { width: clamp(140px, 12vw, 170px); aspect-ratio: 4/4.2; object-position: 50% 25%; margin-bottom: 26px; }
   .q-card { transition: transform .3s ease, box-shadow .3s ease; }
   .q-card:hover { transform: translateY(-8px); box-shadow: 0 22px 50px rgba(0,50,80,.22); }
   .stat-card { transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
@@ -99,7 +101,7 @@
     <a href="./index.html#times" class="nav-link">זמנים ומקום</a>
   </nav>
   <a class="brand brand-medal-link" href="./index.html" aria-label="מדליית זיכרון - אריאל דרסינובר ז״ל - לדף הבית">
-    <img src="./assets/logo-medal-ariel.png?v=6" alt="מדליית זיכרון - אריאל דרסינובר ז״ל" class="brand-medal">
+    <img src="./assets/logo-medal-ariel.png?v=7" alt="מדליית זיכרון - אריאל דרסינובר ז״ל" class="brand-medal">
   </a>
   <button class="nav-toggle" id="navToggle" aria-label="תפריט" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -113,27 +115,6 @@
   <section class="section quotes-page" id="quotes">
     <div class="container">
       <h1 class="section-title">מה אומרים עלינו</h1>
-
-      <div class="stats-strip">
-        <div class="stat-card">
-          <span class="stat-pre">הסניף</span>
-          <span class="stat-num gold bob">הראשון</span>
-          <span class="stat-label">בתנועה</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-num" data-target="16" data-suffix="">0</span>
-          <span class="stat-label">חברי צוות</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-num" data-target="2" data-suffix="">0</span>
-          <span class="stat-label">רכזים</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-num" data-target="1000" data-suffix="+">0</span>
-          <span class="stat-label">חניכים</span>
-        </div>
-      </div>
-
       <div class="q-cards">
 
         <article class="q-card wide q-card-greenberg">
@@ -152,7 +133,7 @@
           <p class="q-src"><span>ערוץ 7, 6.10.2023</span><a href="https://www.inn.co.il/news/615811" data-overlay target="_blank" rel="noopener">לכתבה המלאה</a></p>
         </article>
 
-        <article class="q-card">
+        <article class="q-card q-card-lavi">
         <img class="q-photo" src="./assets/rabbi-lavi.jpg" alt="הרב יוני לביא" loading="lazy">
           <p class="q-text">הוא היה אחד מהצעירים הבולטים בשכונה ביוזמה ובפעילות, ולצד חובב אוזן עמד בראש בית המדרש עלה הדס לנוער וכל הפעילויות התורניות לנוער בשכונה.</p>
           <p class="q-name">הרב יוני לביא</p>
@@ -184,15 +165,14 @@
           <p class="q-src"><span>ynet, 2012</span><a href="https://www.ynet.co.il/articles/0,7340,L-4260050,00.html" target="_blank" rel="noopener">לכתבה המלאה</a></p>
         </article>
 
-        <article class="q-card wide q-prize">
-          <svg class="prize-medal" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="26" r="16" fill="#d59b53"/><circle cx="32" cy="26" r="11" fill="none" stroke="#8a5a1e" stroke-width="2"/><path d="M32 19l2.2 4.4 4.8.7-3.5 3.4.8 4.8-4.3-2.2-4.3 2.2.8-4.8-3.5-3.4 4.8-.7z" fill="#8a5a1e"/><path d="M24 40l-6 14 8-3 6 5 2-13z" fill="#1f8f5f"/><path d="M40 40l6 14-8-3-6 5-2-13z" fill="#62b489"/></svg>
+        <article class="q-card wide">
         <img class="q-photo q-photo-boy" src="./assets/marathon-boy.jpg" alt="נער שהשתתף במרתון הלימוד" loading="lazy">
           <p class="q-text">לפעמים יש לנו ציפיות נמוכות מעצמנו, בכל התחומים. למדתי פה לשאוף גבוה וקיבלתי שיעור ענק, גם בגמרא אבל גם על עצמי.</p>
           <p class="q-name">נער שהשתתף במרתון הלימוד</p>
           <p class="q-role">מסיים מסכת תענית ביום אחד, פתח תקווה</p>
         </article>
 
-        <article class="q-card wide">
+        <article class="q-card wide q-prize"><svg class="prize-medal" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="26" r="16" fill="#d59b53"/><circle cx="32" cy="26" r="11" fill="none" stroke="#8a5a1e" stroke-width="2"/><path d="M32 19l2.2 4.4 4.8.7-3.5 3.4.8 4.8-4.3-2.2-4.3 2.2.8-4.8-3.5-3.4 4.8-.7z" fill="#8a5a1e"/><path d="M24 40l-6 14 8-3 6 5 2-13z" fill="#1f8f5f"/><path d="M40 40l6 14-8-3-6 5-2-13z" fill="#62b489"/></svg>
         <img class="q-photo q-photo-wide" src="./assets/prize-ceremony.jpg" alt="טקס פרס התנדבות" loading="lazy">
           <span class="q-badge">פרס המורשת היהודית · עיריית פתח תקווה</span>
           <p class="q-text">בתחום המורשת היהודית זכו חובב אוזן ואריאל דרסינובר ז״ל, שיזמו את הקמת בית המדרש ״עלה הדס״ - מיזם חינוכי ללימוד תורה לבני כיתות ז׳-י״ב. המיזם, שהחל בפתח תקווה, צבר בשנים האחרונות תאוצה והפך לרשת ״תורהנוער״.</p>
@@ -220,7 +200,7 @@
   <div class="container">
     <div class="footer-brand">
       <img src="./assets/logo-aleh-hadas-light.png" alt="לוגו עלה הדס" class="footer-logo">
-      <img src="./assets/logo-medal-ariel.png?v=6" alt="מדליית זיכרון - אריאל דרסינובר ז״ל, מייסד בית המדרש" class="footer-medal">
+      <img src="./assets/logo-medal-ariel.png?v=7" alt="מדליית זיכרון - אריאל דרסינובר ז״ל, מייסד בית המדרש" class="footer-medal">
     </div>
     <p>עלה הדס · בית מדרש לנוער · הדר גנים, פתח תקווה</p>
     <p class="footer-note">כל הזכויות שמורות לאברהם יונה ורועי גלנץ</p>
