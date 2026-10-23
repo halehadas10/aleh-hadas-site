@@ -1100,3 +1100,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .program-sub { font-size: 13px; line-height: 1.35; }
   .program-icon { margin-bottom: 6px; }
 }
+
+/* 23.10: programs cards always visible - no reveal gating (anchor jumps and slow
+   scrolls must never leave the section blank; other sections keep their reveal) */
+#programs .program-card.reveal,
+#programs .program-card.reveal.is-visible {
+  opacity: 1; transform: none; transition: none; animation: none;
+}

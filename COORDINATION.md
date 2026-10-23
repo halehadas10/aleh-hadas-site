@@ -81,3 +81,7 @@
 
 ## 23.10 video-3 batch compaction follow-up (09:40)
 - Programs section shaved ~25px more (padding-top clamp(8,1.2vw,14), row gap 14, card/fill aspect 1/0.91) so title + both rows fit a 720px viewport with the fixed header. css v33.
+
+## 23.10 video-3 batch: programs always-visible + content fit (09:43)
+- v34: fit card content inside compacted cards (caption min-height 2.1em, sub lh 1.32, tighter gaps; mobile aspect auto, caption 17px, sub 13px).
+- v35: reveal animation neutralized for #programs cards (always visible - anchor nav left row-2 cards hidden; translate(0,100%) + IO made verification and anchor jumps flaky). Other sections unchanged.
