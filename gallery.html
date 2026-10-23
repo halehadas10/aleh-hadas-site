@@ -42,22 +42,22 @@
       <h2 class="section-title">גלריית תמונות</h2>
       <p class="gallery-sub">מהנעשה בבית המדרש</p>
       <div class="gallery-grid">
-        <figure><img src="./assets/gallery/act-b1.jpg" alt="בחורים בשיעור בבית המדרש" loading="lazy"></figure>
-        <figure><img src="./assets/gallery/act-g1.jpg" alt="בנות בשיעור בבית המדרש" loading="lazy"></figure>
-        <figure><img src="./assets/gallery/act-b2.jpg" alt="שיעור לבחורים בבית המדרש" loading="lazy"></figure>
-        <figure><img src="./assets/gallery/act-g2.jpg" alt="שיעור לבנות עם הרב" loading="lazy"></figure>
-        <figure><img src="./assets/gallery/act-b3.jpg" alt="בחורים סביב שולחן בבית המדרש" loading="lazy"></figure>
-        <figure><img src="./assets/gallery/act-g3.jpg" alt="בנות בערב פעילות" loading="lazy"></figure>
-        <figure><img src="./assets/gallery/act-b4.jpg" alt="בחורים לומדים בחברותא" loading="lazy"></figure>
-        <figure><img src="./assets/gallery/act-g4.jpg" alt="בנות בשיעור, מבט מהקהל" loading="lazy"></figure>
-        <figure><img src="./assets/gallery/act-b5.jpg" alt="בית המדרש מלא בשיעור" loading="lazy"></figure>
-        <figure><img src="./assets/gallery/act-g5.jpg" alt="בנות לומדות בבית המדרש" loading="lazy"></figure>
-        <figure><img src="./assets/gallery/side-1.jpg" alt="בחורים בבית המדרש" loading="lazy"></figure>
-        <figure><img src="./assets/gallery/side-2.jpg" alt="שיעור בבית המדרש" loading="lazy"></figure>
-        <figure><img src="./assets/gallery/side-3.jpg" alt="בית המדרש וארון הקודש" loading="lazy"></figure>
-        <figure><img src="./assets/gallery/side-4.jpg" alt="ערב פעילות בבית המדרש" loading="lazy"></figure>
-        <figure><img src="./assets/gallery/side-5.jpg" alt="סעודה משותפת בבית המדרש" loading="lazy"></figure>
-        <figure><img src="./assets/gallery/side-6.jpg" alt="בנות בבית המדרש" loading="lazy"></figure>
+        <figure><img src="./assets/gallery/act-b1.jpg" alt="בחורים בשיעור בבית המדרש" loading="lazy"><figcaption>בחורים בשיעור בבית המדרש</figcaption></figure>
+        <figure><img src="./assets/gallery/act-g1.jpg" alt="בנות בשיעור בבית המדרש" loading="lazy"><figcaption>בנות בשיעור בבית המדרש</figcaption></figure>
+        <figure><img src="./assets/gallery/act-b2.jpg" alt="שיעור לבחורים בבית המדרש" loading="lazy"><figcaption>שיעור לבחורים בבית המדרש</figcaption></figure>
+        <figure><img src="./assets/gallery/act-g2.jpg" alt="שיעור לבנות עם הרב" loading="lazy"><figcaption>שיעור לבנות עם הרב</figcaption></figure>
+        <figure><img src="./assets/gallery/act-b3.jpg" alt="בחורים סביב שולחן בבית המדרש" loading="lazy"><figcaption>בחורים סביב שולחן בבית המדרש</figcaption></figure>
+        <figure><img src="./assets/gallery/act-g3.jpg" alt="בנות בערב פעילות" loading="lazy"><figcaption>בנות בערב פעילות</figcaption></figure>
+        <figure><img src="./assets/gallery/act-b4.jpg" alt="בחורים לומדים בחברותא" loading="lazy"><figcaption>בחורים לומדים בחברותא</figcaption></figure>
+        <figure><img src="./assets/gallery/act-g4.jpg" alt="בנות בשיעור, מבט מהקהל" loading="lazy"><figcaption>בנות בשיעור, מבט מהקהל</figcaption></figure>
+        <figure><img src="./assets/gallery/act-b5.jpg" alt="בית המדרש מלא בשיעור" loading="lazy"><figcaption>בית המדרש מלא בשיעור</figcaption></figure>
+        <figure><img src="./assets/gallery/act-g5.jpg" alt="בנות לומדות בבית המדרש" loading="lazy"><figcaption>בנות לומדות בבית המדרש</figcaption></figure>
+        <figure><img src="./assets/gallery/side-1.jpg" alt="בחורים בבית המדרש" loading="lazy"><figcaption>בחורים בבית המדרש</figcaption></figure>
+        <figure><img src="./assets/gallery/side-2.jpg" alt="שיעור בבית המדרש" loading="lazy"><figcaption>שיעור בבית המדרש</figcaption></figure>
+        <figure><img src="./assets/gallery/side-3.jpg" alt="בית המדרש וארון הקודש" loading="lazy"><figcaption>בית המדרש וארון הקודש</figcaption></figure>
+        <figure><img src="./assets/gallery/side-4.jpg" alt="ערב פעילות בבית המדרש" loading="lazy"><figcaption>ערב פעילות בבית המדרש</figcaption></figure>
+        <figure><img src="./assets/gallery/side-5.jpg" alt="סעודה משותפת בבית המדרש" loading="lazy"><figcaption>סעודה משותפת בבית המדרש</figcaption></figure>
+        <figure><img src="./assets/gallery/side-6.jpg" alt="בנות בבית המדרש" loading="lazy"><figcaption>בנות בבית המדרש</figcaption></figure>
       </div>
     </div>
   </section>
@@ -112,7 +112,15 @@
   .lb-next { inset-inline-end: 14px; }
   .lb-glyph { direction: ltr; display: block; margin-top: -4px; }
   .gallery-grid figure img { cursor: zoom-in; }
-  </style>
+  
+/* 23.10 video-4: floating photo captions (mechanism; texts are placeholders from alt until user supplies descriptions) */
+.gallery-grid figure { position: relative; overflow: hidden; }
+.gallery-grid figcaption { position: absolute; inset: auto 0 0 0; padding: 26px 12px 10px; text-align: center;
+  background: linear-gradient(transparent, rgba(0,50,78,.82)); color: #fff; font-size: .92rem; font-weight: 600;
+  opacity: 0; transform: translateY(8px); transition: opacity .3s ease, transform .3s ease; pointer-events: none; }
+.gallery-grid figure:hover figcaption, .gallery-grid figure:focus-within figcaption { opacity: 1; transform: none; }
+@media (hover: none) { .gallery-grid figcaption { opacity: 1; transform: none; } }
+</style>
   <script>
   (function () {
     var lb = document.getElementById('lb'), img = document.getElementById('lbImg'), cap = document.getElementById('lbCap'), y = 0;
