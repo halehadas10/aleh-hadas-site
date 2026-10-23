@@ -11,7 +11,7 @@
   window.SITE_PHOTOS = false;
   if (!window.SITE_PHOTOS) document.documentElement.classList.add('no-photos');
 </script>
-<link rel="stylesheet" href="./css/style.css?v=40">
+<link rel="stylesheet" href="./css/style.css?v=41">
 <style>
   .quotes-preview { background: var(--navy-800); }
   .qp-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 10px; }
@@ -41,9 +41,11 @@
   .qp-card:hover { transform: translateY(-8px); box-shadow: 0 22px 50px rgba(0,50,80,.22); }
   .story-kicker { text-align: center; color: var(--gold); font-size: 0.95rem; letter-spacing: 0.06em; margin-bottom: 12px; }
   .story-stats { align-items: stretch; }
-  .story-stats .stat-card { height: 100%; display: flex; flex-direction: column; justify-content: center; }
+  .story-stats .stat-card { height: 100%; display: grid; grid-template-rows: 1fr auto 1fr; align-items: center; justify-items: center; }
   /* 23.10 v40: quotes section must be fully in sync when arriving - no reveal gating */
-  #quotes .reveal, #quotes .reveal.is-visible { opacity: 1 !important; transform: none !important; transition: none !important; animation: none !important; }
+  #quotes .reveal, #quotes .reveal.is-visible { opacity: 1 !important; transition: none !important; animation: none !important; }
+  #quotes .qp-card.reveal, #quotes .qp-card.reveal.is-visible { transform: none !important; }
+  #quotes .qp-card.reveal:hover { transform: translateY(-8px) !important; transition: transform .3s ease, box-shadow .3s ease !important; }
   /* 23.10 v40: lift the title+sub block up, open a gap above the rabbi photo */
   .quotes-preview { padding-top: clamp(40px, 5.5vw, 78px); }
   .quotes-preview .section-sub { margin-bottom: clamp(48px, 5.5vw, 74px); }
@@ -84,13 +86,13 @@
   <nav class="main-nav" id="mainNav" aria-label="ניווט ראשי">
     <a href="#home" class="nav-link is-active">ראשי</a>
     <a href="#story" class="nav-link">הסיפור שלנו</a>
-    <a href="./quotes.html" class="nav-link">מה אומרים עלינו</a>
+    <a href="#quotes" class="nav-link">מה אומרים עלינו</a>
     <a href="#activities" class="nav-link">מהנעשה בבית המדרש</a>
     <a href="#programs" class="nav-link">תכניות</a>
     <a href="#contact" class="nav-link">יצירת קשר</a>
     <a href="#donate" class="nav-link">תרומה</a>
     <a href="#social" class="nav-link">עקבו אחרינו</a>
-    <a href="./lessons.html" class="nav-link">בית מדרש וירטואלי</a>
+    <a href="#virtual" class="nav-link">בית מדרש וירטואלי</a>
     <a href="#times" class="nav-link">זמנים ומקום</a>
   </nav>
   <a class="brand brand-medal-link" href="#home" aria-label="מדליית זיכרון - אריאל דרסינובר ז״ל - לדף הבית">
@@ -421,7 +423,8 @@
       <img src="./assets/logo-aleh-hadas-light.png" alt="לוגו עלה הדס" class="footer-logo">
       <img src="./assets/logo-medal-ariel.png?v=7" alt="מדליית זיכרון - אריאל דרסינובר ז\'\'ל, מייסד בית המדרש" class="footer-medal">
     </div>
-    <p>עלה הדס · בית מדרש לנוער · הדר גנים, פתח תקווה</p>
+    <p class="footer-title">עלה הדס · בית מדרש לנוער · הדר גנים, פתח תקווה</p>
+    <p class="footer-dedication">לעילוי נשמת אריאל דרסינובר ז״ל</p>
     <p class="footer-note">כל הזכויות שמורות לאברהם יונה ורועי גלנץ</p>
     <p class="footer-rights">כל הזכויות בתמונות שמורות לבעליהן</p>
   </div>

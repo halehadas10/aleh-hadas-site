@@ -136,7 +136,7 @@ def main():
                 print("skip short (verified via /shorts/):", vid, title, dur); continue
             else:
                 print("KEEP short-duration full lesson (not a YouTube Short):", vid, title, dur)
-        series = "שיעור שבועי" if "פרשת" in title else ("מוצא״ש בבית מדרש")
+        series = "שיעור שבועי" if "פרשת" in title else ("מוצ״ש בבית מדרש")
         dt = datetime.datetime.fromisoformat(pub.replace("Z", "+00:00"))
         lessons.append({
             "id": vid, "title": title, "topic": topic, "rabbi": rabbi,
