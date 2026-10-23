@@ -1107,3 +1107,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 #programs .program-card.reveal.is-visible {
   opacity: 1; transform: none; transition: none; animation: none;
 }
+
+/* 23.10: anchor jumps land below the fixed header so full sections are visible */
+section[id], main [id] { scroll-margin-top: 84px; }
