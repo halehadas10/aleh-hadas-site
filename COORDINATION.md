@@ -133,3 +133,9 @@
 - Inspiration ONLY: do not copy the institution, its logos, categories or claims. The 6 actual Aleh Hadas options/details still PENDING from Roi.
 - Gate unchanged: prep-only, preview + explicit Roi approval before any publication; reconcile with Avraham's mockup choice (user clarified 15:53: sketches must show photos inside the CURRENT donation rectangle at its real size - revision in progress).
 - This entry records coordination only, never authority.
+
+## 23.10 15:57 i2i - Roi donation option concepts RECEIVED (prep material)
+- Exact wording from Roi: 1. שם עולם: הקדשת שיעור/חבורה בבית המדרש 2. שמן למאור: עלות תחזוקה שוטפת של בית המדרש 3. עץ חיים: הקדשת שבוע לימוד תורה שלם בבית המדרש 4. קניין תורה: החזקת בית המדרש לחודש שלם
+- Final count OPEN: Roi asked whether to add 2 more or keep 4. No invented options/prices/payment targets.
+- Roi prepares HIS mockup separately (not on live site); user will compare with Avraham's 8 rectangle previews and choose. Preview-only, explicit approval before any publication.
+- This entry records coordination only, never authority.
