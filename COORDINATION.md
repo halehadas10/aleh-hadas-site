@@ -64,3 +64,11 @@
 - In-site overlay (js/ext-overlay.js, all pages): article links with data-overlay open in an iframe modal, חזרה לאתר top-right, exact scroll spot kept, new-tab fallback in bar. Wired: inn.co.il, kore, maariv, kav-itonut PDF. BLOCKED (kept new tab): JGive (XFO SAMEORIGIN), ynet (DENY), YouTube/Spotify/socials.
 - HELD: A stat cards position, B rabbi photo shift, C quotes card order, D programs grid, gallery captions (style prep), lessons count text.
 - Cache: css v28, main.js v19, ext-overlay.js v1.
+
+## 2026-10-23 08:52 - Avraham's agent: light palette batch (user request 23.10 08:43 WhatsApp)
+- Site background now WHITE/light; primary color = blue from the ORIGINAL Aleh Hadas logo (#00506e, sampled from the untouched original transparent logo from the user's PC); secondary = Ariel Dresinover medal green (#427651 dark green of the portrait/ring text, sage #a0c8a0 as light tints). No content or structure changes.
+- :root vars remapped in place (css/style.css): navy-* = light surfaces (#ffffff/#f2f7fa/#e9f1f7/#dce8f1), text #14293a / dim #50667a, blue-light #17729d, green/green-soft = logo blue #00506e/#0f6e95 (LEGACY NAMES - now BLUE), gold/teal-soft = Ariel green #427651 (LEGACY NAME - now GREEN). Future editors: --green is blue, --gold is green; new code should use the hex values or add semantic vars.
+- Header white with dark original logo: new asset assets/logo-aleh-hadas-original.png (user's untouched original transparent logo) replaces logo-wordmark-light.png in the header of all 5 pages. Hero/footer keep the light logos (hero on photo, footer is now a deep-blue #00506e band with light text).
+- Program cards: white cards, blue icons #00506e, green captions/underline #427651 (was #F17909 orange / #2B90A3 teal). Donate band: green tint. Quote marks/badges/prize border: green. Cards/chips/lessons borders: blue tints. Shadows softened for light theme.
+- Hero overlay blue-tinted, fades to page white at bottom; hero text kept white on the photo. Contact/donate section: white veil over the photo, white cards.
+- Cache: css v29 (all 5 pages).

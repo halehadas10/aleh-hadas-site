@@ -11,25 +11,25 @@
   window.SITE_PHOTOS = false;
   if (!window.SITE_PHOTOS) document.documentElement.classList.add('no-photos');
 </script>
-<link rel="stylesheet" href="./css/style.css?v=28">
+<link rel="stylesheet" href="./css/style.css?v=29">
 <style>
   .quotes-preview { background: var(--navy-800); }
   .qp-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 10px; }
   .qp-card { position: relative; background: linear-gradient(150deg, var(--navy-700), var(--navy-950));
-             border: 1px solid rgba(98,180,137,0.22); border-radius: var(--radius);
+             border: 1px solid rgba(0,80,110,0.22); border-radius: var(--radius);
              padding: 20px 30px 26px; display: flex; flex-direction: column; }
   .qp-card::before { content: "״"; position: absolute; top: 6px; right: 22px;
                      font-size: 3.2rem; color: var(--gold); line-height: 1; font-family: serif; }
   .qp-text { font-size: 1.06rem; line-height: 1.9; color: var(--text); margin-bottom: 22px; }
   .qp-name { color: var(--blue-light); font-weight: 700; }
   .qp-role { color: var(--text-dim); font-size: 0.92rem; line-height: 1.7; }
-  .qp-src { margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(216,229,236,0.12);
+  .qp-src { margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(19,41,58,0.12);
             color: var(--text-dim); font-size: 0.85rem; display: flex; justify-content: space-between;
             align-items: baseline; gap: 12px; flex-wrap: wrap; }
   .qp-src a { color: var(--green-soft); text-decoration: underline; text-underline-offset: 3px; }
   .qp-photo { width: clamp(120px, 13vw, 170px); aspect-ratio: 4 / 5; object-fit: cover;
-              border-radius: 16px; border: 3px solid rgba(98,180,137,0.35);
-              box-shadow: 0 18px 44px rgba(0,0,0,0.5); transform: rotate(-3deg);
+              border-radius: 16px; border: 3px solid rgba(0,80,110,0.35);
+              box-shadow: 0 18px 44px rgba(0,50,80,0.25); transform: rotate(-3deg);
               margin-top: -64px; margin-bottom: 18px; align-self: flex-end;
               transition: transform .5s ease; }
   .qp-photo:hover { transform: rotate(0deg) scale(1.03); }
@@ -38,14 +38,14 @@
   @media (max-width: 860px) { .qp-photo { margin-top: -56px; } }
   .qp-photo { object-position: 50% 15%; }
   .qp-card { transition: transform .3s ease, box-shadow .3s ease; }
-  .qp-card:hover { transform: translateY(-8px); box-shadow: 0 22px 50px rgba(0,0,0,.45); }
+  .qp-card:hover { transform: translateY(-8px); box-shadow: 0 22px 50px rgba(0,50,80,.22); }
   .story-kicker { text-align: center; color: var(--gold); font-size: 0.95rem; letter-spacing: 0.06em; margin-bottom: 12px; }
   .stats-strip { display: grid; grid-template-columns: repeat(2, minmax(0, 260px)); justify-content: center; gap: 22px; margin: 10px 0 46px; }
   .stat-card { background: linear-gradient(150deg, var(--navy-700), var(--navy-950));
-               border: 1px solid rgba(98,180,137,0.22); border-radius: var(--radius);
+               border: 1px solid rgba(0,80,110,0.22); border-radius: var(--radius);
                padding: 30px 16px 24px; text-align: center;
                transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
-  .stat-card:hover { transform: translateY(-8px); box-shadow: 0 22px 50px rgba(0,0,0,.45); border-color: var(--green-soft); }
+  .stat-card:hover { transform: translateY(-8px); box-shadow: 0 22px 50px rgba(0,50,80,.22); border-color: var(--green-soft); }
   .stat-num { display: block; color: var(--blue-light); font-size: 2.4rem; font-weight: 800;
               line-height: 1.15; margin-bottom: 8px; font-variant-numeric: tabular-nums; }
   .stat-num.gold { color: var(--gold); }
@@ -55,14 +55,14 @@
   @keyframes statBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
   .stat-num.bob { animation: statBob 2.6s ease-in-out infinite; }
   .qp-photo { aspect-ratio: 4/5.3; object-position: 50% 20%; }
-  .qp-text { color: #cfe0ee; }
+  .qp-text { color: #2c4758; }
   .donate-note { color: var(--text-dim); font-size: 0.82rem; margin-top: 14px; }
   .story-photo { margin-top: 6px; }
   .story .video-frame { margin-top: clamp(30px, 4vw, 54px); }
   @media (max-width: 860px) { .stats-strip { grid-template-columns: 1fr 1fr; gap: 14px; } }
-             border: 1px solid rgba(98,180,137,0.22); border-radius: var(--radius); overflow: hidden;
+             border: 1px solid rgba(0,80,110,0.22); border-radius: var(--radius); overflow: hidden;
              transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
-               background: rgba(10,18,28,0.88); border: 1px solid rgba(98,180,137,0.55);
+               background: rgba(255,255,255,0.92); border: 1px solid rgba(0,80,110,0.55);
                display: flex; align-items: center; justify-content: center; color: var(--green-soft); }
 </style>
 </head>
@@ -70,7 +70,7 @@
 
 <header class="site-header" id="siteHeader">
   <a class="brand brand-word" href="#home" aria-label="עלה הדס - לדף הבית">
-    <img src="./assets/logo-wordmark-light.png" alt="לוגו עלה הדס" class="brand-logo">
+    <img src="./assets/logo-aleh-hadas-original.png" alt="לוגו עלה הדס" class="brand-logo">
   </a>
   <nav class="main-nav" id="mainNav" aria-label="ניווט ראשי">
     <a href="#home" class="nav-link is-active">ראשי</a>

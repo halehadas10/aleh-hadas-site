@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>מה אומרים עלינו | עלה הדס - בית מדרש לנוער</title>
 <meta name="description" content="רבנים, אנשי ציבור ותקשורת על בית המדרש עלה הדס, על רשת תורהנוער שצמחה ממנו, ועל הדס בן שושן ואריאל דרסינובר ז״ל.">
-<link rel="stylesheet" href="./css/style.css?v=28">
+<link rel="stylesheet" href="./css/style.css?v=29">
 <style>
   .quotes-page { padding-top: 84px; padding-bottom: 90px; background: var(--navy-900); }
   .quotes-kicker { text-align: center; color: var(--gold); font-size: 0.95rem; letter-spacing: 0.06em; margin-bottom: 14px; }
@@ -13,7 +13,7 @@
   .quotes-sub { text-align: center; color: var(--text-dim); max-width: 720px; margin: 0 auto 54px; line-height: 1.8; }
   .stats-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-bottom: 76px; }
   .stat-card { background: linear-gradient(150deg, var(--navy-700), var(--navy-950));
-               border: 1px solid rgba(98,180,137,0.22); border-radius: var(--radius);
+               border: 1px solid rgba(0,80,110,0.22); border-radius: var(--radius);
                padding: 34px 18px 26px; text-align: center; }
   .stat-num { display: block; color: var(--blue-light); font-size: 2.6rem; font-weight: 800;
               line-height: 1.15; margin-bottom: 10px; font-variant-numeric: tabular-nums; }
@@ -24,7 +24,7 @@
   .quotes-said p { color: var(--text-dim); font-size: 0.98rem; }
   .q-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
   .q-card { position: relative; background: linear-gradient(150deg, var(--navy-700), var(--navy-950));
-           border: 1px solid rgba(98,180,137,0.22); border-radius: var(--radius);
+           border: 1px solid rgba(0,80,110,0.22); border-radius: var(--radius);
            padding: 52px 30px 26px; display: flex; flex-direction: column; }
   .q-card.wide { grid-column: 1 / -1; }
   .q-card::before { content: "״"; position: absolute; top: 6px; right: 22px;
@@ -32,17 +32,17 @@
   .q-text { font-size: 1.06rem; line-height: 1.9; color: var(--text); margin-bottom: 22px; }
   .q-name { color: var(--blue-light); font-weight: 700; }
   .q-role { color: var(--text-dim); font-size: 0.92rem; line-height: 1.7; }
-  .q-src { margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(216,229,236,0.12);
+  .q-src { margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(19,41,58,0.12);
            color: var(--text-dim); font-size: 0.85rem; display: flex; justify-content: space-between;
            align-items: baseline; gap: 12px; flex-wrap: wrap; }
   .q-src a { color: var(--green-soft); text-decoration: underline; text-underline-offset: 3px; }
-  .q-badge { display: inline-block; background: rgba(213,155,83,0.14); color: var(--gold);
-             border: 1px solid rgba(213,155,83,0.45); border-radius: 999px;
+  .q-badge { display: inline-block; background: rgba(66,118,81,0.14); color: var(--gold);
+             border: 1px solid rgba(66,118,81,0.45); border-radius: 999px;
              padding: 5px 14px; font-size: 0.85rem; margin-bottom: 16px; align-self: flex-start; }
   .press { margin-top: 70px; text-align: center; }
   .press h2 { color: var(--blue-light); font-size: 1.35rem; margin-bottom: 22px; }
   .press-chips { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-  .press-chips a { border: 1px solid rgba(98,180,137,0.4); border-radius: 999px;
+  .press-chips a { border: 1px solid rgba(0,80,110,0.4); border-radius: 999px;
                    padding: 8px 20px; color: var(--text); font-size: 0.95rem; transition: all .2s; }
   .press-chips a:hover { background: var(--green); border-color: var(--green); color: #fff; }
   .quotes-note { margin-top: 46px; text-align: center; color: var(--text-dim); font-size: 0.85rem; }
@@ -52,7 +52,7 @@
     .q-text { font-size: 1rem; }
   }
   .q-photo { width: clamp(110px, 10vw, 140px); aspect-ratio: 4/5; object-fit: cover; object-position: 50% 15%;
-             border-radius: 16px; border: 3px solid rgba(98,180,137,0.35); box-shadow: 0 18px 44px rgba(0,0,0,0.5);
+             border-radius: 16px; border: 3px solid rgba(0,80,110,0.35); box-shadow: 0 18px 44px rgba(0,50,80,0.25);
              transform: rotate(-3deg); margin-top: -76px; margin-bottom: 18px; align-self: flex-end;
              transition: transform .5s ease; }
   .q-photo:hover { transform: rotate(0) scale(1.03); }
@@ -60,22 +60,22 @@
   .q-photo-wide { width: clamp(150px, 18vw, 230px); aspect-ratio: 16/10; margin-bottom: 22px; }
   .q-card-greenberg .q-photo { width: clamp(96px, 8.5vw, 118px); margin-bottom: 26px; }
   .q-card { transition: transform .3s ease, box-shadow .3s ease; }
-  .q-card:hover { transform: translateY(-8px); box-shadow: 0 22px 50px rgba(0,0,0,.45); }
+  .q-card:hover { transform: translateY(-8px); box-shadow: 0 22px 50px rgba(0,50,80,.22); }
   .stat-card { transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
-  .stat-card:hover { transform: translateY(-8px); box-shadow: 0 22px 50px rgba(0,0,0,.45); border-color: var(--green-soft); }
-  .q-prize { border: 2px solid rgba(213,155,83,0.65);
-             background: linear-gradient(150deg, #1c3a26, var(--navy-950));
-             box-shadow: 0 18px 50px rgba(213,155,83,0.18); }
-  .q-prize:hover { box-shadow: 0 26px 60px rgba(213,155,83,0.3); }
+  .stat-card:hover { transform: translateY(-8px); box-shadow: 0 22px 50px rgba(0,50,80,.22); border-color: var(--green-soft); }
+  .q-prize { border: 2px solid rgba(66,118,81,0.65);
+             background: linear-gradient(150deg, #dce9df, var(--navy-950));
+             box-shadow: 0 18px 50px rgba(66,118,81,0.18); }
+  .q-prize:hover { box-shadow: 0 26px 60px rgba(66,118,81,0.3); }
   .q-prize .q-badge { font-size: 0.95rem; padding: 7px 18px; }
   .stat-pre { display: block; color: var(--text-dim); font-size: 0.95rem; margin-bottom: 2px; }
   @keyframes statBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
   .stat-num.bob { animation: statBob 2.6s ease-in-out infinite; }
   .q-photo { aspect-ratio: 4/5.3; object-position: 50% 20%; }
-  .q-text { color: #cfe0ee; }
+  .q-text { color: #2c4758; }
   .q-prize { position: relative; margin-top: -10px; }
   .prize-medal { position: absolute; top: -18px; left: -14px; width: 52px; height: 52px;
-                 filter: drop-shadow(0 6px 14px rgba(0,0,0,0.5)); transform: rotate(-10deg); z-index: 2; }
+                 filter: drop-shadow(0 6px 14px rgba(0,50,80,0.25)); transform: rotate(-10deg); z-index: 2; }
   .back-wrap { padding: 100px 5vw 0; max-width: 1200px; margin: 0 auto; }
 </style>
 </head>
@@ -83,7 +83,7 @@
 
 <header class="site-header" id="siteHeader">
   <a class="brand brand-word" href="./index.html" aria-label="עלה הדס - לדף הבית">
-    <img src="./assets/logo-wordmark-light.png" alt="לוגו עלה הדס" class="brand-logo">
+    <img src="./assets/logo-aleh-hadas-original.png" alt="לוגו עלה הדס" class="brand-logo">
   </a>
   <nav class="main-nav" id="mainNav" aria-label="ניווט ראשי">
     <a href="./index.html#home" class="nav-link">ראשי</a>
