@@ -115,3 +115,8 @@
 ## 23.10 14:07 i2i coordination - Roi menu text (DONE, our side executed)
 - Acting side switched to OURS at Roi's request (they did not write). Implemented: exact text "רועי גלנץ ואברהם המלכים" as .nav-credit plain span (no link) in the shared nav of all 5 pages; css v46. No deletions/other changes.
 - Verified live 14:09: desktop nav credit visible (span, no link); mobile menu needed overflow fix (safe-center + scroll, css v47) - credit reachable on 390px. Screenshots sent to main.
+
+## 23.10 14:12-14:16 IDT - rollback of nav builders credit (ours, DONE)
+- Roi canceled the nav credit after it shipped; Avraham approved the narrow removal (14:09 voice).
+- Removed only: .nav-credit span from 5 pages + its CSS block. Kept: mobile menu safe-center/scroll fix, all other content.
+- Same push: program-card text/icon color -> white per Avraham 14:09 voice (css v49). Commits c8e2dd8, b408074. Verified live desktop+mobile.
