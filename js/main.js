@@ -34,6 +34,24 @@ if (!window.SITE_PHOTOS) {
     }
   });
 
+
+  /* 23.10 video-5: user asked nav-scroll to glide slowly like manual scrolling,
+     not the fast default smooth-scroll that stops hard ("נטרק למטה") */
+  function ahSmoothScroll(targetY) {
+    var startY = window.scrollY, dist = targetY - startY;
+    if (Math.abs(dist) < 4) { window.scrollTo(0, targetY); return; }
+    var dur = Math.min(1600, Math.max(750, Math.abs(dist) * 0.55));
+    var t0 = null;
+    function step(ts) {
+      if (!t0) t0 = ts;
+      var p = Math.min(1, (ts - t0) / dur);
+      var e = p < 0.5 ? 4*p*p*p : 1 - Math.pow(-2*p + 2, 3) / 2; /* easeInOutCubic */
+      window.scrollTo(0, startY + dist * e);
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
   /* Nav clicks land with the section title just under the fixed header */
   document.querySelectorAll('.main-nav a[href^="#"]').forEach(function (link) {
     link.addEventListener('click', function (e) {
@@ -47,7 +65,7 @@ if (!window.SITE_PHOTOS) {
       var y = 0; for (var n = title; n; n = n.offsetParent) y += n.offsetTop;
       var extra = (id === 'donate') ? 100 : 14;
       y = y - header.offsetHeight - extra;
-      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+      ahSmoothScroll(Math.max(0, y));
       history.replaceState(null, '', '#' + id);
       /* Reveal the target right away so content is never left hidden after a jump */
       var scope = target.closest('section') || target;
