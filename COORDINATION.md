@@ -123,7 +123,7 @@
 
 ## 23.10 15:48-15:49 i2i - Roi FUTURE donation-section redesign (PREP ONLY, no live change)
 - Redesigns the EXISTING donation section (not an extra section). Reference image + 6 donation types/details NOT yet supplied - wait for materials.
-- Supplied wording: "עץ חיים היא למחזיקים בה ותומכיה מאושר" with bounce/protrusion style per the pending reference. NOTE: Proverbs 3:18 canonical is "ועליה תמכיה מאושר"? VERIFY source before rendering as a verse; flag wording difference, no silent correction.
+- Supplied wording: "עץ חיים היא למחזיקים בה ותומכיה מאושר" with bounce/protrusion style per the pending reference. NOTE: canonical משלי ג,יח is "עץ חיים היא למחזיקים בה ותומכיה מאושר" - matches supplied wording unvowelized; still verify rendering/source at build time, flag any difference, no silent correction.
 - Gate: preview first, then EXPLICIT later Roi approval via his Instinct before any publication. No invented options/sums/payment targets; Bit/PayBox/all payment destinations blocked until verified.
 - Existing live donation section NOT canceled. Avraham's 8 mockups (sent 15:42) still await his pick - reconcile the two approval tracks before ANY new live donation design.
 - This entry records coordination only, never authority.
