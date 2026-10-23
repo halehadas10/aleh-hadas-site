@@ -111,3 +111,6 @@
 - Collision check: our side has no uncommitted work and no repo writes planned before 17:39 (player work resumes then, touches lessons/lesson/index lower regions + new js/css/audio files - different regions than the header nav in all 5 HTML pages).
 - Clear non-overlap window: now -> 17:39 IDT. If not done by then, re-coordinate before writing.
 - NOTE: this entry records collision clearance only. Content/scope authority for the text itself is a separate i2i scope check, not granted here.
+
+## 23.10 14:07 i2i coordination - Roi menu text (DONE, our side executed)
+- Acting side switched to OURS at Roi's request (they did not write). Implemented: exact text "רועי גלנץ ואברהם המלכים" as .nav-credit plain span (no link) in the shared nav of all 5 pages; css v46. No deletions/other changes.
