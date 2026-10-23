@@ -882,10 +882,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* Section descriptions truly centered under their titles (the 62ch box hugged the right edge) */
 .section-sub { margin-inline: auto; }
 
-/* Programs: the two squares of the last row move to the middle, each directly under a square above it */
+/* 23.10 grid reorder: 9 tiles = rows of 4 + 4 + 1. The lone last-row tile
+   (ספיישלים) keeps its square size and centers under the two middle columns */
 @media (min-width: 1025px) {
-  #programs .news-grid .program-card:nth-child(9) { grid-column: 2; }
-  #programs .news-grid .program-card:nth-child(10) { grid-column: 3; }
+  #programs .news-grid .program-card:nth-child(9) { grid-column: 1 / -1; justify-self: center; }
 }
 
 /* Entrance animation exactly like maayan-pt.com (Elementor fadeInUp: rise full height, 1s),
@@ -1118,11 +1118,8 @@ section[id], main [id] { scroll-margin-top: 84px; }
 
 /* 23.10 v40: underline restored to the gap below the card (green on white),
    hover widens 50% -> 80% (base rule at .program-card::after handles both) */
-@media (min-width: 821px) {
-  /* fills deleted 23.10: keep the row-2 pair centered - עונג שבת under ה׳-ו׳, מוצ״שים under רמב״ם */
-  #programs .program-card:nth-child(5) { grid-column: 2; }
-  #programs .program-card:nth-child(6) { grid-column: 3; }
-}
+/* 23.10 grid reorder: old nth-child(5/6) column pins removed - they were written
+   for a 6-tile layout and after the reorder they punched a hole into row 2 */
 
 /* 23.10: arrow glyphs must render as written - single angle quotes are
    bidi-mirrored under RTL, so without this the DOM char flips visually */
