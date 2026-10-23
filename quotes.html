@@ -6,7 +6,7 @@
 <link rel="icon" type="image/png" href="./assets/logo-medal-ariel.png">
 <title>מה אומרים עלינו | עלה הדס - בית מדרש לנוער</title>
 <meta name="description" content="רבנים, אנשי ציבור ותקשורת על בית המדרש עלה הדס, על רשת תורהנוער שצמחה ממנו, ועל הדס בן שושן ואריאל דרסינובר ז״ל.">
-<link rel="stylesheet" href="./css/style.css?v=56">
+<link rel="stylesheet" href="./css/style.css?v=57">
 <style>
   .quotes-page { padding-top: 84px; padding-bottom: 90px; background: var(--navy-900); }
   .quotes-kicker { text-align: center; color: var(--gold); font-size: 0.95rem; letter-spacing: 0.06em; margin-bottom: 14px; }
@@ -27,11 +27,13 @@
   .q-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
   .q-card { position: relative; background: linear-gradient(150deg, var(--navy-700), var(--navy-950));
            border: 1px solid rgba(0,80,110,0.22); border-radius: var(--radius);
-           padding: 52px 30px 26px; display: flex; flex-direction: column; }
+           padding: 52px 30px 26px; display: grid; grid-template-columns: auto 1fr; column-gap: 24px; align-content: start; }
+  .q-card > * { grid-column: 2; min-width: 0; }
+  .q-card > .q-photo { grid-column: 1; grid-row: 1 / span 20; }
   .q-card.wide { grid-column: 1 / -1; }
   .q-card::before { content: "״"; position: absolute; top: 6px; left: 22px;
                     font-size: 3.2rem; color: var(--gold); line-height: 1; font-family: serif; }
-  .q-text { font-size: 1.2rem; line-height: 1.9; color: #00506e; font-weight: 600; margin-bottom: 22px; text-align: left; }
+  .q-text { font-size: 1.2rem; line-height: 1.9; color: #00506e; font-weight: 600; margin-bottom: 22px; }
   .q-name { color: var(--blue-light); font-weight: 700; }
   .q-role { color: var(--text-dim); font-size: 0.92rem; line-height: 1.7; }
   .q-src { margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(19,41,58,0.12);
@@ -50,7 +52,9 @@
   .quotes-note { margin-top: 46px; text-align: center; color: var(--text-dim); font-size: 0.85rem; }
   @media (max-width: 860px) {
     .q-cards { grid-template-columns: 1fr; }
-    .q-card { padding: 46px 22px 22px; }
+    .q-card { padding: 46px 22px 22px; grid-template-columns: 1fr; }
+    .q-card > * { grid-column: 1; }
+    .q-card > .q-photo { grid-row: auto; justify-self: center; }
     .q-text { font-size: 1.1rem; }
     .q-photo-wide { aspect-ratio: 16/9; }
   }

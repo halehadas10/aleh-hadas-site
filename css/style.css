@@ -887,6 +887,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 @media (min-width: 1025px) {
   #programs .news-grid .program-card:nth-child(9) { grid-column: 1 / -1; justify-self: center; }
 }
+@media (max-width: 1024px) {
+  #programs .news-grid .program-card:nth-child(9) { grid-column: 1 / -1; justify-self: center; width: calc(50% - 9px); }
+}
 
 /* Entrance animation exactly like maayan-pt.com (Elementor fadeInUp: rise full height, 1s),
    bound to .is-visible so it fires every time the section scrolls into view, not once at page load */

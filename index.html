@@ -12,16 +12,18 @@
   window.SITE_PHOTOS = false;
   if (!window.SITE_PHOTOS) document.documentElement.classList.add('no-photos');
 </script>
-<link rel="stylesheet" href="./css/style.css?v=56">
+<link rel="stylesheet" href="./css/style.css?v=57">
 <style>
   .quotes-preview { background: var(--navy-800); }
   .qp-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 10px; }
   .qp-card { position: relative; background: linear-gradient(150deg, var(--navy-700), var(--navy-950));
              border: 1px solid rgba(0,80,110,0.22); border-radius: var(--radius);
-             padding: 20px 30px 26px; display: flex; flex-direction: column; }
+             padding: 20px 30px 26px; display: grid; grid-template-columns: auto 1fr; column-gap: 24px; align-content: start; }
+  .qp-card > * { grid-column: 2; min-width: 0; }
+  .qp-card > .qp-photo { grid-column: 1; grid-row: 1 / span 20; }
   .qp-card::before { content: "״"; position: absolute; top: 6px; left: 22px;
                      font-size: 3.2rem; color: var(--gold); line-height: 1; font-family: serif; }
-  .qp-text { font-size: 1.22rem; line-height: 1.9; color: #00506e; font-weight: 600; margin-bottom: 22px; text-align: left; }
+  .qp-text { font-size: 1.22rem; line-height: 1.9; color: #00506e; font-weight: 600; margin-bottom: 22px; }
   .qp-name { color: var(--blue-light); font-weight: 700; }
   .qp-role { color: var(--text-dim); font-size: 0.92rem; line-height: 1.7; }
   .qp-src { margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(19,41,58,0.12);
@@ -35,7 +37,7 @@
               transition: transform .5s ease; }
   .qp-photo:hover { transform: rotate(0deg) scale(1.03); }
   .qp-more { text-align: center; margin-top: 36px; }
-  @media (max-width: 860px) { .qp-cards { grid-template-columns: 1fr; } .qp-card { padding: 46px 22px 22px; } }
+  @media (max-width: 860px) { .qp-cards { grid-template-columns: 1fr; } .qp-card { padding: 46px 22px 22px; grid-template-columns: 1fr; } .qp-card > * { grid-column: 1; } .qp-card > .qp-photo { grid-row: auto; justify-self: center; } }
   @media (max-width: 860px) { .qp-photo { margin-top: -56px; } }
   .qp-photo { object-position: 50% 15%; }
   .qp-card { transition: transform .3s ease, box-shadow .3s ease; }
@@ -229,17 +231,17 @@
           <span class="program-sub">שיעור שבועי העוסק בפרשת השבוע ובהשפעתה על חיי היום יום</span>
         </a>
         <a class="news-card program-card reveal" href="./programs/program-3.html">
-          <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="15" width="14" height="4" rx="1"/><rect x="6.5" y="11" width="11" height="4" rx="1"/><rect x="8" y="7" width="8" height="4" rx="1"/></svg>
+          <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 14.5a8.5 8.5 0 0 1 17 0"/><path d="M12 6V4.5"/><path d="M10.4 4.6c.4-1 1.2-1.5 1.6-1.5s1.2.5 1.6 1.5"/><circle cx="8" cy="11" r="0.9"/><circle cx="11" cy="12.3" r="0.9"/><circle cx="16" cy="11" r="0.9"/><text x="12" y="21.5" text-anchor="middle" font-size="6" font-weight="700" fill="currentColor" stroke="none" font-family="Heebo,Arial">הרמב״ם</text></svg>
           <span class="news-caption">לימוד רמב״ם לנוער</span>
           <span class="program-sub">שיעור שבועי לכיתות ז׳-ח׳ העוסק בלימוד רמב״ם</span>
         </a>
         <a class="news-card program-card reveal" href="./programs/program-4.html">
-          <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h10v6.5H8.5L6 15v-2.5H4z"/><path d="M13.5 9.5H20V16h-1.5v2.5L16 16h-2.5"/></svg>
+          <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="5.5" r="2.1"/><circle cx="19" cy="5.5" r="2.1"/><path d="M2.6 13.2a3.4 3.4 0 0 1 5.6-2.2"/><path d="M21.4 13.2a3.4 3.4 0 0 0-5.6-2.2"/><path d="M12 14.5c-1.3-.9-3-1.4-5-1.4v5.6c2 0 3.7.5 5 1.4 1.3-.9 3-1.4 5-1.4v-5.6c-2 0-3.7.5-5 1.4z"/><path d="M12 14.5v5.6"/></svg>
           <span class="news-caption">חבורות</span>
           <span class="program-sub">שיעור בסגנון ״חבורה״ המתקיים מדי שבוע עם מעבירים בכיתות יא׳-יב׳</span>
         </a>
         <a class="news-card program-card reveal" href="./programs/program-7.html">
-          <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21C7 16 7 9 12 3c5 6 5 13 0 18z"/><path d="M12 4v16"/><path d="M12 9l-2.8-1.8M12 9l2.8-1.8M12 14l-2.8-1.8M12 14l2.8-1.8"/></svg>
+          <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21c0-6 0-12 2-16"/><path d="M13 8c-2.2.3-3.6-.6-4.2-2.4 2.2-.3 3.6.6 4.2 2.4z"/><path d="M13.7 11.5c2.2.3 3.6-.6 4.2-2.4-2.2-.3-3.6.6-4.2 2.4z"/><path d="M12.4 15.5c-2.4.3-4-.7-4.6-2.6 2.4-.3 4 .7 4.6 2.6z"/><path d="M13.2 18.5c2.4.3 4-.7 4.6-2.6-2.4-.3-4 .7-4.6 2.6z"/></svg>
           <span class="news-caption">שיעור שבועי כיתות ז׳-ח׳</span>
           <span class="program-sub">שיעור שבועי עם הרבנית רינת פסטליך</span>
         </a>

@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="./assets/logo-medal-ariel.png">
+<title>מה אומרים עלינו | עלה הדס - בית מדרש לנוער</title>
+<meta name="description" content="רבנים, אנשי ציבור ותקשורת על בית המדרש עלה הדס, על רשת תורהנוער שצמחה ממנו, ועל הדס בן שושן ואריאל דרסינובר ז״ל.">
+<link rel="stylesheet" href="./css/style.css?v=57">
+<style>
+  .quotes-page { padding-top: 84px; padding-bottom: 90px; background: var(--navy-900); }
+  .quotes-kicker { text-align: center; color: var(--gold); font-size: 0.95rem; letter-spacing: 0.06em; margin-bottom: 14px; }
+  .quotes-page .section-title { margin-bottom: 14px; }
+  .quotes-sub { text-align: center; color: var(--text-dim); max-width: 720px; margin: 0 auto 54px; line-height: 1.8; }
+  .stats-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-bottom: 76px; }
+  .stat-card { background: linear-gradient(150deg, var(--navy-700), var(--navy-950));
+               border: 1px solid rgba(0,80,110,0.22); border-radius: var(--radius);
+               padding: 34px 18px 26px; text-align: center; }
+  .stat-num { display: block; color: var(--blue-light); font-size: 2.6rem; font-weight: 800;
+              line-height: 1.15; margin-bottom: 10px; font-variant-numeric: tabular-nums; }
+  .stat-num.gold { color: var(--gold); }
+  .stat-label { color: var(--text-dim); font-size: 0.95rem; line-height: 1.6; }
+  @media (max-width: 860px) { .stats-strip { grid-template-columns: 1fr; gap: 16px; margin-bottom: 60px; } }
+  .quotes-said { text-align: center; margin-bottom: 40px; }
+  .quotes-said h2 { color: var(--blue-light); font-size: 1.7rem; margin-bottom: 10px; }
+  .quotes-said p { color: var(--text-dim); font-size: 0.98rem; }
+  .q-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .q-card { position: relative; background: linear-gradient(150deg, var(--navy-700), var(--navy-950));
+           border: 1px solid rgba(0,80,110,0.22); border-radius: var(--radius);
+           padding: 52px 30px 26px; display: grid; grid-template-columns: auto 1fr; column-gap: 24px; align-content: start; }
+  .q-card > * { grid-column: 2; min-width: 0; }
+  .q-card > .q-photo { grid-column: 1; grid-row: 1 / span 20; }
+  .q-card.wide { grid-column: 1 / -1; }
+  .q-card::before { content: "״"; position: absolute; top: 6px; left: 22px;
+                    font-size: 3.2rem; color: var(--gold); line-height: 1; font-family: serif; }
+  .q-text { font-size: 1.2rem; line-height: 1.9; color: #00506e; font-weight: 600; margin-bottom: 22px; }
+  .q-name { color: var(--blue-light); font-weight: 700; }
+  .q-role { color: var(--text-dim); font-size: 0.92rem; line-height: 1.7; }
+  .q-src { margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(19,41,58,0.12);
+           color: var(--text-dim); font-size: 0.85rem; display: flex; justify-content: space-between;
+           align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .q-src a { color: var(--green-soft); text-decoration: underline; text-underline-offset: 3px; }
+  .q-badge { display: inline-block; background: rgba(66,118,81,0.14); color: var(--gold);
+             border: 1px solid rgba(66,118,81,0.45); border-radius: 999px;
+             padding: 5px 14px; font-size: 0.85rem; margin-bottom: 16px; align-self: flex-start; }
+  .press { margin-top: 70px; text-align: center; }
+  .press h2 { color: var(--blue-light); font-size: 1.35rem; margin-bottom: 22px; }
+  .press-chips { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+  .press-chips a { border: 1px solid rgba(0,80,110,0.4); border-radius: 999px;
+                   padding: 8px 20px; color: var(--text); font-size: 0.95rem; transition: all .2s; }
+  .press-chips a:hover { background: var(--green); border-color: var(--green); color: #fff; }
+  .quotes-note { margin-top: 46px; text-align: center; color: var(--text-dim); font-size: 0.85rem; }
+  @media (max-width: 860px) {
+    .q-cards { grid-template-columns: 1fr; }
+    .q-card { padding: 46px 22px 22px; grid-template-columns: 1fr; }
+    .q-card > * { grid-column: 1; }
+    .q-card > .q-photo { grid-row: auto; justify-self: center; }
+    .q-text { font-size: 1.1rem; }
+    .q-photo-wide { aspect-ratio: 16/9; }
+  }
+  .q-photo { width: clamp(110px, 10vw, 140px); aspect-ratio: 4/5; object-fit: cover; object-position: 50% 15%;
+             border-radius: 16px; border: 3px solid rgba(0,80,110,0.35); box-shadow: 0 18px 44px rgba(0,50,80,0.25);
+             transform: rotate(-3deg); margin-top: -76px; margin-bottom: 18px; align-self: flex-start;
+             transition: transform .5s ease; }
+  .q-photo:hover { transform: rotate(0) scale(1.03); }
+  .q-photo-boy { width: clamp(150px, 13vw, 185px); object-position: 50% 40%; }
+  .q-card-lavi .q-photo { width: clamp(155px, 13.5vw, 190px); aspect-ratio: 4/3.4; object-position: 55% 30%; }
+  .q-photo-ceremony { width: clamp(170px, 15vw, 215px); aspect-ratio: 16/10; object-position: 50% 55%; }
+  .q-card-greenberg .q-photo { width: clamp(210px, 19vw, 260px); aspect-ratio: 4/3.2; object-position: 50% 28%; margin-bottom: 26px; }
+  /* first card in grid: photo must not cover the section title (prize card is first since 23.10 swap) */
+  @media (max-width: 860px) { .q-cards > article.q-card:first-child .q-photo { margin-top: -34px; } }
+  .q-card { transition: transform .3s ease, box-shadow .3s ease; }
+  .q-card:hover { transform: translateY(-8px); box-shadow: 0 22px 50px rgba(0,50,80,.22); }
+  .stat-card { transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
+  .stat-card:hover { transform: translateY(-8px); box-shadow: 0 22px 50px rgba(0,50,80,.22); border-color: var(--green-soft); }
+  .q-prize { border: 2px solid rgba(66,118,81,0.65);
+             background: linear-gradient(150deg, #dce9df, var(--navy-950));
+             box-shadow: 0 18px 50px rgba(66,118,81,0.18); }
+  .q-prize:hover { box-shadow: 0 26px 60px rgba(66,118,81,0.3); }
+  .q-prize .q-badge { font-size: 0.95rem; padding: 7px 18px; }
+  .stat-pre { display: block; color: var(--text-dim); font-size: 0.95rem; margin-bottom: 2px; }
+  @keyframes statBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+  .stat-num.bob { animation: statBob 2.6s ease-in-out infinite; }
+  .q-text { color: #00506e; }
+  .q-prize { position: relative; margin-top: -10px; }
+  .prize-medal { position: absolute; top: -18px; left: -14px; width: 52px; height: 52px;
+                 filter: drop-shadow(0 6px 14px rgba(0,50,80,0.25)); transform: rotate(-10deg); z-index: 2; }
+  .back-wrap { padding: 100px 5vw 0; max-width: 1200px; margin: 0 auto; }
+</style>
+<style>.reveal{opacity:1!important;transform:none!important}.hero{display:none!important}</style></head>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <a class="brand brand-word" href="./index.html" aria-label="עלה הדס - לדף הבית">
+    <img src="./assets/logo-aleh-hadas-original.png" alt="לוגו עלה הדס" class="brand-logo">
+  </a>
+  <nav class="main-nav" id="mainNav" aria-label="ניווט ראשי">
+    <a href="./index.html#story" class="nav-link">הסיפור שלנו</a>
+    <a href="./quotes.html" class="nav-link is-active" aria-current="page">מה אומרים עלינו</a>
+    <a href="./index.html#activities" class="nav-link">מהנעשה בבית המדרש</a>
+    <a href="./index.html#programs" class="nav-link">תכניות</a>
+    <a href="./index.html#contact" class="nav-link">יצירת קשר</a>
+    <a href="./lessons.html" class="nav-link">בית מדרש וירטואלי</a>
+    <a href="./index.html#times" class="nav-link">זמנים ומקום</a>
+    <a href="./index.html#donate" class="nav-link nav-donate">תרומה</a>
+    </nav>
+  <a class="brand brand-medal-link" href="./index.html" aria-label="מדליית זיכרון - אריאל דרסינובר ז״ל - לדף הבית">
+    <img src="./assets/logo-medal-ariel.png?v=7" alt="מדליית זיכרון - אריאל דרסינובר ז״ל" class="brand-medal">
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="תפריט" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+  <div class="back-wrap">
+    <a class="btn btn-ghost" id="backHome" href="./index.html">חזרה לאתר</a>
+  </div>
+
+<main>
+  <section class="section quotes-page" id="quotes">
+    <div class="container">
+      <h1 class="section-title">מה אומרים עלינו</h1>
+      <div class="q-cards">
+
+        <article class="q-card wide q-prize"><svg class="prize-medal" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="26" r="16" fill="#d59b53"/><circle cx="32" cy="26" r="11" fill="none" stroke="#8a5a1e" stroke-width="2"/><path d="M32 19l2.2 4.4 4.8.7-3.5 3.4.8 4.8-4.3-2.2-4.3 2.2.8-4.8-3.5-3.4 4.8-.7z" fill="#8a5a1e"/><path d="M24 40l-6 14 8-3 6 5 2-13z" fill="#1f8f5f"/><path d="M40 40l6 14-8-3-6 5-2-13z" fill="#62b489"/></svg>
+        <img class="q-photo q-photo-ceremony" src="./assets/prize-ceremony-crop.jpg?v=1" alt="טקס פרס התנדבות" loading="lazy">
+          <span class="q-badge">פרס המורשת היהודית · עיריית פתח תקווה</span>
+          <p class="q-text">בתחום המורשת היהודית זכו חובב אוזן ואריאל דרסינובר ז״ל, שיזמו את הקמת בית המדרש ״עלה הדס״ - מיזם חינוכי ללימוד תורה לבני כיתות ז׳-י״ב. המיזם, שהחל בפתח תקווה, צבר בשנים האחרונות תאוצה והפך לרשת ״תורהנוער״.</p>
+          <p class="q-src"><span>מעריב, 1.1.2023 · פרס לעידוד היצירה של העירייה ומקפ״ת</span><a href="https://www.maariv.co.il/hamekomon/petah-tikva/article-969357" data-overlay target="_blank" rel="noopener">לכתבה המלאה</a></p>
+        </article>
+
+        <article class="q-card wide">
+        <img class="q-photo" src="./assets/rabbi-rimon.jpg" alt="יוסף צבי רימון" loading="lazy">
+          <p class="q-text">לפני כמה שנים, שרק התחלנו את תורהנוער, מי היה מאמין שבשלב הזה נהיה עם למעלה מ-50 סניפים ואלפי בני נוער שבכל שבוע כורתים ברית עם התורה. ההשפעה של התהליך הזה היא לא רק נקודתית אלא מעידה על שייכות עמוקה - בזמן שכולם יוצאים לבילויים, אתם אומרים: הבילוי שלי הוא עם התורה.</p>
+          <p class="q-name">הרב יוסף צבי רימון</p>
+          <p class="q-role">יו״ר עמותת סולמות, בליל הושענא רבה המרכזי של רשת תורהנוער (על הרשת שצמחה מעלה הדס)</p>
+          <p class="q-src"><span>ערוץ 7, 6.10.2023</span><a href="https://www.inn.co.il/news/615811" data-overlay target="_blank" rel="noopener">לכתבה המלאה</a></p>
+        </article>
+
+        <article class="q-card q-card-lavi">
+        <img class="q-photo" src="./assets/rabbi-lavi.jpg" alt="הרב יוני לביא" loading="lazy">
+          <p class="q-text">הוא היה אחד מהצעירים הבולטים בשכונה ביוזמה ובפעילות, ולצד חובב אוזן עמד בראש בית המדרש עלה הדס לנוער וכל הפעילויות התורניות לנוער בשכונה.</p>
+          <p class="q-name">הרב יוני לביא</p>
+          <p class="q-role">על אריאל דרסינובר ז״ל, מייסד בית המדרש</p>
+          <p class="q-src"><span>ערוץ 7, 2.8.2018</span><a href="https://www.inn.co.il/news/379333" data-overlay target="_blank" rel="noopener">לכתבה המלאה</a></p>
+        </article>
+
+        <article class="q-card">
+        <img class="q-photo" src="./assets/rabbi-eliyahu.jpg" alt="הרב שמואל אליהו" loading="lazy">
+          <p class="q-text">הצימאון הזה לא יפסיק, הוא רק יגדל - ואתם צריכים להיות הרבנים והמחנכים, אתם צריכים לגדול בתורה ולצמוח. זה להביא את האור של התורה לכל עם ישראל.</p>
+          <p class="q-name">הרב שמואל אליהו</p>
+          <p class="q-role">רבה של צפת, בהתוועדות לבני תורהנוער בליל הושענא רבה (על הרשת שצמחה מעלה הדס)</p>
+          <p class="q-src"><span>ערוץ 7, 6.10.2023</span><a href="https://www.inn.co.il/news/615811" data-overlay target="_blank" rel="noopener">לכתבה המלאה</a></p>
+        </article>
+
+        <article class="q-card">
+        <img class="q-photo" src="./assets/yedidya-meir.jpg" alt="ידידיה מאיר" loading="lazy">
+          <p class="q-text">המיזם התחיל בסניף אחד, ׳עלה הדס׳, שהקימו אריאל דרסינובר וחברו חובב אוזן לע״נ הדס בן שושן. אריאל נהרג שלושה שבועות לפני חתונתו, […] ומאז הפעילות, שמוקדשת לעילוי נשמתו, הולכת ומתרחבת.</p>
+          <p class="q-name">ידידיה מאיר</p>
+          <p class="q-role">עיתונאי, טורו השבועי בעיתון ״בשבע״</p>
+          <p class="q-src"><span>אתר כל רגע, 12.8.2022</span><a href="https://www.kore.co.il/viewArticle/111900" data-overlay target="_blank" rel="noopener">לכתבה המלאה</a></p>
+        </article>
+
+        <article class="q-card">
+        <img class="q-photo" src="./assets/hadas-ben-shoshan.jpg" alt="הדס בן שושן ז״ל" loading="lazy">
+          <p class="q-text">הדס הייתה ילדה מדהימה ומיוחדת.</p>
+          <p class="q-name">חברותיה של הדס בן שושן ז״ל</p>
+          <p class="q-role">שעל שמה הוקם בית המדרש</p>
+          <p class="q-src"><span>ynet, 2012</span><a href="https://www.ynet.co.il/articles/0,7340,L-4260050,00.html" target="_blank" rel="noopener">לכתבה המלאה</a></p>
+        </article>
+
+        <article class="q-card wide">
+        <img class="q-photo q-photo-boy" src="./assets/marathon-boy-crop.jpg?v=3" alt="נער שהשתתף במרתון הלימוד" loading="lazy">
+          <p class="q-text">לפעמים יש לנו ציפיות נמוכות מעצמנו, בכל התחומים. למדתי פה לשאוף גבוה וקיבלתי שיעור ענק, גם בגמרא אבל גם על עצמי.</p>
+          <p class="q-name">נער שהשתתף במרתון הלימוד</p>
+          <p class="q-role">מסיים מסכת תענית ביום אחד, פתח תקווה</p>
+        </article>
+
+        <article class="q-card wide q-card-greenberg">
+        <img class="q-photo" src="./assets/rami-greenberg.jpg" alt="רמי גרינברג" loading="lazy">
+          <p class="q-text">המסירות ללימוד היא העוצמה של בית המדרש עלה הדס ושל השכונה. אנו מוקירים את זכרו של אריאל ז״ל, שהיה מבין מקימי בית המדרש, ואנו נמשיך לפעול כדי להעצים את נושא הלימוד והקהילתיות במסגרות השונות.</p>
+          <p class="q-name">רמי גרינברג</p>
+          <p class="q-role">ראש עיריית פתח תקווה, בטקס חניכת בית המדרש ״נווה אריאל״</p>
+          <p class="q-src"><span>קב-עיתונות, גיליון 29.8.2024 · דוברות עיריית פתח תקווה</span><a href="https://kav-itonut.co.il/wp-content/uploads/2024/09/29.8.24-pt.pdf#page=4" data-overlay target="_blank" rel="noopener">לכתבה המלאה</a></p>
+        </article>
+
+      </div>
+
+      <div class="press">
+        <h2>עלה הדס ותורהנוער בתקשורת</h2>
+        <div class="press-chips">
+          <a href="https://www.inn.co.il/news/615811" data-overlay target="_blank" rel="noopener">ערוץ 7</a>
+          <a href="https://www.maariv.co.il/hamekomon/petah-tikva/article-969357" data-overlay target="_blank" rel="noopener">מעריב</a>
+          <a href="https://www.ynet.co.il/articles/0,7340,L-4260050,00.html" target="_blank" rel="noopener">ynet</a>
+          <a href="https://www.kore.co.il/viewArticle/111900" data-overlay target="_blank" rel="noopener">עיתון בשבע · כל רגע</a>
+          <a href="https://kav-itonut.co.il/wp-content/uploads/2024/09/29.8.24-pt.pdf#page=4" data-overlay target="_blank" rel="noopener">קב-עיתונות</a>
+        </div>
+        <p class="quotes-note">כל הציטוטים מוצגים במקורם ומקושרים לכתבות המקור · עלה הדס, בית מדרש לנוער, הדר גנים, פתח תקווה</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-brand">
+      <img src="./assets/logo-aleh-hadas-light.png" alt="לוגו עלה הדס" class="footer-logo">
+      <img src="./assets/logo-medal-ariel.png?v=7" alt="מדליית זיכרון - אריאל דרסינובר ז״ל, מייסד בית המדרש" class="footer-medal">
+    </div>
+    <p>עלה הדס · בית מדרש לנוער · הדר גנים, פתח תקווה</p>
+    <p class="footer-note">כל הזכויות שמורות לאברהם יונה ורועי גלנץ</p>
+    <p class="footer-rights">כל הזכויות בתמונות שמורות לבעליהן</p>
+  </div>
+</footer>
+
+<script>
+  var header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', function () { header.classList.toggle('is-scrolled', window.scrollY > 40); }, { passive: true });
+  header.classList.add('is-scrolled');
+  /* Count-up stats: animate once when the strip scrolls into view */
+  function countUp(el) {
+    var target = parseInt(el.getAttribute('data-target'), 10);
+    var suffix = el.getAttribute('data-suffix') || '';
+    var dur = 1400, t0 = null;
+    function frame(t) {
+      if (t0 === null) t0 = t;
+      var p = Math.min(1, (t - t0) / dur);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased).toLocaleString('en-US') + (p === 1 ? suffix : '');
+      if (p < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+  var statObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) {
+        en.target.querySelectorAll('.stat-num[data-target]').forEach(countUp);
+        statObs.unobserve(en.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  var strip = document.querySelector('.stats-strip');
+  if (strip) statObs.observe(strip);
+
+  var toggle = document.getElementById('navToggle');
+  var nav = document.getElementById('mainNav');
+  toggle.addEventListener('click', function () {
+    var open = nav.classList.toggle('is-open');
+    toggle.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+</script>
+<script src="./js/ext-overlay.js?v=2"></script>
+<script>
+(function () {
+  var b = document.getElementById('backHome');
+  if (!b) return;
+  b.addEventListener('click', function (e) {
+    try {
+      var r = document.referrer;
+      if (r && history.length > 1) {
+        var path = new URL(r).pathname;
+        if (r.indexOf(location.origin) === 0 && (path === '/' || /index\.html$/.test(path))) {
+          e.preventDefault(); history.back();
+        }
+      }
+    } catch (err) {}
+  });
+})();
+</script>
+</body>
+</html>
