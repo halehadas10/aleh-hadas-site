@@ -73,3 +73,4 @@
 - Hero overlay blue-tinted, fades to page white at bottom; hero text kept white on the photo. Contact/donate section: white veil over the photo, white cards.
 - Cache: css v29 (all 5 pages).
   - Follow-up (09a0fd7): הראשון stat tiles (home + quotes strips) now carry class stat-num.gold so they render in the Ariel green secondary, preserving the video-2 green emphasis under the new palette.
+  - Follow-up 2 (4054a96): section/page backgrounds are now pure white (navy-800/900 -> #ffffff; only cards keep a pale #f0f6fa tint, donate band keeps the sage-green tint; hero/footer unchanged). css v30.
