@@ -1061,12 +1061,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
                       text-underline-offset: 3px; }
 .ext-overlay-frame { flex: 1; width: 100%; border: 0; background: #fff; }
 
-#quotes .section-sub { margin-bottom: clamp(110px, 10vw, 150px); }
+#quotes .section-sub { margin-bottom: clamp(64px, 6vw, 92px); }
 
 /* ===== 23.10 video-3 batch ===== */
 /* Quotes: subtitle hugs the title, more air above the rabbi cards */
 .quotes-preview .section-title { margin-bottom: 6px; }
-.quotes-preview .section-sub { margin-top: 0; margin-bottom: clamp(52px, 6vw, 92px); margin-inline: auto; }
+.quotes-preview .section-sub { margin-top: 0; margin-bottom: clamp(64px, 6vw, 92px); margin-inline: auto; }
 
 /* Programs: both rows fit one viewport - tighter top, gaps and card height */
 #programs { padding-top: clamp(6px, 0.9vw, 10px); }
