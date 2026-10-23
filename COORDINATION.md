@@ -78,3 +78,6 @@
 
 ## 23.10 video-3 batch hotfix (09:33)
 - Mobile (<=820px) programs grid overflow fix: `#programs .news-grid` columns changed `repeat(2, 1fr)` -> `repeat(2, minmax(0, 1fr))`. Cards' ~243px min-content was blowing out the 1fr tracks (page scrolled sideways on phones, doc 521px wide). Latent pre-batch issue surfaced during video-3 verification. css v32.
+
+## 23.10 video-3 batch compaction follow-up (09:40)
+- Programs section shaved ~25px more (padding-top clamp(8,1.2vw,14), row gap 14, card/fill aspect 1/0.91) so title + both rows fit a 720px viewport with the fixed header. css v33.
