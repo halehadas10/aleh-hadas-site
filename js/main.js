@@ -38,6 +38,9 @@ if (!window.SITE_PHOTOS) {
   /* 23.10 14:38: user asked to speed up the nav-scroll ("איטית מידי תמהר אותה") -
      faster than the video-5 slow glide, still eased so it never slams ("נטרק") */
   function ahSmoothScroll(targetY) {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      window.scrollTo(0, targetY); return;
+    }
     var startY = window.scrollY, dist = targetY - startY;
     if (Math.abs(dist) < 4) { window.scrollTo(0, targetY); return; }
     var dur = Math.min(620, Math.max(260, Math.abs(dist) * 0.22));
@@ -51,6 +54,15 @@ if (!window.SITE_PHOTOS) {
     }
     requestAnimationFrame(step);
   }
+
+  /* 23.10: header logos (תורהנוער word-logo + Ariel medal) get the same fast eased
+     scroll-to-top as the nav (user: "אין את האנימציה של הגלילה המהירה... גם את זה בבקשה תוסיף") */
+  document.querySelectorAll('.site-header .brand[href="#home"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      ahSmoothScroll(0);
+    });
+  });
 
   /* Nav clicks land with the section title just under the fixed header */
   document.querySelectorAll('.main-nav a[href^="#"]').forEach(function (link) {
