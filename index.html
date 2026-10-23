@@ -45,7 +45,7 @@
   .story-stats .stat-pre { grid-row: 1; } .story-stats .stat-num { grid-row: 2; } .story-stats .stat-label { grid-row: 3; }
   /* 23.10 v40: quotes section must be fully in sync when arriving - no reveal gating */
   #quotes .reveal, #quotes .reveal.is-visible { opacity: 1 !important; transition: none !important; animation: none !important; }
-  #quotes .qp-card.reveal, #quotes .qp-card.reveal.is-visible { transform: none !important; }
+  #quotes .qp-card.reveal, #quotes .qp-card.reveal.is-visible { transform: none !important; transition: transform .3s ease, box-shadow .3s ease !important; }
   #quotes .qp-card.reveal:hover { transform: translateY(-8px) !important; transition: transform .3s ease, box-shadow .3s ease !important; }
   /* 23.10 v40: lift the title+sub block up, open a gap above the rabbi photo */
   .quotes-preview { padding-top: clamp(40px, 5.5vw, 78px); }
