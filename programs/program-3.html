@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="../assets/logo-medal-ariel.png">
 <title>לימוד רמב״ם לנוער - עלה הדס</title>
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/style.css?v=53">
 <style>
   body { background: #fff; }
   .prog-wrap { max-width: 980px; margin: 0 auto; padding: 34px 20px 70px; }
@@ -45,15 +46,17 @@
         <div class="prog-slide"><img src="../assets/gallery/act-b3.jpg" alt="לימוד רמב״ם לנוער" loading="lazy"></div>
         <div class="prog-slide"><img src="../assets/gallery/act-b4.jpg" alt="לימוד רמב״ם לנוער" loading="lazy"></div>
         <div class="prog-slide"><img src="../assets/gallery/side-1.jpg" alt="לימוד רמב״ם לנוער" loading="lazy"></div>
+        <div class="prog-slide"><img src="../assets/gallery/side-2.jpg" alt="לימוד רמב״ם לנוער" loading="lazy"></div>
+        <div class="prog-slide"><img src="../assets/gallery/act-b1.jpg" alt="לימוד רמב״ם לנוער" loading="lazy"></div>
       </div>
       <button type="button" class="prog-arrow prog-prev" aria-label="תמונה קודמת"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
       <button type="button" class="prog-arrow prog-next" aria-label="תמונה הבאה"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
       <div class="prog-dots" id="progDots"></div>
     </div>
-    <div class="prog-desc">שיעור שבועי לכיתות ז׳-ח׳ העוסק בלימוד רמב״ם, צעד אחר צעד, עם דגש על הבנה ועל שייכות ללימוד.</div>
+    <div class="prog-desc">בלה בלה בלה</div>
     <div class="prog-ctas">
       <a class="btn btn-green" href="../index.html#programs">לכל התכניות</a>
-      <a class="btn btn-ghost" href="../index.html#contact">דברו איתנו</a>
+      <button class="btn btn-ghost" id="talkBtn" type="button">דברו איתנו</button>
     </div>
   </main>
 <script>
@@ -82,6 +85,44 @@
   box.addEventListener('mouseenter', function () { if (timer) clearInterval(timer); timer = null; });
   box.addEventListener('mouseleave', restart);
   go(0); restart();
+})();
+</script>
+<div class="tm-backdrop" id="talkModal" hidden>
+  <div class="tm-card" role="dialog" aria-modal="true" aria-labelledby="tmTitle">
+    <button class="tm-close" type="button" aria-label="סגירה">&times;</button>
+    <h2 class="tm-title" id="tmTitle">דברו איתנו</h2>
+    <p class="tm-prog">לימוד רמב״ם לנוער</p>
+    <div class="tm-people">
+      <div class="tm-person">
+        <h3>דוד גרינפלד</h3>
+        <p class="tm-role">רכז הסניף</p>
+        <div class="tm-actions">
+          <a class="btn btn-ghost" href="tel:+972546193797">חייג · 054-619-3797</a>
+          <a class="btn btn-green" href="https://wa.me/972546193797?text=%D7%A9%D7%9C%D7%95%D7%9D+%D7%93%D7%95%D7%93%2C+%D7%90%D7%A9%D7%9E%D7%97+%D7%9C%D7%A9%D7%9E%D7%95%D7%A2+%D7%A2%D7%95%D7%93+%D7%A2%D7%9C+%D7%91%D7%99%D7%AA+%D7%94%D7%9E%D7%93%D7%A8%D7%A9+%D7%A2%D7%9C%D7%94+%D7%94%D7%93%D7%A1" target="_blank" rel="noopener">וואטסאפ</a>
+        </div>
+      </div>
+      <div class="tm-person">
+        <h3>נועה מועלם</h3>
+        <p class="tm-role">רכזת הסניף</p>
+        <div class="tm-actions">
+          <a class="btn btn-ghost" href="tel:+972552762158">חייג · 055-276-2158</a>
+          <a class="btn btn-green" href="https://wa.me/972552762158?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%A0%D7%95%D7%A2%D7%94%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%95%D7%93%20%D7%A2%D7%9C%20%D7%91%D7%99%D7%AA%20%D7%94%D7%9E%D7%93%D7%A8%D7%A9%20%D7%A2%D7%9C%D7%94%20%D7%94%D7%93%D7%A1" target="_blank" rel="noopener">וואטסאפ</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  var modal = document.getElementById('talkModal');
+  var openBtn = document.getElementById('talkBtn');
+  if (!modal || !openBtn) return;
+  function open() { modal.hidden = false; requestAnimationFrame(function () { modal.classList.add('is-open'); }); }
+  function close() { modal.classList.remove('is-open'); setTimeout(function () { modal.hidden = true; }, 320); }
+  openBtn.addEventListener('click', open);
+  modal.querySelector('.tm-close').addEventListener('click', close);
+  modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) close(); });
 })();
 </script>
 </body>

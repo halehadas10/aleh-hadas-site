@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="./assets/logo-medal-ariel.png">
 <title>מה אומרים עלינו | עלה הדס - בית מדרש לנוער</title>
 <meta name="description" content="רבנים, אנשי ציבור ותקשורת על בית המדרש עלה הדס, על רשת תורהנוער שצמחה ממנו, ועל הדס בן שושן ואריאל דרסינובר ז״ל.">
-<link rel="stylesheet" href="./css/style.css?v=52">
+<link rel="stylesheet" href="./css/style.css?v=53">
 <style>
   .quotes-page { padding-top: 84px; padding-bottom: 90px; background: var(--navy-900); }
   .quotes-kicker { text-align: center; color: var(--gold); font-size: 0.95rem; letter-spacing: 0.06em; margin-bottom: 14px; }
@@ -30,7 +31,7 @@
   .q-card.wide { grid-column: 1 / -1; }
   .q-card::before { content: "״"; position: absolute; top: 6px; right: 22px;
                     font-size: 3.2rem; color: var(--gold); line-height: 1; font-family: serif; }
-  .q-text { font-size: 1.06rem; line-height: 1.9; color: var(--text); margin-bottom: 22px; }
+  .q-text { font-size: 1.2rem; line-height: 1.9; color: #00506e; font-weight: 600; margin-bottom: 22px; }
   .q-name { color: var(--blue-light); font-weight: 700; }
   .q-role { color: var(--text-dim); font-size: 0.92rem; line-height: 1.7; }
   .q-src { margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(19,41,58,0.12);
@@ -50,7 +51,7 @@
   @media (max-width: 860px) {
     .q-cards { grid-template-columns: 1fr; }
     .q-card { padding: 46px 22px 22px; }
-    .q-text { font-size: 1rem; }
+    .q-text { font-size: 1.1rem; }
     .q-photo-wide { aspect-ratio: 16/9; }
   }
   .q-photo { width: clamp(110px, 10vw, 140px); aspect-ratio: 4/5; object-fit: cover; object-position: 50% 15%;
@@ -76,7 +77,7 @@
   .stat-pre { display: block; color: var(--text-dim); font-size: 0.95rem; margin-bottom: 2px; }
   @keyframes statBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
   .stat-num.bob { animation: statBob 2.6s ease-in-out infinite; }
-  .q-text { color: #2c4758; }
+  .q-text { color: #00506e; }
   .q-prize { position: relative; margin-top: -10px; }
   .prize-medal { position: absolute; top: -18px; left: -14px; width: 52px; height: 52px;
                  filter: drop-shadow(0 6px 14px rgba(0,50,80,0.25)); transform: rotate(-10deg); z-index: 2; }
@@ -107,7 +108,7 @@
   </button>
 </header>
   <div class="back-wrap">
-    <a class="btn btn-ghost" href="./index.html">חזרה לאתר</a>
+    <a class="btn btn-ghost" id="backHome" href="./index.html">חזרה לאתר</a>
   </div>
 
 <main>
@@ -246,5 +247,22 @@
   });
 </script>
 <script src="./js/ext-overlay.js?v=2"></script>
+<script>
+(function () {
+  var b = document.getElementById('backHome');
+  if (!b) return;
+  b.addEventListener('click', function (e) {
+    try {
+      var r = document.referrer;
+      if (r && history.length > 1) {
+        var path = new URL(r).pathname;
+        if (r.indexOf(location.origin) === 0 && (path === '/' || /index\.html$/.test(path))) {
+          e.preventDefault(); history.back();
+        }
+      }
+    } catch (err) {}
+  });
+})();
+</script>
 </body>
 </html>
