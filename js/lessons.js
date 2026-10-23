@@ -34,8 +34,8 @@
   function renderCarousel(data) {
     const host = document.getElementById('lsCarousel');
     if (!host) return;
-    const both = data.lessons.filter(l => l.onSpotify);
-    both.slice(0, 8).forEach(l => host.appendChild(card(l, '.')));
+    const both = data.lessons;
+    both.forEach(l => host.appendChild(card(l, '.')));
     const cnt = document.getElementById('lsCount');
     if (cnt) cnt.textContent = both.length + ' שיעורים זמינים לצפייה ולהאזנה';
     const next = document.getElementById('lsNext'), prev = document.getElementById('lsPrev');
@@ -46,7 +46,7 @@
   function renderPage(data) {
     const host = document.getElementById('lsPage');
     if (!host) return;
-    const both = data.lessons.filter(l => l.onSpotify);
+    const both = data.lessons;
     const bySeries = {};
     both.forEach(l => { (bySeries[l.series] = bySeries[l.series] || []).push(l); });
     Object.keys(bySeries).forEach(name => {

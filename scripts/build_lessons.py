@@ -42,15 +42,24 @@ def hebrew_date(dt):
         print("hebcal err", e); return ""
 
 def main():
-    rss = get(f"https://www.youtube.com/feeds/videos.xml?channel_id={CH_ID}")
-    entries = re.findall(r'<entry>(.*?)</entry>', rss, re.S)
-    vids = []
-    for e in entries:
-        vid = re.search(r'<yt:videoId>(.*?)</yt:videoId>', e).group(1)
-        title = html.unescape(re.search(r'<title>(.*?)</title>', e).group(1))
-        pub = re.search(r'<published>(.*?)</published>', e).group(1)
-        vids.append((vid, title, pub))
-    print("rss videos:", len(vids))
+    try:
+        rss = get(f"https://www.youtube.com/feeds/videos.xml?channel_id={CH_ID}")
+        entries = re.findall(r'<entry>(.*?)</entry>', rss, re.S)
+        vids = []
+        for e in entries:
+            vid = re.search(r'<yt:videoId>(.*?)</yt:videoId>', e).group(1)
+            title = html.unescape(re.search(r'<title>(.*?)</title>', e).group(1))
+            pub = re.search(r'<published>(.*?)</published>', e).group(1)
+            vids.append((vid, title, pub))
+        print("rss videos:", len(vids))
+    except Exception as e:
+        # RSS can 404; fall back to the channel videos page (publish date comes from watch pages below)
+        print("rss err, falling back to channel page:", e)
+        ch = get("https://www.youtube.com/@%D7%A2%D7%9C%D7%94_%D7%94%D7%93%D7%A1/videos")
+        seen, vids = set(), []
+        for vid in dict.fromkeys(re.findall(r'watch\?v=([A-Za-z0-9_-]{11})', ch)):
+            seen.add(vid); vids.append((vid, "", ""))
+        print("channel-page videos:", len(vids))
 
     # Spotify latest episode -> update verification map
     map_path = os.path.join(ROOT, "data", "spotify-map.json")
@@ -74,9 +83,6 @@ def main():
 
     lessons = []
     for vid, title, pub in vids:
-        # lessons only: shiurim, skip promos
-        if ("הרב" not in title) and ("שיעור" not in title):
-            print("skip (not a lesson):", title[:40]); continue
         desc, dur = "", 0
         try:
             w = get(f"https://www.youtube.com/watch?v={vid}")
@@ -87,6 +93,9 @@ def main():
             desc = vd.get("shortDescription", "")
             dur = int(vd.get("lengthSeconds", 0) or 0)
             title = vd.get("title", title)
+            if not pub:
+                mf = pr.get("microformat", {}).get("playerMicroformatRenderer", {})
+                pub = mf.get("publishDate") or mf.get("uploadDate") or pub
         except Exception as e:
             print("watch err", vid, e)
         # rabbi: first title segment when it starts with הרב, else from description

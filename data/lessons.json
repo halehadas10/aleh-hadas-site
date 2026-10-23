@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-22T21:24:48.503470+00:00",
+ "generated": "2026-10-23T06:21:16.266795+00:00",
  "showSpotifyUrl": "https://open.spotify.com/show/6t4UTEzvBWhBWbpb82krkd",
  "channelUrl": "https://www.youtube.com/channel/UCFkN6V5jTallY0UPD0Z4qMA",
  "lessons": [
@@ -17,6 +17,21 @@
    "spotifyUrl": "https://open.spotify.com/episode/7kiVXvBtdN26XQQsMU66DS",
    "onSpotify": true,
    "thumbnail": "https://i.ytimg.com/vi/XLRdDVe6Xfk/hq720.jpg"
+  },
+  {
+   "id": "Dqp7iOoyEQA",
+   "title": "עלה הדס - סרטון תדמית",
+   "topic": "עלה הדס - סרטון תדמית",
+   "rabbi": "",
+   "description": "בית מדרש עלה הדס הוא בית מדרש המיועד לנוער הפועל לאורך כל השבוע 24/7",
+   "published": "2026-10-22T07:46:53-07:00",
+   "hebrewDate": "י״א בְּחֶשְׁוָן תשפ״ז",
+   "durationSec": 151,
+   "series": "שיעורים כלליים",
+   "youtubeUrl": "https://www.youtube.com/watch?v=Dqp7iOoyEQA",
+   "spotifyUrl": null,
+   "onSpotify": false,
+   "thumbnail": "https://i.ytimg.com/vi/Dqp7iOoyEQA/hq720.jpg"
   },
   {
    "id": "_5FW3qJ8yXU",
@@ -124,6 +139,21 @@
    "thumbnail": "https://i.ytimg.com/vi/_ZnDbs7bRHM/hq720.jpg"
   },
   {
+   "id": "bC_O6Lpxv5I",
+   "title": "רבקה דרסינובר | בדרכו של אריאל | בית מדרש עלה הדס",
+   "topic": "בדרכו של אריאל",
+   "rabbi": "",
+   "description": "שיעור העוסק באריאל דרסינובר - מקים תנועת \"תורהנוער\"",
+   "published": "2026-08-07T01:33:48-07:00",
+   "hebrewDate": "כ״ד בְּאָב תשפ״ו",
+   "durationSec": 2657,
+   "series": "שיעורים כלליים",
+   "youtubeUrl": "https://www.youtube.com/watch?v=bC_O6Lpxv5I",
+   "spotifyUrl": null,
+   "onSpotify": false,
+   "thumbnail": "https://i.ytimg.com/vi/bC_O6Lpxv5I/hq720.jpg"
+  },
+  {
    "id": "DfmcbQ8GzlI",
    "title": "הרב נריה טייץ | זה לא היעד זה הדרך | בית מדרש עלה הדס",
    "topic": "זה לא היעד זה הדרך",
@@ -152,6 +182,21 @@
    "spotifyUrl": null,
    "onSpotify": false,
    "thumbnail": "https://i.ytimg.com/vi/SCj1gKR3BZQ/hq720.jpg"
+  },
+  {
+   "id": "I6VOCsHe__s",
+   "title": "הרב שרון שמחי | אלול מבפנים | בית מדרש עלה הדס",
+   "topic": "אלול מבפנים",
+   "rabbi": "הרב שרון שמחי",
+   "description": "שיעור העוסק בענייני התשובה לקראת חודש אלול עם נגיעות מהפרשה וספרו של הרב אברהם יצחק הכהן קוק \"אורות התשובה\"\n\n\n@בית מדרש עלה הדס\n@הרב שרון שמחי\n@חודש אלול\n@אלול\n@שיעור תורה\n@תורה נוער",
+   "published": "2025-09-20T20:38:59-07:00",
+   "hebrewDate": "כ״ז בֶּאֱלוּל תשפ״ה",
+   "durationSec": 2554,
+   "series": "שיעורים כלליים",
+   "youtubeUrl": "https://www.youtube.com/watch?v=I6VOCsHe__s",
+   "spotifyUrl": null,
+   "onSpotify": false,
+   "thumbnail": "https://i.ytimg.com/vi/I6VOCsHe__s/hq720.jpg"
   }
  ]
 }
