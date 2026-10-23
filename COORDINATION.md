@@ -104,3 +104,10 @@
 - logo-medal-ariel.png darkened x0.80 (too bright on white), ?v=7 on all pages.
 - Cancelled mid-note (NOT implemented): inline Spotify embed play button; רוצים להמליץ עלינו option.
 - Separate future outcome (NOT started): upload all full YT lessons to Spotify same title+desc automatically (video ~7:05-7:30); Motzei Shabbat lesson upload voice note also pending.
+
+## 23.10 14:05 i2i coordination - Roi menu text (PENDING, their side executes)
+- Task: add exact text "רועי גלנץ ואברהם המלכים" to site menu as plain text, no link. No deletions/other edits.
+- Acting side: Roi via roiglanz278-ux (write collaborator). Status: NOT started as of 14:05.
+- Collision check: our side has no uncommitted work and no repo writes planned before 17:39 (player work resumes then, touches lessons/lesson/index lower regions + new js/css/audio files - different regions than the header nav in all 5 HTML pages).
+- Clear non-overlap window: now -> 17:39 IDT. If not done by then, re-coordinate before writing.
+- NOTE: this entry records collision clearance only. Content/scope authority for the text itself is a separate i2i scope check, not granted here.
