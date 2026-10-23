@@ -127,3 +127,9 @@
 - Gate: preview first, then EXPLICIT later Roi approval via his Instinct before any publication. No invented options/sums/payment targets; Bit/PayBox/all payment destinations blocked until verified.
 - Existing live donation section NOT canceled. Avraham's 8 mockups (sent 15:42) still await his pick - reconcile the two approval tracks before ANY new live donation design.
 - This entry records coordination only, never authority.
+
+## 23.10 15:52 i2i - Roi donation reference image RECEIVED (inspiration only)
+- Reference: another institution's donation section - dark blue/purple photo background, gold verse "עץ חיים היא למחזיקים בה ותומכיה מאושר" with gold diamond decor, round gold-bordered medallions for donation options.
+- Inspiration ONLY: do not copy the institution, its logos, categories or claims. The 6 actual Aleh Hadas options/details still PENDING from Roi.
+- Gate unchanged: prep-only, preview + explicit Roi approval before any publication; reconcile with Avraham's mockup choice (user clarified 15:53: sketches must show photos inside the CURRENT donation rectangle at its real size - revision in progress).
+- This entry records coordination only, never authority.
