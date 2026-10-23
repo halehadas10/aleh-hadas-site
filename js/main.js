@@ -155,14 +155,17 @@ if (!window.SITE_PHOTOS) {
       if (!promo.muted) { var pr = promo.play(); if (pr && pr.catch) pr.catch(function () {}); }
       setMuteUI();
     });
+    var promoSeen = false;
     var videoObs = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
+          promoSeen = true;
           var p = promo.play();
           if (p && p.catch) p.catch(function () {});
-        } else {
+        } else if (promoSeen) {
           promo.pause();
         }
+        /* before first view: leave autoplay running so it is already playing when reached */
       });
     }, { threshold: [0] });
     videoObs.observe(videoFrame);

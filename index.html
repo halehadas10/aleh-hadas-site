@@ -12,16 +12,16 @@
   window.SITE_PHOTOS = false;
   if (!window.SITE_PHOTOS) document.documentElement.classList.add('no-photos');
 </script>
-<link rel="stylesheet" href="./css/style.css?v=55">
+<link rel="stylesheet" href="./css/style.css?v=56">
 <style>
   .quotes-preview { background: var(--navy-800); }
   .qp-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 10px; }
   .qp-card { position: relative; background: linear-gradient(150deg, var(--navy-700), var(--navy-950));
              border: 1px solid rgba(0,80,110,0.22); border-radius: var(--radius);
              padding: 20px 30px 26px; display: flex; flex-direction: column; }
-  .qp-card::before { content: "״"; position: absolute; top: 6px; right: 22px;
+  .qp-card::before { content: "״"; position: absolute; top: 6px; left: 22px;
                      font-size: 3.2rem; color: var(--gold); line-height: 1; font-family: serif; }
-  .qp-text { font-size: 1.22rem; line-height: 1.9; color: #00506e; font-weight: 600; margin-bottom: 22px; }
+  .qp-text { font-size: 1.22rem; line-height: 1.9; color: #00506e; font-weight: 600; margin-bottom: 22px; text-align: left; }
   .qp-name { color: var(--blue-light); font-weight: 700; }
   .qp-role { color: var(--text-dim); font-size: 0.92rem; line-height: 1.7; }
   .qp-src { margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(19,41,58,0.12);
@@ -31,7 +31,7 @@
   .qp-photo { width: clamp(120px, 13vw, 170px); aspect-ratio: 4 / 5; object-fit: cover;
               border-radius: 16px; border: 3px solid rgba(0,80,110,0.35);
               box-shadow: 0 18px 44px rgba(0,50,80,0.25); transform: rotate(-3deg);
-              margin-top: -64px; margin-bottom: 18px; align-self: flex-end;
+              margin-top: -64px; margin-bottom: 18px; align-self: flex-start;
               transition: transform .5s ease; }
   .qp-photo:hover { transform: rotate(0deg) scale(1.03); }
   .qp-more { text-align: center; margin-top: 36px; }
@@ -146,7 +146,7 @@
         </figure>
       </div>
       <div class="video-frame reveal" id="videoFrame">
-              <video id="promoVideo" src="./assets/promo.mp4" poster="./assets/promo-poster.jpg" muted playsinline preload="auto" loop></video>
+              <video id="promoVideo" src="./assets/promo.mp4" poster="./assets/promo-poster.jpg" muted autoplay playsinline preload="auto" loop></video>
               <button class="video-mute" id="videoMute" aria-label="הפעלת צליל" aria-pressed="false">
                 <svg class="icon-muted" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z" fill="currentColor" stroke="none"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
                 <svg class="icon-sound" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z" fill="currentColor" stroke="none"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
@@ -219,47 +219,47 @@
       <p class="section-sub reveal" style="text-align:center">תוכניות הלימוד של בית המדרש המיועדות גם לבנים וגם לבנות</p>
       <div class="news-grid">
         <a class="news-card program-card reveal" href="./programs/program-1.html">
-          <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-2-1.5-5-2-8-2v14c3 0 6 .5 8 2 2-1.5 5-2 8-2V4c-3 0-6 .5-8 2z"/><path d="M12 6v14"/></svg>
+          <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h8v12H8z"/><path d="M10.5 9.5h3M10.5 12h3M10.5 14.5h3"/><rect x="4.5" y="4" width="3" height="16" rx="1"/><rect x="16.5" y="4" width="3" height="16" rx="1"/></svg>
           <span class="news-caption">שיעור שבועי כיתות ט׳-יב׳</span>
           <span class="program-sub">שיעור שבועי עם הרב חיים גוטסדינר העוסק בפרשת השבוע ועומקה</span>
         </a>
         <a class="news-card program-card reveal" href="./programs/program-2.html">
-          <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-2-1.5-5-2-8-2v14c3 0 6 .5 8 2 2-1.5 5-2 8-2V4c-3 0-6 .5-8 2z"/><path d="M12 6v14"/></svg>
+          <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M6.5 15.5L15 7l2.5 2.5L9 18l-3.5 1z"/><path d="M14 8l2.5 2.5"/></svg>
           <span class="news-caption">שיעור לכיתות ה׳-ו׳</span>
           <span class="program-sub">שיעור שבועי העוסק בפרשת השבוע ובהשפעתה על חיי היום יום</span>
         </a>
         <a class="news-card program-card reveal" href="./programs/program-3.html">
-          <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-2-1.5-5-2-8-2v14c3 0 6 .5 8 2 2-1.5 5-2 8-2V4c-3 0-6 .5-8 2z"/><path d="M12 6v14"/></svg>
+          <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="15" width="14" height="4" rx="1"/><rect x="6.5" y="11" width="11" height="4" rx="1"/><rect x="8" y="7" width="8" height="4" rx="1"/></svg>
           <span class="news-caption">לימוד רמב״ם לנוער</span>
           <span class="program-sub">שיעור שבועי לכיתות ז׳-ח׳ העוסק בלימוד רמב״ם</span>
         </a>
         <a class="news-card program-card reveal" href="./programs/program-4.html">
-          <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-2-1.5-5-2-8-2v14c3 0 6 .5 8 2 2-1.5 5-2 8-2V4c-3 0-6 .5-8 2z"/><path d="M12 6v14"/></svg>
+          <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h10v6.5H8.5L6 15v-2.5H4z"/><path d="M13.5 9.5H20V16h-1.5v2.5L16 16h-2.5"/></svg>
           <span class="news-caption">חבורות</span>
           <span class="program-sub">שיעור בסגנון ״חבורה״ המתקיים מדי שבוע עם מעבירים בכיתות יא׳-יב׳</span>
         </a>
         <a class="news-card program-card reveal" href="./programs/program-7.html">
-          <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-2-1.5-5-2-8-2v14c3 0 6 .5 8 2 2-1.5 5-2 8-2V4c-3 0-6 .5-8 2z"/><path d="M12 6v14"/></svg>
+          <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21C7 16 7 9 12 3c5 6 5 13 0 18z"/><path d="M12 4v16"/><path d="M12 9l-2.8-1.8M12 9l2.8-1.8M12 14l-2.8-1.8M12 14l2.8-1.8"/></svg>
           <span class="news-caption">שיעור שבועי כיתות ז׳-ח׳</span>
           <span class="program-sub">שיעור שבועי עם הרבנית רינת פסטליך</span>
         </a>
         <a class="news-card program-card reveal" href="./programs/program-6.html">
-          <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-2-1.5-5-2-8-2v14c3 0 6 .5 8 2 2-1.5 5-2 8-2V4c-3 0-6 .5-8 2z"/><path d="M12 6v14"/></svg>
+          <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 13.5A7.5 7.5 0 1 1 10.5 5a6 6 0 0 0 8.5 8.5z"/><path d="M17 3.5l.6 1.5 1.5.6-1.5.6-.6 1.5-.6-1.5-1.5-.6 1.5-.6z"/></svg>
           <span class="news-caption">מוצ״שים</span>
           <span class="program-sub">שיעור המתקיים מדי מוצ״ש בבית המדרש, נושאים מתחלפים מדי שבוע</span>
         </a>
         <a class="news-card program-card reveal" href="./programs/program-9.html">
-          <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-2-1.5-5-2-8-2v14c3 0 6 .5 8 2 2-1.5 5-2 8-2V4c-3 0-6 .5-8 2z"/><path d="M12 6v14"/></svg>
+          <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21h16"/><rect x="5.5" y="12" width="3" height="9" rx="0.5"/><rect x="15.5" y="12" width="3" height="9" rx="0.5"/><path d="M7 12V9.5"/><path d="M17 12V9.5"/><path d="M7 5.5c-1.1 1.3-1.1 2.8 0 4 1.1-1.2 1.1-2.7 0-4z"/><path d="M17 5.5c-1.1 1.3-1.1 2.8 0 4 1.1-1.2 1.1-2.7 0-4z"/></svg>
           <span class="news-caption">ערב שבת לשמיניסטים</span>
           <span class="program-sub">לימוד ערב שבת לשמיניסטים</span>
         </a>
         <a class="news-card program-card reveal" href="./programs/program-5.html">
-          <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-2-1.5-5-2-8-2v14c3 0 6 .5 8 2 2-1.5 5-2 8-2V4c-3 0-6 .5-8 2z"/><path d="M12 6v14"/></svg>
+          <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4h8c0 4-1.5 6.5-4 6.5S8 8 8 4z"/><path d="M12 10.5V17"/><path d="M12 17c-1.6 0-2.6 1.2-3 3.5h6c-.4-2.3-1.4-3.5-3-3.5z"/></svg>
           <span class="news-caption">עונג שבת עם הרב יוני לביא</span>
           <span class="program-sub">עונג שבת המתקיים בביתו של הרב יוני לביא</span>
         </a>
         <a class="news-card program-card reveal" href="./programs/program-8.html">
-          <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-2-1.5-5-2-8-2v14c3 0 6 .5 8 2 2-1.5 5-2 8-2V4c-3 0-6 .5-8 2z"/><path d="M12 6v14"/></svg>
+          <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.7.5 1 1.4 1 2.1h5c0-.7.3-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg>
           <span class="news-caption">ספיישלים</span>
           <span class="program-sub">מערך שיעורים עם נושאים משתנים</span>
         </a>
@@ -482,7 +482,7 @@
     if (strip) statObs.observe(strip);
   })();
 </script>
-<script src="./js/main.js?v=23"></script>
+<script src="./js/main.js?v=24"></script>
 <script src="./js/lessons.js?v=26"></script>
 <script src="./js/ext-overlay.js?v=2"></script>
 </body>
