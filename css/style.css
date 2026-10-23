@@ -1135,3 +1135,6 @@ section[id], main [id] { scroll-margin-top: 84px; }
 /* 23.10: site builders credit in nav (Roi+Avraham, i2i) - plain text, not a link */
 .nav-credit { color: var(--text-dim); font-size: .8rem; font-weight: 400; align-self: center; padding-inline-start: 14px; margin-inline-start: 10px; border-inline-start: 1px solid rgba(0,80,110,.18); cursor: default; white-space: nowrap; }
 @media (max-width: 820px) { .nav-credit { border-inline-start: none; margin-inline-start: 0; padding-inline-start: 0; margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(0,80,110,.15); } }
+
+/* 23.10: mobile menu overflow safety (11 items incl. builders credit) - scrollable, keeps centering when it fits */
+@media (max-width: 820px) { .main-nav { justify-content: safe center; overflow-y: auto; } }
