@@ -9,6 +9,8 @@
 
   const fmtDur = s => { s = Math.floor(s || 0); const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), ss = String(s % 60).padStart(2, '0'); return h ? h + ':' + String(m).padStart(2, '0') + ':' + ss : m + ':' + ss; };
 
+  window.AHLessonInit = ahInit;
+  function ahInit() {
   fetch('./data/lessons.json').then(r => r.json()).then(d => {
     const all = d.lessons || []; /* 23.10 v40: shared links to non-Spotify lessons must open too */
     lesson = all.find(l => l.id === vid);
@@ -23,8 +25,26 @@
     if (lesson.spotifyUrl) { $('lpSpotify').href = lesson.spotifyUrl; }
     else { $('lpSpotify').style.display = 'none'; }
 
-    /* audio-only bar: Spotify embed (true audio-only playback, no video, no ripping) */
-    const m = (lesson.spotifyUrl || '').match(/episode\/([A-Za-z0-9]+)/);
+    /* audio-only bar: our own player when audioUrl exists (no listener login);
+       Spotify embed kept as fallback until audio files are hosted */
+    if (lesson.audioUrl && window.AHPlayer) {
+      const bar2 = $('lpAudio');
+      bar2.hidden = false;
+      const cover = (lesson.spotifyUrl || '').match(/episode\/([A-Za-z0-9]+)/)
+        ? './assets/covers/ep-' + lesson.spotifyUrl.match(/episode\/([A-Za-z0-9]+)/)[1] + '.jpg'
+        : (lesson.thumbnail || './assets/covers/show.jpg');
+      bar2.innerHTML = '<span class="lp-audio-label">האזנה בלבד, ללא וידאו</span>' +
+        '<button type="button" class="lp-own-play" id="lpOwnPlay">' +
+        '<svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>' +
+        ' נגן את השיעור</button>';
+      $('lpOwnPlay').addEventListener('click', function () {
+        window.AHPlayer.load({
+          id: lesson.id, src: lesson.audioUrl,
+          title: lesson.topic, rabbi: lesson.rabbi || '', cover: cover
+        });
+      });
+    }
+    const m = (!lesson.audioUrl || !window.AHPlayer) ? (lesson.spotifyUrl || '').match(/episode\/([A-Za-z0-9]+)/) : null;
     if (m) {
       const bar = $('lpAudio');
       bar.hidden = false;
@@ -66,24 +86,30 @@
     }
 
     initPlayer();
+    ahBindChrome();
   }).catch(() => { $('lpTitle').textContent = 'שגיאה בטעינת השיעור'; });
 
+  }
+  ahInit();
+
   function initPlayer() {
-    const tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    document.head.appendChild(tag);
     let startAt = 0;
     try {
       const st = JSON.parse(localStorage.getItem(PS_KEY) || 'null');
       if (st && st.v === vid && st.t > 10) startAt = Math.floor(st.t);
     } catch (e) {}
-    window.onYouTubeIframeAPIReady = () => {
+    function createPlayer() {
       player = new YT.Player('lpFrame', {
         videoId: vid,
         playerVars: { controls: 1, rel: 0, start: startAt, modestbranding: 1 },
         events: { onStateChange: ev => { if (window.AHsaveState) AHsaveState(ev.target, vid); } }
       });
-    };
+    }
+    if (window.YT && window.YT.Player) { createPlayer(); return; }
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(tag);
+    window.onYouTubeIframeAPIReady = createPlayer;
   }
 
   /* stop playback when leaving the page (audio kept playing, mostly on phones) */
@@ -97,29 +123,35 @@
   window.addEventListener('pagehide', stopPlayback);
   window.addEventListener('beforeunload', stopPlayback);
 
-  document.addEventListener('DOMContentLoaded', () => {
+  function ahBindChrome() {
     /* חזרה לאתר: return to the exact prior spot. Same-origin referrer -> history.back()
        restores the page WITH its scroll position; otherwise the stored ah-return url. */
     const backBtn = document.querySelector('a.btn-back[href="./index.html"]');
     try {
       const ref = document.referrer ? new URL(document.referrer) : null;
-      if (backBtn && ref && ref.origin === location.origin && history.length > 1) {
-        backBtn.addEventListener('click', function (e) { e.preventDefault(); history.back(); });
+      if (backBtn && ref && ref.origin === location.origin && history.length > 1 && !window.AHShellActive) {
+        if (!backBtn.__ahBound) { backBtn.__ahBound = true; backBtn.addEventListener('click', function (e) { e.preventDefault(); history.back(); }); }
       } else {
         const st = JSON.parse(sessionStorage.getItem('ah-return') || 'null');
         if (st && st.url && backBtn) backBtn.href = st.url;
       }
     } catch (e) {}
 
-    $('lpShare').addEventListener('click', async () => {
-      const url = location.href;
-      const data = { title: lesson ? lesson.topic : 'שיעור', text: lesson ? lesson.title : '', url };
-      if (navigator.share) { try { await navigator.share(data); return; } catch (e) { if (e && e.name === 'AbortError') return; } }
-      try {
-        await navigator.clipboard.writeText(url);
-        $('lpShare').textContent = 'הקישור הועתק ✓';
-        setTimeout(() => $('lpShare').textContent = 'שיתוף / העתקת קישור', 2200);
-      } catch (e) {}
-    });
-  });
+    const shareBtn = $('lpShare');
+    if (shareBtn && !shareBtn.__ahBound) {
+      shareBtn.__ahBound = true;
+      shareBtn.addEventListener('click', async () => {
+        const url = location.href;
+        const data = { title: lesson ? lesson.topic : 'שיעור', text: lesson ? lesson.title : '', url };
+        if (navigator.share) { try { await navigator.share(data); return; } catch (e) { if (e && e.name === 'AbortError') return; } }
+        try {
+          await navigator.clipboard.writeText(url);
+          shareBtn.textContent = 'הקישור הועתק ✓';
+          setTimeout(() => shareBtn.textContent = 'שיתוף / העתקת קישור', 2200);
+        } catch (e) {}
+      });
+    }
+  }
+  document.addEventListener('DOMContentLoaded', ahBindChrome);
+  window.AHLessonBindChrome = ahBindChrome;
 })();

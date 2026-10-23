@@ -1198,3 +1198,55 @@ section[id], main [id] { scroll-margin-top: 84px; }
 .tm-actions { display: flex; flex-direction: column; gap: 8px; }
 .tm-actions .btn { font-size: .85rem; padding: 8px 12px; }
 @media (max-width: 520px) { .tm-people { grid-template-columns: 1fr; } }
+
+/* ===== Custom continuous audio player (23.10, v58) ===== */
+.ahp {
+  position: fixed; inset-inline: 0; bottom: 0; z-index: 1200;
+  background: #00506E; color: #fff;
+  box-shadow: 0 -4px 18px rgba(0, 40, 60, .35);
+  font-family: inherit;
+}
+.ahp[hidden] { display: none; }
+.ahp-progress {
+  height: 5px; background: rgba(255,255,255,.22); cursor: pointer; position: relative;
+}
+.ahp-progress-fill {
+  height: 100%; width: 0; background: #7fb069; /* sage tint within site greens */
+  transition: width .25s linear;
+}
+.ahp-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 8px 14px calc(8px + env(safe-area-inset-bottom, 0));
+}
+.ahp-cover { width: 48px; height: 48px; border-radius: 8px; object-fit: cover; flex: 0 0 auto; background: #17729d; }
+.ahp-meta { flex: 1 1 auto; min-width: 0; }
+.ahp-title { font-weight: 700; font-size: .95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ahp-sub { font-size: .8rem; opacity: .82; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ahp-time { font-size: .78rem; opacity: .85; direction: ltr; white-space: nowrap; }
+.ahp-controls { display: flex; align-items: center; gap: 6px; flex: 0 0 auto; }
+.ahp-btn {
+  appearance: none; border: 0; background: transparent; color: #fff; cursor: pointer;
+  width: 40px; height: 40px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+}
+.ahp-btn:hover { background: rgba(255,255,255,.14); }
+.ahp-btn svg { width: 24px; height: 24px; }
+.ahp-play { background: #fff; color: #00506E; width: 44px; height: 44px; }
+.ahp-play:hover { background: #eef5f8; }
+.ahp-close { opacity: .8; }
+body.ahp-has-bar { padding-bottom: 74px; }
+body.ahp-has-bar .site-footer { padding-bottom: 20px; }
+
+/* Lesson page: own-player launch button */
+.lp-own-play {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #00506E; color: #fff; border: 0; border-radius: 999px;
+  padding: 10px 22px; font-size: 1rem; font-weight: 700; cursor: pointer; font-family: inherit;
+  margin-top: 8px;
+}
+.lp-own-play:hover { background: #17729d; }
+
+@media (max-width: 560px) {
+  .ahp-time { display: none; }
+  .ahp-sub { display: none; }
+  .ahp-btn { width: 38px; height: 38px; }
+}

@@ -99,6 +99,9 @@
     window.scrollTo({ top: st.y, behavior: 'instant' });
   }
 
+  window.AHLessonsInit = function () {
+    loadData().then(d => { renderCarousel(d); renderPage(d); }).catch(() => {});
+  };
   document.addEventListener('DOMContentLoaded', () => {
     loadData().then(d => { renderCarousel(d); renderPage(d); restoreScroll(); }).catch(() => {});
   });
