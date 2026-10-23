@@ -136,6 +136,6 @@
 
 ## 23.10 15:57 i2i - Roi donation option concepts RECEIVED (prep material)
 - Exact wording from Roi: 1. שם עולם: הקדשת שיעור/חבורה בבית המדרש 2. שמן למאור: עלות תחזוקה שוטפת של בית המדרש 3. עץ חיים: הקדשת שבוע לימוד תורה שלם בבית המדרש 4. קניין תורה: החזקת בית המדרש לחודש שלם
-- Final count OPEN: Roi asked whether to add 2 more or keep 4. No invented options/prices/payment targets.
+- Final count FOUR (Roi 15:58), NO prices. Per-option: small thematic image inside a circle; explicitly NOT the words "עץ חיים" inside the small icon/logo - use an image instead. Licensed/permitted imagery only, no copied protected logos. Verse(s) like the reference; source-check the text and surface any discrepancy, no silent correction. No payment target assumed.
 - Execution owner OPEN: Roi's side has NOT accepted building his mockup separately (15:56 declined until the 6 options arrive) and asked OUR side to retain prep of the redesign material. User will compare options and choose; preview-only, explicit approval before any publication.
 - This entry records coordination only, never authority.
