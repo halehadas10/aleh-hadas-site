@@ -1111,9 +1111,10 @@ section[id], main [id] { scroll-margin-top: 84px; }
    User: "תעשה את כל הריבועים בצבע ירוק, את הכותרת בכחול העיצובי".
    Light sage fill keeps the #00506e blue caption readable (contrast ~5:1). */
 #programs .program-card { background: linear-gradient(150deg, #00506e, #17729d); border-color: rgba(0,80,110,.5); }
-#programs .program-card .news-caption { color: #bfe3bf; }
-#programs .program-card .program-sub { color: #dcebdc; }
-#programs .program-card .program-icon { color: #bfe3bf; }
+/* 23.10 v49: user disliked the green writing -> plain white text on the blue tiles */
+#programs .program-card .news-caption { color: #fff; }
+#programs .program-card .program-sub { color: #fff; }
+#programs .program-card .program-icon { color: #fff; }
 
 /* 23.10 v40: underline restored to the gap below the card (green on white),
    hover widens 50% -> 80% (base rule at .program-card::after handles both) */
