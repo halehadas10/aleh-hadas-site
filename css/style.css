@@ -856,7 +856,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 @keyframes teamRise { from { opacity: 0; transform: translate3d(0, 100%, 0); } to { opacity: 1; transform: none; } }
 
 @media (max-width: 820px) {
-  #programs .news-grid { grid-template-columns: repeat(2, 1fr); gap: 26px 14px; }
+  #programs .news-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 14px; }
   .program-card { padding: 32px 12px; border-radius: 16px 16px 0 0; }
   .program-card .news-caption { font-size: 19px; }
   .program-sub { font-size: 14px; }
