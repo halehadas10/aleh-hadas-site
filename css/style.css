@@ -533,7 +533,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: #cfe0ee;
 }
 .footer-logo { height: 72px; width: auto; margin: 0 auto 16px; filter: drop-shadow(0 2px 8px rgba(0,50,80,.22)); }
-.footer-note { font-size: .88rem; margin-top: 8px; opacity: .75; }
+.footer-note { font-size: .88rem; margin-top: 8px; color: #dcebe4; }
 
 /* ===== Lightbox ===== */
 .lightbox {
@@ -972,7 +972,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .contact-card h3 { font-size: 1.05rem; }
 .contact-card .btn { font-size: 0.85rem; padding: 8px 14px; }
 .contact-card-13 { grid-column: 1 / -1; justify-self: center; width: 100%; max-width: 300px; }
-.footer-rights { text-align: center; color: var(--text-dim); font-size: 0.78rem; opacity: 0.75; margin-top: 6px; }
+.footer-rights { text-align: center; color: #c3d8d0; font-size: 0.78rem; margin-top: 6px; }
 #donate { scroll-margin-top: calc(var(--header-h) + 100px); }
 
 /* v19 batch: virtual midrash (lessons) */
@@ -1130,4 +1130,4 @@ section[id], main [id] { scroll-margin-top: 84px; }
 /* 23.10 video-4: footer tagline promoted to a heading (user marked it in blue),
    dedication line for Ariel between the two footer lines */
 .footer-title { font-size: 1.25rem; font-weight: 800; color: #fff; margin: 6px 0 2px; }
-.footer-dedication { color: var(--green-soft); font-weight: 700; margin: 2px 0 8px; }
+.footer-dedication { color: #bfe3bf; font-weight: 700; font-size: 1.05rem; margin: 2px 0 8px; }
