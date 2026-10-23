@@ -114,3 +114,4 @@
 
 ## 23.10 14:07 i2i coordination - Roi menu text (DONE, our side executed)
 - Acting side switched to OURS at Roi's request (they did not write). Implemented: exact text "רועי גלנץ ואברהם המלכים" as .nav-credit plain span (no link) in the shared nav of all 5 pages; css v46. No deletions/other changes.
+- Verified live 14:09: desktop nav credit visible (span, no link); mobile menu needed overflow fix (safe-center + scroll, css v47) - credit reachable on 390px. Screenshots sent to main.
