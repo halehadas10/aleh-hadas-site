@@ -42,14 +42,14 @@
         '<div class="ahp-time" id="ahpTime">0:00</div>' +
         '<div class="ahp-controls">' +
           '<button type="button" class="ahp-btn" id="ahpFwd" aria-label="קדימה 30 שניות" title="קדימה 30 שניות">' +
-            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5V2L7 6l5 4V7c3.3 0 6 2.7 6 6 0 .9-.2 1.8-.6 2.6"/><path d="M5.4 15.6A6 6 0 1 1 12 19" opacity="0"/><text x="12" y="16" text-anchor="middle" font-size="8.5" font-weight="700" fill="currentColor" stroke="none">30</text></svg>' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/><text x="12" y="12.5" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="800" font-family="inherit" fill="currentColor" stroke="none">30</text></svg>' +
           '</button>' +
           '<button type="button" class="ahp-btn ahp-play" id="ahpPlay" aria-label="הפעלה" title="הפעלה">' +
             '<svg class="ahp-i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>' +
             '<svg class="ahp-i-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M7 5h3.6v14H7zM13.4 5H17v14h-3.6z"/></svg>' +
           '</button>' +
           '<button type="button" class="ahp-btn" id="ahpBack" aria-label="אחורה 15 שניות" title="אחורה 15 שניות">' +
-            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5V2l5 4-5 4V7c-3.3 0-6 2.7-6 6 0 .9.2 1.8.6 2.6"/><text x="12" y="16" text-anchor="middle" font-size="8.5" font-weight="700" fill="currentColor" stroke="none">15</text></svg>' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/><text x="12" y="12.5" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="800" font-family="inherit" fill="currentColor" stroke="none">15</text></svg>' +
           '</button>' +
           '<button type="button" class="ahp-btn ahp-close" id="ahpClose" aria-label="סגירת הנגן" title="סגירה">' +
             '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>' +
