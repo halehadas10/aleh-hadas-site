@@ -85,3 +85,9 @@
 ## 23.10 video-3 batch: programs always-visible + content fit (09:43)
 - v34: fit card content inside compacted cards (caption min-height 2.1em, sub lh 1.32, tighter gaps; mobile aspect auto, caption 17px, sub 13px).
 - v35: reveal animation neutralized for #programs cards (always visible - anchor nav left row-2 cards hidden; translate(0,100%) + IO made verification and anchor jumps flaky). Other sections unchanged.
+
+## 23.10 09:56 batch: outward arrows + underline fix + color-fill TRIAL
+- Lessons strip arrows: glyphs now point OUTWARD (left <, right >); functions unchanged (user approved functions explicitly). Commit ccf91c7.
+- Program card underline: bottom -15px -> -4px (was dipping onto next row's card after gap tightening).
+- TRIAL (user may revert): program cards filled with palette colors - checkerboard blue #00506e / green #427651, white caption/sub/icon/underline. ROLLBACK = delete the marked trial block only.
+- css v38.

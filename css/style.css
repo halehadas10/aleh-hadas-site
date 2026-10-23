@@ -1110,3 +1110,19 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 /* 23.10: anchor jumps land below the fixed header so full sections are visible */
 section[id], main [id] { scroll-margin-top: 84px; }
+
+/* ===== 23.10 trial: color-filled program cards (user-requested trial) =====
+   ROLLBACK SCOPE: to cancel the color trial later, delete ONLY this block.
+   Checkerboard: blue 1,3 / green 2,4,5,7 (fills excluded - not .program-card). */
+#programs .program-card { background: #00506e; border-color: transparent; }
+#programs .program-card:nth-child(2n),
+#programs .program-card:nth-child(5),
+#programs .program-card:nth-child(7) { background: #427651; }
+#programs .program-card .news-caption { color: #ffffff; }
+#programs .program-card .program-sub { color: rgba(255,255,255,.88); }
+#programs .program-card .program-icon { color: #ffffff; }
+#programs .program-card::after { background: rgba(255,255,255,.9); }
+
+/* 23.10: card underline hugs its own card (was bottom:-15px, dipped onto the
+   next row's card when row gaps tightened) */
+.program-card::after, .no-photos .program-card::after { bottom: -4px; height: 3px; }
