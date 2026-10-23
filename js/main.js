@@ -88,6 +88,7 @@ if (!window.SITE_PHOTOS) {
      nested targets (#donate lives inside #contact), which made the highlight jump
      to תרומה at the top of the page. Measure each target live instead. */
   function spyUpdate() {
+    if (!spyPairs.length) { return; }
     var pos = window.scrollY + window.innerHeight * 0.35;
     var current = spyPairs[0];
     var bestTop = -Infinity;
