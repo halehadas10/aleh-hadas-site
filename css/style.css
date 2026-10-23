@@ -1090,7 +1090,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .program-sub { line-height: 1.32; }
 .program-icon { margin-bottom: 8px; }
 @media (max-width: 820px) {
-  #programs .news-grid { gap: 12px; }
+  #programs .news-grid { gap: 26px 12px; }
   .program-card { aspect-ratio: auto; padding: 14px 10px; }
   .program-card .news-caption { min-height: 0; font-size: 17px; }
   .program-sub { font-size: 13px; line-height: 1.35; }
