@@ -434,7 +434,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     linear-gradient(180deg, rgba(255,255,255,.90), rgba(255,255,255,.95)),
     url('../assets/image-f8f475e3-ZCNN4L5H.jpg') center/cover fixed;
 }
-.contact-block { margin-bottom: clamp(48px, 6vw, 84px); }
+.contact-block { margin-bottom: 0; }
 .contact-cards {
   display: grid;
   grid-template-columns: repeat(2, minmax(260px, 420px));
@@ -770,7 +770,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border: 1px solid rgba(66,118,81,.40);
   border-radius: var(--radius);
   padding: clamp(24px, 3.5vw, 44px);
-  margin-top: clamp(30px, 4vw, 52px);
+  margin-top: 0;
 }
 
 /* Team expanded cards: same size as David/Noa cards, two per row, centered */
@@ -1146,3 +1146,35 @@ section[id], main [id] { scroll-margin-top: 84px; }
 .lp-icon-btn.lp-donate:hover .lp-ic { background: #b23a48; color: #fff; }
 .lp-icon-btn .lp-ic-label { font-size: .82rem; font-weight: 600; color: #33505c; }
 @media (max-width: 640px) { .lp-actions-icons { gap: 16px; } .lp-icon-btn .lp-ic { width: 46px; height: 46px; } .lp-icon-btn .lp-ic svg { width: 22px; height: 22px; } }
+
+/* 23.10 batch: donation nav emphasis (far-left, bouncing) + follow links inside virtual midrash */
+.nav-link.nav-donate {
+  background: #427651;
+  color: #fff;
+  border-radius: 30px;
+  padding: 6px 18px;
+  animation: navDonateBounce 2.4s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+.nav-link.nav-donate::after { display: none; }
+.nav-link.nav-donate:hover, .nav-link.nav-donate.is-active { color: #fff; background: #00506e; }
+@keyframes navDonateBounce {
+  0%, 100% { transform: translateY(0); }
+  8% { transform: translateY(-5px); }
+  16% { transform: translateY(0); }
+  24% { transform: translateY(-3px); }
+  32% { transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-link.nav-donate { animation: none; }
+}
+.ls-follow {
+  margin-top: clamp(30px, 4vw, 44px);
+  padding-top: clamp(22px, 3vw, 32px);
+  border-top: 1px solid rgba(255, 255, 255, .16);
+}
+.ls-follow-title {
+  text-align: center;
+  font-size: clamp(1.2rem, 2.4vw, 1.5rem);
+  margin: 0 0 18px;
+}

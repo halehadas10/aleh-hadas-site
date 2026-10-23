@@ -11,7 +11,7 @@
   window.SITE_PHOTOS = false;
   if (!window.SITE_PHOTOS) document.documentElement.classList.add('no-photos');
 </script>
-<link rel="stylesheet" href="./css/style.css?v=51">
+<link rel="stylesheet" href="./css/style.css?v=52">
 <style>
   .quotes-preview { background: var(--navy-800); }
   .qp-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 10px; }
@@ -91,10 +91,9 @@
     <a href="#activities" class="nav-link">מהנעשה בבית המדרש</a>
     <a href="#programs" class="nav-link">תכניות</a>
     <a href="#contact" class="nav-link">יצירת קשר</a>
-    <a href="#donate" class="nav-link">תרומה</a>
-    <a href="#social" class="nav-link">עקבו אחרינו</a>
     <a href="#virtual" class="nav-link">בית מדרש וירטואלי</a>
     <a href="#times" class="nav-link">זמנים ומקום</a>
+    <a href="#donate" class="nav-link nav-donate">תרומה</a>
     </nav>
   <a class="brand brand-medal-link" href="#home" aria-label="מדליית זיכרון - אריאל דרסינובר ז״ל - לדף הבית">
     <img src="./assets/logo-medal-ariel.png?v=7" alt="מדליית זיכרון - אריאל דרסינובר ז״ל" class="brand-medal">
@@ -344,21 +343,29 @@
             </div>
           </div>
       </div>
-      <div class="donate-block reveal" id="donate">
-        <h2 class="section-title">תרומה</h2>
-        <p class="section-sub">רוצים לעזור להגדיל את פעילות בית המדרש ולתמוך בלימוד התורה?</p>
-        <a class="btn btn-donate" href="https://www.jgive.com/new/he/ils/donation-targets/60540" target="_blank" rel="noopener">תרמו עכשיו</a>
-        <p class="donate-note">התרומה מתבצעת בדף תרומות מאובטח של JGive</p>
-      </div>
     </div>
   </section>
 
 
   <!-- Social -->
-  <section class="section social" id="social">
+  <section class="section social" id="virtual">
     <div class="container">
-      <h2 class="section-title reveal">עקבו אחרינו</h2>
-      <div class="social-rows reveal">
+<div class="ls-home">
+        <h2 class="section-title reveal">בית מדרש וירטואלי</h2>
+        <h3 class="ls-home-title reveal">שיעורים להאזנה וצפייה</h3>
+        <p class="section-sub reveal" style="text-align:center">השיעורים של בית המדרש מיוטיוב ומספוטיפיי</p>
+        <p class="ls-count" id="lsCount"></p>
+        <div class="ls-strip reveal">
+          <button class="ls-arrow" id="lsPrev" aria-label="שיעורים קודמים">›</button>
+          <div class="ls-carousel" id="lsCarousel"></div>
+          <button class="ls-arrow" id="lsNext" aria-label="שיעורים נוספים">‹</button>
+        </div>
+        <div class="ls-backwrap">
+          <a class="btn btn-back" href="./lessons.html">לכל השיעורים</a>
+        </div>
+        <div class="ls-follow reveal">
+          <h3 class="ls-follow-title">עקבו אחרינו</h3>
+<div class="social-rows reveal">
         <div class="social-row">
           <a class="social-link" href="https://www.youtube.com/@%D7%A2%D7%9C%D7%94_%D7%94%D7%93%D7%A1" target="_blank" rel="noopener" aria-label="יוטיוב">
             <svg viewBox="0 0 24 24" class="social-icon"><path fill="currentColor" d="M23 12s0-3.85-.49-5.7a2.9 2.9 0 0 0-2.05-2.05C18.6 3.75 12 3.75 12 3.75s-6.6 0-8.46.5A2.9 2.9 0 0 0 1.5 6.3C1 8.15 1 12 1 12s0 3.85.5 5.7a2.9 2.9 0 0 0 2.04 2.05c1.86.5 8.46.5 8.46.5s6.6 0 8.46-.5a2.9 2.9 0 0 0 2.05-2.05C23 15.85 23 12 23 12ZM9.75 15.5v-7l6 3.5-6 3.5Z"/></svg>
@@ -385,19 +392,6 @@
 
         
       </div>
-    
-      <div class="ls-home" id="virtual">
-        <h2 class="section-title reveal">בית מדרש וירטואלי</h2>
-        <h3 class="ls-home-title reveal">שיעורים להאזנה וצפייה</h3>
-        <p class="section-sub reveal" style="text-align:center">השיעורים של בית המדרש מיוטיוב ומספוטיפיי</p>
-        <p class="ls-count" id="lsCount"></p>
-        <div class="ls-strip reveal">
-          <button class="ls-arrow" id="lsPrev" aria-label="שיעורים קודמים">›</button>
-          <div class="ls-carousel" id="lsCarousel"></div>
-          <button class="ls-arrow" id="lsNext" aria-label="שיעורים נוספים">‹</button>
-        </div>
-        <div class="ls-backwrap">
-          <a class="btn btn-back" href="./lessons.html">לכל השיעורים</a>
         </div>
       </div>
     </div>
@@ -417,6 +411,18 @@
 
 
 </main>
+
+  <!-- תרומה -->
+  <section class="section contact-donate" id="donate">
+    <div class="container">
+      <div class="donate-block reveal">
+        <h2 class="section-title">תרומה</h2>
+        <p class="section-sub">רוצים לעזור להגדיל את פעילות בית המדרש ולתמוך בלימוד התורה?</p>
+        <a class="btn btn-donate" href="https://www.jgive.com/new/he/ils/donation-targets/60540" target="_blank" rel="noopener">תרמו עכשיו</a>
+        <p class="donate-note">התרומה מתבצעת בדף תרומות מאובטח של JGive</p>
+      </div>
+    </div>
+  </section>
 
 <footer class="site-footer">
   <div class="container">
