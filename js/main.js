@@ -35,12 +35,12 @@ if (!window.SITE_PHOTOS) {
   });
 
 
-  /* 23.10 video-5: user asked nav-scroll to glide slowly like manual scrolling,
-     not the fast default smooth-scroll that stops hard ("נטרק למטה") */
+  /* 23.10 14:38: user asked to speed up the nav-scroll ("איטית מידי תמהר אותה") -
+     faster than the video-5 slow glide, still eased so it never slams ("נטרק") */
   function ahSmoothScroll(targetY) {
     var startY = window.scrollY, dist = targetY - startY;
     if (Math.abs(dist) < 4) { window.scrollTo(0, targetY); return; }
-    var dur = Math.min(1600, Math.max(750, Math.abs(dist) * 0.55));
+    var dur = Math.min(620, Math.max(260, Math.abs(dist) * 0.22));
     var t0 = null;
     function step(ts) {
       if (!t0) t0 = ts;
@@ -58,7 +58,7 @@ if (!window.SITE_PHOTOS) {
       var id = link.getAttribute('href').slice(1);
       if (!id) return;
       e.preventDefault();
-      if (id === 'home') { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+      if (id === 'home') { ahSmoothScroll(0); return; }
       var target = document.getElementById(id);
       if (!target) return;
       var title = target.querySelector('.section-title') || target;
