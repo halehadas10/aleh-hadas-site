@@ -156,9 +156,10 @@ if (!window.SITE_PHOTOS) {
     videoObs.observe(videoFrame);
   }
 
-  /* Activities carousel */
+  /* Activities carousel (index only - guard pages without it) */
   var track = document.getElementById('actTrack');
-  var items = track.children.length;
+  var items = track ? track.children.length : 0;
+  if (track) {
   var dots = document.getElementById('actDots');
   var idx = 0, timer;
   for (var d = 0; d < items; d++) {
@@ -205,10 +206,12 @@ if (!window.SITE_PHOTOS) {
     restart();
   }, { passive: true });
   restart();
+  }
 
   /* Lightbox for posters */
   var lightbox = document.getElementById('lightbox');
   var lightboxImg = document.getElementById('lightboxImg');
+  if (lightbox && lightboxImg) {
   document.querySelectorAll('.news-card:not(.program-card)').forEach(function (card) {
     card.addEventListener('click', function () {
       lightboxImg.src = card.getAttribute('data-full');
@@ -234,6 +237,7 @@ if (!window.SITE_PHOTOS) {
   document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
   lightbox.addEventListener('click', function (e) { if (e.target === lightbox) closeLightbox(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLightbox(); });
+  }
 })();
 
 /* Team: show/hide the rest of the team cards */
