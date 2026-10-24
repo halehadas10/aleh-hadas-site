@@ -746,6 +746,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .news { background: var(--navy-800); }
 .section + .section { border-top: 1px solid rgba(0,80,110,.08); }
 
+/* Donate block copied to internal pages: same plain band as the homepage
+   presentation (the shared .contact-donate photo gradient is for the full
+   contact+donate section and reads washed-out around the standalone block) */
+.contact-donate-solo { background: #fff; }
+
 /* תרומה: distinct band */
 .donate-block {
   background: rgba(66,118,81,.10);
