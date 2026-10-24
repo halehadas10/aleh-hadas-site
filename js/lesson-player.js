@@ -1,8 +1,6 @@
 /* Lesson page: native YouTube player (YouTube settings: captions + speed), audio-only Spotify bar,
    share/copy, platform links, resume, stop-on-leave, back-restore */
 (function () {
-  const q = new URLSearchParams(location.search);
-  const vid = q.get('v');
   const PS_KEY = 'ah-player';
   const $ = id => document.getElementById(id);
   let player = null, lesson = null;
@@ -11,6 +9,9 @@
 
   window.AHLessonInit = ahInit;
   function ahInit() {
+  /* vid must be read per init: under the navigation shell this script loads
+     once (on the index, no ?v=) and lesson pages arrive later via swaps */
+  const vid = new URLSearchParams(location.search).get('v');
   fetch('./data/lessons.json').then(r => r.json()).then(d => {
     const all = d.lessons || []; /* 23.10 v40: shared links to non-Spotify lessons must open too */
     lesson = all.find(l => l.id === vid);

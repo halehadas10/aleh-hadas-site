@@ -20,18 +20,22 @@ function ahPhotoPlaceholders() {
   };
 
   function ahSmoothScroll(targetY) {
+    /* steps must be behavior:'instant': with html{scroll-behavior:smooth} every
+       plain scrollTo starts its own native smooth animation, and the per-frame
+       retargets fight each other until the scroll never moves (killed the fast
+       scroll - user video 24.10). */
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      window.scrollTo(0, targetY); return;
+      window.scrollTo({ top: targetY, behavior: 'instant' }); return;
     }
     var startY = window.scrollY, dist = targetY - startY;
-    if (Math.abs(dist) < 4) { window.scrollTo(0, targetY); return; }
+    if (Math.abs(dist) < 4) { window.scrollTo({ top: targetY, behavior: 'instant' }); return; }
     var dur = Math.min(620, Math.max(260, Math.abs(dist) * 0.22));
     var t0 = null;
     function step(ts) {
       if (!t0) t0 = ts;
       var p = Math.min(1, (ts - t0) / dur);
       var e = p < 0.5 ? 4*p*p*p : 1 - Math.pow(-2*p + 2, 3) / 2; /* easeInOutCubic */
-      window.scrollTo(0, startY + dist * e);
+      window.scrollTo({ top: startY + dist * e, behavior: 'instant' });
       if (p < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);

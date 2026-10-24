@@ -6,7 +6,7 @@
 <link rel="icon" type="image/png" href="./assets/logo-medal-ariel.png">
 <title>גלריית תמונות - מהנעשה בבית המדרש - עלה הדס</title>
 <meta name="description" content="גלריית תמונות מהפעילות בבית המדרש עלה הדס, הדר גנים, פתח תקווה.">
-<link rel="stylesheet" href="./css/style.css?v=58">
+<link rel="stylesheet" href="./css/style.css?v=59">
 </head>
 <body>
 
@@ -60,6 +60,44 @@
       </div>
     </div>
   </section>
+
+  <div class="lb" id="lb" hidden>
+    <button class="lb-close" id="lbClose" aria-label="סגירת התמונה">&#215;</button>
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="התמונה הקודמת"><span class="lb-glyph">&#8250;</span></button>
+    <button class="lb-nav lb-next" id="lbNext" aria-label="התמונה הבאה"><span class="lb-glyph">&#8249;</span></button>
+    <img id="lbImg" alt="">
+    <p class="lb-cap" id="lbCap"></p>
+  </div>
+
+  <script>
+  (function () {
+    var lb = document.getElementById('lb'), img = document.getElementById('lbImg'), cap = document.getElementById('lbCap'), y = 0;
+    var imgs = Array.prototype.slice.call(document.querySelectorAll('.gallery-grid figure img'));
+    var cur = 0;
+    function show(i) {
+      cur = (i + imgs.length) % imgs.length;
+      var im = imgs[cur];
+      img.src = im.currentSrc || im.src; img.alt = im.alt; cap.textContent = im.alt;
+    }
+    imgs.forEach(function (im, i) {
+      im.addEventListener('click', function () {
+        y = window.scrollY;
+        show(i);
+        lb.hidden = false; document.body.style.overflow = 'hidden';
+      });
+    });
+    function close() { lb.hidden = true; document.body.style.overflow = ''; window.scrollTo({ top: y, behavior: 'instant' }); }
+    document.getElementById('lbPrev').addEventListener('click', function (e) { e.stopPropagation(); show(cur - 1); });
+    document.getElementById('lbNext').addEventListener('click', function (e) { e.stopPropagation(); show(cur + 1); });
+    lb.addEventListener('click', function (e) { if (e.target !== img) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (!lb.isConnected || lb.hidden) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowRight') show(cur - 1);
+      else if (e.key === 'ArrowLeft') show(cur + 1);
+    });
+  })();
+  </script>
 </main>
 
 <footer class="site-footer">
@@ -88,67 +126,6 @@
   });
 </script>
 
-  <div class="lb" id="lb" hidden>
-    <button class="lb-close" id="lbClose" aria-label="סגירת התמונה">&#215;</button>
-    <button class="lb-nav lb-prev" id="lbPrev" aria-label="התמונה הקודמת"><span class="lb-glyph">&#8250;</span></button>
-    <button class="lb-nav lb-next" id="lbNext" aria-label="התמונה הבאה"><span class="lb-glyph">&#8249;</span></button>
-    <img id="lbImg" alt="">
-    <p class="lb-cap" id="lbCap"></p>
-  </div>
-  <style>
-  .lb { position: fixed; inset: 0; background: rgba(5,10,16,0.93); z-index: 300;
-        display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4vh 4vw; }
-  .lb[hidden] { display: none; }
-  .lb img { max-width: 92vw; max-height: 80vh; border-radius: 14px; box-shadow: 0 30px 80px rgba(0,0,0,0.6); }
-  .lb-cap { color: var(--text-dim); margin-top: 14px; font-size: 0.9rem; }
-  .lb-close { position: absolute; top: 16px; left: 16px; width: 44px; height: 44px; border-radius: 50%;
-              background: rgba(255,255,255,0.1); color: #fff; font-size: 26px; border: 1px solid rgba(255,255,255,0.25); cursor: pointer; }
-  .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 52px; height: 52px; border-radius: 50%;
-            background: rgba(255,255,255,0.12); color: #fff; font-size: 34px; line-height: 1; border: 1px solid rgba(255,255,255,0.3);
-            cursor: pointer; display: flex; align-items: center; justify-content: center; }
-  .lb-nav:hover { background: rgba(255,255,255,0.25); }
-  .lb-prev { inset-inline-start: 14px; }
-  .lb-next { inset-inline-end: 14px; }
-  .lb-glyph { direction: ltr; display: block; margin-top: -4px; }
-  .gallery-grid figure img { cursor: zoom-in; }
-  
-/* 23.10 video-4: floating photo captions (mechanism; texts are placeholders from alt until user supplies descriptions) */
-.gallery-grid figure { position: relative; overflow: hidden; }
-.gallery-grid figcaption { position: absolute; inset: auto 0 0 0; padding: 26px 12px 10px; text-align: center;
-  background: linear-gradient(transparent, rgba(0,50,78,.82)); color: #fff; font-size: .92rem; font-weight: 600;
-  opacity: 0; transform: translateY(8px); transition: opacity .3s ease, transform .3s ease; pointer-events: none; }
-.gallery-grid figure:hover figcaption, .gallery-grid figure:focus-within figcaption { opacity: 1; transform: none; }
-@media (hover: none) { .gallery-grid figcaption { opacity: 1; transform: none; } }
-</style>
-  <script>
-  (function () {
-    var lb = document.getElementById('lb'), img = document.getElementById('lbImg'), cap = document.getElementById('lbCap'), y = 0;
-    var imgs = Array.prototype.slice.call(document.querySelectorAll('.gallery-grid figure img'));
-    var cur = 0;
-    function show(i) {
-      cur = (i + imgs.length) % imgs.length;
-      var im = imgs[cur];
-      img.src = im.currentSrc || im.src; img.alt = im.alt; cap.textContent = im.alt;
-    }
-    imgs.forEach(function (im, i) {
-      im.addEventListener('click', function () {
-        y = window.scrollY;
-        show(i);
-        lb.hidden = false; document.body.style.overflow = 'hidden';
-      });
-    });
-    function close() { lb.hidden = true; document.body.style.overflow = ''; window.scrollTo({ top: y, behavior: 'instant' }); }
-    document.getElementById('lbPrev').addEventListener('click', function (e) { e.stopPropagation(); show(cur - 1); });
-    document.getElementById('lbNext').addEventListener('click', function (e) { e.stopPropagation(); show(cur + 1); });
-    lb.addEventListener('click', function (e) { if (e.target !== img) close(); });
-    document.addEventListener('keydown', function (e) {
-      if (lb.hidden) return;
-      if (e.key === 'Escape') close();
-      else if (e.key === 'ArrowRight') show(cur - 1);
-      else if (e.key === 'ArrowLeft') show(cur + 1);
-    });
-  })();
-  </script>
 <script src="./js/ext-overlay.js?v=2"></script>
 <script src="./js/ah-player.js?v=2"></script>
 <script src="./js/ah-shell.js?v=1"></script>

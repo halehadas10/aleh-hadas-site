@@ -1250,3 +1250,30 @@ body.ahp-has-bar .site-footer { padding-bottom: 20px; }
   .ahp-sub { display: none; }
   .ahp-btn { width: 38px; height: 38px; }
 }
+
+/* Gallery page: lightbox + floating captions (moved out of gallery.html inline
+   <style> so they also apply when the page arrives via the navigation shell,
+   which swaps only <main>) */
+.lb { position: fixed; inset: 0; background: rgba(5,10,16,0.93); z-index: 300;
+        display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4vh 4vw; }
+  .lb[hidden] { display: none; }
+  .lb img { max-width: 92vw; max-height: 80vh; border-radius: 14px; box-shadow: 0 30px 80px rgba(0,0,0,0.6); }
+  .lb-cap { color: var(--text-dim); margin-top: 14px; font-size: 0.9rem; }
+  .lb-close { position: absolute; top: 16px; left: 16px; width: 44px; height: 44px; border-radius: 50%;
+              background: rgba(255,255,255,0.1); color: #fff; font-size: 26px; border: 1px solid rgba(255,255,255,0.25); cursor: pointer; }
+  .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 52px; height: 52px; border-radius: 50%;
+            background: rgba(255,255,255,0.12); color: #fff; font-size: 34px; line-height: 1; border: 1px solid rgba(255,255,255,0.3);
+            cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .lb-nav:hover { background: rgba(255,255,255,0.25); }
+  .lb-prev { inset-inline-start: 14px; }
+  .lb-next { inset-inline-end: 14px; }
+  .lb-glyph { direction: ltr; display: block; margin-top: -4px; }
+  .gallery-grid figure img { cursor: zoom-in; }
+  
+/* 23.10 video-4: floating photo captions (mechanism; texts are placeholders from alt until user supplies descriptions) */
+.gallery-grid figure { position: relative; overflow: hidden; }
+.gallery-grid figcaption { position: absolute; inset: auto 0 0 0; padding: 26px 12px 10px; text-align: center;
+  background: linear-gradient(transparent, rgba(0,50,78,.82)); color: #fff; font-size: .92rem; font-weight: 600;
+  opacity: 0; transform: translateY(8px); transition: opacity .3s ease, transform .3s ease; pointer-events: none; }
+.gallery-grid figure:hover figcaption, .gallery-grid figure:focus-within figcaption { opacity: 1; transform: none; }
+@media (hover: none) { .gallery-grid figcaption { opacity: 1; transform: none; } }

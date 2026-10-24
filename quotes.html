@@ -6,7 +6,7 @@
 <link rel="icon" type="image/png" href="./assets/logo-medal-ariel.png">
 <title>מה אומרים עלינו | עלה הדס - בית מדרש לנוער</title>
 <meta name="description" content="רבנים, אנשי ציבור ותקשורת על בית המדרש עלה הדס, על רשת תורהנוער שצמחה ממנו, ועל הדס בן שושן ואריאל דרסינובר ז״ל.">
-<link rel="stylesheet" href="./css/style.css?v=58">
+<link rel="stylesheet" href="./css/style.css?v=59">
 <style>
   .quotes-page { padding-top: 84px; padding-bottom: 90px; background: var(--navy-900); }
   .quotes-kicker { text-align: center; color: var(--gold); font-size: 0.95rem; letter-spacing: 0.06em; margin-bottom: 14px; }
@@ -198,24 +198,15 @@
       </div>
     </div>
   </section>
-</main>
-
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-brand">
-      <img src="./assets/logo-aleh-hadas-light.png" alt="לוגו עלה הדס" class="footer-logo">
-      <img src="./assets/logo-medal-ariel.png?v=7" alt="מדליית זיכרון - אריאל דרסינובר ז״ל, מייסד בית המדרש" class="footer-medal">
-    </div>
-    <p>עלה הדס · בית מדרש לנוער · הדר גנים, פתח תקווה</p>
-    <p class="footer-note">כל הזכויות שמורות לאברהם יונה ורועי גלנץ</p>
-    <p class="footer-rights">כל הזכויות בתמונות שמורות לבעליהן</p>
-  </div>
-</footer>
-
 <script>
-  var header = document.getElementById('siteHeader');
-  window.addEventListener('scroll', function () { header.classList.toggle('is-scrolled', window.scrollY > 40); }, { passive: true });
-  header.classList.add('is-scrolled');
+  /* header/toggle bindings run once; the stats observer must re-run on every
+     arrival because the navigation shell swaps <main> */
+  if (!window.__ahQuotesHdr) {
+    window.__ahQuotesHdr = true;
+    var header = document.getElementById('siteHeader');
+    window.addEventListener('scroll', function () { header.classList.toggle('is-scrolled', window.scrollY > 40); }, { passive: true });
+    header.classList.add('is-scrolled');
+  }
   /* Count-up stats: animate once when the strip scrolls into view */
   function countUp(el) {
     var target = parseInt(el.getAttribute('data-target'), 10);
@@ -241,16 +232,18 @@
   var strip = document.querySelector('.stats-strip');
   if (strip) statObs.observe(strip);
 
-  var toggle = document.getElementById('navToggle');
-  var nav = document.getElementById('mainNav');
-  toggle.addEventListener('click', function () {
-    var open = nav.classList.toggle('is-open');
-    toggle.classList.toggle('is-open', open);
-    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    document.body.style.overflow = open ? 'hidden' : '';
-  });
+  if (!window.__ahQuotesNav) {
+    window.__ahQuotesNav = true;
+    var toggle = document.getElementById('navToggle');
+    var nav = document.getElementById('mainNav');
+    toggle.addEventListener('click', function () {
+      var open = nav.classList.toggle('is-open');
+      toggle.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+  }
 </script>
-<script src="./js/ext-overlay.js?v=2"></script>
 <script>
 (function () {
   var b = document.getElementById('backHome');
@@ -268,6 +261,21 @@
   });
 })();
 </script>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-brand">
+      <img src="./assets/logo-aleh-hadas-light.png" alt="לוגו עלה הדס" class="footer-logo">
+      <img src="./assets/logo-medal-ariel.png?v=7" alt="מדליית זיכרון - אריאל דרסינובר ז״ל, מייסד בית המדרש" class="footer-medal">
+    </div>
+    <p>עלה הדס · בית מדרש לנוער · הדר גנים, פתח תקווה</p>
+    <p class="footer-note">כל הזכויות שמורות לאברהם יונה ורועי גלנץ</p>
+    <p class="footer-rights">כל הזכויות בתמונות שמורות לבעליהן</p>
+  </div>
+</footer>
+
+<script src="./js/ext-overlay.js?v=2"></script>
 <script src="./js/ah-player.js?v=2"></script>
 <script src="./js/ah-shell.js?v=1"></script>
 </body>
