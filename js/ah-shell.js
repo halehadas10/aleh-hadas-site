@@ -109,14 +109,19 @@
           currentNav = ++navId;
           history.pushState({ ahShell: true, nav: currentNav, url: url }, '', url);
           window.scrollTo(0, 0);
-          if (url.indexOf('#') !== -1) {
-            var id = url.split('#')[1];
-            var el = document.getElementById(decodeURIComponent(id));
-            if (el) el.scrollIntoView();
-          }
         }
         window.AHShellActive = true;
         reinit();
+        /* land on the hash target AFTER the new main is initialized, with the
+           same header-offset scroll the nav uses (AHScrollToId from main.js) */
+        if (!opts.pop && url.indexOf('#') !== -1) {
+          var hashId = decodeURIComponent(url.split('#')[1]);
+          requestAnimationFrame(function () {
+            var done = false;
+            try { if (window.AHScrollToId) done = window.AHScrollToId(hashId); } catch (e) {}
+            if (!done) { var el = document.getElementById(hashId); if (el) el.scrollIntoView(); }
+          });
+        }
         if (opts.pop && scrollMemory[currentNav] != null) {
           window.scrollTo(0, scrollMemory[currentNav]);
         }

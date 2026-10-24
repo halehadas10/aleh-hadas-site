@@ -112,9 +112,33 @@ function ahPhotoPlaceholders() {
     document.querySelectorAll('.site-header .brand[href="#home"]').forEach(function (link) {
       bindOnce(link, 'brand', 'click', function (e) {
         e.preventDefault();
+        if (!document.getElementById('hero')) { goHomeIndex('#home'); return; }
         ahSmoothScroll(0);
       });
     });
+
+    /* Pages reached through the shell keep the index header, whose links are
+       bare #anchors that only exist on the homepage. Missing target => navigate
+       home to that section instead of a dead click (Roi report 24.10). */
+    function goHomeIndex(hash) {
+      if (window.AHShell && window.AHShell.go) { window.AHShell.go('./index.html' + hash); }
+      else { location.href = './index.html' + hash; }
+    }
+    window.AHScrollToId = function (id) {
+      if (id === 'home') { ahSmoothScroll(0); return true; }
+      var target = document.getElementById(id);
+      if (!target) return false;
+      var title = target.querySelector('.section-title') || target;
+      var y = 0; for (var n = title; n; n = n.offsetParent) y += n.offsetTop;
+      var extra = (id === 'donate') ? 100 : 14;
+      y = y - header.offsetHeight - extra;
+      ahSmoothScroll(Math.max(0, y));
+      var scope = target.closest('section') || target;
+      scope.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-visible'); });
+      if (scope.classList.contains('reveal')) scope.classList.add('is-visible');
+      if (target.classList.contains('reveal')) target.classList.add('is-visible');
+      return true;
+    };
 
     /* Nav clicks land with the section title just under the fixed header */
     document.querySelectorAll('.main-nav a[href^="#"]').forEach(function (link) {
@@ -122,19 +146,13 @@ function ahPhotoPlaceholders() {
         var id = link.getAttribute('href').slice(1);
         if (!id) return;
         e.preventDefault();
-        if (id === 'home') { ahSmoothScroll(0); return; }
-        var target = document.getElementById(id);
-        if (!target) return;
-        var title = target.querySelector('.section-title') || target;
-        var y = 0; for (var n = title; n; n = n.offsetParent) y += n.offsetTop;
-        var extra = (id === 'donate') ? 100 : 14;
-        y = y - header.offsetHeight - extra;
-        ahSmoothScroll(Math.max(0, y));
+        if (id === 'home') {
+          if (!document.getElementById('hero')) { goHomeIndex('#home'); return; }
+          ahSmoothScroll(0); return;
+        }
+        if (!document.getElementById(id)) { goHomeIndex('#' + id); return; }
+        window.AHScrollToId(id);
         history.replaceState(null, '', '#' + id);
-        var scope = target.closest('section') || target;
-        scope.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-visible'); });
-        if (scope.classList.contains('reveal')) scope.classList.add('is-visible');
-        if (target.classList.contains('reveal')) target.classList.add('is-visible');
       });
     });
 

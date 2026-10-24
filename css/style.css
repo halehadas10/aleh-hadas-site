@@ -1277,3 +1277,6 @@ body.ahp-has-bar .site-footer { padding-bottom: 20px; }
   opacity: 0; transform: translateY(8px); transition: opacity .3s ease, transform .3s ease; pointer-events: none; }
 .gallery-grid figure:hover figcaption, .gallery-grid figure:focus-within figcaption { opacity: 1; transform: none; }
 @media (hover: none) { .gallery-grid figcaption { opacity: 1; transform: none; } }
+
+/* release stamp (user preference: version visible on site) */
+.footer-version { color: var(--text-dim); font-size: 0.72rem; margin-top: 8px; opacity: 0.75; }

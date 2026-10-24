@@ -3,7 +3,7 @@
 (function () {
   const PS_KEY = 'ah-player';
   const $ = id => document.getElementById(id);
-  let player = null, lesson = null;
+  let player = null, lesson = null, vid = null;
 
   const fmtDur = s => { s = Math.floor(s || 0); const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), ss = String(s % 60).padStart(2, '0'); return h ? h + ':' + String(m).padStart(2, '0') + ':' + ss : m + ':' + ss; };
 
@@ -11,7 +11,7 @@
   function ahInit() {
   /* vid must be read per init: under the navigation shell this script loads
      once (on the index, no ?v=) and lesson pages arrive later via swaps */
-  const vid = new URLSearchParams(location.search).get('v');
+  vid = new URLSearchParams(location.search).get('v');
   fetch('./data/lessons.json').then(r => r.json()).then(d => {
     const all = d.lessons || []; /* 23.10 v40: shared links to non-Spotify lessons must open too */
     lesson = all.find(l => l.id === vid);
