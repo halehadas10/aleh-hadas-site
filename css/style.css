@@ -1328,3 +1328,13 @@ body.ahp-has-bar .site-footer { padding-bottom: 20px; }
   .footer-logo { height: 40px; }
   .footer-medal { height: 34px; }
 }
+
+/* Player: speed + volume (מנוע v31) */
+.ahp-speed { width: auto; padding: 0 9px; font-weight: 800; font-size: 13px; letter-spacing: .5px; }
+.ahp-volwrap { display: inline-flex; align-items: center; gap: 4px; color: #eaf4f2; }
+.ahp-volicon { width: 18px; height: 18px; flex: none; }
+.ahp-vol { width: 72px; accent-color: #7fd1c0; cursor: pointer; }
+@media (max-width: 640px) {
+  .ahp-vol { width: 44px; }
+  .ahp-speed { font-size: 12px; padding: 0 6px; }
+}

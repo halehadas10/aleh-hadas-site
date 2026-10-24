@@ -51,6 +51,8 @@
           '<button type="button" class="ahp-btn" id="ahpBack" aria-label="אחורה 15 שניות" title="אחורה 15 שניות">' +
             '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/><text x="12" y="12.5" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="800" font-family="inherit" fill="currentColor" stroke="none">15</text></svg>' +
           '</button>' +
+          '<button type="button" class="ahp-btn ahp-speed" id="ahpSpeed" aria-label="מהירות ניגון" title="מהירות ניגון">\u00d71</button>' +
+          '<span class="ahp-volwrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ahp-volicon"><path d="M11 5L6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9.4 9.4 0 0 1 0 13"/></svg><input type="range" class="ahp-vol" id="ahpVol" min="0" max="1" step="0.05" value="1" aria-label="עוצמת קול" title="עוצמת קול"></span>' +
           '<button type="button" class="ahp-btn ahp-close" id="ahpClose" aria-label="סגירת הנגן" title="סגירה">' +
             '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>' +
           '</button>' +
@@ -62,6 +64,30 @@
     $('ahpPlay').addEventListener('click', function () { API.toggle(); });
     $('ahpFwd').addEventListener('click', function () { API.seekBy(30); });
     $('ahpBack').addEventListener('click', function () { API.seekBy(-15); });
+    /* Speed cycle + volume (persisted) */
+    var SPEEDS = [1, 1.25, 1.5, 2, 0.5, 0.75];
+    var speedIdx = 0;
+    try {
+      var sv = parseFloat(localStorage.getItem('ahSpeed'));
+      if (sv > 0) { var k = SPEEDS.indexOf(sv); speedIdx = k >= 0 ? k : 0; if (k < 0) SPEEDS[0] = sv; }
+      var vv = parseFloat(localStorage.getItem('ahVol'));
+      if (!isNaN(vv)) audio.volume = Math.min(1, Math.max(0, vv));
+    } catch (e) {}
+    audio.playbackRate = SPEEDS[speedIdx];
+    var speedBtn = $('ahpSpeed'), volInput = $('ahpVol');
+    function paintSpeed() { speedBtn.textContent = '\u00d7' + SPEEDS[speedIdx]; }
+    paintSpeed();
+    speedBtn.addEventListener('click', function () {
+      speedIdx = (speedIdx + 1) % SPEEDS.length;
+      audio.playbackRate = SPEEDS[speedIdx];
+      paintSpeed();
+      try { localStorage.setItem('ahSpeed', String(SPEEDS[speedIdx])); } catch (e) {}
+    });
+    volInput.value = String(audio.volume);
+    volInput.addEventListener('input', function () {
+      audio.volume = parseFloat(volInput.value);
+      try { localStorage.setItem('ahVol', volInput.value); } catch (e) {}
+    });
     $('ahpClose').addEventListener('click', function () { API.stop(); });
     var prog = $('ahpProg');
     function seekFromEvent(e) {
