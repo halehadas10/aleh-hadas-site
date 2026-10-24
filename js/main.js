@@ -112,7 +112,7 @@ function ahPhotoPlaceholders() {
     document.querySelectorAll('.site-header .brand[href="#home"]').forEach(function (link) {
       bindOnce(link, 'brand', 'click', function (e) {
         e.preventDefault();
-        if (!document.getElementById('hero')) { goHomeIndex('#home'); return; }
+        if (!onHomePage() || !document.getElementById('hero')) { goHomeIndex('#home'); return; }
         ahSmoothScroll(0);
       });
     });
@@ -120,6 +120,9 @@ function ahPhotoPlaceholders() {
     /* Pages reached through the shell keep the index header, whose links are
        bare #anchors that only exist on the homepage. Missing target => navigate
        home to that section instead of a dead click (Roi report 24.10). */
+    function onHomePage() {
+      return /\/index\.html?$/.test(location.pathname) || /\/$/.test(location.pathname);
+    }
     function goHomeIndex(hash) {
       if (window.AHShell && window.AHShell.go) { window.AHShell.go('./index.html' + hash); }
       else { location.href = './index.html' + hash; }
@@ -147,10 +150,12 @@ function ahPhotoPlaceholders() {
         if (!id) return;
         e.preventDefault();
         if (id === 'home') {
-          if (!document.getElementById('hero')) { goHomeIndex('#home'); return; }
+          if (!onHomePage() || !document.getElementById('hero')) { goHomeIndex('#home'); return; }
           ahSmoothScroll(0); return;
         }
-        if (!document.getElementById(id)) { goHomeIndex('#' + id); return; }
+        /* off-homepage the header's bare #anchors ALWAYS mean homepage sections,
+           even if some other page happens to reuse the same id (#donate) */
+        if (!onHomePage() || !document.getElementById(id)) { goHomeIndex('#' + id); return; }
         window.AHScrollToId(id);
         history.replaceState(null, '', '#' + id);
       });
