@@ -34,6 +34,7 @@
   function renderCarousel(data) {
     const host = document.getElementById('lsCarousel');
     if (!host) return;
+    host.innerHTML = '';
     const both = data.lessons;
     both.forEach(l => host.appendChild(card(l, '.')));
     const cnt = document.getElementById('lsCount');
@@ -46,6 +47,7 @@
   function renderPage(data) {
     const host = document.getElementById('lsPage');
     if (!host) return;
+    host.innerHTML = '';
     const both = data.lessons;
     const bySeries = {};
     both.forEach(l => { (bySeries[l.series] = bySeries[l.series] || []).push(l); });
