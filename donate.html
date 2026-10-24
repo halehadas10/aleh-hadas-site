@@ -19,8 +19,6 @@
   .dn-medal { width: 128px; height: 128px; border-radius: 50%; display: grid; place-items: center; position: relative;
     border: 4px solid #c9a227; box-shadow: 0 0 0 3px rgba(201,162,39,.25), 0 10px 30px rgba(0,0,0,.45), inset 0 0 22px rgba(0,0,0,.35);
     transition: transform .22s ease, box-shadow .22s ease; }
-  .dn-medal::before, .dn-medal::after { content: ''; position: absolute; top: 12%; bottom: 12%; width: 3px; background: linear-gradient(#e8c85a, #c9a227); border-radius: 2px; }
-  .dn-medal::before { inset-inline-start: -11px; } .dn-medal::after { inset-inline-end: -11px; }
   .dn-item:hover .dn-medal, .dn-item:focus-visible .dn-medal { transform: translateY(-6px) scale(1.04); box-shadow: 0 0 0 4px rgba(201,162,39,.4), 0 18px 40px rgba(0,0,0,.5), inset 0 0 22px rgba(0,0,0,.35); }
   .dn-item:focus-visible { outline: 2px solid #e8c85a; outline-offset: 6px; border-radius: 12px; }
   .dn-c1 .dn-medal { background: radial-gradient(circle at 35% 30%, #3f6b4f, #24402f); }
@@ -31,11 +29,6 @@
   .dn-medal svg { width: 62px; height: 62px; stroke: #e8c85a; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
   .dn-name { color: #f0e7c8; font-size: 1.25rem; font-weight: 700; margin-top: 14px; }
   .dn-sub { color: #b9c0da; font-size: .9rem; margin-top: 4px; text-align: center; line-height: 1.5; }
-  .dn-amounts { max-width: 640px; margin: 26px auto 0; text-align: center; opacity: .55; }
-  .dn-amounts-title { color: #9aa3c8; font-size: .95rem; margin-bottom: 10px; }
-  .dn-amounts-grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
-  .dn-amt { border: 1.5px solid #556; background: rgba(255,255,255,.05); color: #aab; border-radius: 10px; padding: 10px 18px; font-size: 1.05rem; cursor: not-allowed; }
-  .dn-amounts-note { color: #889; font-size: .8rem; margin-top: 8px; }
   .dn-pay-overlay { position: fixed; inset: 0; background: rgba(10,12,30,.72); display: grid; place-items: center; z-index: 200; opacity: 0; pointer-events: none; transition: opacity .25s ease; }
   .dn-pay-overlay.open { opacity: 1; pointer-events: auto; }
   .dn-pay-card { background: #232047; border: 1.5px solid #c9a227; border-radius: 18px; padding: 30px 34px; width: min(92vw, 420px); text-align: center; transform: translateY(14px) scale(.97); transition: transform .25s ease; }
@@ -135,13 +128,6 @@
         <span class="dn-name">תרומה חופשית</span>
         <span class="dn-sub">כל סכום, לכל צורך של בית המדרש</span>
       </button>
-    </div>
-    <div class="dn-amounts container" aria-disabled="true">
-      <p class="dn-amounts-title">בחירת סכום מהירה</p>
-      <div class="dn-amounts-grid">
-        <span class="dn-amt">₪180</span><span class="dn-amt">₪500</span><span class="dn-amt">₪1,800</span><span class="dn-amt">₪3,600</span><span class="dn-amt">₪5,000</span><span class="dn-amt">אחר</span>
-      </div>
-      <p class="dn-amounts-note">בחירת הסכום תופעל כשאמצעי התשלום יתמכו בהעברת סכום</p>
     </div>
   </section>
   <div class="ls-backwrap">
