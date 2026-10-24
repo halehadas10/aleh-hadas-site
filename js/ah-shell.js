@@ -64,7 +64,7 @@
 
   function reinit() {
     try { if (window.AHMainRescan) window.AHMainRescan(); } catch (e) {}
-    try { if (window.AHLessonsInit && document.getElementById('lessonsRoot') || window.AHLessonsInit && document.querySelector('.ls-grid, .ls-carousel')) window.AHLessonsInit(); } catch (e) {}
+    try { if (window.AHLessonsInit && (document.getElementById('lsPage') || document.getElementById('lsCarousel'))) window.AHLessonsInit(); } catch (e) {}
     try { if (window.AHLessonInit && document.getElementById('lpTitle')) window.AHLessonInit(); } catch (e) {}
   }
 
