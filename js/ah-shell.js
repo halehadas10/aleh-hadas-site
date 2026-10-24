@@ -108,7 +108,13 @@
           scrollMemory[currentNav] = window.scrollY;
           currentNav = ++navId;
           history.pushState({ ahShell: true, nav: currentNav, url: url }, '', url);
-          window.scrollTo(0, 0);
+          /* hash target: reset INSTANTLY to top, then let AHScrollToId glide
+             down - a plain scrollTo here runs as native CSS-smooth and races
+             the custom animation (teleport-to-bottom bug, user 24.10).
+             no hash (e.g. logo to index): keep the plain call so the existing
+             CSS scroll-behavior gives one native smooth scroll to top. */
+          if (url.indexOf('#') !== -1) window.scrollTo({ top: 0, behavior: 'instant' });
+          else window.scrollTo(0, 0);
         }
         window.AHShellActive = true;
         reinit();
@@ -116,11 +122,13 @@
            same header-offset scroll the nav uses (AHScrollToId from main.js) */
         if (!opts.pop && url.indexOf('#') !== -1) {
           var hashId = decodeURIComponent(url.split('#')[1]);
-          requestAnimationFrame(function () {
+          /* double rAF: measure after the swapped main has laid out, or the
+             target position is computed against pre-layout heights */
+          requestAnimationFrame(function () { requestAnimationFrame(function () {
             var done = false;
             try { if (window.AHScrollToId) done = window.AHScrollToId(hashId); } catch (e) {}
             if (!done) { var el = document.getElementById(hashId); if (el) el.scrollIntoView(); }
-          });
+          }); });
         }
         if (opts.pop && scrollMemory[currentNav] != null) {
           window.scrollTo(0, scrollMemory[currentNav]);

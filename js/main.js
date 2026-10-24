@@ -109,8 +109,8 @@ function ahPhotoPlaceholders() {
     });
 
     /* Header logos: same fast eased scroll-to-top as the nav */
-    document.querySelectorAll('.site-header .brand[href="#home"]').forEach(function (link) {
-      bindOnce(link, 'brand', 'click', function (e) {
+    document.querySelectorAll('.site-header .brand[href="#home"], .site-header .brand[href="./index.html"], .site-header .brand[href="index.html"], .site-header .brand[href$="/index.html"]').forEach(function (link) {
+      bindOnce(link, 'brandHome', 'click', function (e) {
         e.preventDefault();
         if (!onHomePage() || !document.getElementById('hero')) { goHomeIndex('#home'); return; }
         ahSmoothScroll(0);
@@ -144,9 +144,11 @@ function ahPhotoPlaceholders() {
     };
 
     /* Nav clicks land with the section title just under the fixed header */
-    document.querySelectorAll('.main-nav a[href^="#"]').forEach(function (link) {
+    document.querySelectorAll('.main-nav a[href^="#"], .main-nav a[href*="index.html#"]').forEach(function (link) {
       bindOnce(link, 'navAnchor', 'click', function (e) {
-        var id = link.getAttribute('href').slice(1);
+        var href = link.getAttribute('href');
+        var h = href.indexOf('#');
+        var id = h === -1 ? '' : decodeURIComponent(href.slice(h + 1));
         if (!id) return;
         e.preventDefault();
         if (id === 'home') {
