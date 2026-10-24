@@ -12,7 +12,7 @@
   window.SITE_PHOTOS = false;
   if (!window.SITE_PHOTOS) document.documentElement.classList.add('no-photos');
 </script>
-<link rel="stylesheet" href="./css/style.css?v=60">
+<link rel="stylesheet" href="./css/style.css?v=61">
 <style>
   .quotes-preview { background: var(--navy-800); }
   .qp-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 10px; }
@@ -470,15 +470,35 @@
 
 <footer class="site-footer">
   <div class="container">
-    <div class="footer-brand">
-      <img src="./assets/logo-aleh-hadas-light.png" alt="לוגו עלה הדס" class="footer-logo">
-      <img src="./assets/logo-medal-ariel.png?v=7" alt="מדליית זיכרון - אריאל דרסינובר ז\'\'ל, מייסד בית המדרש" class="footer-medal">
+    <div class="footer-grid">
+      <div class="footer-col footer-col-brand">
+        <div class="footer-brand">
+          <img src="./assets/logo-aleh-hadas-light.png" alt="לוגו עלה הדס" class="footer-logo">
+          <img src="./assets/logo-medal-ariel.png?v=7" alt="מדליית זיכרון - אריאל דרסינובר ז\'\'ל, מייסד בית המדרש" class="footer-medal">
+        </div>
+        <p class="footer-title">עלה הדס · בית מדרש לנוער · הדר גנים, פתח תקווה</p>
+        <p class="footer-dedication">לעילוי נשמת אריאל דרסינובר ז״ל</p>
+      </div>
+      <nav class="footer-col footer-links" aria-label="קישורי תפריט">
+          <p class="footer-heading">האתר</p>
+          <a href="./index.html#story">הסיפור שלנו</a>
+          <a href="./quotes.html">מה אומרים עלינו</a>
+          <a href="./index.html#activities">מהנעשה בבית המדרש</a>
+          <a href="./index.html#programs">תכניות</a>
+      </nav>
+      <nav class="footer-col footer-links" aria-label="קישורי בית המדרש">
+        <p class="footer-heading">בית המדרש</p>
+        <a href="./lessons.html">בית מדרש וירטואלי</a>
+        <a href="./index.html#times">זמנים ומקום</a>
+        <a href="./index.html#contact">יצירת קשר</a>
+        <a href="./donate.html" class="footer-donate">תרומה</a>
+      </nav>
     </div>
-    <p class="footer-title">עלה הדס · בית מדרש לנוער · הדר גנים, פתח תקווה</p>
-    <p class="footer-dedication">לעילוי נשמת אריאל דרסינובר ז״ל</p>
-    <p class="footer-note">כל הזכויות שמורות לאברהם יונה ורועי גלנץ</p>
-    <p class="footer-rights">כל הזכויות בתמונות שמורות לבעליהן</p>
-    <p class="footer-version">אתר עלה הדס · עיצוב v60 · מנוע v27</p>
+    <div class="footer-legal">
+      <p class="footer-note">כל הזכויות שמורות לאברהם יונה ורועי גלנץ</p>
+      <p class="footer-rights">כל הזכויות בתמונות שמורות לבעליהן</p>
+      <p class="footer-version">אתר עלה הדס · עיצוב v61 · מנוע v28</p>
+    </div>
   </div>
 </footer>
 

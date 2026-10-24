@@ -6,11 +6,11 @@
 <link rel="icon" type="image/png" href="./assets/logo-medal-ariel.png">
 <title>תרומה | עלה הדס</title>
 <meta name="description" content="תרומה לבית המדרש עלה הדס - שם עולם, שמן למאור, עץ חיים, קניין תורה ותרומה חופשית.">
-<link rel="stylesheet" href="./css/style.css?v=60">
+<link rel="stylesheet" href="./css/style.css?v=61">
 <style>
   .donate-hero { background: linear-gradient(160deg, #1a2340 0%, #2b2a55 55%, #232047 100%); padding: 56px 0 30px; text-align: center; position: relative; overflow: hidden; }
   .donate-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(201,162,39,.14), transparent 60%); }
-  .donate-verse { position: relative; color: #e8c85a; font-size: 2.3rem; font-weight: 700; line-height: 1.55; text-shadow: 0 0 24px rgba(232,200,90,.35); margin: 10px auto 6px; max-width: 20em; }
+  .donate-verse { position: relative; color: #e8c85a; font-size: 2.3rem; font-weight: 700; line-height: 1.55; text-shadow: 0 0 24px rgba(232,200,90,.35); margin: 10px auto 6px; max-width: 20em; padding-inline: 18px; }
   .donate-verse-src { position: relative; color: #c8b578; font-size: 1.02rem; text-align: center; margin-bottom: 4px; }
   .donate-kicker { position: relative; color: #9aa3c8; font-size: .95rem; letter-spacing: .12em; }
   .dn-row { position: relative; display: flex; flex-wrap: wrap; justify-content: center; gap: 34px 44px; padding: 40px 0 10px; }
@@ -48,6 +48,8 @@
   .dn-pay-btn { display: block; width: 100%; margin: 10px 0; padding: 15px; border-radius: 12px; font-size: 1.15rem; font-weight: 700; text-decoration: none; text-align: center; transition: transform .15s ease; }
   .dn-pay-btn:hover { transform: translateY(-2px); }
   .dn-pay-jgive { background: #2e6e46; color: #fff; }
+  .dn-pay-hint { display: block; font-size: 0.72rem; font-weight: 400; opacity: 0.85; margin-top: 2px; }
+  .dn-pay-note { font-size: 0.72rem; color: #b9b3d4; margin: 10px 0 2px; }
   .dn-pay-paybox { background: #274b8f; color: #fff; }
   .dn-pay-bit { background: rgba(255,255,255,.07); color: #778; cursor: not-allowed; }
   .dn-pay-close { margin-top: 14px; background: none; border: none; color: #889; font-size: .95rem; cursor: pointer; text-decoration: underline; }
@@ -154,9 +156,10 @@
     <div class="dn-pay-card">
       <p class="dn-pay-title" id="dnPayTitle">תרומה</p>
       <p class="dn-pay-sub">בחרו אמצעי תרומה:</p>
-      <a class="dn-pay-btn dn-pay-jgive" href="https://www.jgive.com/new/he/ils/donation-targets/60540" target="_blank" rel="noopener">JGive</a>
-      <a class="dn-pay-btn dn-pay-paybox" href="https://links.payboxapp.com/XzfSfUmCq6b" target="_blank" rel="noopener">PayBox</a>
+      <a class="dn-pay-btn dn-pay-jgive" href="https://www.jgive.com/new/he/ils/donation-targets/60540" target="_blank" rel="noopener">JGive<span class="dn-pay-hint">דף התרומות הכללי של עלה הדס</span></a>
+      <a class="dn-pay-btn dn-pay-paybox" href="https://links.payboxapp.com/XzfSfUmCq6b" target="_blank" rel="noopener">PayBox<span class="dn-pay-hint">קופת ״כפרות עלה הדס״</span></a>
       <span class="dn-pay-btn dn-pay-bit" aria-disabled="true">Bit — בקרוב</span>
+      <p class="dn-pay-note">הקטגוריה והסכום אינם מועברים לעמוד התשלום בשלב זה</p>
       <button type="button" class="dn-pay-close" id="dnPayClose">סגירה</button>
     </div>
   </div>
@@ -164,15 +167,34 @@
 
 <footer class="site-footer">
   <div class="container">
-    <div class="footer-brand">
-      <img src="./assets/logo-aleh-hadas-light.png" alt="לוגו עלה הדס" class="footer-logo">
-      <img src="./assets/logo-medal-ariel.png?v=7" alt="מדליית זיכרון - אריאל דרסינובר ז״ל, מייסד בית המדרש" class="footer-medal">
+    <div class="footer-grid">
+      <div class="footer-col footer-col-brand">
+        <div class="footer-brand">
+          <img src="./assets/logo-aleh-hadas-light.png" alt="לוגו עלה הדס" class="footer-logo">
+          <img src="./assets/logo-medal-ariel.png?v=7" alt="מדליית זיכרון - אריאל דרסינובר ז״ל, מייסד בית המדרש" class="footer-medal">
+        </div>
+        <p>עלה הדס · בית מדרש לנוער · הדר גנים, פתח תקווה</p>
+      </div>
+      <nav class="footer-col footer-links" aria-label="קישורי תפריט">
+          <p class="footer-heading">האתר</p>
+          <a href="./index.html#story">הסיפור שלנו</a>
+          <a href="./quotes.html">מה אומרים עלינו</a>
+          <a href="./index.html#activities">מהנעשה בבית המדרש</a>
+          <a href="./index.html#programs">תכניות</a>
+      </nav>
+      <nav class="footer-col footer-links" aria-label="קישורי בית המדרש">
+        <p class="footer-heading">בית המדרש</p>
+        <a href="./lessons.html">בית מדרש וירטואלי</a>
+        <a href="./index.html#times">זמנים ומקום</a>
+        <a href="./index.html#contact">יצירת קשר</a>
+        <a href="./donate.html" class="footer-donate">תרומה</a>
+      </nav>
     </div>
-    <p class="footer-title">עלה הדס · בית מדרש לנוער · הדר גנים, פתח תקווה</p>
-    <p class="footer-dedication">לעילוי נשמת אריאל דרסינובר ז״ל</p>
-    <p class="footer-note">כל הזכויות שמורות לאברהם יונה ורועי גלנץ</p>
-    <p class="footer-rights">כל הזכויות בתמונות שמורות לבעליהן</p>
-    <p class="footer-version">אתר עלה הדס · עיצוב v60 · מנוע v28</p>
+    <div class="footer-legal">
+      <p class="footer-note">כל הזכויות שמורות לאברהם יונה ורועי גלנץ</p>
+      <p class="footer-rights">כל הזכויות בתמונות שמורות לבעליהן</p>
+      <p class="footer-version">אתר עלה הדס · עיצוב v61 · מנוע v28</p>
+    </div>
   </div>
 </footer>
 
