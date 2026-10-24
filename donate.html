@@ -31,9 +31,6 @@
   .dn-medal svg { width: 62px; height: 62px; stroke: #e8c85a; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
   .dn-name { color: #f0e7c8; font-size: 1.25rem; font-weight: 700; margin-top: 14px; }
   .dn-sub { color: #b9c0da; font-size: .9rem; margin-top: 4px; text-align: center; line-height: 1.5; }
-  .dn-cta-wrap { text-align: center; padding: 26px 0 8px; }
-  .dn-cta { display: inline-block; background: linear-gradient(135deg, #c9a227, #e8c85a); color: #232047; font-weight: 800; font-size: 1.3rem; padding: 16px 58px; border-radius: 999px; border: none; cursor: pointer; box-shadow: 0 8px 26px rgba(201,162,39,.4); transition: transform .2s ease; }
-  .dn-cta:hover { transform: translateY(-3px); }
   .dn-amounts { max-width: 640px; margin: 26px auto 0; text-align: center; opacity: .55; }
   .dn-amounts-title { color: #9aa3c8; font-size: .95rem; margin-bottom: 10px; }
   .dn-amounts-grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
@@ -49,6 +46,8 @@
   .dn-pay-btn:hover { transform: translateY(-2px); }
   .dn-pay-jgive { background: #2e6e46; color: #fff; }
   .dn-pay-hint { display: block; font-size: 0.72rem; font-weight: 400; opacity: 0.85; margin-top: 2px; }
+  .dn-pay-btn { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+  .dn-pay-btn .dn-pay-logo { width: 26px; height: 26px; border-radius: 6px; object-fit: cover; background: #fff; }
   .dn-pay-note { font-size: 0.72rem; color: #b9b3d4; margin: 10px 0 2px; }
   .dn-pay-paybox { background: #274b8f; color: #fff; }
   .dn-pay-bit { background: rgba(255,255,255,.07); color: #778; cursor: not-allowed; }
@@ -60,7 +59,7 @@
     .dn-item.dn-c5 { width: 70%; }
     .dn-medal { width: 108px; height: 108px; }
   }
-  @media (prefers-reduced-motion: reduce) { .dn-medal, .dn-cta, .dn-pay-card, .dn-pay-overlay { transition: none; } }
+  @media (prefers-reduced-motion: reduce) { .dn-medal, .dn-pay-card, .dn-pay-overlay { transition: none; } }
 </style>
 </head>
 <body>
@@ -137,9 +136,6 @@
         <span class="dn-sub">כל סכום, לכל צורך של בית המדרש</span>
       </button>
     </div>
-    <div class="dn-cta-wrap">
-      <button type="button" class="dn-cta" data-dn="תרומה חופשית">תרמו עכשיו</button>
-    </div>
     <div class="dn-amounts container" aria-disabled="true">
       <p class="dn-amounts-title">בחירת סכום מהירה</p>
       <div class="dn-amounts-grid">
@@ -156,9 +152,9 @@
     <div class="dn-pay-card">
       <p class="dn-pay-title" id="dnPayTitle">תרומה</p>
       <p class="dn-pay-sub">בחרו אמצעי תרומה:</p>
-      <a class="dn-pay-btn dn-pay-jgive" href="https://www.jgive.com/new/he/ils/donation-targets/60540" target="_blank" rel="noopener">JGive<span class="dn-pay-hint">דף התרומות הכללי של עלה הדס</span></a>
-      <a class="dn-pay-btn dn-pay-paybox" href="https://links.payboxapp.com/XzfSfUmCq6b" target="_blank" rel="noopener">PayBox<span class="dn-pay-hint">קופת ״כפרות עלה הדס״</span></a>
-      <span class="dn-pay-btn dn-pay-bit" aria-disabled="true">Bit — בקרוב</span>
+      <a class="dn-pay-btn dn-pay-jgive" href="https://www.jgive.com/new/he/ils/donation-targets/60540" target="_blank" rel="noopener"><img class="dn-pay-logo" src="./assets/logo-jgive.png" alt="לוגו JGive"><span>JGive<span class="dn-pay-hint">דף התרומות הכללי של עלה הדס</span></span></a>
+      <a class="dn-pay-btn dn-pay-paybox" href="https://links.payboxapp.com/XzfSfUmCq6b" target="_blank" rel="noopener"><img class="dn-pay-logo" src="./assets/logo-paybox.png" alt="לוגו PayBox"><span>PayBox<span class="dn-pay-hint">קופת ״כפרות עלה הדס״</span></span></a>
+      <span class="dn-pay-btn dn-pay-bit" aria-disabled="true"><img class="dn-pay-logo" src="./assets/logo-bit.png" alt="לוגו Bit"><span>Bit — בקרוב</span></span>
       <p class="dn-pay-note">הקטגוריה והסכום אינם מועברים לעמוד התשלום בשלב זה</p>
       <button type="button" class="dn-pay-close" id="dnPayClose">סגירה</button>
     </div>
