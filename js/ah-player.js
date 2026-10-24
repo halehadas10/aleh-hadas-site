@@ -142,10 +142,49 @@
     API.load({ id: st.id, src: st.src, title: st.title, rabbi: st.rabbi, cover: st.cover, position: st.pos, autoplay: false });
   }
 
+  /* ---------- autonext (25.10): on natural end, play the next hosted lesson.
+     Order mirrors the lesson page: lessons with audioUrl only, sorted by
+     published date, first one after the current lesson (wrapping). */
+  var lessonsCache = null;
+  function fetchLessons(cb) {
+    if (lessonsCache) return cb(lessonsCache);
+    fetch('./data/lessons.json?v=' + Date.now()).then(function (r) { return r.json(); }).then(function (d) {
+      lessonsCache = (d && d.lessons) || [];
+      cb(lessonsCache);
+    }).catch(function () { cb([]); });
+  }
+  function coverFor(l) {
+    var m = (l.spotifyUrl || '').match(/episode\/([A-Za-z0-9]+)/);
+    return m ? './assets/covers/ep-' + m[1] + '.jpg' : (l.thumbnail || './assets/covers/show.jpg');
+  }
+  function playNext(endedId) {
+    fetchLessons(function (all) {
+      if (!current || current.id !== endedId) return; /* user moved on meanwhile */
+      var playable = all.filter(function (l) { return !!l.audioUrl; });
+      var curL = null;
+      playable.forEach(function (l) { if (l.id === endedId) curL = l; });
+      if (!curL) return;
+      var curT = new Date(curL.published || 0).getTime();
+      var rest = playable.filter(function (l) { return l.id !== endedId; })
+        .sort(function (a, b) { return new Date(a.published || 0) - new Date(b.published || 0); });
+      if (!rest.length) return;
+      var next = null;
+      for (var i = 0; i < rest.length; i++) {
+        if (new Date(rest[i].published || 0).getTime() > curT) { next = rest[i]; break; }
+      }
+      if (!next) next = rest[0];
+      API.load({ id: next.id, src: next.audioUrl, title: next.topic, rabbi: next.rabbi || '', cover: coverFor(next) });
+    });
+  }
+
   /* ---------- events ---------- */
   audio.addEventListener('play', syncUI);
   audio.addEventListener('pause', function () { syncUI(); saveSnapshot(); });
-  audio.addEventListener('ended', function () { syncUI(); clearSnapshot(); });
+  audio.addEventListener('ended', function () {
+    var endedId = current && current.id;
+    syncUI(); clearSnapshot();
+    if (endedId) playNext(endedId);
+  });
   audio.addEventListener('timeupdate', function () {
     syncUI();
     if (!saveTimer) {
