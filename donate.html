@@ -14,6 +14,7 @@
   .donate-verse-src { position: relative; color: #c8b578; font-size: 1.02rem; text-align: center; margin-bottom: 4px; }
   .donate-kicker { position: relative; color: #9aa3c8; font-size: .95rem; letter-spacing: .12em; }
   .dn-row { position: relative; display: flex; flex-wrap: wrap; justify-content: center; gap: 34px 44px; padding: 40px 0 10px; }
+  .dn-free { display: flex; justify-content: center; padding: 30px 0 4px; }
   .dn-item { display: flex; flex-direction: column; align-items: center; width: 168px; cursor: pointer; background: none; border: none; font: inherit; color: inherit; padding: 0; }
   .dn-medal { width: 128px; height: 128px; border-radius: 50%; display: grid; place-items: center; position: relative;
     border: 4px solid #c9a227; box-shadow: 0 0 0 3px rgba(201,162,39,.25), 0 10px 30px rgba(0,0,0,.45), inset 0 0 22px rgba(0,0,0,.35);
@@ -63,23 +64,44 @@
 <body>
 
 <header class="site-header" id="siteHeader">
-  <nav class="nav container">
-    <a href="./index.html" class="brand"><img src="./assets/logo-aleh-hadas-light.png" alt="עלה הדס" class="brand-logo"></a>
-    <button class="nav-toggle" aria-expanded="false" aria-label="פתיחת תפריט"><span></span><span></span><span></span></button>
-    <div class="main-nav">
-      <a href="./index.html#story" class="nav-link">הסיפור שלנו</a>
-      <a href="./quotes.html" class="nav-link">מה אומרים עלינו</a>
-      <a href="./index.html#activities" class="nav-link">מהנעשה בבית המדרש</a>
-      <a href="./index.html#programs" class="nav-link">תכניות</a>
-      <a href="./index.html#contact" class="nav-link">יצירת קשר</a>
-      <a href="./lessons.html" class="nav-link">בית מדרש וירטואלי</a>
-      <a href="./index.html#times" class="nav-link">זמנים ומקום</a>
-      <a href="./donate.html" class="nav-link nav-donate is-active">תרומה</a>
-    </div>
-  </nav>
+  <a class="brand brand-word" href="./index.html" aria-label="עלה הדס - לדף הבית">
+    <img src="./assets/logo-aleh-hadas-original.png" alt="לוגו עלה הדס" class="brand-logo">
+  </a>
+  <nav class="main-nav" id="mainNav" aria-label="ניווט ראשי">
+    <a href="./index.html#story" class="nav-link">הסיפור שלנו</a>
+    <a href="./quotes.html" class="nav-link">מה אומרים עלינו</a>
+    <a href="./index.html#activities" class="nav-link">מהנעשה בבית המדרש</a>
+    <a href="./index.html#programs" class="nav-link">תכניות</a>
+    <a href="./index.html#contact" class="nav-link">יצירת קשר</a>
+    <a href="./lessons.html" class="nav-link">בית מדרש וירטואלי</a>
+    <a href="./index.html#times" class="nav-link">זמנים ומקום</a>
+    <a href="./donate.html" class="nav-link nav-donate is-active" aria-current="page">תרומה</a>
+    </nav>
+  <a class="brand brand-medal-link" href="./index.html" aria-label="מדליית זיכרון - אריאל דרסינובר ז״ל - לדף הבית">
+    <img src="./assets/logo-medal-ariel.png?v=7" alt="מדליית זיכרון - אריאל דרסינובר ז״ל" class="brand-medal">
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="תפריט" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </header>
 
 <main>
+<script>
+  if (!window.__ahDonateHdr) {
+    window.__ahDonateHdr = true;
+    var header = document.getElementById('siteHeader');
+    window.addEventListener('scroll', function () { header.classList.toggle('is-scrolled', window.scrollY > 40); }, { passive: true });
+    header.classList.add('is-scrolled');
+    var toggle = document.getElementById('navToggle');
+    var nav = document.getElementById('mainNav');
+    toggle.addEventListener('click', function () {
+      var open = nav.classList.toggle('is-open');
+      toggle.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+  }
+</script>
   <section class="donate-hero">
     <p class="donate-kicker">בית המדרש ״עלה הדס״ · הדר גנים</p>
     <h1 class="donate-verse">עֵץ־חַיִּים הִיא לַמַּחֲזִיקִים בָּהּ וְתֹמְכֶיהָ מְאֻשָּׁר</h1>
@@ -105,6 +127,8 @@
         <span class="dn-name">קניין תורה</span>
         <span class="dn-sub">החזקת בית המדרש לחודש שלם</span>
       </button>
+    </div>
+    <div class="container dn-free">
       <button type="button" class="dn-item dn-c5" data-dn="תרומה חופשית">
         <span class="dn-medal"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.2-7-9.3C5 8 6.8 6.5 8.7 6.5c1.3 0 2.5.7 3.3 1.8.8-1.1 2-1.8 3.3-1.8C17.2 6.5 19 8 19 10.7c0 5.1-7 9.3-7 9.3z"/></svg></span>
         <span class="dn-name">תרומה חופשית</span>
