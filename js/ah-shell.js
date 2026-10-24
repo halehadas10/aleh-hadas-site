@@ -68,6 +68,23 @@
     try { if (window.AHLessonInit && document.getElementById('lpTitle')) window.AHLessonInit(); } catch (e) {}
   }
 
+  /* Page-local head styles: a full page load applies them, a shell swap must
+     import them too - otherwise page-specific layout (homepage quote cards,
+     quotes-page card styling, prize-medal sizing) silently disappears after
+     in-site navigation (user video 24.10: "giant medal", broken quote cards).
+     Imported once per unique content, class-scoped rules, never removed. */
+  function importHeadStyles(doc) {
+    var seen = window.__ahShellStyles = window.__ahShellStyles || {};
+    Array.prototype.forEach.call(doc.querySelectorAll('head style'), function (st) {
+      var txt = st.textContent || '';
+      if (seen[txt]) return;
+      seen[txt] = true;
+      var el = document.createElement('style');
+      el.textContent = txt;
+      document.head.appendChild(el);
+    });
+  }
+
   var navId = 0;
   var currentNav = 0;
   var scrollMemory = {}; /* navId -> scrollY */
@@ -81,6 +98,7 @@
       var curMain = document.querySelector('main');
       if (!newMain || !curMain) throw new Error('no main');
       return loadMissingScripts(doc, url).then(function () {
+        importHeadStyles(doc);
         /* adopt the new main */
         var imported = document.importNode(newMain, true);
         curMain.parentNode.replaceChild(imported, curMain);
