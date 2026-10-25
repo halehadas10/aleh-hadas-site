@@ -206,3 +206,9 @@
 - refs: all css/js refs normalized to ?v=96 on ALL pages.
 - SEPARATE approval-gated item: Shmuel Eliyahu card blank-space shrink = MOCKUP ONLY until his explicit yes (same message). Not in this commit.
 - Executor: Avraham's side (this Instinct).
+
+## v97 (16:54 IST 25.10) - closing-mark clearance fix (main pixel review 16:53)
+- v96's bottom-right " could sit on the source row/date on narrow cards (390px Rimon card). Reserved space instead of moving the mark: .qp-src/.q-src get padding-inline-start:56px (inline-start = right in RTL), so no text ever enters the mark's corner strip. No card-height change, no layout change elsewhere. Mark color unchanged = same var(--gold) as the existing top mark (renders green).
+- refs: all css/js refs normalized to ?v=97 on ALL pages.
+- Shmuel Eliyahu shrink remains approval-gated, NOT in this commit.
+- Executor: Avraham's side (this Instinct).
