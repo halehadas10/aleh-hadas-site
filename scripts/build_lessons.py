@@ -42,8 +42,19 @@ def hebrew_date(dt):
         print("hebcal err", e); return ""
 
 def main():
+    rss = None
+    for attempt in range(3):
+        try:
+            rss = get(f"https://www.youtube.com/feeds/videos.xml?channel_id={CH_ID}")
+            break
+        except Exception as e:
+            print(f"rss attempt {attempt+1} err:", e)
+            time.sleep(2 * (attempt + 1))
+    if False:  # keep structure; rss None -> fallback
+        pass
     try:
-        rss = get(f"https://www.youtube.com/feeds/videos.xml?channel_id={CH_ID}")
+        if rss is None:
+            raise RuntimeError("rss unavailable after retries")
         entries = re.findall(r'<entry>(.*?)</entry>', rss, re.S)
         vids = []
         for e in entries:
@@ -84,10 +95,11 @@ def main():
     # carry over archive.org audio URLs from the existing file (script rebuilds
     # from scratch and must not wipe the manually wired audio player sources)
     prev_path = os.path.join(ROOT, "data", "lessons.json")
-    prev_audio = {}
+    prev_audio, prev_lessons = {}, {}
     if os.path.exists(prev_path):
         try:
             for l in json.load(open(prev_path, encoding="utf-8")).get("lessons", []):
+                prev_lessons[l["id"]] = l
                 if l.get("audioUrl"):
                     prev_audio[l["id"]] = l["audioUrl"]
         except Exception as e:
@@ -148,6 +160,20 @@ def main():
                 print("skip short (verified via /shorts/):", vid, title, dur); continue
             else:
                 print("KEEP short-duration full lesson (not a YouTube Short):", vid, title, dur)
+        prev = prev_lessons.get(vid, {})
+        if not pub:
+            pub = prev.get("published", "")
+        if not desc and prev.get("description"):
+            desc = prev["description"]
+        if not dur and prev.get("durationSec"):
+            dur = prev["durationSec"]
+        if not title and prev.get("title"):
+            title = prev["title"]
+        if not pub:
+            # brand-new video but every date source failed this run (bot-variant
+            # pages): skip loudly, a later healthy run picks it up - never crash,
+            # never invent a date
+            print("SKIP (no publish date available):", vid, title); continue
         series = "שיעור שבועי" if "פרשת" in title else ("מוצ״ש בבית מדרש")
         dt = datetime.datetime.fromisoformat(pub.replace("Z", "+00:00"))
         lessons.append({
@@ -163,7 +189,15 @@ def main():
         if vid in prev_audio:
             lessons[-1]["audioUrl"] = prev_audio[vid]
         time.sleep(0.4)
+    seen_ids = {l["id"] for l in lessons}
+    for vid, pl in prev_lessons.items():
+        if vid not in seen_ids:
+            print("kept from previous data (not in this run's listing):", vid)
+            lessons.append(pl)
     lessons.sort(key=lambda l: l["published"], reverse=True)
+    if not lessons:
+        print("FATAL: zero lessons parsed - refusing to write empty catalog")
+        sys.exit(1)
     out = {"generated": datetime.datetime.now(datetime.timezone.utc).isoformat(),
            "showSpotifyUrl": f"https://open.spotify.com/show/{SHOW_ID}",
            "channelUrl": f"https://www.youtube.com/channel/{CH_ID}",
