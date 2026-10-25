@@ -150,3 +150,8 @@
 - v75: footer restructure pixel-pinned from video pointer frames (288-312s): brand block (logo+medal+title+dedication) moved to TOP of footer centered; האתר column -> right; בית המדרש -> left; credit/photo-rights lines stay bottom-center; VISIBLE version stamp line DELETED by explicit user order (finger on the line at 311s + "זאתי למחוק... זה לא יפה"). Versioning continues invisibly via ?v= refs + this file.
 - v76: (a) donate page back-to-site strip (ls-backwrap) was stark white between dark hero and teal footer - user: "אתה עשה את הרקע לבן, מאוד מאוד" (317-324s) -> tinted #eef4f6, page-local override. (b) REMOVED the "לשאר חברי הצוות" toggle + 8 placeholder team cards (ישראל ישראלי / tel:00000) from index contact section - user mocked the dummies on video (165-181s "כתוב פה חייג אפס אפס אפס"); real team roster is user-owned content, pending. JUDGMENT CALL (no explicit delete verb) - flagged to main. main.js untouched (bindOnce null-guards).
 - Note: visible coordinator cards intentionally show generic name "ישראל ישראלי" with real phones - user explicitly asked names anonymized to ישראל ישראלי (159-166s).
+
+## v82 (11:13 IST 25.10) - stat card mirror structure
+- User voice 11:08:15 (wamid...0MzOUQ0MDcA): למעלה מ־ moves to TOP row as plain label styled exactly like הסניף (same color/size/baseline), 1,000 blue middle, חניכים bottom; plus removed (auto-transcript שתורידי + main hypothesis; למעלה מ־ already means "over").
+- index.html: left stat card now stat-pre/stat-num/stat-label mirror of right card; data-prefix/data-suffix removed (JS support kept, unused).
+- Verified pixels mobile 390px + desktop 1280px on live site (both top labels same baseline, number blue, no plus).
