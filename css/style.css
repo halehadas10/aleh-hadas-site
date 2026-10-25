@@ -1400,6 +1400,9 @@ button.social-link { font: inherit; cursor: pointer; text-align: start; width: 1
 /* v117 (user 25.10 18:13): WhatsApp icon beside each group row */
 .wa-group-ph { display: flex; align-items: center; justify-content: center; gap: 8px; }
 .wa-group-ph .wa-ico { width: 20px; height: 20px; fill: #25D366; flex: 0 0 auto; }
+/* v119 (Roi 25.10 20:15): real WhatsApp group link rows (chavurot modal) */
+.wa-group-link { text-decoration: none; color: #14323f; }
+.wa-group-link:hover { background: #eef6f0; }
 .wa-groups-close { margin-top: 14px; background: none; border: none; color: #667; font-size: .95rem; cursor: pointer; text-decoration: underline; }
 
 /* v115 (user 25.10 17:35): lesson-page donation picker - same existing 3 methods as the donate page */
