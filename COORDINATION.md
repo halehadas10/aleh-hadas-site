@@ -262,3 +262,8 @@
 - Roi 25.10 bottom case (original quotes-return scope): the scroll spy's 35%-viewport read line never reaches the last homepage block (תרומה has no nav pair), so at the page bottom it recorded 'times' while the donation area filled the screen. main.js now records the actual last homepage section at page bottom, so quotes "חזרה לאתר" returns to it. No other page's back button touched.
 - refs: all css/js refs normalized to ?v=108 on ALL pages.
 - Executor: Avraham's side (this Instinct).
+
+## v109 (17:33 IST 25.10) - inert "קישור לקבוצה" button on program pages
+- User 17:31:17: 'תוסיף בכל דפי התוכנית לחצן בשם"קישור לקבוצה" בנתיים שלא יעשה כלום,בהמשך אשלח לך קישורים ושכל לחצן יפנה אל הקישורים האלו'. Added an inert <button> labeled קישור לקבוצה (no handler, no href) to the CTA row of program pages 1-7 and 9 (program-8 deleted in v108; program-10 is a placeholder stub with no CTA row - excluded, easy to add when it becomes a real page). Awaits his links.
+- refs: all css/js refs normalized to ?v=109 on ALL pages.
+- Executor: Avraham's side (this Instinct).
