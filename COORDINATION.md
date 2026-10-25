@@ -178,3 +178,9 @@
 
 ## v89 (11:40 IST 25.10) - mobile player bar layout fix (main pixel review)
 - Legacy max-560px rule HID time+rabbi and single-row flex squeezed meta to zero + half-clipped X. Fixed: two-row layout (cover+title+rabbi+time row, controls row space-between), 34px buttons, 64px vol slider. Pixel-verified 390px: time "0:02 / 45:16" visible, title+rabbi visible, X at x26-60 fully inside, overflowX false, playing.
+
+## A2 root-cause correction (11:45 IST 25.10) - duplicate lessons CLOSED
+- True root cause: lessons.js renders were NOT idempotent at filming time (fe70e1a) - shell re-init appended the full catalog per visit; his 2 visits = exactly 2x cards. Data never contained dups (5 historical states checked).
+- Fix: 76bd652 (02:56 IST) host.innerHTML='' in both render fns. Runtime-proven 25.10 11:44: 3 in-shell visits -> 12 cards each.
+- YouTube bot-variant (empty metadata) is a separate data-integrity issue, NOT the dup cause.
+- A3 (428-442s): grounded as shaveihevron DONATE-page reference (named option cards + payment methods). Option names/amounts for us = user-owned. No change made.
