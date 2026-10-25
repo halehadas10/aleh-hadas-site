@@ -324,6 +324,9 @@ Executor: Avraham's side (this Instinct).
 
 ## v122 (continued, owner 25.10 20:53 "ואת הפלאייר תוסיף לקרוסלה"): cleaned chavurot flyer (poster-chavurot-clean.png, דניאל פפר removed) added as 6th carousel slide on program-4, object-fit contain so the whole flyer shows unstretched/uncropped; existing 5 images preserved. Carousel dots auto-generate. Executor: Avraham's side (this Instinct).
 
+## v124 (25.10, night)
+- Follow-up on v123: quote-card "לכתבה המלאה" link (.qp-src a) also switched to story green so no non-green writing remains on the homepage. Same owner instruction.
+
 ## v123 (25.10, night)
 - Source: owner WhatsApp 25.10 23:30:59 (wamid.HBgMOTcyNTQ5OTE3MzcyFQIAEhgUM0E1NzZEN0NFRjlGNzIxNDA2NzIA): "תהפוך את כל הכיתוב בדף הראשי באתר לצבע הירוק ששמת במלל של הסיפור שלנו" — all homepage writing in the approved story green #427651.
 - Change: index.html body gets class home-green-text; scoped color overrides appended to css/style.css (v123 block). Explicit white text on photo/colored backgrounds (hero, program cards, buttons, player bar, footer) unchanged. Other pages untouched.

@@ -1443,4 +1443,5 @@ body.home-green-text .qp-name,
 body.home-green-text .qp-role,
 body.home-green-text .qp-src,
 body.home-green-text .programs-note,
-body.home-green-text .btn-ghost { color: #427651; }
+body.home-green-text .btn-ghost,
+body.home-green-text .qp-src a { color: #427651; }
