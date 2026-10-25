@@ -345,3 +345,9 @@ Executor: Avraham's side (this Instinct).
 - Source: owner WhatsApp 26.10 00:10:10 (wamid.HBgMOTcyNTQ5OTE3MzcyFQIAEhgWM0VCMEJCNUU1RDVCNjdFRThEMTk4NgA): "תחזיר את האתר לאיך שהיה עם הצבעים" — rollback of the homepage green-text change.
 - Change: removed the home-green-text class from index.html body and deleted the appended v123-v127 override blocks from css/style.css. Verified byte-identical to v122 except ?v= refs. Colors are exactly the pre-change state (story text keeps its original approved green, nav pill green with white label, section titles blue again).
 - Executor: Avraham's side (this Instinct).
+
+## v129 (26.10, midnight)
+- Source: owner WhatsApp 26.10 00:10:36 + 00:10:40 (wamid...NUUxRTU4OUYxRQA, wamid...N0NEQUJGRjJBQwA): "משום מה ביטלת את הגלילה המהירה בעת לחיצה על שורת הטאבים" / "תחזיר דחוף".
+- Root cause: v118 had replaced the fast custom eased scroller (~620ms easeInOutCubic) with a single native CSS-smooth scroll; from the owner's device that reads as "fast scroll cancelled".
+- Change (js/main.js only): restored the fast rAF-stepped easeInOutCubic glide (dur = min(620, max(260, dist*0.22))), kept behavior:'instant' steps (24.10 retarget-fight lesson), added an in-flight cancellation token (new gesture cancels the old animation - the other teleport source), kept prefers-reduced-motion instant path and all v118 busyness mitigations (offscreen video pause, idle prefetch).
+- Executor: Avraham's side (this Instinct).

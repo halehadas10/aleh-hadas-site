@@ -32,18 +32,34 @@ function ahPhotoPlaceholders() {
     actTimer: null
   };
 
+  var ahScrollToken = 0;
   function ahSmoothScroll(targetY) {
-    /* v118 (user 25.10 18:19 video): one NATIVE smooth scroll per gesture.
-       The previous rAF-stepped version stalled on busy machines: when frame
-       production hiccuped (video decode, prefetch, reveals), the animation
-       froze mid-glide and then teleported - the owner saw "no fast scroll".
-       A single native call is compositor-driven and cannot fight itself
-       (the 24.10 bug was PER-FRAME retargets, not one native glide). */
+    /* v129 (owner 26.10 00:10: "ביטלת את הגלילה המהירה, תחזיר דחוף"): restore
+       the fast eased glide (pre-v118 feel, ~620ms max) that v118's single
+       native-smooth call had replaced. steps stay behavior:'instant' - with
+       html{scroll-behavior:smooth} every plain scrollTo starts its own native
+       animation and per-frame retargets fight to a standstill (24.10 bug).
+       New vs the old rAF version: an in-flight animation is cancelled before
+       a new one starts (two competing loops was the other teleport source),
+       and v118's busyness fixes (offscreen video pause, idle prefetch) stay,
+       so the stall that motivated v118 is still mitigated. */
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       window.scrollTo({ top: targetY, behavior: 'instant' }); return;
     }
-    if (Math.abs(targetY - window.scrollY) < 4) { window.scrollTo({ top: targetY, behavior: 'instant' }); return; }
-    window.scrollTo({ top: targetY, behavior: 'smooth' });
+    var startY = window.scrollY, dist = targetY - startY;
+    if (Math.abs(dist) < 4) { window.scrollTo({ top: targetY, behavior: 'instant' }); return; }
+    var dur = Math.min(620, Math.max(260, Math.abs(dist) * 0.22));
+    var myToken = ++ahScrollToken;
+    var t0 = null;
+    function step(ts) {
+      if (myToken !== ahScrollToken) return; /* a newer gesture took over */
+      if (!t0) t0 = ts;
+      var p = Math.min(1, (ts - t0) / dur);
+      var e = p < 0.5 ? 4*p*p*p : 1 - Math.pow(-2*p + 2, 3) / 2; /* easeInOutCubic */
+      window.scrollTo({ top: startY + dist * e, behavior: 'instant' });
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
   }
 
   function ahOnHomePage() {
