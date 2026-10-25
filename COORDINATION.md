@@ -212,3 +212,18 @@
 - refs: all css/js refs normalized to ?v=97 on ALL pages.
 - Shmuel Eliyahu shrink remains approval-gated, NOT in this commit.
 - Executor: Avraham's side (this Instinct).
+
+## v98 (16:56 IST 25.10) - corner clearance widened
+- 56px read tight against long dates at 390px; widened to 72px. Same rule, both pages.
+
+## v99 (16:59 IST 25.10) - quotes "חזרה לאתר" returns to last homepage section (Roi 25.10 16:50:46 + clarification 16:50:58)
+- Grounded current behavior: quotes.html backHome href is plain ./index.html; the legacy inline handler only history.back()s when document.referrer is the homepage, which never holds for in-shell visits -> in the real flow it landed on the homepage TOP. Not the lessons ah-return system (separate, untouched).
+- js/main.js: scroll spy now persists the current homepage section id to sessionStorage['ah-home-section'] on change (spyPairs exist only on the homepage); hero reads as 'home' when no section passes the read line.
+- quotes.html backHome: if a saved section exists, navigate to ./index.html#<section> via AHShell.go (shell swap + existing hash landing) or location.href; legacy referrer/history.back fallback kept for direct visits with no saved section. Scope: quotes page only (Roi's request); gallery/lessons/donate/lesson back buttons unchanged.
+- refs: all css/js refs normalized to ?v=99 on ALL pages. Preserves v95 root-resolution.
+- Executor: Avraham's side (this Instinct).
+
+## v100 (17:00 IST 25.10) - closing mark moved to END OF QUOTE TEXT (user correction 16:59:14, supersedes v96-v98 placement)
+- User reply to the Eliyahu sketch: "לא טוב, תעביר את הגרשיים... לסוף הציטוט של הרב ולא לז החלון שלו". The closing gershayim now sits inline right after the last word of the quote text (.qp-text::after / .q-text::after, same green var(--gold) serif as the opening mark, text size). Corner ::after and the 72px reserved strip removed. Applied to every quote card, home + quotes page. Card heights unchanged (Eliyahu shrink still approval-gated, NOT included).
+- refs: all css/js refs normalized to ?v=100 on ALL pages.
+- Executor: Avraham's side (this Instinct).
