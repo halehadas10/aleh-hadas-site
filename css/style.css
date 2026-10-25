@@ -1250,9 +1250,18 @@ body.ahp-has-bar .site-footer { padding-bottom: 20px; }
 .lp-own-play:hover { background: #17729d; }
 
 @media (max-width: 560px) {
-  .ahp-time { display: none; }
-  .ahp-sub { display: none; }
-  .ahp-btn { width: 38px; height: 38px; }
+  /* v89 (main pixel review 25.10): mobile bar must show title/rabbi/time and
+     every control without horizontal overflow - two-row in-flow layout */
+  .ahp-row { flex-wrap: wrap; row-gap: 2px; column-gap: 10px; padding: 8px 10px calc(8px + env(safe-area-inset-bottom, 0)); }
+  .ahp-cover { width: 40px; height: 40px; }
+  .ahp-meta { flex: 1 1 calc(100% - 130px); min-width: 0; }
+  .ahp-time { display: block; flex: 0 0 auto; align-self: center; }
+  .ahp-sub { display: block; }
+  .ahp-controls { flex: 1 1 100%; justify-content: space-between; gap: 2px; }
+  .ahp-btn { width: 34px; height: 34px; }
+  .ahp-btn svg { width: 20px; height: 20px; }
+  .ahp-play { width: 40px; height: 40px; }
+  .ahp-vol { max-width: 64px; }
 }
 
 /* Gallery page: lightbox + floating captions (moved out of gallery.html inline
