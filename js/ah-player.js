@@ -25,9 +25,11 @@
   function buildBar() {
     var existing_mount = document.getElementById('lpAudio');
     if (bar && bar.isConnected) {
-      if (existing_mount && bar.parentNode !== existing_mount) {
+      if (existing_mount && bar.parentNode === existing_mount) {
+        /* v86: #lpAudio innerHTML gets rewritten by lesson-player init -
+           the bar must be a SIBLING after it, not a child */
         bar.classList.add('ahp-inflow');
-        existing_mount.appendChild(bar);
+        existing_mount.parentNode.insertBefore(bar, existing_mount.nextSibling);
         document.body.classList.remove('ahp-has-bar');
       }
       return;
@@ -73,7 +75,7 @@
     var mount = document.getElementById('lpAudio');
     if (mount) {
       bar.classList.add('ahp-inflow');
-      mount.appendChild(bar);
+      mount.parentNode.insertBefore(bar, mount.nextSibling);
     } else {
       document.body.appendChild(bar);
     }
