@@ -104,6 +104,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .site-header.is-scrolled .brand-logo { opacity: 1; }
 .main-nav { display: flex; gap: clamp(8px, 1.2vw, 24px); align-items: center; }
+.nav-mobile-home { display: none; }
 .nav-link {
   position: relative;
   font-weight: 500;
@@ -592,6 +593,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   }
   .main-nav.is-open { opacity: 1; pointer-events: auto; }
   .main-nav .nav-link { font-size: 1.5rem; }
+  .main-nav .nav-mobile-home { display: block; }
   .nav-toggle { display: flex; }
   .story-grid { grid-template-columns: 1fr; }
   .story-photo { max-width: 460px; }
