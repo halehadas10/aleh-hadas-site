@@ -122,16 +122,6 @@ def main():
                 pub = mf.get("publishDate") or mf.get("uploadDate") or pub
         except Exception as e:
             print("watch err", vid, e)
-        # rabbi: first title segment when it starts with הרב, else from description
-        rabbi = ""
-        seg = re.split(r'\|', title)[0].strip()
-        if seg.startswith("הרב"):
-            rabbi = seg
-        else:
-            m = re.search(r'הרב[ה"׳\s]+[א-ת]{2,}(?:\s+[א-ת]{2,}){1,2}', desc)
-            if m: rabbi = m.group(0)
-        parts = [p.strip() for p in re.split(r'\|', title)]
-        topic = parts[1] if len(parts) > 1 else title
         # 23.10: user - full lessons only, no promos/shorts.
         # Exclusions must be source-backed, never duration alone:
         #  a) explicit known IDs (promo + Short the user named);
@@ -174,6 +164,16 @@ def main():
             # pages): skip loudly, a later healthy run picks it up - never crash,
             # never invent a date
             print("SKIP (no publish date available):", vid, title); continue
+        # rabbi/topic derived from the FINAL title (after prev-data carry-over)
+        rabbi = ""
+        seg = re.split(r'\|', title)[0].strip()
+        if seg.startswith("הרב"):
+            rabbi = seg
+        else:
+            m = re.search(r'הרב[ה"׳\s]+[א-ת]{2,}(?:\s+[א-ת]{2,}){1,2}', desc)
+            if m: rabbi = m.group(0)
+        parts = [p.strip() for p in re.split(r'\|', title)]
+        topic = parts[1] if len(parts) > 1 else title
         series = "שיעור שבועי" if "פרשת" in title else ("מוצ״ש בבית מדרש")
         dt = datetime.datetime.fromisoformat(pub.replace("Z", "+00:00"))
         lessons.append({
