@@ -33,25 +33,17 @@ function ahPhotoPlaceholders() {
   };
 
   function ahSmoothScroll(targetY) {
-    /* steps must be behavior:'instant': with html{scroll-behavior:smooth} every
-       plain scrollTo starts its own native smooth animation, and the per-frame
-       retargets fight each other until the scroll never moves (killed the fast
-       scroll - user video 24.10). */
+    /* v118 (user 25.10 18:19 video): one NATIVE smooth scroll per gesture.
+       The previous rAF-stepped version stalled on busy machines: when frame
+       production hiccuped (video decode, prefetch, reveals), the animation
+       froze mid-glide and then teleported - the owner saw "no fast scroll".
+       A single native call is compositor-driven and cannot fight itself
+       (the 24.10 bug was PER-FRAME retargets, not one native glide). */
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       window.scrollTo({ top: targetY, behavior: 'instant' }); return;
     }
-    var startY = window.scrollY, dist = targetY - startY;
-    if (Math.abs(dist) < 4) { window.scrollTo({ top: targetY, behavior: 'instant' }); return; }
-    var dur = Math.min(620, Math.max(260, Math.abs(dist) * 0.22));
-    var t0 = null;
-    function step(ts) {
-      if (!t0) t0 = ts;
-      var p = Math.min(1, (ts - t0) / dur);
-      var e = p < 0.5 ? 4*p*p*p : 1 - Math.pow(-2*p + 2, 3) / 2; /* easeInOutCubic */
-      window.scrollTo({ top: startY + dist * e, behavior: 'instant' });
-      if (p < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
+    if (Math.abs(targetY - window.scrollY) < 4) { window.scrollTo({ top: targetY, behavior: 'instant' }); return; }
+    window.scrollTo({ top: targetY, behavior: 'smooth' });
   }
 
   function ahOnHomePage() {
@@ -224,6 +216,19 @@ function ahPhotoPlaceholders() {
       }, { threshold: [0, 0.15] });
     }
     document.querySelectorAll('.reveal:not(.is-visible)').forEach(function (el) { S.revealObs.observe(el); });
+
+    /* v118 (user 25.10 18:19): pause the promo video while it is offscreen -
+       a looping autoplay decode competes with scrolling on modest hardware */
+    var promoV = document.getElementById('promoVideo');
+    if (promoV && 'IntersectionObserver' in window && !promoV.__ahObs) {
+      promoV.__ahObs = true;
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { var pr = promoV.play(); if (pr && pr.catch) pr.catch(function () {}); }
+          else { promoV.pause(); }
+        });
+      }, { threshold: 0.05 }).observe(promoV);
+    }
 
     /* Hero carousel (index only; timer rebuilt on every init so swaps never leak) */
     if (S.heroTimer) { clearInterval(S.heroTimer); S.heroTimer = null; }

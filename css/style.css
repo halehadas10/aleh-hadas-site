@@ -1202,6 +1202,9 @@ section[id], main [id] { scroll-margin-top: 84px; }
 .tm-owner { text-align: center; font-weight: 700; color: #14323f; margin: 0 0 6px; }
 .tm-people { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
 .tm-person { border: 1px solid rgba(0,80,110,.14); border-radius: 14px; padding: 14px; text-align: center; background: linear-gradient(150deg, #f2f7f5, #fff); }
+/* v118 (user 25.10 18:20 voice): with ONE card, span the full window width -
+   a lone card in the two-column grid hugged one side and looked broken */
+.tm-person:only-child { grid-column: 1 / -1; }
 .tm-person h3 { margin: 0 0 2px; font-size: 1.05rem; color: #14323f; }
 .tm-role { margin: 0 0 10px; font-size: .85rem; color: #617983; }
 .tm-actions { display: flex; flex-direction: column; gap: 8px; }

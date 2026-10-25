@@ -243,9 +243,16 @@
   /* warm the cache right after initial load too: direct landings on inner
      pages (quotes, lessons) had no swap, so the first tab click paid the
      full network wait */
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () { prefetchLinks(document); });
-  } else { prefetchLinks(document); }
+  /* v118 (user 25.10 18:19): prefetch once the page is fully loaded and the
+     browser is idle - 20+ competing fetches right after DOMContentLoaded
+     starved the first tab clicks on modest connections/hardware */
+  function prefetchWhenIdle() {
+    var run = function () { prefetchLinks(document); };
+    if ('requestIdleCallback' in window) { requestIdleCallback(run, { timeout: 3000 }); }
+    else { setTimeout(run, 1500); }
+  }
+  if (document.readyState === 'complete') { prefetchWhenIdle(); }
+  else { window.addEventListener('load', prefetchWhenIdle); }
 
   window.AHShell = { go: swapTo, active: true };
   window.AHShellActive = true;

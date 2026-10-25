@@ -6,11 +6,13 @@
 <link rel="icon" type="image/png" href="./assets/logo-medal-ariel-64.png">
 <title>תרומה | עלה הדס</title>
 <meta name="description" content="תרומה לבית המדרש עלה הדס - שם עולם, שמן למאור, עץ חיים, קניין תורה ותרומה חופשית.">
-<link rel="stylesheet" href="./css/style.css?v=117">
+<link rel="stylesheet" href="./css/style.css?v=118">
 <style>
-    .ls-backwrap { background: #eef4f6; padding: 26px 0; }
-.donate-hero { background: #f4f7f8; padding: 56px 0 30px; text-align: center; position: relative; overflow: hidden; } /* v115 (user 25.10 17:46): blue background removed */
-  .donate-hero::before { content: ''; position: absolute; inset: 0; background: url('./assets/gallery/side-3.jpg') center 35% / cover no-repeat; opacity: .16; } /* v115 (user 25.10 17:46): gallery photo with most learners (not used on homepage), high transparency, aspect preserved via cover */
+    .ls-backwrap { background: transparent; padding: 26px 0; } /* v118 (user 25.10 18:22): white rectangle gone - the hero photo continues to the blue footer */
+.dn-bgwrap { position: relative; overflow: hidden; background: #f4f7f8; } /* v118 (user 25.10 18:22 voice): photo spans hero THROUGH the back strip, one continuous image */
+  .dn-bgwrap::before { content: ''; position: absolute; inset: 0; background: url('./assets/gallery/side-3.jpg') center 72% / cover no-repeat; opacity: .16; z-index: 0; } /* v118: framed lower so the learners show, not the ceiling; same transparency; cover = aspect preserved, no distortion */
+  .dn-bgwrap > * { position: relative; z-index: 1; }
+  .donate-hero { background: transparent; padding: 56px 0 30px; text-align: center; position: relative; overflow: hidden; } /* v118: bg moved to .dn-bgwrap */
   .donate-verse { position: relative; color: #427651; font-size: 2.3rem; font-weight: 700; line-height: 1.55; text-shadow: none; margin: 10px auto 6px; max-width: 20em; padding-inline: 18px; }
   .donate-verse-src { position: relative; color: #5d6b5d; font-size: 1.02rem; text-align: center; margin-bottom: 4px; }
   .donate-kicker { position: relative; color: #66787f; font-size: .95rem; letter-spacing: .12em; }
@@ -117,6 +119,7 @@
     });
   }
 </script>
+  <div class="dn-bgwrap">
   <section class="donate-hero">
     <p class="donate-kicker">בית המדרש ״עלה הדס״ · הדר גנים</p>
     <h1 class="donate-verse">עֵץ־חַיִּים הִיא לַמַּחֲזִיקִים בָּהּ וְתֹמְכֶיהָ מְאֻשָּׁר</h1>
@@ -153,6 +156,7 @@
   </section>
   <div class="ls-backwrap">
     <a class="btn btn-back" href="./index.html">חזרה לאתר</a>
+  </div>
   </div>
 
   <div class="dn-pay-overlay" id="dnPayOverlay" role="dialog" aria-modal="true" aria-label="בחירת אמצעי תרומה">
@@ -201,8 +205,8 @@
   </div>
 </footer>
 
-<script src="./js/ext-overlay.js?v=117"></script>
-<script src="./js/ah-shell.js?v=117"></script>
+<script src="./js/ext-overlay.js?v=118"></script>
+<script src="./js/ah-shell.js?v=118"></script>
 <script>
 (function () {
   var overlay = document.getElementById('dnPayOverlay');
