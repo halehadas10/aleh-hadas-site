@@ -986,7 +986,7 @@ section.contact-donate-solo { padding-top: clamp(34px, 5vw, 60px); padding-botto
 
 /* v19 batch: virtual midrash (lessons) */
 .ls-kicker { text-align: center; color: var(--gold); font-size: 1.05rem; letter-spacing: .06em; margin: 0 0 10px; }
-.ls-hero { padding-bottom: 10px; }
+.ls-hero { padding-top: calc(var(--header-h) + 24px); padding-bottom: 10px; }
 .ls-count { text-align: center; color: var(--text-dim); font-size: .95rem; margin-top: 10px; }
 .ls-strip { display: flex; align-items: center; gap: 12px; }
 .ls-carousel { display: grid; grid-auto-flow: column; grid-auto-columns: clamp(240px, 26vw, 320px);

@@ -81,6 +81,18 @@ def main():
         print("spotify err", e)
     json.dump(smap, open(map_path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
+    # carry over archive.org audio URLs from the existing file (script rebuilds
+    # from scratch and must not wipe the manually wired audio player sources)
+    prev_path = os.path.join(ROOT, "data", "lessons.json")
+    prev_audio = {}
+    if os.path.exists(prev_path):
+        try:
+            for l in json.load(open(prev_path, encoding="utf-8")).get("lessons", []):
+                if l.get("audioUrl"):
+                    prev_audio[l["id"]] = l["audioUrl"]
+        except Exception as e:
+            print("prev lessons read err", e)
+
     lessons = []
     for vid, title, pub in vids:
         desc, dur = "", 0
@@ -148,6 +160,8 @@ def main():
             "onSpotify": vid in smap,
             "thumbnail": f"https://i.ytimg.com/vi/{vid}/hq720.jpg",
         })
+        if vid in prev_audio:
+            lessons[-1]["audioUrl"] = prev_audio[vid]
         time.sleep(0.4)
     lessons.sort(key=lambda l: l["published"], reverse=True)
     out = {"generated": datetime.datetime.now(datetime.timezone.utc).isoformat(),
