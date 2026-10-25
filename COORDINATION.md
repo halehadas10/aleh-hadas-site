@@ -199,3 +199,10 @@
 - Fix: js/ah-shell.js + js/main.js compute AH_ROOT from their own script URL (never location.href); ah-shell re-points .site-header/.site-footer './' links to root-absolute once at init; goHomeIndex targets new URL('index.html'+hash, AH_ROOT). Swapped-in <main> relative links untouched.
 - refs: all css/js refs normalized to ?v=95 on ALL pages incl. programs/.
 - Executor: Avraham's side (this Instinct). No design change, behavior repair only.
+
+## v96 (16:50 IST 25.10) - closing gershayim on every quote card (user 16:48:45)
+- User text 16:48:45: add quotation marks at the BOTTOM-RIGHT corner of every quote, home #quotes and the quotes/articles page. Executed under his direct ask (his own site change).
+- index.html .qp-card::after + quotes.html .q-card::after: "״" glyph, bottom:6px right:22px, same 3.2rem gold serif as the existing top-left ::before. Top marks, texts, photos untouched.
+- refs: all css/js refs normalized to ?v=96 on ALL pages.
+- SEPARATE approval-gated item: Shmuel Eliyahu card blank-space shrink = MOCKUP ONLY until his explicit yes (same message). Not in this commit.
+- Executor: Avraham's side (this Instinct).

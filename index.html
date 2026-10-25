@@ -12,7 +12,7 @@
   window.SITE_PHOTOS = false;
   if (!window.SITE_PHOTOS) document.documentElement.classList.add('no-photos');
 </script>
-<link rel="stylesheet" href="./css/style.css?v=95">
+<link rel="stylesheet" href="./css/style.css?v=96">
 <style>
   .quotes-preview { background: var(--navy-800); }
   .qp-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 10px; }
@@ -22,6 +22,8 @@
   .qp-card > * { grid-column: 2; min-width: 0; }
   .qp-card > .qp-photo { grid-column: 1; grid-row: 1 / span 20; }
   .qp-card::before { content: "״"; position: absolute; top: 6px; left: 22px;
+                     font-size: 3.2rem; color: var(--gold); line-height: 1; font-family: serif; }
+  .qp-card::after { content: "״"; position: absolute; bottom: 6px; right: 22px;
                      font-size: 3.2rem; color: var(--gold); line-height: 1; font-family: serif; }
   .qp-text { font-size: 1.22rem; line-height: 1.9; color: #00506e; font-weight: 600; margin-bottom: 22px; }
   .qp-name { color: var(--blue-light); font-weight: 700; }
@@ -513,10 +515,10 @@
   <img alt="מודעה בגודל מלא" id="lightboxImg">
 </div>
 
-<script src="./js/main.js?v=95"></script>
-<script src="./js/lessons.js?v=95"></script>
-<script src="./js/ext-overlay.js?v=95"></script>
-<script src="./js/ah-player.js?v=95"></script>
-<script src="./js/ah-shell.js?v=95"></script>
+<script src="./js/main.js?v=96"></script>
+<script src="./js/lessons.js?v=96"></script>
+<script src="./js/ext-overlay.js?v=96"></script>
+<script src="./js/ah-player.js?v=96"></script>
+<script src="./js/ah-shell.js?v=96"></script>
 </body>
 </html>
