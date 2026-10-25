@@ -323,3 +323,8 @@ Executor: Avraham's side (this Instinct).
 ## v122 (owner 25.10 20:53 WhatsApp "תבטל את הקטע שאם לוחצים קישור לקבוצה זה מעביר לדף חדש"; owner controls over Roi's page approval): program-4 restored to the v120 in-page modal (button opens six-group modal, two-line labels קבוצת וואצפ חבורה / לכיתה ה׳-י׳, no עולים, six byte-exact links). Standalone chavurot-groups.html + cleaned poster remain in repo but are no longer linked from the button. Executor: Avraham's side (this Instinct).
 
 ## v122 (continued, owner 25.10 20:53 "ואת הפלאייר תוסיף לקרוסלה"): cleaned chavurot flyer (poster-chavurot-clean.png, דניאל פפר removed) added as 6th carousel slide on program-4, object-fit contain so the whole flyer shows unstretched/uncropped; existing 5 images preserved. Carousel dots auto-generate. Executor: Avraham's side (this Instinct).
+
+## v123 (25.10, night)
+- Source: owner WhatsApp 25.10 23:30:59 (wamid.HBgMOTcyNTQ5OTE3MzcyFQIAEhgUM0E1NzZEN0NFRjlGNzIxNDA2NzIA): "תהפוך את כל הכיתוב בדף הראשי באתר לצבע הירוק ששמת במלל של הסיפור שלנו" — all homepage writing in the approved story green #427651.
+- Change: index.html body gets class home-green-text; scoped color overrides appended to css/style.css (v123 block). Explicit white text on photo/colored backgrounds (hero, program cards, buttons, player bar, footer) unchanged. Other pages untouched.
+- Executor: Avraham's side (this Instinct).

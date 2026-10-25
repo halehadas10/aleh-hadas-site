@@ -1421,3 +1421,26 @@ button.social-link { font: inherit; cursor: pointer; text-align: start; width: 1
 .lp-pay-hint { display: block; font-size: 0.72rem; font-weight: 400; opacity: 0.85; margin-top: 2px; }
 .lp-pay-close { margin-top: 14px; background: none; border: none; color: #889; font-size: .95rem; cursor: pointer; text-decoration: underline; }
 @media (prefers-reduced-motion: reduce) { .wa-groups-card, .wa-groups-overlay, .lp-pay-card, .lp-pay-overlay { transition: none; } }
+
+/* === v123 (user 25.10 23:30:59): all homepage writing in the approved story green #427651 (same as הסיפור שלנו body text). Scoped to index.html via body.home-green-text. Explicit white text on photo/colored backgrounds (hero, program cards, buttons, player bar, footer) stays white for contrast. === */
+body.home-green-text { color: #427651; }
+body.home-green-text .section-title,
+body.home-green-text .section-sub,
+body.home-green-text .nav-link,
+body.home-green-text .tile-num,
+body.home-green-text .tile-label,
+body.home-green-text .time-value,
+body.home-green-text .time-label,
+body.home-green-text .video-placeholder,
+body.home-green-text .contact-card h3,
+body.home-green-text .social-handle,
+body.home-green-text .stat-num,
+body.home-green-text .stat-label,
+body.home-green-text .stat-pre,
+body.home-green-text .lp-ic-label,
+body.home-green-text .qp-text,
+body.home-green-text .qp-name,
+body.home-green-text .qp-role,
+body.home-green-text .qp-src,
+body.home-green-text .programs-note,
+body.home-green-text .btn-ghost { color: #427651; }
