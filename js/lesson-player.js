@@ -99,13 +99,26 @@
       const st = JSON.parse(localStorage.getItem(PS_KEY) || 'null');
       if (st && st.v === vid && st.t > 10) startAt = Math.floor(st.t);
     } catch (e) {}
+    let created = false;
     function createPlayer() {
+      if (created) return; created = true;
       player = new YT.Player('lpFrame', {
         videoId: vid,
         playerVars: { controls: 1, rel: 0, start: startAt, modestbranding: 1 },
         events: { onStateChange: ev => { if (window.AHsaveState) AHsaveState(ev.target, vid); } }
       });
     }
+    /* v78 mobile fallback: if the IFrame API is blocked or slow (seen blank on
+       phone Safari/4G), inject a plain youtube-nocookie embed after 4s */
+    setTimeout(function () {
+      if (created) return; created = true;
+      const host = document.getElementById('lpFrame');
+      if (!host || host.tagName !== 'DIV') return;
+      host.outerHTML = '<iframe id="lpFrame" class="lp-frame" ' +
+        'src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(vid) + '?rel=0&modestbranding=1" ' +
+        'title="נגן וידאו" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ' +
+        'allowfullscreen></iframe>';
+    }, 4000);
     if (window.YT && window.YT.Player) { createPlayer(); return; }
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
