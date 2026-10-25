@@ -151,13 +151,21 @@
   function syncUI() {
     if (!bar || !current) return;
     var playing = !audio.paused && !audio.ended;
-    $('ahpPlay').querySelector('.ahp-i-play').style.display = playing ? 'none' : '';
-    $('ahpPlay').querySelector('.ahp-i-pause').style.display = playing ? '' : 'none';
-    $('ahpPlay').setAttribute('aria-label', playing ? 'השהיה' : 'הפעלה');
     var d = audio.duration || 0, t = audio.currentTime || 0;
-    $('ahpFill').style.width = d ? (t / d * 100) + '%' : '0%';
-    $('ahpProg').setAttribute('aria-valuenow', d ? Math.round(t / d * 100) : 0);
-    $('ahpTime').textContent = fmt(t) + ' / ' + fmt(d);
+    /* v94 (main review 14:21): in preview mode the bar shows THIS page's lesson
+       paused at 0:00. A DIFFERENT lesson may still be playing in the audio
+       element - its timeupdate must not rewrite this bar's icons/time/progress
+       (that would show lesson A's live clock and pause icon under lesson B's
+       title, implying B is playing). mediaSession below still tracks the
+       actually-playing audio (lock-screen controls stay correct). */
+    if (bar.dataset.preview !== '1') {
+      $('ahpPlay').querySelector('.ahp-i-play').style.display = playing ? 'none' : '';
+      $('ahpPlay').querySelector('.ahp-i-pause').style.display = playing ? '' : 'none';
+      $('ahpPlay').setAttribute('aria-label', playing ? 'השהיה' : 'הפעלה');
+      $('ahpFill').style.width = d ? (t / d * 100) + '%' : '0%';
+      $('ahpProg').setAttribute('aria-valuenow', d ? Math.round(t / d * 100) : 0);
+      $('ahpTime').textContent = fmt(t) + ' / ' + fmt(d);
+    }
     if ('mediaSession' in navigator) {
       try { navigator.mediaSession.playbackState = playing ? 'playing' : 'paused'; } catch (_) {}
       try {
