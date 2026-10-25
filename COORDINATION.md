@@ -250,3 +250,7 @@
 ## v106 (17:17 IST 25.10) - shell fetch revalidation
 - ah-shell fetchPage now uses cache:'no-cache' (ETag revalidate): shell navigation picks up deployed HTML changes instead of serving session-cached/HTTP-cached stale page HTML (found while verifying v105: a shell swap rendered the pre-fix program page structure from cache while direct loads were correct). 304s keep it cheap; no behavior change otherwise.
 - Executor: Avraham's side (this Instinct).
+
+## v107 (17:20 IST 25.10) - TEMP placeholder photo on all program pages (user 17:09:33)
+- User: "בכל התמונות בדפי התוכניות תבחר תמונה רנדומאלית שהעליתי לך של בנים ותשים אותה בהכל, בהמשך אתן לך תמונות ותשים אותם". Chose assets/image-0cc9df18-PVXUTW4T.jpg (his Oct 23/25 WhatsApp upload batch, verified visually: boys learning in the beit midrash) and set ALL 44 carousel slides across program-1..9 to it (program-10 stub has no photos). Original gallery assets kept on disk untouched. Placeholder until he supplies replacements.
+- Executor: Avraham's side (this Instinct).
