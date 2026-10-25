@@ -139,7 +139,7 @@ def main():
         #  c) <=3min videos are checked against YouTube's own Shorts player
         #     (/shorts/<id> returns 200 only for real Shorts); short FULL
         #     lessons pass the check and stay in the list.
-        EXCLUDE_IDS = {"Dqp7iOoyEQA", "mK85KXUHtSM"}
+        EXCLUDE_IDS = {"Dqp7iOoyEQA", "mK85KXUHtSM", "66qw88EqjI8"}
         class _NoRedirect(urllib.request.HTTPRedirectHandler):
             def redirect_request(self, *a, **k):
                 return None
