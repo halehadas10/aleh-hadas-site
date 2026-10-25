@@ -769,6 +769,10 @@ section.contact-donate-solo { padding-top: clamp(34px, 5vw, 60px); padding-botto
   margin-top: 0;
 }
 
+/* Program kicker link (user video 25.10: make תורהנוער clickable -> official site) */
+.kicker-link { color: inherit; text-decoration: underline; text-decoration-color: rgba(0,80,110,.35); text-underline-offset: 3px; transition: color .2s ease; }
+.kicker-link:hover { color: var(--gold); text-decoration-color: var(--gold); }
+
 /* Team list expand animation + dedicated close button (user video: "לזה אין אנימציה", "כפתור של סגירה כאן, משהו יפה") */
 .team-extra.team-closing { opacity: 0; transform: translateY(10px); transition: opacity .25s ease, transform .25s ease; }
 .team-close-wrap { text-align: center; margin-top: 20px; }
