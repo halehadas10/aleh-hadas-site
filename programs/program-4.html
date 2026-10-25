@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/png" href="../assets/logo-medal-ariel.png">
 <title>חבורות - עלה הדס</title>
-<link rel="stylesheet" href="../css/style.css?v=101">
+<link rel="stylesheet" href="../css/style.css?v=103">
 <style>
   body { background: #fff; }
   .prog-wrap { max-width: 980px; margin: 0 auto; padding: 34px 20px 70px; }
@@ -78,10 +78,20 @@
     <div class="prog-desc">בלה בלה בלה</div>
     <div class="prog-ctas">
       <a class="btn btn-green" href="../index.html#programs">לכל התכניות</a>
-      <a class="prog-dn" href="../donate.html"><span class="prog-dn-medal"><img class="prog-dn-logo" src="../assets/logo-aleh-hadas-light.png" alt="לוגו עלה הדס"></span><span class="prog-dn-name">לתרומה לבית המדרש</span></a>
       <button class="btn btn-ghost" id="talkBtn" type="button">דברו איתנו</button>
     </div>
-  </main>
+    <section class="section contact-donate contact-donate-solo">
+    <div class="container">
+      <div class="donate-block">
+        <h2 class="section-title">תרומה</h2>
+        <p class="section-sub">רוצים לעזור להגדיל את פעילות בית המדרש ולתמוך בלימוד התורה?</p>
+        <a class="btn btn-donate" href="../donate.html">תרמו עכשיו</a>
+        <p class="donate-note">לחיצה תעביר אתכם לדף התרומות של בית המדרש</p>
+      </div>
+    </div>
+  </section>
+
+</main>
 <script>
 (function () {
   var slides = Array.prototype.slice.call(document.querySelectorAll('.prog-slide'));
@@ -148,7 +158,7 @@
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) close(); });
 })();
 </script>
-<script src="../js/ah-player.js?v=101"></script>
-<script src="../js/ah-shell.js?v=101"></script>
+<script src="../js/ah-player.js?v=103"></script>
+<script src="../js/ah-shell.js?v=103"></script>
 </body>
 </html>
