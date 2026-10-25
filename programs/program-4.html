@@ -17,6 +17,7 @@
   .prog-slide { position: absolute; inset: 0; opacity: 0; transition: opacity .6s ease; }
   .prog-slide.is-on { opacity: 1; }
   .prog-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .prog-slide--poster img { object-fit: contain; } /* v122 (owner 25.10 20:53): flyer added whole, never stretched/cropped */
   .prog-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 46px; height: 46px; border-radius: 50%;
     border: none; background: rgba(255,255,255,.92); color: #00506e; cursor: pointer; display: flex; align-items: center; justify-content: center;
     box-shadow: 0 4px 14px rgba(0,0,0,.25); transition: background .2s, transform .2s; z-index: 2; }
@@ -71,6 +72,7 @@
         <div class="prog-slide"><img src="../assets/program-uniform-roi.jpg" alt="חבורות" loading="lazy"></div>
         <div class="prog-slide"><img src="../assets/program-uniform-roi.jpg" alt="חבורות" loading="lazy"></div>
         <div class="prog-slide"><img src="../assets/program-uniform-roi.jpg" alt="חבורות" loading="lazy"></div>
+        <div class="prog-slide prog-slide--poster"><img src="../assets/poster-chavurot-clean.png" alt="פלאייר החבורות" loading="lazy"></div> <!-- v122 (owner 25.10 20:53 "ואת הפלאייר תוסיף לקרוסלה"): cleaned flyer, דניאל פפר removed -->
       </div>
       <button type="button" class="prog-arrow prog-prev" aria-label="תמונה קודמת"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
       <button type="button" class="prog-arrow prog-next" aria-label="תמונה הבאה"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
