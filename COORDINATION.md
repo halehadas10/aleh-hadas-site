@@ -324,6 +324,9 @@ Executor: Avraham's side (this Instinct).
 
 ## v122 (continued, owner 25.10 20:53 "ואת הפלאייר תוסיף לקרוסלה"): cleaned chavurot flyer (poster-chavurot-clean.png, דניאל פפר removed) added as 6th carousel slide on program-4, object-fit contain so the whole flyer shows unstretched/uncropped; existing 5 images preserved. Carousel dots auto-generate. Executor: Avraham's side (this Instinct).
 
+## v125 (25.10, night)
+- Follow-up on v123/v124: full computed-color sweep of the homepage found remaining non-green text - lesson carousel (.ls-topic/.ls-meta/.ls-desc/.ls-act), contact roles, donate note, WhatsApp-groups modal (.wa-groups-*). All switched to story green. Icons/glyphs and explicit white-on-dark text still untouched.
+
 ## v124 (25.10, night)
 - Follow-up on v123: quote-card "לכתבה המלאה" link (.qp-src a) also switched to story green so no non-green writing remains on the homepage. Same owner instruction.
 
