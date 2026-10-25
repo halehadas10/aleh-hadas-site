@@ -293,3 +293,14 @@ Executor: Avraham's side (this Instinct).
 - ah-shell.js: hash-landing after an in-shell swap now waits up to ~2s for main.js's AHScrollToId (fast eased scroller) before the native scrollIntoView fallback. Root cause of the user-reported lost fast scroll (25.10 17:41): direct landings on inner pages (quotes.html etc.) do not load main.js, so swap landings fell back to the slow native CSS-smooth scrollIntoView. Verified live pre-fix: quotes->home tab click = native glide, no AHScrollToId.
 - refs ?v=114 on all pages.
 Executor: Avraham's side (this Instinct).
+
+## v115 (25.10.2026 ~17:56)
+- ah-shell.js: shell swaps now ADOPT site header/footer when the session started on a chrome-less page (program pages ship main-only). Fixes: refresh/direct-load on a program page then "חזרה לתכניות" landed on a headerless homepage - no nav/tab bar at all (found during the 17:41 fast-scroll investigation).
+- Talk modal (programs 1-7,9): ONE placeholder contact card - ישראל ישראלי / בלה בלה בלה / חייג · 000000000 (user 25.10 17:37:54). Real contacts (דוד גרינפלד, נועה מועלם) and their tel/wa.me targets removed from these modals. Roi's דניאל פפר removal (17:40:19): zero textual references existed site-wide (grep-verified).
+- lesson.html: donation heart now opens the EXISTING 3-method picker (JGive/PayBox/Bit, same destinations as donate page) instead of linking straight to JGive (user 25.10 17:35:01). Heart icon retained.
+- index.html עקבו אחרינו: Instagram card split like the YouTube/Spotify pair; new WhatsApp card opposite it with description קבוצות הוואצפ של ביהמ"ד (user 25.10 17:40:49). Click opens a small window with ONE column of FIVE placeholder groups - no links yet (owner supplies them later).
+- style.css: #programs bottom padding clamp(30px,4vw,52px) - narrows the programs<->contact gap (Roi 25.10 17:37:35; measured 115.2px+51.2px before).
+- program-10 stub: same inert קישור לקבוצה placeholder button as the other program pages.
+- donate.html: blue hero background REMOVED (user 25.10 17:46:28); gallery photo with the most learners that does NOT appear on the homepage (assets/gallery/side-3.jpg, all act-* are on the homepage) as background at high transparency (opacity .16, cover = aspect preserved, no stretch); hero text recolored for readability on light background.
+- refs ?v=115 on all pages.
+Executor: Avraham's side (this Instinct).

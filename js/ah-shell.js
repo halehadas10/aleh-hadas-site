@@ -24,13 +24,14 @@
      site root, once, so they survive shell navigation into subdirectories.
      Swapped-in <main> content keeps its own relative links (resolved against
      the current URL, which matches the page it came from). */
-  (function rootifyChromeLinks() {
+  function rootifyChromeLinks() {
     Array.prototype.forEach.call(
       document.querySelectorAll('.site-header a[href^="./"], .site-footer a[href^="./"]'),
       function (a) {
         try { a.href = new URL(a.getAttribute('href').slice(2), AH_ROOT).href; } catch (e) {}
       });
-  })();
+  }
+  rootifyChromeLinks();
 
   var cache = {}; /* url -> Promise<string(html)> */
   var loadedScripts = {}; /* absolute src -> true */
@@ -152,6 +153,20 @@
         /* adopt the new main */
         var imported = document.importNode(newMain, true);
         curMain.parentNode.replaceChild(imported, curMain);
+        /* adopt site chrome when the page the session STARTED on ships none
+           (program pages are main-only): a shell swap from them to a chrome
+           page (index/quotes/...) otherwise lands with NO header/nav/footer -
+           found 25.10: refresh on a program page, then "back to programs"
+           landed on a headerless homepage with no tab bar at all. */
+        if (!document.querySelector('.site-header')) {
+          var nh = doc.querySelector('.site-header');
+          if (nh) { document.body.insertBefore(document.importNode(nh, true), imported); }
+        }
+        if (!document.querySelector('.site-footer')) {
+          var nf = doc.querySelector('.site-footer');
+          if (nf) { imported.parentNode.insertBefore(document.importNode(nf, true), imported.nextSibling); }
+        }
+        rootifyChromeLinks();
         document.title = doc.title || document.title;
         execInlineScripts(imported);
         if (!opts.pop) {

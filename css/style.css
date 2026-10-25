@@ -1381,3 +1381,34 @@ body.ahp-has-bar .site-footer { padding-bottom: 20px; }
 @media (max-width: 720px) {
   .footer-grid-two { grid-template-columns: 1fr; max-width: none; }
 }
+
+/* v115 (Roi 25.10 17:37): narrow the gap between the programs section and contact */
+#programs { padding-bottom: clamp(30px, 4vw, 52px); }
+
+/* v115 (user 25.10 17:40): WhatsApp groups card button + small groups window */
+button.social-link { font: inherit; cursor: pointer; text-align: start; width: 100%; }
+.wa-groups-overlay { position: fixed; inset: 0; background: rgba(10,12,30,.55); display: grid; place-items: center; z-index: 300; opacity: 0; pointer-events: none; transition: opacity .25s ease; }
+.wa-groups-overlay.open { opacity: 1; pointer-events: auto; }
+.wa-groups-card { background: #fff; border: 1.5px solid var(--green-soft); border-radius: 18px; padding: 22px 26px; width: min(92vw, 420px); text-align: center; transform: translateY(14px) scale(.97); transition: transform .25s ease; }
+.wa-groups-overlay.open .wa-groups-card { transform: none; }
+.wa-groups-title { color: var(--navy-800, #14323f); font-size: 1.2rem; font-weight: 700; margin: 0 0 14px; }
+.wa-groups-col { display: flex; flex-direction: column; gap: 10px; }
+.wa-group-ph { padding: 12px 14px; border-radius: 10px; background: #f2f6f7; color: #5a6a72; font-weight: 600; border: 1px dashed rgba(0,80,110,.25); }
+.wa-groups-close { margin-top: 14px; background: none; border: none; color: #667; font-size: .95rem; cursor: pointer; text-decoration: underline; }
+
+/* v115 (user 25.10 17:35): lesson-page donation picker - same existing 3 methods as the donate page */
+.lp-pay-overlay { position: fixed; inset: 0; background: rgba(10,12,30,.72); display: grid; place-items: center; z-index: 300; opacity: 0; pointer-events: none; transition: opacity .25s ease; }
+.lp-pay-overlay.open { opacity: 1; pointer-events: auto; }
+.lp-pay-card { background: #232047; border: 1.5px solid #c9a227; border-radius: 18px; padding: 22px 26px; width: min(92vw, 420px); text-align: center; transform: translateY(14px) scale(.97); transition: transform .25s ease; }
+.lp-pay-overlay.open .lp-pay-card { transform: none; }
+.lp-pay-title { color: #e8c85a; font-size: 1.35rem; font-weight: 700; margin: 0 0 6px; }
+.lp-pay-sub { color: #b9c0da; font-size: .92rem; margin: 0 0 20px; }
+.lp-pay-btn { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; width: 88%; margin: 8px auto; padding: 10px 14px; border-radius: 10px; font-size: 1rem; font-weight: 700; text-decoration: none; transition: transform .15s ease; }
+.lp-pay-btn:hover { transform: translateY(-2px); }
+.lp-pay-jgive { background: #2e6e46; color: #fff; }
+.lp-pay-paybox { background: #274b8f; color: #fff; }
+.lp-pay-bit { background: #6c28d9; color: #fff; }
+.lp-pay-btn .lp-pay-logo { width: 22px; height: 22px; border-radius: 6px; object-fit: cover; background: #fff; }
+.lp-pay-hint { display: block; font-size: 0.72rem; font-weight: 400; opacity: 0.85; margin-top: 2px; }
+.lp-pay-close { margin-top: 14px; background: none; border: none; color: #889; font-size: .95rem; cursor: pointer; text-decoration: underline; }
+@media (prefers-reduced-motion: reduce) { .wa-groups-card, .wa-groups-overlay, .lp-pay-card, .lp-pay-overlay { transition: none; } }

@@ -6,7 +6,7 @@
 <link rel="icon" type="image/png" href="./assets/logo-medal-ariel-64.png">
 <title>שיעור | עלה הדס</title>
 <meta name="description" content="צפייה והאזנה בשיעורי בית המדרש עלה הדס.">
-<link rel="stylesheet" href="./css/style.css?v=114">
+<link rel="stylesheet" href="./css/style.css?v=115">
 </head>
 <body>
 
@@ -59,10 +59,10 @@
           <span class="lp-ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm5.5 17.3a.75.75 0 0 1-1.03.25c-2.83-1.73-6.39-2.12-10.58-1.16a.75.75 0 1 1-.33-1.46c4.55-1.04 8.46-.59 11.6 1.33.35.21.46.67.25 1.04zm1.47-3.27a.94.94 0 0 1-1.29.31c-3.24-1.99-8.18-2.57-12.01-1.41a.94.94 0 1 1-.54-1.79c4.35-1.32 9.77-.68 13.53 1.6.44.27.58.85.31 1.29zm.13-3.41C15.24 8.31 8.85 8.07 5.08 9.1a1.12 1.12 0 1 1-.65-2.15c4.28-1.17 11.36-.94 15.85 1.46a1.12 1.12 0 0 1-1.18 1.91v.3z"/></svg></span>
           <span class="lp-ic-label">ספוטיפיי</span>
         </a>
-        <a class="lp-icon-btn lp-ext lp-donate" href="https://www.jgive.com/new/he/ils/donation-targets/60540" target="_blank" rel="noopener" aria-label="לתרומה לבית מדרש">
+        <button type="button" class="lp-icon-btn lp-ext lp-donate" id="lpDonateBtn" aria-label="לתרומה לבית מדרש">
           <span class="lp-ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>
           <span class="lp-ic-label">תרומה</span>
-        </a>
+        </button>
       </div>
 
       <p class="lp-desc" id="lpDesc"></p>
@@ -90,6 +90,30 @@
     </div>
   </section>
 
+
+      <!-- v115 (user 25.10 17:35): heart opens the EXISTING three donation methods, no new destination -->
+      <div class="lp-pay-overlay" id="lpPayOverlay" role="dialog" aria-modal="true" aria-label="בחירת אמצעי תרומה">
+        <div class="lp-pay-card">
+          <p class="lp-pay-title">תרומה</p>
+          <p class="lp-pay-sub">בחרו אמצעי תרומה:</p>
+          <a class="lp-pay-btn lp-pay-jgive" href="https://www.jgive.com/new/he/ils/donation-targets/60540" target="_blank" rel="noopener"><img class="lp-pay-logo" src="./assets/logo-jgive.png" alt="לוגו JGive"><span>JGive<span class="lp-pay-hint">דף התרומות הכללי של עלה הדס</span></span></a>
+          <a class="lp-pay-btn lp-pay-paybox" href="https://links.payboxapp.com/XzfSfUmCq6b" target="_blank" rel="noopener"><img class="lp-pay-logo" src="./assets/logo-paybox.png" alt="לוגו PayBox"><span>PayBox<span class="lp-pay-hint">קופת ״כפרות עלה הדס״</span></span></a>
+          <a class="lp-pay-btn lp-pay-bit" href="https://www.bitpay.co.il/app/share-info?i=RYfExz8N&amp;j=true" target="_blank" rel="noopener"><img class="lp-pay-logo" src="./assets/logo-bit.png" alt="לוגו Bit"><span>Bit<span class="lp-pay-hint">קישור התרומה של עלה הדס באפליקציית ביט</span></span></a>
+          <button type="button" class="lp-pay-close" id="lpPayClose">סגירה</button>
+        </div>
+      </div>
+      <script>
+      (function () {
+        var overlay = document.getElementById('lpPayOverlay');
+        var btn = document.getElementById('lpDonateBtn');
+        if (!overlay || !btn) return;
+        function close() { overlay.classList.remove('open'); }
+        btn.addEventListener('click', function () { overlay.classList.add('open'); });
+        document.getElementById('lpPayClose').addEventListener('click', close);
+        overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+      })();
+      </script>
 </main>
 
 <footer class="site-footer">
@@ -125,11 +149,11 @@
   </div>
 </footer>
 
-<script src="./js/main.js?v=114"></script>
-<script src="./js/lessons.js?v=114"></script>
-<script src="./js/lesson-player.js?v=114"></script>
-<script src="./js/ext-overlay.js?v=114"></script>
-<script src="./js/ah-player.js?v=114"></script>
-<script src="./js/ah-shell.js?v=114"></script>
+<script src="./js/main.js?v=115"></script>
+<script src="./js/lessons.js?v=115"></script>
+<script src="./js/lesson-player.js?v=115"></script>
+<script src="./js/ext-overlay.js?v=115"></script>
+<script src="./js/ah-player.js?v=115"></script>
+<script src="./js/ah-shell.js?v=115"></script>
 </body>
 </html>
