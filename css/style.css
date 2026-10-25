@@ -1391,7 +1391,7 @@ button.social-link { font: inherit; cursor: pointer; text-align: start; width: 1
 .wa-groups-overlay.open { opacity: 1; pointer-events: auto; }
 .wa-groups-card { background: #fff; border: 1.5px solid var(--green-soft); border-radius: 18px; padding: 22px 26px; width: min(92vw, 420px); text-align: center; transform: translateY(14px) scale(.97); transition: transform .25s ease; }
 .wa-groups-overlay.open .wa-groups-card { transform: none; }
-.wa-groups-title { color: var(--navy-800, #14323f); font-size: 1.2rem; font-weight: 700; margin: 0 0 14px; }
+.wa-groups-title { color: #14323f; /* literal: --navy-800 is #ffffff in this palette */ font-size: 1.2rem; font-weight: 700; margin: 0 0 14px; }
 .wa-groups-col { display: flex; flex-direction: column; gap: 10px; }
 .wa-group-ph { padding: 12px 14px; border-radius: 10px; background: #f2f6f7; color: #5a6a72; font-weight: 600; border: 1px dashed rgba(0,80,110,.25); }
 .wa-groups-close { margin-top: 14px; background: none; border: none; color: #667; font-size: .95rem; cursor: pointer; text-decoration: underline; }

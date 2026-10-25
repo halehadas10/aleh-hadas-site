@@ -304,3 +304,8 @@ Executor: Avraham's side (this Instinct).
 - donate.html: blue hero background REMOVED (user 25.10 17:46:28); gallery photo with the most learners that does NOT appear on the homepage (assets/gallery/side-3.jpg, all act-* are on the homepage) as background at high transparency (opacity .16, cover = aspect preserved, no stretch); hero text recolored for readability on light background.
 - refs ?v=115 on all pages.
 Executor: Avraham's side (this Instinct).
+
+## v116 (25.10.2026 ~18:01)
+- style.css: .wa-groups-title color literal #14323f (--navy-800 resolves to #ffffff in this site's inverted scale - title was white-on-white).
+- refs ?v=116 on all pages.
+Executor: Avraham's side (this Instinct).
