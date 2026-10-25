@@ -311,3 +311,5 @@ Executor: Avraham's side (this Instinct).
 Executor: Avraham's side (this Instinct).
 
 ## v117 (user 25.10 18:13): WhatsApp icon beside each of the 5 placeholder rows in the homepage follow-us groups window (index.html + css/style.css). No links/destinations added; placeholders unchanged. Owner reply to the delivered modal image: "יופי רק לייד שים אייקון של וואצפ בכל שורה". Executor: Avraham's side (this Instinct).
+
+## v118 (user 25.10): fast tab-scroll robustness - one native smooth scroll per click replaces rAF-stepped scroller that froze/teleported on busy machines (18:19 video: "אתה כל הזמן מבטל את זה"); promo video pauses offscreen; page prefetch moved to idle-after-load. Talk modal: single card spans full width (18:20 voice - lone card hugged half the window). Follow-us: Instagram full middle row, TikTok half beside WhatsApp (18:21 voice). Donate: photo reframed to learners (position 72%), extended through the back-button strip to the blue footer, same transparency, aspect preserved (18:22 voice). Executor: Avraham's side (this Instinct).
