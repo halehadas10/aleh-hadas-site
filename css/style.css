@@ -594,6 +594,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .main-nav.is-open { opacity: 1; pointer-events: auto; }
   .main-nav .nav-link { font-size: 1.5rem; }
   .main-nav .nav-mobile-home { display: block; }
+  /* v91 (user 14:07:10): hide the round prev/next overlay arrows on the HOME
+     activities carousel on phones only; dots + swipe stay, desktop unchanged */
+  .carousel .carousel-btn { display: none; }
   .nav-toggle { display: flex; }
   .story-grid { grid-template-columns: 1fr; }
   .story-photo { max-width: 460px; }
@@ -1049,6 +1052,7 @@ section.contact-donate-solo { padding-top: clamp(34px, 5vw, 60px); padding-botto
              border: 1px solid rgba(0,80,110,.3); border-radius: 16px; padding: 10px 14px; }
 .lp-audio-label { display: block; color: var(--text-dim); font-size: .85rem; margin-bottom: 8px; }
 .lp-audio iframe { border-radius: 12px; display: block; }
+.lp-player-mount .ahp.ahp-inflow { margin-top: 0; }
 .lp-actions { display: flex; gap: 12px; justify-content: center; margin: 22px 0 8px; flex-wrap: wrap; }
 .lp-share, .lp-ext { border-radius: 30px; padding: 11px 24px; font-weight: 700; font-size: .95rem;
                      border: 1px solid rgba(0,80,110,.35); background: linear-gradient(150deg, var(--navy-700), var(--navy-950));

@@ -22,16 +22,24 @@
 
   /* ---------- UI ---------- */
   var bar;
-  function buildBar() {
-    var existing_mount = document.getElementById('lpAudio');
+  var mountOpts = null; /* lesson-page mount config for in-frame player (v91) */
+  function buildBar(host) {
     if (bar && bar.isConnected) {
-      if (existing_mount && bar.parentNode !== existing_mount.parentNode) {
-        /* v86: #lpAudio innerHTML gets rewritten by lesson-player init -
-           the bar must be a SIBLING after it, not a child. v87: relocate
-           whenever the bar lives anywhere else (body or inside mount) */
+      if (host && bar.parentNode !== host) {
         bar.classList.add('ahp-inflow');
-        existing_mount.parentNode.insertBefore(bar, existing_mount.nextSibling);
+        host.appendChild(bar);
         document.body.classList.remove('ahp-has-bar');
+      } else if (!host) {
+        var existing_mount = document.getElementById('lpAudio');
+        if (existing_mount && bar.parentNode !== existing_mount.parentNode) {
+          /* v86: #lpAudio innerHTML gets rewritten by lesson-player init -
+             the bar must be a SIBLING after it, not a child (unless an explicit
+             in-frame host mount point is given). v87: relocate whenever the bar
+             lives anywhere else (body or inside mount) */
+          bar.classList.add('ahp-inflow');
+          existing_mount.parentNode.insertBefore(bar, existing_mount.nextSibling);
+          document.body.classList.remove('ahp-has-bar');
+        }
       }
       return;
     }
@@ -74,14 +82,23 @@
        never as a floating/fixed bar. Audio keeps playing when leaving;
        no bar follows. Reference: shaveihevron.org pattern. */
     var mount = document.getElementById('lpAudio');
-    if (mount) {
+    if (host) {
+      bar.classList.add('ahp-inflow');
+      host.appendChild(bar);
+    } else if (mount) {
       bar.classList.add('ahp-inflow');
       mount.parentNode.insertBefore(bar, mount.nextSibling);
     } else {
       document.body.appendChild(bar);
     }
 
-    $('ahpPlay').addEventListener('click', function () { API.toggle(); });
+    $('ahpPlay').addEventListener('click', function () {
+      if (bar && bar.dataset.preview === '1' && mountOpts) {
+        API.load({ id: mountOpts.id, src: mountOpts.src, title: mountOpts.title, rabbi: mountOpts.rabbi, cover: mountOpts.cover });
+        return;
+      }
+      API.toggle();
+    });
     $('ahpFwd').addEventListener('click', function () { API.seekBy(30); });
     $('ahpBack').addEventListener('click', function () { API.seekBy(-15); });
     /* Speed cycle + volume (persisted) */
@@ -109,6 +126,7 @@
       try { localStorage.setItem('ahVol', volInput.value); } catch (e) {}
     });
     $('ahpClose').addEventListener('click', function () { API.stop(); });
+    bar.dataset.preview = '';
     var prog = $('ahpProg');
     function seekFromEvent(e) {
       if (!audio.duration) return;
@@ -248,11 +266,34 @@
 
   var pendingPosition = null;
 
+  /* Paused preview of the page's own lesson inside the mounted frame:
+     real title/rabbi/cover and total duration (from lessons.json), 0:00 position,
+     play icon. Audio element untouched; first Play loads and starts. */
+  function previewBar() {
+    if (!bar || !mountOpts) return;
+    bar.dataset.preview = '1';
+    var cov = $('ahpCover');
+    cov.onerror = function () { cov.onerror = null; cov.src = './assets/covers/show.jpg'; };
+    cov.src = mountOpts.cover || './assets/covers/show.jpg';
+    $('ahpTitle').textContent = mountOpts.title || '';
+    $('ahpSub').textContent = mountOpts.rabbi || '';
+    $('ahpFill').style.width = '0%';
+    $('ahpProg').setAttribute('aria-valuenow', 0);
+    $('ahpTime').textContent = fmt(0) + ' / ' + fmt(mountOpts.durationSec || 0);
+    $('ahpPlay').querySelector('.ahp-i-play').style.display = '';
+    $('ahpPlay').querySelector('.ahp-i-pause').style.display = 'none';
+    $('ahpPlay').setAttribute('aria-label', 'הפעלה');
+    /* X stops whatever is actually playing elsewhere; hidden when nothing is */
+    var cl = $('ahpClose'); if (cl) cl.style.display = current ? '' : 'none';
+  }
+
   /* ---------- API ---------- */
   var API = {
     load: function (o) {
       if (!o || !o.src) return;
-      buildBar();
+      buildBar(mountOpts && mountOpts.host && mountOpts.host.isConnected ? mountOpts.host : null);
+      bar.dataset.preview = '';
+      var cl0 = $('ahpClose'); if (cl0) cl0.style.display = '';
       current = { id: o.id || o.src, src: o.src, title: o.title || '', rabbi: o.rabbi || '', cover: o.cover || '' };
       pendingPosition = (typeof o.position === 'number') ? o.position : null;
       var cov = $('ahpCover');
@@ -286,11 +327,31 @@
     },
     stop: function () {
       audio.pause();
-      if (bar) bar.hidden = true;
-      document.body.classList.remove('ahp-has-bar');
       current = null;
       clearSnapshot();
+      document.body.classList.remove('ahp-has-bar');
       if ('mediaSession' in navigator) { try { navigator.mediaSession.playbackState = 'none'; } catch (_) {} }
+      /* v91: mounted in-frame player returns to its paused preview (one-click
+         replay) instead of vanishing - there is no separate launch button. */
+      if (mountOpts && mountOpts.host && mountOpts.host.isConnected) { previewBar(); return; }
+      if (bar) bar.hidden = true;
+    },
+    /* v91 (user 25.10 14:10:52): mount the player INSIDE the lesson page's
+       audio frame, visible from page load. Same lesson -> live bind (continuity
+       preserved); otherwise a paused preview bound to the page's lesson -
+       the audio element is untouched until the first Play click. */
+    mount: function (o) {
+      if (!o || !o.host) return;
+      mountOpts = o;
+      buildBar(o.host);
+      bar.hidden = false;
+      if (current && current.id === o.id) {
+        bar.dataset.preview = '';
+        var cl = $('ahpClose'); if (cl) cl.style.display = '';
+        syncUI();
+        return;
+      }
+      previewBar();
     },
     reshow: function () {
       if (!current) return;

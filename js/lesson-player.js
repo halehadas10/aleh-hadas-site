@@ -12,7 +12,6 @@
   /* vid must be read per init: under the navigation shell this script loads
      once (on the index, no ?v=) and lesson pages arrive later via swaps */
   vid = new URLSearchParams(location.search).get('v');
-  if (window.AHPlayer && AHPlayer.state && AHPlayer.state().current) { AHPlayer.reshow(); }
   fetch('./data/lessons.json?v=' + Date.now()).then(r => r.json()).then(d => {
     const all = d.lessons || []; /* 23.10 v40: shared links to non-Spotify lessons must open too */
     lesson = all.find(l => l.id === vid);
@@ -30,20 +29,22 @@
     /* audio-only bar: our own player when audioUrl exists (no listener login);
        Spotify embed kept as fallback until audio files are hosted */
     if (lesson.audioUrl && window.AHPlayer) {
+      /* v91 (user 14:10:52): player sits INSIDE the audio frame from the start,
+         visible and paused - no intermediate "נגן את השיעור" button;
+         one Play click starts. Mount point re-created here on every init,
+         so the bar is always (re)built after our own innerHTML rewrite. */
       const bar2 = $('lpAudio');
       bar2.hidden = false;
       const cover = (lesson.spotifyUrl || '').match(/episode\/([A-Za-z0-9]+)/)
         ? './assets/covers/ep-' + lesson.spotifyUrl.match(/episode\/([A-Za-z0-9]+)/)[1] + '.jpg'
         : (lesson.thumbnail || './assets/covers/show.jpg');
       bar2.innerHTML = '<span class="lp-audio-label">האזנה בלבד, ללא וידאו</span>' +
-        '<button type="button" class="lp-own-play" id="lpOwnPlay">' +
-        '<svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>' +
-        ' נגן את השיעור</button>';
-      $('lpOwnPlay').addEventListener('click', function () {
-        window.AHPlayer.load({
-          id: lesson.id, src: lesson.audioUrl,
-          title: lesson.topic, rabbi: lesson.rabbi || '', cover: cover
-        });
+        '<div class="lp-player-mount" id="lpPlayerMount"></div>';
+      window.AHPlayer.mount({
+        id: lesson.id, src: lesson.audioUrl,
+        title: lesson.topic, rabbi: lesson.rabbi || '', cover: cover,
+        durationSec: lesson.durationSec || 0,
+        host: $('lpPlayerMount')
       });
     }
     const m = (!lesson.audioUrl || !window.AHPlayer) ? (lesson.spotifyUrl || '').match(/episode\/([A-Za-z0-9]+)/) : null;
