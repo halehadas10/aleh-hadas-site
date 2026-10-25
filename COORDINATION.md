@@ -309,3 +309,5 @@ Executor: Avraham's side (this Instinct).
 - style.css: .wa-groups-title color literal #14323f (--navy-800 resolves to #ffffff in this site's inverted scale - title was white-on-white).
 - refs ?v=116 on all pages.
 Executor: Avraham's side (this Instinct).
+
+## v117 (user 25.10 18:13): WhatsApp icon beside each of the 5 placeholder rows in the homepage follow-us groups window (index.html + css/style.css). No links/destinations added; placeholders unchanged. Owner reply to the delivered modal image: "יופי רק לייד שים אייקון של וואצפ בכל שורה". Executor: Avraham's side (this Instinct).

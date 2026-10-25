@@ -1394,6 +1394,9 @@ button.social-link { font: inherit; cursor: pointer; text-align: start; width: 1
 .wa-groups-title { color: #14323f; /* literal: --navy-800 is #ffffff in this palette */ font-size: 1.2rem; font-weight: 700; margin: 0 0 14px; }
 .wa-groups-col { display: flex; flex-direction: column; gap: 10px; }
 .wa-group-ph { padding: 12px 14px; border-radius: 10px; background: #f2f6f7; color: #5a6a72; font-weight: 600; border: 1px dashed rgba(0,80,110,.25); }
+/* v117 (user 25.10 18:13): WhatsApp icon beside each group row */
+.wa-group-ph { display: flex; align-items: center; justify-content: center; gap: 8px; }
+.wa-group-ph .wa-ico { width: 20px; height: 20px; fill: #25D366; flex: 0 0 auto; }
 .wa-groups-close { margin-top: 14px; background: none; border: none; color: #667; font-size: .95rem; cursor: pointer; text-decoration: underline; }
 
 /* v115 (user 25.10 17:35): lesson-page donation picker - same existing 3 methods as the donate page */
