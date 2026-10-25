@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/png" href="../assets/logo-medal-ariel.png">
 <title>לימוד רמב״ם לנוער - עלה הדס</title>
-<link rel="stylesheet" href="../css/style.css?v=100">
+<link rel="stylesheet" href="../css/style.css?v=101">
 <style>
   body { background: #fff; }
   .prog-wrap { max-width: 980px; margin: 0 auto; padding: 34px 20px 70px; }
@@ -41,11 +41,16 @@
     transition: transform .28s cubic-bezier(.34,1.56,.64,1), box-shadow .28s ease; }
   .prog-dn-medal svg { width: 48px; height: 48px; stroke: #e8c85a; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
     transition: transform .28s cubic-bezier(.34,1.56,.64,1); }
+  /* Roi 25.10 16:59:20: beit-midrash logo (light variant, as in the dark
+     footer) replaces the heart inside the donation medallion */
+  .prog-dn-medal img.prog-dn-logo { width: 72px; height: auto;
+    transition: transform .28s cubic-bezier(.34,1.56,.64,1); }
   .prog-dn:hover .prog-dn-medal, .prog-dn:focus-visible .prog-dn-medal { transform: translateY(-8px) scale(1.07);
     box-shadow: 0 0 0 4px rgba(201,162,39,.55), 0 20px 44px rgba(0,0,0,.3), inset 0 0 22px rgba(0,0,0,.35); }
   .prog-dn:hover .prog-dn-medal svg, .prog-dn:focus-visible .prog-dn-medal svg { transform: scale(1.14) rotate(-6deg); }
+  .prog-dn:hover .prog-dn-medal img.prog-dn-logo, .prog-dn:focus-visible .prog-dn-medal img.prog-dn-logo { transform: scale(1.14) rotate(-6deg); }
   .prog-dn-name { color: #14323f; font-size: 1.05rem; font-weight: 700; }
-  @media (max-width: 640px) { .prog-dn-medal { width: 88px; height: 88px; border-radius: 20px; } .prog-dn-medal svg { width: 40px; height: 40px; } }
+  @media (max-width: 640px) { .prog-dn-medal { width: 88px; height: 88px; border-radius: 20px; } .prog-dn-medal svg { width: 40px; height: 40px; } .prog-dn-medal img.prog-dn-logo { width: 60px; } }
 
   @media (max-width: 640px) {
     .prog-arrow { width: 38px; height: 38px; }
@@ -73,7 +78,7 @@
     <div class="prog-desc">בלה בלה בלה</div>
     <div class="prog-ctas">
       <a class="btn btn-green" href="../index.html#programs">לכל התכניות</a>
-      <a class="prog-dn" href="../donate.html"><span class="prog-dn-medal"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.2-7-9.3C5 8 6.8 6.5 8.7 6.5c1.3 0 2.5.7 3.3 1.8.8-1.1 2-1.8 3.3-1.8C17.2 6.5 19 8 19 10.7c0 5.1-7 9.3-7 9.3z"/></svg></span><span class="prog-dn-name">לתרומה לבית המדרש</span></a>
+      <a class="prog-dn" href="../donate.html"><span class="prog-dn-medal"><img class="prog-dn-logo" src="../assets/logo-aleh-hadas-light.png" alt="לוגו עלה הדס"></span><span class="prog-dn-name">לתרומה לבית המדרש</span></a>
       <button class="btn btn-ghost" id="talkBtn" type="button">דברו איתנו</button>
     </div>
   </main>
@@ -143,7 +148,7 @@
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) close(); });
 })();
 </script>
-<script src="../js/ah-player.js?v=100"></script>
-<script src="../js/ah-shell.js?v=100"></script>
+<script src="../js/ah-player.js?v=101"></script>
+<script src="../js/ah-shell.js?v=101"></script>
 </body>
 </html>

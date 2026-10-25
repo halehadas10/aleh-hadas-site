@@ -227,3 +227,9 @@
 - User reply to the Eliyahu sketch: "לא טוב, תעביר את הגרשיים... לסוף הציטוט של הרב ולא לז החלון שלו". The closing gershayim now sits inline right after the last word of the quote text (.qp-text::after / .q-text::after, same green var(--gold) serif as the opening mark, text size). Corner ::after and the 72px reserved strip removed. Applied to every quote card, home + quotes page. Card heights unchanged (Eliyahu shrink still approval-gated, NOT included).
 - refs: all css/js refs normalized to ?v=100 on ALL pages.
 - Executor: Avraham's side (this Instinct).
+
+## v101 (17:02 IST 25.10) - program donation icon swap (Roi) + green story text (user approval)
+- Roi 25.10 16:59:20 (via his Instinct): on individual program pages, the bottom donation link's heart icon -> the beit-midrash logo. programs/program-1..9.html (program-10 stub has no donation link): heart SVG replaced with assets/logo-aleh-hadas-light.png (the light wordmark variant already used on the dark footer; dark variants would vanish on the dark-red medallion). Medallion, link target ../donate.html, label לתרומה לבית המדרש, hover behavior all preserved.
+- User approval 17:00:28 "תחיל את הכיתוב הירוק באתר" to the full-section preview: .story-text now 21px@1280 (clamp 1.02rem, 1.64vw, 1.3125rem; mobile unchanged), line-height 1.75, color #427651. Copy/title/blue stats untouched. This approval does NOT cover the Eliyahu card shrink (still gated).
+- refs: all css/js refs normalized to ?v=101 on ALL pages.
+- Executor: Avraham's side (this Instinct).
