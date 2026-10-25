@@ -340,3 +340,8 @@ Executor: Avraham's side (this Instinct).
 - Source: owner WhatsApp 25.10 23:30:59 (wamid.HBgMOTcyNTQ5OTE3MzcyFQIAEhgUM0E1NzZEN0NFRjlGNzIxNDA2NzIA): "תהפוך את כל הכיתוב בדף הראשי באתר לצבע הירוק ששמת במלל של הסיפור שלנו" — all homepage writing in the approved story green #427651.
 - Change: index.html body gets class home-green-text; scoped color overrides appended to css/style.css (v123 block). Explicit white text on photo/colored backgrounds (hero, program cards, buttons, player bar, footer) unchanged. Other pages untouched.
 - Executor: Avraham's side (this Instinct).
+
+## v128 (26.10, midnight)
+- Source: owner WhatsApp 26.10 00:10:10 (wamid.HBgMOTcyNTQ5OTE3MzcyFQIAEhgWM0VCMEJCNUU1RDVCNjdFRThEMTk4NgA): "תחזיר את האתר לאיך שהיה עם הצבעים" — rollback of the homepage green-text change.
+- Change: removed the home-green-text class from index.html body and deleted the appended v123-v127 override blocks from css/style.css. Verified byte-identical to v122 except ?v= refs. Colors are exactly the pre-change state (story text keeps its original approved green, nav pill green with white label, section titles blue again).
+- Executor: Avraham's side (this Instinct).
