@@ -272,3 +272,8 @@
 - Roi's exact descriptions (wording/typos preserved) replace the בלה בלה בלה placeholders: item1->program-1 (ט'-יב'), item2->program-2 (ה'-ו'), item3->program-3 (רמב"ם), item4->program-4 (חבורות), item5->program-7 (נערות ז'-ח', הרבנית רינת פסטליך), item6->program-6 (מוצ"שים), item7->program-5 (עונג שבת הרב יוני לביא). Item 8 (ערב שבת) HELD: conflicts with Avraham's explicit 17:27 wording; his text stays pending Roi reconciliation. Home card subs unchanged (batch named subpage descriptions).
 - refs: all css/js refs normalized to ?v=110 on ALL pages.
 - Executor: Avraham's side (this Instinct).
+
+## v111 (17:35 IST 25.10) - uniform program photo swap (Roi's selection, owner-approved)
+- Roi selected a photo for uniform program-subpage use (17:30 batch, reply 17:31:47). Owner was shown the actual image and asked "להחליף לזו שרועי בחר?" - answered כן (17:32:38 + confirmed כן 17:32:58). All program-page carousel slides (45 refs, program-1..7+9) now use assets/program-uniform-roi.jpg (his original file preserved byte-for-byte). The previous temporary placeholder (assets/image-0cc9df18-PVXUTW4T.jpg, owner's own upload) stays on disk untouched. No home-card or other-page image scope.
+- refs: all css/js refs normalized to ?v=111 on ALL pages.
+- Executor: Avraham's side (this Instinct).
