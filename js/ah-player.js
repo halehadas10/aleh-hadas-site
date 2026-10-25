@@ -295,6 +295,11 @@
     reshow: function () {
       if (!current) return;
       buildBar();
+      /* v88: rebuilt bar starts empty - re-populate meta + cover */
+      var cov = $('ahpCover');
+      if (cov) { cov.onerror = function () { cov.onerror = null; cov.src = './assets/covers/show.jpg'; }; cov.src = current.cover || './assets/covers/show.jpg'; }
+      if ($('ahpTitle')) $('ahpTitle').textContent = current.title;
+      if ($('ahpSub')) $('ahpSub').textContent = current.rabbi;
       bar.hidden = !bar.classList.contains('ahp-inflow');
       if (!bar.hidden) { var t0 = $('ahpTime'); if (t0) syncUI(); }
     },
