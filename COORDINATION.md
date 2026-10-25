@@ -164,5 +164,10 @@
 - User video 213-280s decode: "הוא צף, זה לא משהו שביקשתי"; reference = shaveihevron.org lessons (in-flow player; corner circle proven = Elementor Ally accessibility widget, NOT audio FAB - no FAB built).
 - js/ah-player.js: bar mounts in-flow inside #lpAudio on lesson page (ahp-inflow, position:static); on pages without the mount it stays hidden even on snapshot restore. reshow() re-mounts when returning to the lesson page in-shell. Continue-on-leave unchanged: audio element lives in shell context, bar dies with <main> swap.
 - js/lesson-player.js: one-line reshow hook in ahInit. YT normal+fallback paths untouched.
-- refs: ah-player.js v5 + lesson-player.js v10 on all pages; site refs ?v=86.
+- refs: ah-player.js v5 + lesson-player.js v10 on all pages; site refs ?v=87.
 - Verified: in-flow bar pixels (time/±30/15/speed/volume/close all render); lessons.html with snapshot = bar hidden; YT fallback intact. NOT runtime-verified: reshow on in-shell return (headless autoplay blocked; code-reviewed only).
+
+## v86+v87 (11:33 IST 25.10) - player lifecycle fixes + FULL real-gesture verification
+- v86 (84ce79e): bar must be SIBLING after #lpAudio (init rewrites #lpAudio innerHTML, child bar destroyed on in-shell return).
+- v87 (9e1a69b): relocation condition fix - body-mounted restored bar moves in-flow when lesson page mounts.
+- REAL-GESTURE LIFECYCLE VERIFIED (cloud browser, trusted clicks, in-shell links): play -> playing+in-flow+visible; leave to quotes in-shell -> bar destroyed, audio continues (27s->31s); return via lessons -> bar reshows in-flow, time 4:03/45:16 preserved, still playing. Fresh-load restore also verified (v7 served, in-flow, paused snapshot).
