@@ -159,3 +159,10 @@
 ## v83+v84 (11:17 IST 25.10) - quote photos + plus restore
 - v83 (d51047c): home quote-card photos per user video 58-79.6s (too big + תוריד למטה): clamp 92-130px (was 120-170), overlap -36px desktop/-34px mobile (was -64/-56). Scope: home cards only. Verified mobile 98x127 + desktop 137x176 px.
 - v84 (e164e5e): plus suffix restored on 1,000 per explicit user text 11:15:30 (wamid...0M0FCzhEMkFBMzAzOTNCMTg5NTYA). v82 top-label structure kept. Mobile-verified final countup state 1,000+ with RTL placement matching v80 rendering.
+
+## v85 (11:27 IST 25.10) - player in-flow, floating bar removed
+- User video 213-280s decode: "הוא צף, זה לא משהו שביקשתי"; reference = shaveihevron.org lessons (in-flow player; corner circle proven = Elementor Ally accessibility widget, NOT audio FAB - no FAB built).
+- js/ah-player.js: bar mounts in-flow inside #lpAudio on lesson page (ahp-inflow, position:static); on pages without the mount it stays hidden even on snapshot restore. reshow() re-mounts when returning to the lesson page in-shell. Continue-on-leave unchanged: audio element lives in shell context, bar dies with <main> swap.
+- js/lesson-player.js: one-line reshow hook in ahInit. YT normal+fallback paths untouched.
+- refs: ah-player.js v5 + lesson-player.js v10 on all pages; site refs ?v=85.
+- Verified: in-flow bar pixels (time/±30/15/speed/volume/close all render); lessons.html with snapshot = bar hidden; YT fallback intact. NOT runtime-verified: reshow on in-shell return (headless autoplay blocked; code-reviewed only).
