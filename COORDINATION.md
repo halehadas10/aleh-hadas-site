@@ -324,6 +324,9 @@ Executor: Avraham's side (this Instinct).
 
 ## v122 (continued, owner 25.10 20:53 "ואת הפלאייר תוסיף לקרוסלה"): cleaned chavurot flyer (poster-chavurot-clean.png, דניאל פפר removed) added as 6th carousel slide on program-4, object-fit contain so the whole flyer shows unstretched/uncropped; existing 5 images preserved. Carousel dots auto-generate. Executor: Avraham's side (this Instinct).
 
+## v127 (25.10, night)
+- Fix: nav תרומה pill (.nav-link.nav-donate) label back to white - the v123 .nav-link override had turned it green-on-green and invisible. Caught on main's pixel review.
+
 ## v126 (25.10, night)
 - Follow-up: "לכל השיעורים" back button (.btn-back, dark text on light gradient) also to story green. Homepage sweep now shows only intentional leftovers: icons/glyphs (carousel arrows, ✕) and white/light text on dark backgrounds (hero, program cards, footer, buttons).
 
