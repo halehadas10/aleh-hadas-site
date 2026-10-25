@@ -1455,4 +1455,5 @@ body.home-green-text .ls-act-sp,
 body.home-green-text .wa-groups-title,
 body.home-green-text .wa-groups-close,
 body.home-green-text .wa-groups-col,
-body.home-green-text .wa-groups-col * { color: #427651; }
+body.home-green-text .wa-groups-col *,
+body.home-green-text .btn-back { color: #427651; }
