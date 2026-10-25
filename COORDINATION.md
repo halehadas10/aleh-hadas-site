@@ -254,3 +254,11 @@
 ## v107 (17:20 IST 25.10) - TEMP placeholder photo on all program pages (user 17:09:33)
 - User: "בכל התמונות בדפי התוכניות תבחר תמונה רנדומאלית שהעליתי לך של בנים ותשים אותה בהכל, בהמשך אתן לך תמונות ותשים אותם". Chose assets/image-0cc9df18-PVXUTW4T.jpg (his Oct 23/25 WhatsApp upload batch, verified visually: boys learning in the beit midrash) and set ALL 44 carousel slides across program-1..9 to it (program-10 stub has no photos). Original gallery assets kept on disk untouched. Placeholder until he supplies replacements.
 - Executor: Avraham's side (this Instinct).
+
+## v108 (17:32 IST 25.10) - program rename + specials deletion + back-control visibility + bottom section tracking
+- User 17:27: program "ערב שבת לשמיניסטים" renamed to "ערב שבת בבית המדרש", description (his exact words) "שיעור המתרחש מידי ערב שבת בבית המדרש המיועד לכלל הנוער ומתעסק בפרשת השבוע לאחר השיעור מתקיים לימוד עצמי." Applied to the home program card (caption + sub) and programs/program-9.html (title, h1, carousel alts, prog-desc replacing the בלה בלה placeholder, talk-modal program line).
+- User 17:27:44+17:27:47: "התוכנית של ספישלים ואת הדף הפנימי שלו מתחק" / "מחק" - ספיישלים card removed from the home programs grid and programs/program-8.html deleted. No other page linked to it (checked). Unrelated asset files kept.
+- User 17:29 (annotated screenshot): on program pages the top back control sat UNDER the fixed site header (76px) when reached through in-site navigation - the shell keeps the home header, and .prog-wrap/.stub-inner had only 34/40px top padding. Top padding now calc(var(--header-h) + 18px) on program pages 1-10; back control visible and clickable; target ../index.html#programs unchanged.
+- Roi 25.10 bottom case (original quotes-return scope): the scroll spy's 35%-viewport read line never reaches the last homepage block (תרומה has no nav pair), so at the page bottom it recorded 'times' while the donation area filled the screen. main.js now records the actual last homepage section at page bottom, so quotes "חזרה לאתר" returns to it. No other page's back button touched.
+- refs: all css/js refs normalized to ?v=108 on ALL pages.
+- Executor: Avraham's side (this Instinct).

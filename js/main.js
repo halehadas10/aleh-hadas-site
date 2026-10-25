@@ -86,6 +86,15 @@ function ahPhotoPlaceholders() {
     /* no section above the read line yet => visitor is on the hero (desktop
        nav has no #home item) - record 'home', not the first section */
     var curId = (bestTop === -Infinity) ? 'home' : current.link.getAttribute('href').slice(1);
+    /* Bottom of the page (Roi 25.10, "החלק האחרון בדף הראשי"): the 35%-viewport
+       read line never crosses the last block (the תרומה section has no nav
+       pair), so the spy stayed on the previous section even with the donation
+       area filling the screen. At the page bottom, record the actual last
+       homepage section so the quotes "חזרה לאתר" returns there. */
+    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+      var homeSecs = document.querySelectorAll('main section[id]');
+      if (homeSecs.length) curId = homeSecs[homeSecs.length - 1].id;
+    }
     if (S.lastSpyId !== curId) {
       S.lastSpyId = curId;
       try { sessionStorage.setItem('ah-home-section', curId); } catch (e) {}
