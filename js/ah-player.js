@@ -99,8 +99,9 @@
       }
       API.toggle();
     });
-    $('ahpFwd').addEventListener('click', function () { API.seekBy(30); });
-    $('ahpBack').addEventListener('click', function () { API.seekBy(-15); });
+    function inPreview() { return bar && bar.dataset.preview === '1'; }
+    $('ahpFwd').addEventListener('click', function () { if (inPreview()) return; API.seekBy(30); });
+    $('ahpBack').addEventListener('click', function () { if (inPreview()) return; API.seekBy(-15); });
     /* Speed cycle + volume (persisted) */
     var SPEEDS = [1, 1.25, 1.5, 2, 0.5, 0.75];
     var speedIdx = 0;
@@ -115,6 +116,7 @@
     function paintSpeed() { speedBtn.textContent = '\u00d7' + SPEEDS[speedIdx]; }
     paintSpeed();
     speedBtn.addEventListener('click', function () {
+      if (inPreview()) return;
       speedIdx = (speedIdx + 1) % SPEEDS.length;
       audio.playbackRate = SPEEDS[speedIdx];
       paintSpeed();
@@ -122,6 +124,7 @@
     });
     volInput.value = String(audio.volume);
     volInput.addEventListener('input', function () {
+      if (inPreview()) return;
       audio.volume = parseFloat(volInput.value);
       try { localStorage.setItem('ahVol', volInput.value); } catch (e) {}
     });
@@ -129,6 +132,7 @@
     bar.dataset.preview = '';
     var prog = $('ahpProg');
     function seekFromEvent(e) {
+      if (inPreview()) return;
       if (!audio.duration) return;
       var r = prog.getBoundingClientRect();
       var x = (e.touches ? e.touches[0].clientX : e.clientX) - r.left;
@@ -138,6 +142,7 @@
     }
     prog.addEventListener('click', seekFromEvent);
     prog.addEventListener('keydown', function (e) {
+      if (inPreview()) return;
       if (e.key === 'ArrowLeft') API.seekBy(5);
       if (e.key === 'ArrowRight') API.seekBy(-5);
     });
@@ -283,8 +288,9 @@
     $('ahpPlay').querySelector('.ahp-i-play').style.display = '';
     $('ahpPlay').querySelector('.ahp-i-pause').style.display = 'none';
     $('ahpPlay').setAttribute('aria-label', 'הפעלה');
-    /* X stops whatever is actually playing elsewhere; hidden when nothing is */
-    var cl = $('ahpClose'); if (cl) cl.style.display = current ? '' : 'none';
+    /* v93 (main review): X always hidden in preview - this frame shows THIS
+       lesson, so its controls must never stop a different playing lesson */
+    var cl = $('ahpClose'); if (cl) cl.style.display = 'none';
   }
 
   /* ---------- API ---------- */
@@ -327,6 +333,9 @@
     },
     stop: function () {
       audio.pause();
+      /* v93: reset the source too - the preview shows 0:00, so replay must
+         actually start from 0:00 (display and behavior must match) */
+      try { audio.removeAttribute('src'); audio.load(); } catch (_) {}
       current = null;
       clearSnapshot();
       document.body.classList.remove('ahp-has-bar');
