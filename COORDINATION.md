@@ -155,3 +155,7 @@
 - User voice 11:08:15 (wamid...0MzOUQ0MDcA): למעלה מ־ moves to TOP row as plain label styled exactly like הסניף (same color/size/baseline), 1,000 blue middle, חניכים bottom; plus removed (auto-transcript שתורידי + main hypothesis; למעלה מ־ already means "over").
 - index.html: left stat card now stat-pre/stat-num/stat-label mirror of right card; data-prefix/data-suffix removed (JS support kept, unused).
 - Verified pixels mobile 390px + desktop 1280px on live site (both top labels same baseline, number blue, no plus).
+
+## v83+v84 (11:17 IST 25.10) - quote photos + plus restore
+- v83 (d51047c): home quote-card photos per user video 58-79.6s (too big + תוריד למטה): clamp 92-130px (was 120-170), overlap -36px desktop/-34px mobile (was -64/-56). Scope: home cards only. Verified mobile 98x127 + desktop 137x176 px.
+- v84 (e164e5e): plus suffix restored on 1,000 per explicit user text 11:15:30 (wamid...0M0FCzhEMkFBMzAzOTNCMTg5NTYA). v82 top-label structure kept. Mobile-verified final countup state 1,000+ with RTL placement matching v80 rendering.
