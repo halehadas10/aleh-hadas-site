@@ -52,13 +52,38 @@
   }
 
   function fetchPage(url) {
-    if (!cache[url]) {
-      cache[url] = fetch(url, { credentials: 'same-origin', cache: 'no-cache' }).then(function (r) {
-        if (!r.ok) throw new Error('http ' + r.status);
-        return r.text();
-      });
+    /* key by path (no hash): index.html#a and index.html#b are one document */
+    var key = url.split('#')[0];
+    if (cache[key]) {
+      /* stale-while-revalidate: serve the cached copy instantly so inner-page
+         tab clicks respond immediately (v106's plain no-cache made every click
+         wait ~1.7s on the network - user 25.10: "fast tab-scroll cancelled
+         again"), and refresh the copy in the background so deploys still
+         reach long-lived tabs on the next navigation. */
+      if (!cache[key].__rv) {
+        cache[key].__rv = true;
+        fetch(key, { credentials: 'same-origin', cache: 'no-cache' }).then(function (r) {
+          if (!r.ok) throw new Error('http ' + r.status);
+          return r.text();
+        }).then(function (html) {
+          var p = Promise.resolve(html); p.__rv = false; cache[key] = p;
+        }).catch(function () { if (cache[key]) cache[key].__rv = false; });
+      }
+      return cache[key];
     }
-    return cache[url];
+    cache[key] = fetch(key, { credentials: 'same-origin', cache: 'no-cache' }).then(function (r) {
+      if (!r.ok) throw new Error('http ' + r.status);
+      return r.text();
+    });
+    return cache[key];
+  }
+
+  function prefetchLinks(root) {
+    Array.prototype.forEach.call(root.querySelectorAll('a'), function (a) {
+      if (isInternalPage(a)) {
+        try { fetchPage(new URL(a.href, location.href).href); } catch (e) {}
+      }
+    });
   }
 
   function execInlineScripts(scope) {
@@ -158,12 +183,9 @@
         if (opts.pop && scrollMemory[currentNav] != null) {
           window.scrollTo(0, scrollMemory[currentNav]);
         }
-        /* prefetch likely next pages */
-        Array.prototype.forEach.call(imported.querySelectorAll('a'), function (a) {
-          if (isInternalPage(a)) {
-            try { fetchPage(new URL(a.href, location.href).href); } catch (e) {}
-          }
-        });
+        /* prefetch likely next pages (whole document: header/footer chrome
+           links are the inner-page tab targets, not only the swapped main) */
+        prefetchLinks(document);
       });
     }).catch(function (e) {
       try { window.__ahShellError = (e && (e.message || e)) + ''; console.error('ah-shell fallback:', e); } catch (_) {}
@@ -190,6 +212,13 @@
 
   /* mark the initial entry so Back from the first swapped page works */
   try { history.replaceState({ ahShell: true, nav: 0, url: location.href }, ''); } catch (e) {}
+
+  /* warm the cache right after initial load too: direct landings on inner
+     pages (quotes, lessons) had no swap, so the first tab click paid the
+     full network wait */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { prefetchLinks(document); });
+  } else { prefetchLinks(document); }
 
   window.AHShell = { go: swapTo, active: true };
   window.AHShellActive = true;

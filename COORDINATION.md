@@ -282,3 +282,9 @@
 - Owner 17:33:51: his 17:27 text is the OUTER (home card) description; Roi's item8 text is the INNER program-page description. No conflict: program-9 .prog-desc now carries Roi's exact item8 text; the home card sub keeps Avraham's exact 17:27 wording. Title ערב שבת בבית המדרש unchanged everywhere.
 - refs: all css/js refs normalized to ?v=112 on ALL pages.
 - Executor: Avraham's side (this Instinct).
+
+## v113 (25.10.2026 ~17:46)
+- ah-shell.js: stale-while-revalidate page cache (keyed by path, background no-cache revalidation) + prefetch of whole-document internal links on load and after swaps. Restores instant inner-page tab-click response (v106 plain no-cache added ~1.7s network wait before any scroll response; user 25.10 17:41: "ועוד הפעם ביטלת את הגלילה המהירה"). Deploy propagation kept via revalidation.
+- main.js: scroll-spy sessionStorage write ('ah-home-section') gated to homepage only - in-shell inner pages keep the home header, whose bare '#quotes' nav link paired with the quotes page's own id="quotes" element and clobbered the saved home section (broke quotes "חזרה לאתר" bottom-case return).
+- refs ?v=113 on all pages.
+Executor: Avraham's side (this Instinct).

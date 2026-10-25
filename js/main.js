@@ -54,6 +54,10 @@ function ahPhotoPlaceholders() {
     requestAnimationFrame(step);
   }
 
+  function ahOnHomePage() {
+    return /\/index\.html?$/.test(location.pathname) || /\/$/.test(location.pathname);
+  }
+
   /* Active nav link on scroll: position-based, follows the real top-to-bottom
      section order (#home maps to the hero). Rebuilt on every init (shell-safe). */
   function buildSpy() {
@@ -97,7 +101,11 @@ function ahPhotoPlaceholders() {
     }
     if (S.lastSpyId !== curId) {
       S.lastSpyId = curId;
-      try { sessionStorage.setItem('ah-home-section', curId); } catch (e) {}
+      /* homepage only: in-shell inner pages keep the home header whose bare
+         '#...' nav links can pair with same-id elements on the inner page
+         (quotes page has id="quotes"), which clobbered the saved home section
+         and broke the quotes "back to site" return target */
+      try { if (ahOnHomePage()) sessionStorage.setItem('ah-home-section', curId); } catch (e) {}
     }
   }
 
