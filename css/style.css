@@ -1357,3 +1357,11 @@ body.ahp-has-bar .site-footer { padding-bottom: 20px; }
   .ahp-vol { width: 44px; }
   .ahp-speed { font-size: 12px; padding: 0 6px; }
 }
+
+/* v75 (25.10): footer restructure per user corrections video - brand block on top centered,
+   two link columns (האתר right, בית המדרש left), legal lines stay bottom-center, version stamp line removed by user request */
+.footer-brand-top { margin-bottom: clamp(16px, 2.4vw, 26px); }
+.footer-grid-two { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 560px; margin-inline: auto; }
+@media (max-width: 720px) {
+  .footer-grid-two { grid-template-columns: 1fr; max-width: none; }
+}
