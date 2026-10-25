@@ -80,6 +80,16 @@ function ahPhotoPlaceholders() {
       if (top - 90 <= pos && top > bestTop) { bestTop = top; current = S.spyPairs[i]; }
     }
     S.navLinks.forEach(function (l) { l.classList.toggle('is-active', l === current.link); });
+    /* remember the visitor's current homepage section so inner pages
+       (quotes "חזרה לאתר", Roi 25.10) can return to it. Only the homepage
+       builds spyPairs (bare '#...' nav hrefs), so this never writes elsewhere. */
+    /* no section above the read line yet => visitor is on the hero (desktop
+       nav has no #home item) - record 'home', not the first section */
+    var curId = (bestTop === -Infinity) ? 'home' : current.link.getAttribute('href').slice(1);
+    if (S.lastSpyId !== curId) {
+      S.lastSpyId = curId;
+      try { sessionStorage.setItem('ah-home-section', curId); } catch (e) {}
+    }
   }
 
   function bindOnce(el, key, ev, fn, opts) {

@@ -6,7 +6,7 @@
 <link rel="icon" type="image/png" href="./assets/logo-medal-ariel-64.png">
 <title>מה אומרים עלינו | עלה הדס - בית מדרש לנוער</title>
 <meta name="description" content="רבנים, אנשי ציבור ותקשורת על בית המדרש עלה הדס, על רשת תורהנוער שצמחה ממנו, ועל הדס בן שושן ואריאל דרסינובר ז״ל.">
-<link rel="stylesheet" href="./css/style.css?v=98">
+<link rel="stylesheet" href="./css/style.css?v=99">
 <style>
   .quotes-page { padding-top: 84px; padding-bottom: 90px; background: var(--navy-900); }
   .quotes-kicker { text-align: center; color: var(--gold); font-size: 0.95rem; letter-spacing: 0.06em; margin-bottom: 14px; }
@@ -256,6 +256,17 @@
   if (!b) return;
   b.addEventListener('click', function (e) {
     try {
+      /* Roi 25.10: return to the LAST HOMEPAGE SECTION the visitor occupied,
+         not a fixed target. main.js's scroll spy keeps it in sessionStorage.
+         Route through the shell when active so the swap + hash landing apply. */
+      var sec = sessionStorage.getItem('ah-home-section');
+      if (sec) {
+        e.preventDefault();
+        var target = './index.html#' + encodeURIComponent(sec);
+        if (window.AHShell && window.AHShell.go) { window.AHShell.go(target); }
+        else { location.href = target; }
+        return;
+      }
       var r = document.referrer;
       if (r && history.length > 1) {
         var path = new URL(r).pathname;
@@ -313,8 +324,8 @@
   </div>
 </footer>
 
-<script src="./js/ext-overlay.js?v=98"></script>
-<script src="./js/ah-player.js?v=98"></script>
-<script src="./js/ah-shell.js?v=98"></script>
+<script src="./js/ext-overlay.js?v=99"></script>
+<script src="./js/ah-player.js?v=99"></script>
+<script src="./js/ah-shell.js?v=99"></script>
 </body>
 </html>
