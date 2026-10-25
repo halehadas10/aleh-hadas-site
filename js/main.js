@@ -10,6 +10,19 @@ function ahPhotoPlaceholders() {
 (function () {
   'use strict';
 
+  /* Site root from this script's own URL (js/main.js lives one level under
+     the root), captured NOW while document.currentScript is live. NEVER
+     resolve './index.html' against location.href in goHomeIndex: in the shell
+     the URL moves into subdirectories (programs/program-N.html), so a
+     relative target 404'd as /programs/index.html#... (Roi 25.10). */
+  var AH_ROOT = (function () {
+    try {
+      var s = document.currentScript && document.currentScript.src;
+      if (s) return new URL('../', s).href;
+    } catch (e) {}
+    return new URL('.', location.href).href;
+  })();
+
   /* ===== persistent state (survives shell re-inits; bound once) ===== */
   var S = {
     spyPairs: [],
@@ -124,8 +137,9 @@ function ahPhotoPlaceholders() {
       return /\/index\.html?$/.test(location.pathname) || /\/$/.test(location.pathname);
     }
     function goHomeIndex(hash) {
-      if (window.AHShell && window.AHShell.go) { window.AHShell.go('./index.html' + hash); }
-      else { location.href = './index.html' + hash; }
+      var target = new URL('index.html' + hash, AH_ROOT).href;
+      if (window.AHShell && window.AHShell.go) { window.AHShell.go(target); }
+      else { location.href = target; }
     }
     window.AHScrollToId = function (id) {
       if (id === 'home') { ahSmoothScroll(0); return true; }

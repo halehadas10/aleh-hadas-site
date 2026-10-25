@@ -7,6 +7,31 @@
   'use strict';
   if (window.AHShell) return;
 
+  /* Site root from this script's own URL (js/ah-shell.js lives one level
+     under the root), NOT from location.href: in-shell the URL moves into
+     subdirectories, and the persistent header/footer chrome (authored on
+     root-level pages with './...' links) would then resolve against the
+     subdirectory and 404 (Roi 25.10: /programs/index.html#programs). */
+  var AH_ROOT = (function () {
+    try {
+      var s = document.currentScript && document.currentScript.src;
+      if (s) return new URL('../', s).href;
+    } catch (e) {}
+    return new URL('.', location.href).href;
+  })();
+
+  /* Re-point the persistent chrome's root-relative './...' links at the real
+     site root, once, so they survive shell navigation into subdirectories.
+     Swapped-in <main> content keeps its own relative links (resolved against
+     the current URL, which matches the page it came from). */
+  (function rootifyChromeLinks() {
+    Array.prototype.forEach.call(
+      document.querySelectorAll('.site-header a[href^="./"], .site-footer a[href^="./"]'),
+      function (a) {
+        try { a.href = new URL(a.getAttribute('href').slice(2), AH_ROOT).href; } catch (e) {}
+      });
+  })();
+
   var cache = {}; /* url -> Promise<string(html)> */
   var loadedScripts = {}; /* absolute src -> true */
   Array.prototype.forEach.call(document.scripts, function (s) {

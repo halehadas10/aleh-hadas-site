@@ -192,3 +192,10 @@
 - v93 (4785d48): main pixel review 14:21 - preview-mode controls gated: only Play acts (loads displayed lesson); skip/seek/speed/volume inert via inPreview(); X always hidden in preview (can never stop a different playing lesson under this label); stop() resets audio source so 0:00 preview is truthful.
 - v94 (a3dd2a5): preview bar immune to playing lesson's syncUI - while previewing B with A playing, A's timeupdate no longer rewrites B's static 0:00 time/progress/play-icon (was showing A's live clock under B's title, implying B playing); mediaSession still tracks real audio.
 - FULL A->B trusted-click verification on live v94: play A -> open B in-shell -> B preview static 0:00/29:38, X hidden, A keeps playing (289->302), +30/-15/speed inert (299->299, x1 unchanged) -> trusted Play switches to B (pos from 0, X restored, no navigation) -> X at pos 9 reverts to preview 0:00 -> replay starts 0:02 (true reset, not resume). Mobile/desktop pixel proofs captured for all four items.
+
+## v95 (16:45 IST 25.10) - nav 404 from program pages fixed (Roi report)
+- Roi report 25.10 16:41 (via his Instinct): https://halehadas10.github.io/aleh-hadas-site/programs/index.html#programs -> GitHub Pages 404.
+- Root cause: header/footer chrome persists across shell swaps while the URL moves into programs/. Its root-relative './...' links (and goHomeIndex's './index.html'+hash) then resolved against the subdirectory -> /programs/index.html#programs. Affected class: every './' header/footer link (תכניות/גלריה/שיעורים/ציטוטים/תרומה/logo) clicked from any program page, desktop+mobile.
+- Fix: js/ah-shell.js + js/main.js compute AH_ROOT from their own script URL (never location.href); ah-shell re-points .site-header/.site-footer './' links to root-absolute once at init; goHomeIndex targets new URL('index.html'+hash, AH_ROOT). Swapped-in <main> relative links untouched.
+- refs: all css/js refs normalized to ?v=95 on ALL pages incl. programs/.
+- Executor: Avraham's side (this Instinct). No design change, behavior repair only.
