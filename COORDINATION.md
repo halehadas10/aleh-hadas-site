@@ -365,3 +365,9 @@ Executor: Avraham's side (this Instinct).
 - Change: donate.html page content removed and replaced with a redirect stub to ./index.html#donate (old shared links keep working). The 3-provider payment overlay (JGive / PayBox / Bit, destinations unchanged, no amounts) moved into index.html and opens from the "תרמו עכשיו" button. index nav + footer donation links now anchor to #donate (nav click uses the fast eased scroller; #donate offset already existed in AHScrollToId). All donation links on lessons/gallery/quotes/lesson/program pages retargeted to index.html#donate; programs/donate.html stub retargeted too.
 - Wording consequence: the donate-section note "לחיצה תעביר אתכם לדף התרומות של בית המדרש" was false after the page removal, minimally updated to "לחיצה תפתח את אפשרויות התשלום לתרומה" (flagged to owner via main).
 - Executor: Avraham's side (this Instinct).
+
+## v132 (26.10, midnight)
+- Source: same owner request as v131 (00:25:43) - the nav donation click must actually LAND at the homepage donation section after the fast scroll.
+- Problem found in verification: first nav tap glided toward the click-time target, but lazy images/iframes below the fold load and claim height as the glide passes, so the page grows mid-animation and the scroll settled thousands of px short (donate is the last section).
+- Fix (js/main.js AHScrollToId): after the glide ends (~780ms), recompute the target from the live layout and run ONE corrective re-glide when the landing is off by more than 150px; skipped if a newer gesture took over (token). No continuous retargeting (24.10 lesson). Applies to all section anchors.
+- Executor: Avraham's side (this Instinct).

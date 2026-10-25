@@ -180,11 +180,27 @@ function ahPhotoPlaceholders() {
       if (id === 'home') { ahSmoothScroll(0); return true; }
       var target = document.getElementById(id);
       if (!target) return false;
-      var title = target.querySelector('.section-title') || target;
-      var y = 0; for (var n = title; n; n = n.offsetParent) y += n.offsetTop;
-      var extra = (id === 'donate') ? 100 : 14;
-      y = y - header.offsetHeight - extra;
-      ahSmoothScroll(Math.max(0, y));
+      function targetTop() {
+        var title = target.querySelector('.section-title') || target;
+        var y = 0; for (var n = title; n; n = n.offsetParent) y += n.offsetTop;
+        var extra = (id === 'donate') ? 100 : 14;
+        return Math.max(0, y - header.offsetHeight - extra);
+      }
+      ahSmoothScroll(targetTop());
+      /* v132 (owner 26.10 00:25, nav->donate route): lazy images/iframes below
+         the fold only load (and claim their height) as the glide passes them,
+         so the target locked at click time can sit hundreds of px short by the
+         time the animation ends - first tap on the donate nav landed mid-page
+         instead of at the donate section. One corrective re-glide after the
+         animation ends, recomputed from the live layout; cancelled if a newer
+         gesture took over (token), skipped when already close. Single
+         correction, no continuous retargeting (24.10 retarget-fight lesson). */
+      var myToken = ahScrollToken;
+      setTimeout(function () {
+        if (myToken !== ahScrollToken) return;
+        var fresh = targetTop();
+        if (Math.abs(fresh - window.scrollY) > 150) ahSmoothScroll(fresh);
+      }, 780);
       var scope = target.closest('section') || target;
       scope.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-visible'); });
       if (scope.classList.contains('reveal')) scope.classList.add('is-visible');
