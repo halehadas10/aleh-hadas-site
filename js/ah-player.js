@@ -23,7 +23,16 @@
   /* ---------- UI ---------- */
   var bar;
   function buildBar() {
-    if (bar) return;
+    var existing_mount = document.getElementById('lpAudio');
+    if (bar && bar.isConnected) {
+      if (existing_mount && bar.parentNode !== existing_mount) {
+        bar.classList.add('ahp-inflow');
+        existing_mount.appendChild(bar);
+        document.body.classList.remove('ahp-has-bar');
+      }
+      return;
+    }
+    bar = null;
     bar = document.createElement('div');
     bar.id = 'ahPlayer';
     bar.className = 'ahp';
@@ -58,8 +67,16 @@
           '</button>' +
         '</div>' +
       '</div>';
-    document.body.appendChild(bar);
-    document.body.classList.add('ahp-has-bar');
+    /* v85 (user video 213-280s): player lives in-flow on the lesson page,
+       never as a floating/fixed bar. Audio keeps playing when leaving;
+       no bar follows. Reference: shaveihevron.org pattern. */
+    var mount = document.getElementById('lpAudio');
+    if (mount) {
+      bar.classList.add('ahp-inflow');
+      mount.appendChild(bar);
+    } else {
+      document.body.appendChild(bar);
+    }
 
     $('ahpPlay').addEventListener('click', function () { API.toggle(); });
     $('ahpFwd').addEventListener('click', function () { API.seekBy(30); });
@@ -240,7 +257,7 @@
       cov.src = current.cover || './assets/covers/show.jpg';
       $('ahpTitle').textContent = current.title;
       $('ahpSub').textContent = current.rabbi;
-      bar.hidden = false;
+      bar.hidden = !bar.classList.contains('ahp-inflow');
       if (audio.getAttribute('src') !== current.src) {
         audio.src = current.src;
         audio.load();
@@ -271,6 +288,12 @@
       current = null;
       clearSnapshot();
       if ('mediaSession' in navigator) { try { navigator.mediaSession.playbackState = 'none'; } catch (_) {} }
+    },
+    reshow: function () {
+      if (!current) return;
+      buildBar();
+      bar.hidden = !bar.classList.contains('ahp-inflow');
+      if (!bar.hidden) { var t0 = $('ahpTime'); if (t0) syncUI(); }
     },
     state: function () {
       return {

@@ -1210,6 +1210,7 @@ section[id], main [id] { scroll-margin-top: 84px; }
   font-family: inherit;
 }
 .ahp[hidden] { display: none; }
+.ahp.ahp-inflow { position: static; box-shadow: none; border-radius: 14px; margin-top: 12px; }
 .ahp-progress {
   height: 5px; background: rgba(255,255,255,.22); cursor: pointer; position: relative;
 }

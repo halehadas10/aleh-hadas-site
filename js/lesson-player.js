@@ -12,6 +12,7 @@
   /* vid must be read per init: under the navigation shell this script loads
      once (on the index, no ?v=) and lesson pages arrive later via swaps */
   vid = new URLSearchParams(location.search).get('v');
+  if (window.AHPlayer && AHPlayer.state && AHPlayer.state().current) { AHPlayer.reshow(); }
   fetch('./data/lessons.json?v=' + Date.now()).then(r => r.json()).then(d => {
     const all = d.lessons || []; /* 23.10 v40: shared links to non-Spotify lessons must open too */
     lesson = all.find(l => l.id === vid);
