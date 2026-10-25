@@ -340,15 +340,33 @@ function ahPhotoPlaceholders() {
     /* Team: show/hide the rest of the team cards */
     var teamMore = document.getElementById('teamMore');
     var teamExtra = document.getElementById('teamExtra');
-    bindOnce(teamMore, 'teamMore', 'click', function () {
-      if (teamExtra.hasAttribute('hidden')) {
-        teamExtra.removeAttribute('hidden');
-        teamMore.textContent = 'סגירת הרשימה';
-      } else {
+    var teamCloseWrap = document.getElementById('teamCloseWrap');
+    var teamClose = document.getElementById('teamClose');
+    var teamCloseTimer = null;
+    function teamOpen() {
+      if (teamCloseTimer) { clearTimeout(teamCloseTimer); teamCloseTimer = null; }
+      teamExtra.classList.remove('team-closing');
+      teamExtra.removeAttribute('hidden');
+      void teamExtra.offsetWidth;
+      teamExtra.classList.add('team-anim-in');
+      teamMore.textContent = 'סגירת הרשימה';
+      if (teamCloseWrap) teamCloseWrap.removeAttribute('hidden');
+    }
+    function teamCollapse() {
+      teamExtra.classList.remove('team-anim-in');
+      teamExtra.classList.add('team-closing');
+      teamMore.textContent = 'לשאר חברי הצוות';
+      if (teamCloseWrap) teamCloseWrap.setAttribute('hidden', '');
+      teamCloseTimer = setTimeout(function () {
         teamExtra.setAttribute('hidden', '');
-        teamMore.textContent = 'לשאר חברי הצוות';
-      }
+        teamExtra.classList.remove('team-closing');
+        teamCloseTimer = null;
+      }, 260);
+    }
+    bindOnce(teamMore, 'teamMore', 'click', function () {
+      if (teamExtra.hasAttribute('hidden') || teamExtra.classList.contains('team-closing')) { teamOpen(); } else { teamCollapse(); }
     });
+    bindOnce(teamClose, 'teamClose', 'click', teamCollapse);
 
     /* Persistent global listeners (bound once ever) */
     if (!window.__ahMainPersistent) {

@@ -769,6 +769,12 @@ section.contact-donate-solo { padding-top: clamp(34px, 5vw, 60px); padding-botto
   margin-top: 0;
 }
 
+/* Team list expand animation + dedicated close button (user video: "לזה אין אנימציה", "כפתור של סגירה כאן, משהו יפה") */
+.team-extra.team-closing { opacity: 0; transform: translateY(10px); transition: opacity .25s ease, transform .25s ease; }
+.team-close-wrap { text-align: center; margin-top: 20px; }
+.team-close { width: 46px; height: 46px; border-radius: 50%; border: 1.5px solid rgba(0,80,110,.3); background: rgba(0,80,110,.07); color: #00506e; font-size: 1.25rem; cursor: pointer; line-height: 1; display: inline-flex; align-items: center; justify-content: center; transition: background .2s ease, color .2s ease, transform .2s ease; }
+.team-close:hover { background: #00506e; color: #fff; transform: scale(1.08); }
+
 /* Team expanded cards: same size as David/Noa cards, two per row, centered */
 
 /* Program cards: exact maayan-style - thin-line icon, gold title, small body, underline */
@@ -1180,8 +1186,7 @@ section[id], main [id] { scroll-margin-top: 84px; }
 .tm-backdrop[hidden] { display: none; }
 .tm-card { background: #fff; border-radius: 20px; max-width: 540px; width: 100%; padding: 30px 26px; position: relative; box-shadow: 0 30px 70px rgba(0,50,80,.35); transform: translateY(26px) scale(.94); transition: transform .35s cubic-bezier(.2,.9,.3,1.2); }
 .tm-backdrop.is-open .tm-card { transform: translateY(0) scale(1); }
-.tm-close { position: absolute; top: 12px; inset-inline-start: 16px; width: 40px; height: 40px; border-radius: 50%; background: rgba(0,80,110,.08); border: 1.5px solid rgba(0,80,110,.25); font-size: 1.4rem; cursor: pointer; color: #00506e; line-height: 1; display: flex; align-items: center; justify-content: center; transition: background .2s ease, transform .2s ease, color .2s ease; }
-.tm-close:hover { background: #00506e; color: #fff; transform: scale(1.08); }
+.tm-close { position: absolute; top: 12px; inset-inline-start: 16px; background: none; border: none; font-size: 1.8rem; cursor: pointer; color: #617983; line-height: 1; }
 .tm-title { text-align: center; color: #00506e; font-size: 1.5rem; margin: 0 0 4px; }
 .tm-prog { text-align: center; color: #617983; margin: 0 0 6px; font-size: .98rem; }
 .tm-owner { text-align: center; font-weight: 700; color: #14323f; margin: 0 0 6px; }
