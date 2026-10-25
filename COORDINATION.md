@@ -359,3 +359,9 @@ Executor: Avraham's side (this Instinct).
 - Finding 2: the picker was never removed in code - donate.html still binds every [data-dn] medal to open #dnPayOverlay with the three provider links (destinations unchanged). Verified working on the live site with real pointer clicks, desktop and mobile (title follows the clicked route). No code change required; the ?v=130 refs ship a fully fresh page+assets to cached browsers.
 - No amounts or payment settings changed.
 - Executor: Avraham's side (this Instinct).
+
+## v131 (26.10, midnight)
+- Source: owner WhatsApp 26.10 00:25:43 (wamid.HBgMOTcyNTQ5OTE3MzcyFQIAEhgWM0VCMDdFODA0RDQ2RTlGRkJDQjdBNgA=): remove the separate donation page; clicking the donation button opens the mini window with the 3 payment options; the tab-bar donation link fast-scrolls to the donation section on the homepage.
+- Change: donate.html page content removed and replaced with a redirect stub to ./index.html#donate (old shared links keep working). The 3-provider payment overlay (JGive / PayBox / Bit, destinations unchanged, no amounts) moved into index.html and opens from the "תרמו עכשיו" button. index nav + footer donation links now anchor to #donate (nav click uses the fast eased scroller; #donate offset already existed in AHScrollToId). All donation links on lessons/gallery/quotes/lesson/program pages retargeted to index.html#donate; programs/donate.html stub retargeted too.
+- Wording consequence: the donate-section note "לחיצה תעביר אתכם לדף התרומות של בית המדרש" was false after the page removal, minimally updated to "לחיצה תפתח את אפשרויות התשלום לתרומה" (flagged to owner via main).
+- Executor: Avraham's side (this Instinct).
