@@ -348,6 +348,11 @@
       if (current && current.id === o.id) {
         bar.dataset.preview = '';
         var cl = $('ahpClose'); if (cl) cl.style.display = '';
+        /* v92: rebuilt bar starts empty - re-populate meta + cover (same lesson) */
+        var cov = $('ahpCover');
+        if (cov) { cov.onerror = function () { cov.onerror = null; cov.src = './assets/covers/show.jpg'; }; cov.src = current.cover || './assets/covers/show.jpg'; }
+        if ($('ahpTitle')) $('ahpTitle').textContent = current.title;
+        if ($('ahpSub')) $('ahpSub').textContent = current.rabbi;
         syncUI();
         return;
       }
