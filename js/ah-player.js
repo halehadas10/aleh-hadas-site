@@ -25,9 +25,10 @@
   function buildBar() {
     var existing_mount = document.getElementById('lpAudio');
     if (bar && bar.isConnected) {
-      if (existing_mount && bar.parentNode === existing_mount) {
+      if (existing_mount && bar.parentNode !== existing_mount.parentNode) {
         /* v86: #lpAudio innerHTML gets rewritten by lesson-player init -
-           the bar must be a SIBLING after it, not a child */
+           the bar must be a SIBLING after it, not a child. v87: relocate
+           whenever the bar lives anywhere else (body or inside mount) */
         bar.classList.add('ahp-inflow');
         existing_mount.parentNode.insertBefore(bar, existing_mount.nextSibling);
         document.body.classList.remove('ahp-has-bar');
