@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>מעביר... - עלה הדס</title>
+<meta http-equiv="refresh" content="1; url=../quotes.html">
+<link rel="icon" type="image/png" href="../assets/logo-medal-ariel.png">
+<style>
+  body { font-family: sans-serif; display: flex; min-height: 100vh; align-items: center; justify-content: center; text-align: center; color: #14323f; }
+  a { color: #00506e; font-weight: 700; }
+</style>
+</head>
+<body>
+  <p>הקישור עודכן - מעביר אותך לדף הנכון...<br><a href="../quotes.html">אם לא הופעל אוטומטית, לחץ כאן</a></p>
+<script>
+  /* v102: recovery for stale tabs/bookmarks holding pre-v95 URLs like
+     /programs/index.html#programs (Roi 17:01:36 "שלא יקרה יותר").
+     Forward to the real root page, preserving the hash. */
+  location.replace('../quotes.html' + (location.hash || ''));
+</script>
+</body>
+</html>

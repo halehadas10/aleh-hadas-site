@@ -233,3 +233,7 @@
 - User approval 17:00:28 "תחיל את הכיתוב הירוק באתר" to the full-section preview: .story-text now 21px@1280 (clamp 1.02rem, 1.64vw, 1.3125rem; mobile unchanged), line-height 1.75, color #427651. Copy/title/blue stats untouched. This approval does NOT cover the Eliyahu card shrink (still gated).
 - refs: all css/js refs normalized to ?v=101 on ALL pages.
 - Executor: Avraham's side (this Instinct).
+
+## v102 (17:03 IST 25.10) - recovery for stale bad literal URLs (Roi 17:01:36 re-hit + "שלא יקרה יותר")
+- Roi re-hit /programs/index.html#programs AFTER v95 (fresh click vs stale tab unconfirmed, peer checking). v95 stopped generating that URL; this adds recovery for the literal URL class itself: redirect stubs programs/{index,donate,gallery,quotes,lessons,lesson}.html -> ../<same> preserving hash (JS location.replace + meta-refresh + visible link fallback). No real page shadowed (these files never existed). Old tabs with pre-v95 cached JS now recover instead of landing on a hard 404.
+- Executor: Avraham's side (this Instinct).
