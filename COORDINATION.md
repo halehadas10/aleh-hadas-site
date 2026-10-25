@@ -277,3 +277,8 @@
 - Roi selected a photo for uniform program-subpage use (17:30 batch, reply 17:31:47). Owner was shown the actual image and asked "להחליף לזו שרועי בחר?" - answered כן (17:32:38 + confirmed כן 17:32:58). All program-page carousel slides (40 refs = 8 pages x 5, program-1..7+9; program-8 deleted in v108) now use assets/program-uniform-roi.jpg (his original file preserved byte-for-byte). The previous temporary placeholder (assets/image-0cc9df18-PVXUTW4T.jpg, owner's own upload) stays on disk untouched. No home-card or other-page image scope.
 - refs: all css/js refs normalized to ?v=111 on ALL pages.
 - Executor: Avraham's side (this Instinct).
+
+## v112 (17:36 IST 25.10) - evening page inner description (Roi item8, placement resolved)
+- Owner 17:33:51: his 17:27 text is the OUTER (home card) description; Roi's item8 text is the INNER program-page description. No conflict: program-9 .prog-desc now carries Roi's exact item8 text; the home card sub keeps Avraham's exact 17:27 wording. Title ערב שבת בבית המדרש unchanged everywhere.
+- refs: all css/js refs normalized to ?v=112 on ALL pages.
+- Executor: Avraham's side (this Instinct).
