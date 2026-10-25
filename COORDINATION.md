@@ -171,3 +171,7 @@
 - v86 (84ce79e): bar must be SIBLING after #lpAudio (init rewrites #lpAudio innerHTML, child bar destroyed on in-shell return).
 - v87 (9e1a69b): relocation condition fix - body-mounted restored bar moves in-flow when lesson page mounts.
 - REAL-GESTURE LIFECYCLE VERIFIED (cloud browser, trusted clicks, in-shell links): play -> playing+in-flow+visible; leave to quotes in-shell -> bar destroyed, audio continues (27s->31s); return via lessons -> bar reshows in-flow, time 4:03/45:16 preserved, still playing. Fresh-load restore also verified (v7 served, in-flow, paused snapshot).
+
+## v88 (11:37 IST 25.10) - reshow meta fix + MOBILE PASS COMPLETE
+- v88 (df45f15): reshow() re-populates title/rabbi/cover (mobile return showed blank meta on rebuilt bar).
+- Mobile 390px real-gesture pass: play (trusted click) -> in-flow bar 359px/390 not clipped, playing; +30 skip 1s->33s; speed cycles x1.25; volume slider set 0.3; leave in-shell -> bar destroyed, audio continues (65s->69s); return -> bar reshows in-flow with title/rabbi/cover/time 2:52/45:16, speed+volume preserved.
