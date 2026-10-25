@@ -267,3 +267,8 @@
 - User 17:31:17: 'תוסיף בכל דפי התוכנית לחצן בשם"קישור לקבוצה" בנתיים שלא יעשה כלום,בהמשך אשלח לך קישורים ושכל לחצן יפנה אל הקישורים האלו'. Added an inert <button> labeled קישור לקבוצה (no handler, no href) to the CTA row of program pages 1-7 and 9 (program-8 deleted in v108; program-10 is a placeholder stub with no CTA row - excluded, easy to add when it becomes a real page). Awaits his links.
 - refs: all css/js refs normalized to ?v=109 on ALL pages.
 - Executor: Avraham's side (this Instinct).
+
+## v110 (17:34 IST 25.10) - program subpage descriptions (Roi 17:30:26-30 batch)
+- Roi's exact descriptions (wording/typos preserved) replace the בלה בלה בלה placeholders: item1->program-1 (ט'-יב'), item2->program-2 (ה'-ו'), item3->program-3 (רמב"ם), item4->program-4 (חבורות), item5->program-7 (נערות ז'-ח', הרבנית רינת פסטליך), item6->program-6 (מוצ"שים), item7->program-5 (עונג שבת הרב יוני לביא). Item 8 (ערב שבת) HELD: conflicts with Avraham's explicit 17:27 wording; his text stays pending Roi reconciliation. Home card subs unchanged (batch named subpage descriptions).
+- refs: all css/js refs normalized to ?v=110 on ALL pages.
+- Executor: Avraham's side (this Instinct).
