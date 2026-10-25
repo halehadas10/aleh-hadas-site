@@ -288,3 +288,8 @@
 - main.js: scroll-spy sessionStorage write ('ah-home-section') gated to homepage only - in-shell inner pages keep the home header, whose bare '#quotes' nav link paired with the quotes page's own id="quotes" element and clobbered the saved home section (broke quotes "חזרה לאתר" bottom-case return).
 - refs ?v=113 on all pages.
 Executor: Avraham's side (this Instinct).
+
+## v114 (25.10.2026 ~17:49)
+- ah-shell.js: hash-landing after an in-shell swap now waits up to ~2s for main.js's AHScrollToId (fast eased scroller) before the native scrollIntoView fallback. Root cause of the user-reported lost fast scroll (25.10 17:41): direct landings on inner pages (quotes.html etc.) do not load main.js, so swap landings fell back to the slow native CSS-smooth scrollIntoView. Verified live pre-fix: quotes->home tab click = native glide, no AHScrollToId.
+- refs ?v=114 on all pages.
+Executor: Avraham's side (this Instinct).

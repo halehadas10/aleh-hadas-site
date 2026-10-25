@@ -175,9 +175,21 @@
           /* double rAF: measure after the swapped main has laid out, or the
              target position is computed against pre-layout heights */
           requestAnimationFrame(function () { requestAnimationFrame(function () {
-            var done = false;
-            try { if (window.AHScrollToId) done = window.AHScrollToId(hashId); } catch (e) {}
-            if (!done) { var el = document.getElementById(hashId); if (el) el.scrollIntoView(); }
+            /* AHScrollToId lives in main.js, which inner pages (quotes,
+               lessons...) do NOT load on a direct landing - loadMissingScripts
+               only starts fetching it during this swap. Wait briefly for the
+               fast eased scroller before falling back to the native jump
+               (user 25.10: "fast tab-scroll cancelled again" - inner-page tab
+               clicks fell back to the slow native CSS-smooth glide). */
+            var tries = 0;
+            (function land() {
+              var done = false;
+              try { if (window.AHScrollToId) done = window.AHScrollToId(hashId); } catch (e) {}
+              if (done) return;
+              if (++tries < 20 && document.getElementById(hashId)) { setTimeout(land, 100); return; }
+              var el = document.getElementById(hashId);
+              if (el) el.scrollIntoView();
+            })();
           }); });
         }
         if (opts.pop && scrollMemory[currentNav] != null) {
