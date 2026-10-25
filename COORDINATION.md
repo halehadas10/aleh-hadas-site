@@ -175,3 +175,6 @@
 ## v88 (11:37 IST 25.10) - reshow meta fix + MOBILE PASS COMPLETE
 - v88 (df45f15): reshow() re-populates title/rabbi/cover (mobile return showed blank meta on rebuilt bar).
 - Mobile 390px real-gesture pass: play (trusted click) -> in-flow bar 359px/390 not clipped, playing; +30 skip 1s->33s; speed cycles x1.25; volume slider set 0.3; leave in-shell -> bar destroyed, audio continues (65s->69s); return -> bar reshows in-flow with title/rabbi/cover/time 2:52/45:16, speed+volume preserved.
+
+## v89 (11:40 IST 25.10) - mobile player bar layout fix (main pixel review)
+- Legacy max-560px rule HID time+rabbi and single-row flex squeezed meta to zero + half-clipped X. Fixed: two-row layout (cover+title+rabbi+time row, controls row space-between), 34px buttons, 64px vol slider. Pixel-verified 390px: time "0:02 / 45:16" visible, title+rabbi visible, X at x26-60 fully inside, overflowX false, playing.
