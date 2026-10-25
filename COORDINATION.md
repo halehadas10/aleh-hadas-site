@@ -246,3 +246,7 @@
 ## v105 (17:15 IST 25.10) - donation section containment fix on program pages
 - v103 placed the donation section INSIDE main.prog-wrap (max-width 980): the inner .container (min(1200,92vw)) overflowed the wrap, panel bled off-viewport left (main pixel review 17:13 FAIL). Restructured all 10 program pages: main now plain, program content in inner .prog-wrap/.stub-inner div, donation section a full-width sibling at the end of main - same geometry as quotes/lessons/gallery, shell-swap safe (stays inside main). No visual change to the program content itself.
 - Executor: Avraham's side (this Instinct).
+
+## v106 (17:17 IST 25.10) - shell fetch revalidation
+- ah-shell fetchPage now uses cache:'no-cache' (ETag revalidate): shell navigation picks up deployed HTML changes instead of serving session-cached/HTTP-cached stale page HTML (found while verifying v105: a shell swap rendered the pre-fix program page structure from cache while direct loads were correct). 304s keep it cheap; no behavior change otherwise.
+- Executor: Avraham's side (this Instinct).

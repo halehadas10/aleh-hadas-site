@@ -53,7 +53,7 @@
 
   function fetchPage(url) {
     if (!cache[url]) {
-      cache[url] = fetch(url, { credentials: 'same-origin' }).then(function (r) {
+      cache[url] = fetch(url, { credentials: 'same-origin', cache: 'no-cache' }).then(function (r) {
         if (!r.ok) throw new Error('http ' + r.status);
         return r.text();
       });
