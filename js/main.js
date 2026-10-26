@@ -223,6 +223,12 @@ function ahPhotoPlaceholders() {
         /* off-homepage the header's bare #anchors ALWAYS mean homepage sections,
            even if some other page happens to reuse the same id (#donate) */
         if (!onHomePage() || !document.getElementById(id)) { goHomeIndex('#' + id); return; }
+        /* v137 (owner 26.10 07:55, BOTH platforms): the donate nav tab opens
+           the payment mini window directly instead of gliding to the section */
+        if (id === 'donate' && window.AHDonateOpen && window.AHDonateOpen()) {
+          history.replaceState(null, '', '#donate');
+          return;
+        }
         window.AHScrollToId(id);
         history.replaceState(null, '', '#' + id);
       });
@@ -421,6 +427,46 @@ function ahPhotoPlaceholders() {
       bindOnce(lightbox, 'lightboxBg', 'click', function (e) { if (e.target === lightbox) closeLightbox(); });
     }
 
+    /* Donation payment mini window (v131; logic moved from a body-level
+       inline script into main.js in v137: body scripts only run on a full
+       index.html load, so after a shell swap from another page the CTA was
+       left dead. main.js init re-runs on every swap; markup already lives
+       inside <main> and travels with the swap). */
+    (function () {
+      window.AHDonateOpen = function () {
+        var o = document.getElementById('dnPayOverlay');
+        if (!o) return false;
+        o.classList.add('open');
+        return true;
+      };
+      var dnOverlay = document.getElementById('dnPayOverlay');
+      if (!dnOverlay) return;
+      function dnClose() { dnOverlay.classList.remove('open'); }
+      bindOnce(document.getElementById('donateOpenBtn'), 'donateOpen', 'click', function () { window.AHDonateOpen(); });
+      bindOnce(document.getElementById('dnPayClose'), 'dnPayClose', 'click', dnClose);
+      bindOnce(dnOverlay, 'dnPayBg', 'click', function (e) { if (e.target === dnOverlay) dnClose(); });
+      if (!window.__ahDonateEsc) {
+        window.__ahDonateEsc = true;
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') { var o = document.getElementById('dnPayOverlay'); if (o) o.classList.remove('open'); }
+        });
+      }
+      /* v137: the footer donate link is the same entry point - open the window */
+      document.querySelectorAll('.footer-donate[href$="#donate"]').forEach(function (a) {
+        bindOnce(a, 'footerDonate', 'click', function (e) {
+          if (!onHomePage()) return; /* cross-page: land on #donate, auto-open below */
+          e.preventDefault();
+          window.AHDonateOpen();
+        });
+      });
+      /* v137: landing on index.html#donate (redirect stub of the removed
+         donation page, cross-page nav tabs, stale cached pages whose old CTA
+         still points at donate.html) opens the window over the section */
+      if (location.hash === '#donate') {
+        setTimeout(function () { window.AHDonateOpen(); }, 350);
+      }
+    })();
+
     /* Team: show/hide the rest of the team cards */
     var teamMore = document.getElementById('teamMore');
     var teamExtra = document.getElementById('teamExtra');
@@ -437,6 +483,9 @@ function ahPhotoPlaceholders() {
       if (teamCloseWrap) teamCloseWrap.removeAttribute('hidden');
     }
     function teamCollapse() {
+      /* v137 (owner 26.10 07:57, BOTH platforms): closing the team list (the X
+         or סגירת הרשימה) glides back to the top of the contact section */
+      if (window.AHScrollToId) window.AHScrollToId('contact');
       teamExtra.classList.remove('team-anim-in');
       teamExtra.classList.add('team-closing');
       teamMore.textContent = 'לשאר חברי הצוות';
