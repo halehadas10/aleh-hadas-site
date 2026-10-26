@@ -1510,7 +1510,7 @@ button.social-link { font: inherit; cursor: pointer; text-align: start; width: 1
   16% { transform: translateY(0); }
 }
 @media (max-width: 820px) {
-  .mobile-header-donate {
+  .nav-link.mobile-header-donate {
     display: flex; align-items: center; justify-content: center;
     min-height: 44px; min-width: 76px; padding: 6px 18px;
     font-size: 16px; line-height: 1; flex-shrink: 0;
@@ -1521,8 +1521,8 @@ button.social-link { font: inherit; cursor: pointer; text-align: start; width: 1
 }
 @media (max-width: 350px) {
   .site-header { padding-inline: 12px; gap: 8px; }
-  .mobile-header-donate { min-width: 70px; padding-inline: 14px; }
+  .nav-link.mobile-header-donate { min-width: 70px; padding-inline: 14px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .mobile-header-donate { animation: none; }
+  .nav-link.mobile-header-donate { animation: none; }
 }

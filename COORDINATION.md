@@ -543,3 +543,8 @@ Executor: Avraham's side (this Instinct).
 - Header shortcut opens existing payment popup without changing page/URL/scroll.
 - Reduced motion respected; desktop, page body and payment targets unchanged.
 - Approval is specific to this batch, not general publication permission.
+
+## 2026-10-26 v165 verification follow-up
+- Mobile shortcut animation specificity corrected to gentle4px bounce/2.8s and reduced-motion none.
+- Prior approved v163 PayBox label synchronized into inline program-popup copies.
+- Payment URLs and popup behavior unchanged.
