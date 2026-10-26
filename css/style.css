@@ -1458,3 +1458,11 @@ button.social-link { font: inherit; cursor: pointer; text-align: start; width: 1
 .lp-yt-fallback { display: block; position: relative; border-radius: inherit; overflow: hidden; }
 .lp-yt-fallback img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .lp-yt-fallback-label { position: absolute; inset-inline: 0; bottom: 0; padding: 10px; background: rgba(10,12,30,.78); color: #fff; font-size: .95rem; text-align: center; }
+
+/* v143 (owner voice 26.10 15:46, MOBILE ONLY): donation provider buttons stack
+   the logo ABOVE the text on phones. Desktop row layout, links and wording
+   unchanged. */
+@media (max-width: 860px) {
+  .dn-pay-btn { flex-direction: column; gap: 6px; }
+  .dn-pay-btn .dn-pay-logo { width: 30px; height: 30px; }
+}

@@ -429,3 +429,6 @@ Executor: Avraham's side (this Instinct).
 - חזרה לאתר בעמודי בית המדרש: יעד קבוע ./index.html#virtual (מקטע בית המדרש בדף הבית); הוסר ה-hijack של history.back/ah-return. עמוד ההמלצות שומר על לוגיקת החזרה שלו.
 - refs: כל ?v= עודכן ל-142 בכל העמודים.
 - v142 תיקון משלים: quotes.html ו-gallery.html לא טענו main.js בכלל (הסתמכו על shell swap שיביא אותו) — נוסף main.js?v=142 כמו בlessons.html, אחרת מודול התרומה לא קיים בטעינה ישירה שלהן.
+
+## 2026-10-26 v143 (קול בעלים 15:46) — Executor: Avraham's side (this Instinct)
+- חלון תרומה (mobile בלבד): הלוגו מעל הכיתוב בכל 3 אמצעי התשלום (flex-direction: column ב-860px-); דסקטופ, קישורים וכיתוב ללא שינוי. refs: ?v=143 בכל העמודים.
