@@ -6,7 +6,7 @@
 <link rel="icon" type="image/png" href="./assets/logo-medal-ariel-64.png">
 <title>מה אומרים עלינו | עלה הדס - בית מדרש לנוער</title>
 <meta name="description" content="רבנים, אנשי ציבור ותקשורת על בית המדרש עלה הדס, על רשת תורהנוער שצמחה ממנו, ועל הדס בן שושן ואריאל דרסינובר ז״ל.">
-<link rel="stylesheet" href="./css/style.css?v=138">
+<link rel="stylesheet" href="./css/style.css?v=139">
 <style>
   .quotes-page { padding-top: 84px; padding-bottom: 90px; background: var(--navy-900); }
   .quotes-kicker { text-align: center; color: var(--gold); font-size: 0.95rem; letter-spacing: 0.06em; margin-bottom: 14px; }
@@ -255,6 +255,15 @@
   if (!b) return;
   b.addEventListener('click', function (e) {
     try {
+      /* v139 (owner 26.10 07:52, MOBILE ONLY): on phones, go back through the
+         shell history so the popstate path restores the EXACT prior scroll
+         spot (scrollMemory) - the section-level landing below was overriding
+         it and dropping him at the section top. Desktop keeps Roi's 25.10
+         last-section behavior. */
+      if (window.matchMedia && window.matchMedia('(max-width: 860px)').matches &&
+          window.AHShellActive && history.state && history.state.ahShell && history.state.nav > 0) {
+        e.preventDefault(); history.back(); return;
+      }
       /* Roi 25.10: return to the LAST HOMEPAGE SECTION the visitor occupied,
          not a fixed target. main.js's scroll spy keeps it in sessionStorage.
          Route through the shell when active so the swap + hash landing apply. */
@@ -323,8 +332,8 @@
   </div>
 </footer>
 
-<script src="./js/ext-overlay.js?v=138"></script>
-<script src="./js/ah-player.js?v=138"></script>
-<script src="./js/ah-shell.js?v=138"></script>
+<script src="./js/ext-overlay.js?v=139"></script>
+<script src="./js/ah-player.js?v=139"></script>
+<script src="./js/ah-shell.js?v=139"></script>
 </body>
 </html>
