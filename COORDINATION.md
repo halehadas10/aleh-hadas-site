@@ -383,3 +383,8 @@ Executor: Avraham's side (this Instinct).
 - Recovered from git history: before the 25.10 17:00:28 green change, .story-text was color: var(--text-dim).
 - Change (css/style.css .story-text only): color #ffffff -> var(--text-dim). Font size/line-height from the 25.10 approval unchanged. Scope unchanged: only the story body paragraphs; heading and statistics untouched.
 - Executor: Avraham's side (this Instinct).
+
+## v135 (26.10, morning)
+- Source: owner WhatsApp 26.10 07:49:23 (wamid.HBgMOTcyNTQ5OTE3MzcyFQIAEhgUM0FEMUM1QzVBMTlBNEUzQ0Q2ODgA, screenshot circling the scroll-down mouse indicator at the bottom of the homepage hero): "תסיר את זה גם במחשב וגם בטלפון" - explicit both-platform exception to the 07:44 mobile-only design scope.
+- Change: removed the .hero-scroll anchor (the mouse-shaped scroll hint linking to #story) from index.html and its CSS (.hero-scroll, .hero-scroll span, @keyframes scrollHint) from style.css. Single element - gone on desktop and mobile. Nothing else touched.
+- Executor: Avraham's side (this Instinct).

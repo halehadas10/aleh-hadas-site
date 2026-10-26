@@ -192,25 +192,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: #dbe7f0;
   text-shadow: 0 2px 14px rgba(0,0,0,.5);
 }
-.hero-scroll {
-  position: absolute;
-  bottom: 26px;
-  width: 30px; height: 50px;
-  border: 2px solid rgba(216,229,236,.55);
-  border-radius: 18px;
-  display: flex; justify-content: center;
-}
-.hero-scroll span {
-  width: 4px; height: 10px; border-radius: 4px;
-  background: #ffffff;
-  margin-top: 8px;
-  animation: scrollHint 1.8s ease-in-out infinite;
-}
-@keyframes scrollHint {
-  0% { transform: translateY(0); opacity: 1; }
-  70% { transform: translateY(16px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 0; }
-}
 
 /* ===== Story ===== */
 .story { background: var(--navy-900); }
