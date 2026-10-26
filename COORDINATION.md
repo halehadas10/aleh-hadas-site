@@ -510,3 +510,8 @@ Executor: Avraham's side (this Instinct).
 - Inner pages show existing logos at top; homepage hero/header reveal remains unchanged.
 - Existing navigation labels/assets/layout retained; rescan updates inner-page state during shell navigation.
 - No Rabbi-card, donation, fonts or pending group-modal changes.
+
+## 2026-10-26 v158 Roi contact-modal wording
+- Roi request 23:00:34, final self-correction is replacement, not removal.
+- Only temporary role text replaced in programs 1,2,3,4,5,6,7,9 with the exact requested sentence.
+- Contact modal, placeholder name and zeroed phone remain unchanged. No group-modal changes.
