@@ -478,3 +478,6 @@ Executor: Avraham's side (this Instinct).
 
 ## 2026-10-26 data change (site stays v153) - Executor: Avraham's side
 - Lesson audio: audioUrl for "בדרכו של אריאל" (bC_O6Lpxv5I), Archive item aleh-hadas-bdarko-shel-ariel. Size and MD5 verified. No design change.
+
+## 2026-10-26 data change (site stays v153) - Executor: Avraham's side
+- Lesson audio: audioUrl for "תפילת ראש השנה" (SCj1gKR3BZQ), Archive item aleh-hadas-tefilat-rosh-hashana. Full 50:25 file, size and MD5 verified. No design change.
