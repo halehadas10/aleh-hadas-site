@@ -527,3 +527,8 @@ Executor: Avraham's side (this Instinct).
 ## 2026-10-26 v161 Roi clarified program placeholder names
 - Explicit 23:06:00 yes to replacing all eight program-modal placeholder names with יתמלא בקרוב.
 - Supersedes earlier retain-name instruction only. Modal, title, v158 sentence and zeroed phone unchanged.
+
+## 2026-10-26 v162 all five updates groups
+- Owner23:23:01 supersedes capacity automation: show all five supplied links.
+- Existing homepage WhatsApp window now has updates1-4 and parents, all selectable.
+- No capacity claims, routing/rotation, account connection or program-specific modal changes.
