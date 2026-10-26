@@ -224,7 +224,8 @@ function ahPhotoPlaceholders() {
            the payment mini window OVER THE CURRENT PAGE - inner pages no
            longer navigate home for it (checked before the off-home redirect) */
         if (id === 'donate' && window.AHDonateOpen && window.AHDonateOpen()) {
-          history.replaceState(null, '', '#donate');
+          /* v142b (owner voice 26.10 14:21, BOTH platforms): opening the window
+             must NOT touch the page - no scroll, no top-jump, no URL change */
           return;
         }
         /* off-homepage the header's bare #anchors ALWAYS mean homepage sections,
