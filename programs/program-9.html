@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/png" href="../assets/logo-medal-ariel.png">
 <title>ערב שבת בבית המדרש - עלה הדס</title>
-<link rel="stylesheet" href="../css/style.css?v=143">
+<link rel="stylesheet" href="../css/style.css?v=144">
 <style>
   body { background: #fff; }
   .prog-wrap { max-width: 980px; margin: 0 auto; padding: calc(var(--header-h) + 18px) 20px 70px; } /* v108: clear the fixed site header kept by the shell so the back control stays visible/clickable (user 25.10 17:29) */
@@ -125,6 +125,7 @@
     }
   })();
   </script>
+  <!-- v144 (owner 26.10 08:03 report, repair authorized): carousel script, talk modal and its script moved INSIDE <main> - the shell replaces <main> on swaps, so outside-main pieces vanished on the in-site route (talk popup missing, carousel dots/timer dead) -->
 </main>
 <script>
 (function () {
@@ -145,7 +146,12 @@
   }
   function next() { go(i + 1); }
   function prev() { go(i - 1); }
-  function restart() { if (timer) clearInterval(timer); timer = setInterval(next, 4000); }
+  function restart() { if (timer) clearInterval(timer); timer = setInterval(function () {
+    /* v144: this script now travels inside <main>; stop the old timer
+       when a shell swap replaces its DOM (otherwise detached-node churn) */
+    if (!document.contains(box)) { clearInterval(timer); return; }
+    next();
+  }, 4000); }
   document.querySelector('.prog-next').addEventListener('click', function () { next(); restart(); });
   document.querySelector('.prog-prev').addEventListener('click', function () { prev(); restart(); });
   var box = document.getElementById('progCarousel');
@@ -181,10 +187,17 @@
   openBtn.addEventListener('click', open);
   modal.querySelector('.tm-close').addEventListener('click', close);
   modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) close(); });
+  if (!window.__progTalkEsc) {
+    window.__progTalkEsc = true;
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      var m = document.getElementById('talkModal');
+      if (m && !m.hidden) { m.classList.remove('is-open'); setTimeout(function () { m.hidden = true; }, 320); }
+    });
+  }
 })();
 </script>
-<script src="../js/ah-player.js?v=143"></script>
-<script src="../js/ah-shell.js?v=143"></script>
+</main><script src="../js/ah-player.js?v=144"></script>
+<script src="../js/ah-shell.js?v=144"></script>
 </body>
 </html>
