@@ -142,6 +142,7 @@ function ahPhotoPlaceholders() {
 
     /* Header state */
     var header = document.getElementById('siteHeader');
+    if (header) header.classList.toggle('is-inner-page', !ahOnHomePage());
     function onScroll() {
       if (header) header.classList.toggle('is-scrolled', window.scrollY > 40);
     }

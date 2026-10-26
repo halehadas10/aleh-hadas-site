@@ -504,3 +504,9 @@ Executor: Avraham's side (this Instinct).
 - Program carousels: stable site-root image paths, mobile arrow hiding across shell swaps; desktop controls, dots and autoplay retained.
 - Lesson video: init-generation and watchdog guards, thumbnail during load, inline video hint, persisted-page recovery; actual iPhone Safari playback remains unverified.
 - SEO verification/canonical/sitemap preserved. No donation, fonts, Rabbi-card, group modal or header-proposal change.
+
+## 2026-10-26 v157 approved shared header
+- Existing two-logo header now present on direct program/group-directory loads.
+- Inner pages show existing logos at top; homepage hero/header reveal remains unchanged.
+- Existing navigation labels/assets/layout retained; rescan updates inner-page state during shell navigation.
+- No Rabbi-card, donation, fonts or pending group-modal changes.

@@ -1496,3 +1496,8 @@ button.social-link { font: inherit; cursor: pointer; text-align: start; width: 1
 .dn-pay-note { color: #6e8090; }
 .dn-pay-close { color: #50667a; }
 .dn-pay-x { position: absolute; top: 10px; inset-inline-start: 14px; background: none; border: none; font-size: 1.6rem; cursor: pointer; color: #50667a; line-height: 1; }
+
+/* v157: inner pages always show the existing two logos. The homepage
+   keeps its intentional hero-to-header reveal on scroll. */
+.site-header.is-inner-page .brand-logo,
+.site-header.is-inner-page .brand-medal { opacity: 1; }

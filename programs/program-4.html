@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/png" href="../assets/logo-medal-ariel.png">
 <title>חבורות - עלה הדס</title>
-<link rel="stylesheet" href="../css/style.css?v=156">
+<link rel="stylesheet" href="../css/style.css?v=157">
 <style>
   body { background: #fff; }
   .prog-wrap { max-width: 980px; margin: 0 auto; padding: calc(var(--header-h) + 18px) 20px 70px; } /* v108: clear the fixed site header kept by the shell so the back control stays visible/clickable (user 25.10 17:29) */
@@ -60,6 +60,29 @@
 </style>
 </head>
 <body>
+
+<header class="site-header is-inner-page" id="siteHeader">
+  <a class="brand brand-word" href="/aleh-hadas-site/index.html" aria-label="עלה הדס - לדף הבית">
+    <img src="/aleh-hadas-site/assets/logo-aleh-hadas-small.png" alt="לוגו עלה הדס" class="brand-logo">
+  </a>
+  <nav class="main-nav" id="mainNav" aria-label="ניווט ראשי">
+    <a href="/aleh-hadas-site/index.html" class="nav-link nav-mobile-home">ראשי</a>
+    <a href="/aleh-hadas-site/index.html#story" class="nav-link">הסיפור שלנו</a>
+    <a href="/aleh-hadas-site/quotes.html" class="nav-link">מה אומרים עלינו</a>
+    <a href="/aleh-hadas-site/index.html#activities" class="nav-link">מהנעשה בבית המדרש</a>
+    <a href="/aleh-hadas-site/index.html#programs" class="nav-link">תכניות</a>
+    <a href="/aleh-hadas-site/index.html#contact" class="nav-link">יצירת קשר</a>
+    <a href="/aleh-hadas-site/lessons.html" class="nav-link">בית מדרש וירטואלי</a>
+    <a href="/aleh-hadas-site/index.html#times" class="nav-link">זמנים ומקום</a>
+    <a href="/aleh-hadas-site/index.html#donate" class="nav-link nav-donate">תרומה</a>
+    </nav>
+  <a class="brand brand-medal-link" href="/aleh-hadas-site/index.html" aria-label="מדליית זיכרון - אריאל דרסינובר ז״ל - לדף הבית">
+    <img src="/aleh-hadas-site/assets/logo-medal-ariel-240.png" alt="מדליית זיכרון - אריאל דרסינובר ז״ל" class="brand-medal">
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="תפריט" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
   <main>
   <div class="prog-wrap">
     <a class="btn btn-ghost prog-back" href="../index.html#programs">חזרה לתכניות</a>
@@ -240,8 +263,9 @@
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') overlay.classList.remove('open'); });
   })();
   </script>
-</main><script src="../js/ah-player.js?v=156"></script>
-<script src="../js/ah-shell.js?v=156"></script>
+</main><script src="../js/ah-player.js?v=157"></script>
+<script src="../js/ah-shell.js?v=157"></script>
 
+<script src="/aleh-hadas-site/js/main.js?v=157"></script>
 </body>
 </html>
