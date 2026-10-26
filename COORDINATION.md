@@ -428,3 +428,4 @@ Executor: Avraham's side (this Instinct).
 - נגן יוטיוב בעמוד שיעור: watchdog אחד — 4sn בלי onReady -> nocookie, 6sn בלי load -> כרטיס תמונה לחיץ ליוטיוב (במקום קופסה לבנה קבועה). האודיו הפנימי לא נגוע.
 - חזרה לאתר בעמודי בית המדרש: יעד קבוע ./index.html#virtual (מקטע בית המדרש בדף הבית); הוסר ה-hijack של history.back/ah-return. עמוד ההמלצות שומר על לוגיקת החזרה שלו.
 - refs: כל ?v= עודכן ל-142 בכל העמודים.
+- v142 תיקון משלים: quotes.html ו-gallery.html לא טענו main.js בכלל (הסתמכו על shell swap שיביא אותו) — נוסף main.js?v=142 כמו בlessons.html, אחרת מודול התרומה לא קיים בטעינה ישירה שלהן.
