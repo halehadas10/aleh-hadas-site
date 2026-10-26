@@ -1477,8 +1477,8 @@ button.social-link { font: inherit; cursor: pointer; text-align: start; width: 1
 @media (max-width: 640px) {
   #programs .news-grid { grid-template-columns: 1fr; }
   .ls-grid { padding-inline: 18px; scroll-padding-inline: 18px; }
-  .ls-grid .ls-card { flex-basis: calc(100% - 20px); }
-  .ls-grid .ls-actions { padding-inline: 26px; }
+  .ls-grid .ls-card { flex-basis: calc(100% - 8px); }
+  .ls-grid .ls-actions { padding-inline: 34px; }
 }
 
 /* v149 (owner 26.10 16:42:44, wamid...M0FGMEY5NjM2NTAzOEQ1RTQ4MzIA, answering the clarifications:
