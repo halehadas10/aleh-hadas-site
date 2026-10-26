@@ -413,3 +413,9 @@ Executor: Avraham's side (this Instinct).
 ## v140 (26.10, morning) - instant mobile popstate scroll restore (completes v139)
 - Completes the owner 07:52:16 back-to-site item: the shell's popstate scrollMemory restore now lands INSTANTLY on phones (<=860px) instead of a native CSS-smooth glide; desktop behavior unchanged. v139's commit message mentioned this but the ah-shell.js edit itself was missed; shipped here. (_verifyq.html is a stale internal verification page on ?v=2, left as-is.)
 - Executor: Avraham's side (this Instinct).
+
+## v141 (26.10, morning) - lessons mobile rows + Spotify map reconciliation + donation subtitle accuracy
+- Source 1: owner WhatsApp 26.10 07:59:06 (wamid.HBgMOTcyNTQ5OTE3MzcyFQIAEhgUM0E5RkQ3MTVDQkRCMjk3Q0EyQjcA): on the lessons page in the phone, each topic (series) shows as ONE row that scrolls right/left. Change (MOBILE ONLY, <=860px): .ls-grid becomes a horizontal scroll-snap flex row, cards 78% width so the next card peeks. Desktop grid, card structure and all lesson/player actions unchanged.
+- Source 2: main + verifier agent-01M5VCKTVASX0E9CKZ5A20XQA8 (26.10 08:08): all 12 YouTube lessons confirmed Published on Spotify with exact episode mappings. data/spotify-map.json (the generator's durable input, read+rewritten nightly by scripts/build_lessons.py) gained the 5 missing mappings (DfmcbQ8GzlI, bC_O6Lpxv5I, _ZnDbs7bRHM, SCj1gKR3BZQ, I6VOCsHe__s); data/lessons.json aligned to the map (12/12 onSpotify). Nightly regeneration now reproduces the same state.
+- Source 3: main 26.10 08:14 (authorized wording accuracy fix within the approved mini-window change): stale subtitle "לחיצה תעביר אתכם לדף התרומות של בית המדרש" -> "לחיצה תפתח חלון לבחירת אמצעי תרומה" on quotes.html + all program pages.
+- Executor: Avraham's side (this Instinct).
