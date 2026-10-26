@@ -515,3 +515,7 @@ Executor: Avraham's side (this Instinct).
 - Roi request 23:00:34, final self-correction is replacement, not removal.
 - Only temporary role text replaced in programs 1,2,3,4,5,6,7,9 with the exact requested sentence.
 - Contact modal, placeholder name and zeroed phone remain unchanged. No group-modal changes.
+
+## 2026-10-26 v159 Roi expanded-team placeholder names
+- Roi 23:01:31: only 13 expanded homepage team-card names changed to exact יתמלא בקרוב.
+- Two main coordinator names, all phones/links/roles, and program-modal names unchanged.
