@@ -179,6 +179,12 @@
              no hash (e.g. logo to index): keep the plain call so the existing
              CSS scroll-behavior gives one native smooth scroll to top. */
           if (url.indexOf('#') !== -1) window.scrollTo({ top: 0, behavior: 'instant' });
+          /* v137-line change, shipped in v136 (owner 26.10 07:51, MOBILE ONLY):
+             forward navigation on phones opens the new page at the very top
+             IMMEDIATELY - the plain scrollTo(0,0) below runs as native
+             CSS-smooth and he watched the recommendations page glide upward
+             from mid-page. Desktop keeps the existing call. */
+          else if (window.matchMedia && window.matchMedia('(max-width: 860px)').matches) window.scrollTo({ top: 0, behavior: 'instant' });
           else window.scrollTo(0, 0);
         }
         window.AHShellActive = true;
@@ -224,6 +230,20 @@
     if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     var a = e.target.closest && e.target.closest('a');
     if (!isInternalPage(a)) return;
+    /* shipped in v136 (owner 26.10 07:52, MOBILE ONLY): on phones a
+       back-to-site link behaves like browser Back - the popstate path
+       restores the exact spot the user left (scrollMemory) instead of a
+       forward navigation landing at the homepage top. Fallback: when there
+       is no shell history (direct landing), the normal forward swap below
+       runs as before. */
+    if (window.matchMedia && window.matchMedia('(max-width: 860px)').matches &&
+        (a.classList.contains('btn-back') || a.id === 'backHome') &&
+        /(^|\/)index\.html?$/.test(new URL(a.href, location.href).pathname) &&
+        history.state && history.state.ahShell && history.state.nav > 0) {
+      e.preventDefault();
+      history.back();
+      return;
+    }
     var url = new URL(a.href, location.href).href;
     e.preventDefault();
     swapTo(url, {});

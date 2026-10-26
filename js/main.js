@@ -335,10 +335,14 @@ function ahPhotoPlaceholders() {
           })(d);
         }
       }
+      /* v136 (owner 26.10 07:53, MOBILE ONLY): phones run the carousel
+         left-to-right - track is direction:rtl there, so advancing shifts +X
+         and the next image enters from the left. Desktop unchanged (-X). */
+      function actLtrMotion() { return window.matchMedia && window.matchMedia('(max-width: 860px)').matches; }
       function go(i) {
         idx = (i + items) % items;
-        /* Track is LTR: shifting left (negative X) moves forward, matching swipe + arrow glyphs */
-        track.style.transform = 'translateX(' + (-idx * 100) + '%)';
+        /* Track is LTR on desktop: shifting left (negative X) moves forward, matching swipe + arrow glyphs */
+        track.style.transform = 'translateX(' + ((actLtrMotion() ? 1 : -1) * idx * 100) + '%)';
         for (var k = 0; k < items; k++) dots.children[k].classList.toggle('is-on', k === idx);
       }
       function restart() {
@@ -354,7 +358,9 @@ function ahPhotoPlaceholders() {
           restart();
         });
       });
-      /* Touch swipe (mobile): swipe left = next image, swipe right = previous (RTL forward) */
+      /* Touch swipe (mobile): swipe left = next image, swipe right = previous (RTL forward).
+         v136: with the phone carousel traveling left-to-right, swipe right = next,
+         swipe left = previous - follows the motion. Desktop unchanged. */
       var carousel = document.getElementById('actCarousel');
       var touchX = null, touchY = null;
       bindOnce(carousel, 'swipeStart', 'touchstart', function (e) {
@@ -368,7 +374,7 @@ function ahPhotoPlaceholders() {
         var dy = e.changedTouches[0].clientY - touchY;
         touchX = null; touchY = null;
         if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.5) {
-          go(dx < 0 ? idx + 1 : idx - 1);
+          go(actLtrMotion() ? (dx > 0 ? idx + 1 : idx - 1) : (dx < 0 ? idx + 1 : idx - 1));
         }
         restart();
       }, { passive: true });
