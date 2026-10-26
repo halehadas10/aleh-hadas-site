@@ -440,6 +440,7 @@ function ahPhotoPlaceholders() {
     var DN_PAY_HTML =
       '<div class="dn-pay-overlay" id="dnPayOverlay" role="dialog" aria-modal="true" aria-label="בחירת אמצעי תרומה">' +
         '<div class="dn-pay-card">' +
+          '<button type="button" class="dn-pay-x" aria-label="סגירה">&times;</button>' +
           '<p class="dn-pay-title" id="dnPayTitle">תרומה</p>' +
           '<p class="dn-pay-sub">בחרו אמצעי תרומה:</p>' +
           '<a class="dn-pay-btn dn-pay-jgive" href="https://www.jgive.com/new/he/ils/donation-targets/60540" target="_blank" rel="noopener"><img class="dn-pay-logo" src="./assets/logo-jgive.png" alt="לוגו JGive"><span>JGive<span class="dn-pay-hint">דף התרומות הכללי של עלה הדס</span></span></a>' +
@@ -465,6 +466,7 @@ function ahPhotoPlaceholders() {
       function dnClose() { dnOverlay.classList.remove('open'); }
       bindOnce(document.getElementById('donateOpenBtn'), 'donateOpen', 'click', function () { window.AHDonateOpen(); });
       bindOnce(document.getElementById('dnPayClose'), 'dnPayClose', 'click', dnClose);
+        bindOnce(document.querySelector('#dnPayOverlay .dn-pay-x'), 'dnPayX', 'click', dnClose);
       bindOnce(dnOverlay, 'dnPayBg', 'click', function (e) { if (e.target === dnOverlay) dnClose(); });
       if (!window.__ahDonateEsc) {
         window.__ahDonateEsc = true;

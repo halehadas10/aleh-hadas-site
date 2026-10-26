@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/png" href="../assets/logo-medal-ariel.png">
 <title>שיעור שבועי כיתות ז׳-ח׳ - עלה הדס</title>
-<link rel="stylesheet" href="../css/style.css?v=148">
+<link rel="stylesheet" href="../css/style.css?v=149">
 <style>
   body { background: #fff; }
   .prog-wrap { max-width: 980px; margin: 0 auto; padding: calc(var(--header-h) + 18px) 20px 70px; } /* v108: clear the fixed site header kept by the shell so the back control stays visible/clickable (user 25.10 17:29) */
@@ -98,6 +98,7 @@
   <!-- v142 (owner 26.10 14:11, BOTH platforms): donation mini window opens over THIS page -->
   <div class="dn-pay-overlay" id="dnPayOverlay" role="dialog" aria-modal="true" aria-label="בחירת אמצעי תרומה">
     <div class="dn-pay-card">
+      <button type="button" class="dn-pay-x" aria-label="סגירה">&times;</button>
       <p class="dn-pay-title" id="dnPayTitle">תרומה</p>
       <p class="dn-pay-sub">בחרו אמצעי תרומה:</p>
       <a class="dn-pay-btn dn-pay-jgive" href="https://www.jgive.com/new/he/ils/donation-targets/60540" target="_blank" rel="noopener"><img class="dn-pay-logo" src="../assets/logo-jgive.png" alt="לוגו JGive"><span>JGive<span class="dn-pay-hint">דף התרומות הכללי של עלה הדס</span></span></a>
@@ -116,6 +117,7 @@
       a.addEventListener('click', function (e) { e.preventDefault(); o.classList.add('open'); });
     });
     document.getElementById('dnPayClose').addEventListener('click', dnClose);
+    o.querySelector('.dn-pay-x').addEventListener('click', dnClose);
     o.addEventListener('click', function (e) { if (e.target === o) dnClose(); });
     if (!window.__ahDnEscProg) {
       window.__ahDnEscProg = true;
@@ -196,7 +198,7 @@
   }
 })();
 </script>
-</main><script src="../js/ah-player.js?v=148"></script>
-<script src="../js/ah-shell.js?v=148"></script>
+</main><script src="../js/ah-player.js?v=149"></script>
+<script src="../js/ah-shell.js?v=149"></script>
 </body>
 </html>
