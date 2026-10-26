@@ -487,3 +487,6 @@ Executor: Avraham's side (this Instinct).
 
 ## 2026-10-26 data change (site stays v153) - Executor: Avraham's side
 - Lesson audio: audioUrl for "הכנה רוחנית לבחירות" (_ZnDbs7bRHM), Archive item aleh-hadas-hachana-bchirot. Full file, size and MD5 verified. No design change.
+
+## 2026-10-26 data change (site stays v153) - Executor: Avraham's side
+- Lesson audio: audioUrl for "תשובה מאהבה" (en2V-9ulj7I), Archive item aleh-hadas-teshuva-meahava. Full file, size and MD5 verified. No design change.
