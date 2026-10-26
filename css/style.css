@@ -1464,5 +1464,4 @@ button.social-link { font: inherit; cursor: pointer; text-align: start; width: 1
    unchanged. */
 @media (max-width: 860px) {
   .dn-pay-btn { flex-direction: column; gap: 6px; }
-  .dn-pay-btn .dn-pay-logo { width: 30px; height: 30px; }
 }
