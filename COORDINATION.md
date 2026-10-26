@@ -519,3 +519,7 @@ Executor: Avraham's side (this Instinct).
 ## 2026-10-26 v159 Roi expanded-team placeholder names
 - Roi 23:01:31: only 13 expanded homepage team-card names changed to exact יתמלא בקרוב.
 - Two main coordinator names, all phones/links/roles, and program-modal names unchanged.
+
+## 2026-10-26 v160 Roi follow-up coordinator placeholders
+- Explicit 23:05:39 follow-up: two always-visible homepage coordinator names also become יתמלא בקרוב.
+- Phones, links, program names and v158 modal sentence unchanged. Expanded 13 names preserved.
