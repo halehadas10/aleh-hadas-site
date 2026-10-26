@@ -34,38 +34,36 @@ function ahPhotoPlaceholders() {
 
   var ahScrollToken = 0;
   var ahScrollFrame = 0;
-  var ahScrollDeadline = 0;
   function ahCancelScroll() {
     ++ahScrollToken;
     cancelAnimationFrame(ahScrollFrame);
-    clearTimeout(ahScrollDeadline);
   }
-  function ahSmoothScroll(targetY) {
-    /* Cancel even when already near the new destination. A delayed first
-       frame must not restart the clock; finish by elapsed-time deadline. */
+  function ahSmoothScroll(targetY, onDone) {
     ahCancelScroll();
     var myToken = ahScrollToken;
     var startY = window.scrollY, dist = targetY - startY;
     if (Math.abs(dist) < 4 || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
-      window.scrollTo({ top: targetY, behavior: 'instant' }); return;
+      window.scrollTo({ top: targetY, behavior: 'instant' });
+      if (onDone) onDone(myToken);
+      return;
     }
     var dur = Math.min(620, Math.max(260, Math.abs(dist) * 0.22));
-    var t0 = performance.now();
-    function finish() {
+    var elapsed = 0, lastTime = null;
+    function step(ts) {
       if (myToken !== ahScrollToken) return;
-      cancelAnimationFrame(ahScrollFrame);
-      clearTimeout(ahScrollDeadline);
-      window.scrollTo({ top: targetY, behavior: 'instant' });
-    }
-    function step() {
-      if (myToken !== ahScrollToken) return;
-      var p = Math.min(1, (performance.now() - t0) / dur);
+      /* Advance only on rendered frames. A wall-clock deadline teleports
+         when a busy browser withholds frames. Cap one frame's advance so
+         returning after a stall cannot swallow the whole visible glide. */
+      if (lastTime !== null) elapsed += Math.min(40, Math.max(0, ts - lastTime));
+      lastTime = ts;
+      var p = Math.min(1, elapsed / dur);
       var e = p < 0.5 ? 4*p*p*p : 1 - Math.pow(-2*p + 2, 3) / 2;
       window.scrollTo({ top: startY + dist * e, behavior: 'instant' });
       if (p < 1) ahScrollFrame = requestAnimationFrame(step);
-      else finish();
+      else {
+        if (onDone) onDone(myToken);
+      }
     }
-    ahScrollDeadline = setTimeout(finish, dur);
     ahScrollFrame = requestAnimationFrame(step);
   }
   /* Manual input cancels both the glide and its pending layout correction. */
@@ -200,21 +198,15 @@ function ahPhotoPlaceholders() {
         var extra = (id === 'donate') ? 100 : 14;
         return Math.max(0, y - header.offsetHeight - extra);
       }
-      ahSmoothScroll(targetTop());
-      /* v132 (owner 26.10 00:25, nav->donate route): lazy images/iframes below
-         the fold only load (and claim their height) as the glide passes them,
-         so the target locked at click time can sit hundreds of px short by the
-         time the animation ends - first tap on the donate nav landed mid-page
-         instead of at the donate section. One corrective re-glide after the
-         animation ends, recomputed from the live layout; cancelled if a newer
-         gesture took over (token), skipped when already close. Single
-         correction, no continuous retargeting (24.10 retarget-fight lesson). */
-      var myToken = ahScrollToken;
-      setTimeout(function () {
-        if (myToken !== ahScrollToken) return;
-        var fresh = targetTop();
-        if (Math.abs(fresh - window.scrollY) > 150) ahSmoothScroll(fresh);
-      }, 780);
+      /* Correct lazy-layout changes only AFTER the visible glide has ended,
+         never at a wall-clock timeout that can cancel a delayed animation. */
+      ahSmoothScroll(targetTop(), function (completedToken) {
+        setTimeout(function () {
+          if (completedToken !== ahScrollToken) return;
+          var fresh = targetTop();
+          if (Math.abs(fresh - window.scrollY) > 150) ahSmoothScroll(fresh);
+        }, 160);
+      });
       var scope = target.closest('section') || target;
       scope.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-visible'); });
       if (scope.classList.contains('reveal')) scope.classList.add('is-visible');

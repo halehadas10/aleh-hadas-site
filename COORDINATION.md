@@ -496,3 +496,11 @@ Executor: Avraham's side (this Instinct).
 - Voice 20:13:30 + marked photo: removed only the "לכל התכניות" CTA from the 8 full program pages, both platforms. Back links, contact and group buttons retained.
 - Voice 20:14:51 + screenshot: removed Spotify iframe and "האזנה בלבד, ללא וידאו" label from lesson pages, both platforms. Eleven hosted lessons use our player. The unhosted "בוחרים בטוב" retains YouTube and outbound Spotify action; no public upload initiated. Detached stale prior-lesson player UI without stopping background audio, so it cannot be mistaken for the current unhosted lesson.
 - Local desktop/mobile browser checks passed: hosted playback, unhosted route, no stale prior lesson UI, no Spotify iframe/label; scroll regression tests passed. Live verification follows release. Pending draft/group-modal-structure and lesson catalog untouched.
+
+
+## 2026-10-26 launch repairs v156
+- Scroll: remove wall-clock destination jump when frames stall; progress follows rendered frames, target correction follows completion. Reduced-motion preference preserved; user-device confirmation pending.
+- Mobile menu: remove duplicate inline handlers from quotes/gallery.
+- Program carousels: stable site-root image paths, mobile arrow hiding across shell swaps; desktop controls, dots and autoplay retained.
+- Lesson video: init-generation and watchdog guards, thumbnail during load, inline video hint, persisted-page recovery; actual iPhone Safari playback remains unverified.
+- SEO verification/canonical/sitemap preserved. No donation, fonts, Rabbi-card, group modal or header-proposal change.

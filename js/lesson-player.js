@@ -4,6 +4,7 @@
   const PS_KEY = 'ah-player';
   const $ = id => document.getElementById(id);
   let player = null, lesson = null, vid = null;
+  let lessonGeneration = 0, pageShowHandler = null;
 
   const fmtDur = s => { s = Math.floor(s || 0); const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), ss = String(s % 60).padStart(2, '0'); return h ? h + ':' + String(m).padStart(2, '0') + ':' + ss : m + ':' + ss; };
 
@@ -11,8 +12,11 @@
   function ahInit() {
   /* vid must be read per init: under the navigation shell this script loads
      once (on the index, no ?v=) and lesson pages arrive later via swaps */
-  vid = new URLSearchParams(location.search).get('v');
+  const generation = ++lessonGeneration;
+  const requestedVid = new URLSearchParams(location.search).get('v');
+  vid = requestedVid;
   fetch('./data/lessons.json?v=' + Date.now()).then(r => r.json()).then(d => {
+    if (generation !== lessonGeneration || new URLSearchParams(location.search).get('v') !== requestedVid || !$('lpTitle')) return;
     const all = d.lessons || []; /* 23.10 v40: shared links to non-Spotify lessons must open too */
     lesson = all.find(l => l.id === vid);
     if (!lesson) { $('lpTitle').textContent = 'השיעור לא נמצא'; return; }
@@ -80,29 +84,56 @@
       });
     }
 
-    initPlayer();
+    initPlayer(generation);
     ahBindChrome();
-  }).catch(() => { $('lpTitle').textContent = 'שגיאה בטעינת השיעור'; });
+  }).catch(() => { if (generation === lessonGeneration && $('lpTitle')) $('lpTitle').textContent = 'שגיאה בטעינת השיעור'; });
 
   }
   ahInit();
 
-  function initPlayer() {
+  function initPlayer(generation) {
+    /* v156: pin this init to ITS lesson. vid/lesson are module-level and get
+       reassigned on the next in-site navigation; the old closures read the
+       shared values, so a slow previous init's watchdog could fire after a
+       new lesson's init and replace the NEW player (reproduced live 26.10).
+       Everything below uses the pinned copies and re-checks the URL. */
+    const myVid = vid, myLesson = lesson;
     let startAt = 0;
     try {
       const st = JSON.parse(localStorage.getItem(PS_KEY) || 'null');
-      if (st && st.v === vid && st.t > 10) startAt = Math.floor(st.t);
+      if (st && st.v === myVid && st.t > 10) startAt = Math.floor(st.t);
     } catch (e) {}
     let created = false, ready = false, swapped = false;
+    const frameHost = () => document.getElementById('lpFrame');
+    const stillMine = () => {
+      if (generation !== lessonGeneration || !frameHost()) return false;
+      try { return new URLSearchParams(location.search).get('v') === myVid; }
+      catch (e) { return true; }
+    };
+    /* v156: show the lesson thumbnail inside the frame from the start, so a
+       phone on a slow connection never stares at an empty box while the
+       YouTube API/player/fallback chain resolves. YT.Player and the fallback
+       swaps replace the node wholesale, discarding this placeholder. */
+    function placeholder() {
+      const h = frameHost();
+      if (!h || h.tagName !== 'DIV') return;
+      const thumb = myLesson.thumbnail ||
+        ('https://i.ytimg.com/vi/' + encodeURIComponent(myVid) + '/hqdefault.jpg');
+      h.innerHTML = '<img src="' + thumb + '" alt="' + (myLesson.topic || '') + '" ' +
+        'style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">';
+    }
+    placeholder();
     function createPlayer() {
-      if (created || swapped) return; created = true;
+      if (created || swapped || !stillMine()) return; created = true;
       player = new YT.Player('lpFrame', {
-        videoId: vid,
-        playerVars: { controls: 1, rel: 0, start: startAt, modestbranding: 1 },
+        videoId: myVid,
+        /* v156: playsinline keeps playback inside the page on iOS instead of
+           forcing the native fullscreen player */
+        playerVars: { controls: 1, rel: 0, start: startAt, modestbranding: 1, playsinline: 1 },
         events: {
           onReady: function () { ready = true; },
-          onError: function () { swapNocookie(); },
-          onStateChange: ev => { if (window.AHsaveState) AHsaveState(ev.target, vid); }
+          onError: function () { if (stillMine()) swapNocookie(); },
+          onStateChange: ev => { if (window.AHsaveState) AHsaveState(ev.target, myVid); }
         }
       });
     }
@@ -114,31 +145,49 @@
        plain nocookie iframe; 6s without its load event -> tappable thumbnail
        link. Audio player untouched. */
     function swapNocookie() {
-      if (swapped) return; swapped = true; created = true;
-      const host = document.getElementById('lpFrame');
+      if (swapped || !stillMine()) return; swapped = true; created = true;
+      const host = frameHost();
       if (!host) return;
       host.outerHTML = '<iframe id="lpFrame" class="lp-frame" ' +
-        'src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(vid) + '?rel=0&modestbranding=1" ' +
+        'src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(myVid) + '?rel=0&modestbranding=1&playsinline=1" ' +
         'title="נגן וידאו" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ' +
         'allowfullscreen></iframe>';
-      const f = document.getElementById('lpFrame');
+      const f = frameHost();
       let loaded = false;
       if (f) f.addEventListener('load', function () { loaded = true; });
-      setTimeout(function () { if (!loaded) swapLinkCard(); }, 6000);
+      setTimeout(function () { if (!loaded && stillMine()) swapLinkCard(); }, 6000);
     }
     function swapLinkCard() {
-      const host = document.getElementById('lpFrame');
-      if (!host) return;
-      host.outerHTML = '<a id="lpFrame" class="lp-frame lp-yt-fallback" href="' + lesson.youtubeUrl + '" target="_blank" rel="noopener">' +
-        '<img src="https://i.ytimg.com/vi/' + encodeURIComponent(vid) + '/hqdefault.jpg" alt="' + lesson.title + '" loading="lazy">' +
+      const host = frameHost();
+      if (!host || !stillMine()) return;
+      /* Use the short display topic for the thumbnail label. */
+      host.outerHTML = '<a id="lpFrame" class="lp-frame lp-yt-fallback" href="' + myLesson.youtubeUrl + '" target="_blank" rel="noopener">' +
+        '<img src="https://i.ytimg.com/vi/' + encodeURIComponent(myVid) + '/hqdefault.jpg" alt="' + (myLesson.topic || '') + '" loading="lazy">' +
         '<span class="lp-yt-fallback-label">הווידאו לא נטען כאן - לחצו לצפייה ביוטיוב</span></a>';
     }
-    setTimeout(function () { if (!ready) swapNocookie(); }, 4000);
-    if (window.YT && window.YT.Player) { createPlayer(); return; }
-    const tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    document.head.appendChild(tag);
-    window.onYouTubeIframeAPIReady = createPlayer;
+    setTimeout(function () { if (!ready && !swapped && stillMine()) swapNocookie(); }, 4000);
+    if (window.YT && window.YT.Player) { createPlayer(); }
+    else {
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(tag);
+      window.onYouTubeIframeAPIReady = createPlayer;
+    }
+    /* v156: iOS Safari restores frozen pages from bfcache with a dead, blank
+       YouTube iframe (Back navigation). Rebuild just the video player on a
+       persisted restore of THIS lesson; audio state is untouched. */
+    if (pageShowHandler) window.removeEventListener('pageshow', pageShowHandler);
+    pageShowHandler = function (e) {
+      if (!e.persisted || !stillMine()) return;
+      const host = frameHost();
+      if (!host) return;
+      host.outerHTML = '<div class="lp-frame" id="lpFrame"></div>';
+      created = false; ready = false; swapped = false;
+      placeholder();
+      setTimeout(function () { if (!ready && !swapped && stillMine()) swapNocookie(); }, 4000);
+      if (window.YT && window.YT.Player) createPlayer();
+    };
+    window.addEventListener('pageshow', pageShowHandler);
   }
 
   /* stop playback when leaving the page (audio kept playing, mostly on phones) */

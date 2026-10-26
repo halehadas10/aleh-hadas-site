@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/png" href="../assets/logo-medal-ariel.png">
 <title>חבורות - עלה הדס</title>
-<link rel="stylesheet" href="../css/style.css?v=155">
+<link rel="stylesheet" href="../css/style.css?v=156">
 <style>
   body { background: #fff; }
   .prog-wrap { max-width: 980px; margin: 0 auto; padding: calc(var(--header-h) + 18px) 20px 70px; } /* v108: clear the fixed site header kept by the shell so the back control stays visible/clickable (user 25.10 17:29) */
@@ -67,12 +67,12 @@
     <p class="prog-kicker">עלה הדס - <a class="kicker-link" href="https://torahnoar.org/" target="_blank" rel="noopener">תורהנוער</a></p>
     <div class="prog-carousel" id="progCarousel" aria-roledescription="carousel" aria-label="תמונות מהתוכנית">
       <div class="prog-track">
-        <div class="prog-slide is-on"><img fetchpriority="high" loading="eager" src="../assets/program-uniform-roi.jpg" alt="חבורות" loading="lazy"></div>
-        <div class="prog-slide"><img src="../assets/program-uniform-roi.jpg" alt="חבורות" loading="lazy"></div>
-        <div class="prog-slide"><img src="../assets/program-uniform-roi.jpg" alt="חבורות" loading="lazy"></div>
-        <div class="prog-slide"><img src="../assets/program-uniform-roi.jpg" alt="חבורות" loading="lazy"></div>
-        <div class="prog-slide"><img src="../assets/program-uniform-roi.jpg" alt="חבורות" loading="lazy"></div>
-        <div class="prog-slide prog-slide--poster"><img src="../assets/poster-chavurot-clean.png" alt="פלאייר החבורות" loading="lazy"></div> <!-- v122 (owner 25.10 20:53 "ואת הפלאייר תוסיף לקרוסלה"): cleaned flyer, דניאל פפר removed -->
+        <div class="prog-slide is-on"><img fetchpriority="high" loading="eager" src="/aleh-hadas-site/assets/program-uniform-roi.jpg" alt="חבורות"></div>
+        <div class="prog-slide"><img src="/aleh-hadas-site/assets/program-uniform-roi.jpg" alt="חבורות" loading="lazy"></div>
+        <div class="prog-slide"><img src="/aleh-hadas-site/assets/program-uniform-roi.jpg" alt="חבורות" loading="lazy"></div>
+        <div class="prog-slide"><img src="/aleh-hadas-site/assets/program-uniform-roi.jpg" alt="חבורות" loading="lazy"></div>
+        <div class="prog-slide"><img src="/aleh-hadas-site/assets/program-uniform-roi.jpg" alt="חבורות" loading="lazy"></div>
+        <div class="prog-slide prog-slide--poster"><img src="/aleh-hadas-site/assets/poster-chavurot-clean.png" alt="פלאייר החבורות" loading="lazy"></div> <!-- v122 (owner 25.10 20:53 "ואת הפלאייר תוסיף לקרוסלה"): cleaned flyer, דניאל פפר removed -->
       </div>
       <button type="button" class="prog-arrow prog-prev" aria-label="תמונה קודמת"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
       <button type="button" class="prog-arrow prog-next" aria-label="תמונה הבאה"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
@@ -145,17 +145,31 @@
     slides.forEach(function (s, j) { s.classList.toggle('is-on', j === i); });
     dots.forEach(function (d, j) { d.classList.toggle('is-on', j === i); });
   }
+  var box = document.getElementById('progCarousel');
+  var arrows = Array.prototype.slice.call(box.querySelectorAll('.prog-arrow'));
+  var phoneLayout = window.matchMedia('(max-width: 640px)');
+  function syncArrows() {
+    if (!document.contains(box)) { window.removeEventListener('resize', syncArrows); return; }
+    arrows.forEach(function (arrow) {
+      /* Keep desktop controls; enforce phone-only removal even after shell swaps. */
+      arrow.hidden = phoneLayout.matches;
+      if (phoneLayout.matches) arrow.style.setProperty('display', 'none', 'important');
+      else arrow.style.removeProperty('display');
+    });
+  }
+  syncArrows();
+  window.addEventListener('resize', syncArrows);
   function next() { go(i + 1); }
   function prev() { go(i - 1); }
   function restart() { if (timer) clearInterval(timer); timer = setInterval(function () {
     /* v144: this script now travels inside <main>; stop the old timer
        when a shell swap replaces its DOM (otherwise detached-node churn) */
-    if (!document.contains(box)) { clearInterval(timer); return; }
+    if (!document.contains(box)) { clearInterval(timer); window.removeEventListener('resize', syncArrows); return; }
     next();
   }, 4000); }
-  document.querySelector('.prog-next').addEventListener('click', function () { next(); restart(); });
-  document.querySelector('.prog-prev').addEventListener('click', function () { prev(); restart(); });
-  var box = document.getElementById('progCarousel');
+  var nextArrow = box.querySelector('.prog-next'), prevArrow = box.querySelector('.prog-prev');
+  if (nextArrow) nextArrow.addEventListener('click', function () { next(); restart(); });
+  if (prevArrow) prevArrow.addEventListener('click', function () { prev(); restart(); });
   box.addEventListener('mouseenter', function () { if (timer) clearInterval(timer); timer = null; });
   box.addEventListener('mouseleave', restart);
   go(0); restart();
@@ -226,8 +240,8 @@
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') overlay.classList.remove('open'); });
   })();
   </script>
-</main><script src="../js/ah-player.js?v=155"></script>
-<script src="../js/ah-shell.js?v=155"></script>
+</main><script src="../js/ah-player.js?v=156"></script>
+<script src="../js/ah-shell.js?v=156"></script>
 
 </body>
 </html>
