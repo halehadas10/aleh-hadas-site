@@ -33,34 +33,48 @@ function ahPhotoPlaceholders() {
   };
 
   var ahScrollToken = 0;
+  var ahScrollFrame = 0;
+  var ahScrollDeadline = 0;
+  function ahCancelScroll() {
+    ++ahScrollToken;
+    cancelAnimationFrame(ahScrollFrame);
+    clearTimeout(ahScrollDeadline);
+  }
   function ahSmoothScroll(targetY) {
-    /* v129 (owner 26.10 00:10: "ביטלת את הגלילה המהירה, תחזיר דחוף"): restore
-       the fast eased glide (pre-v118 feel, ~620ms max) that v118's single
-       native-smooth call had replaced. steps stay behavior:'instant' - with
-       html{scroll-behavior:smooth} every plain scrollTo starts its own native
-       animation and per-frame retargets fight to a standstill (24.10 bug).
-       New vs the old rAF version: an in-flight animation is cancelled before
-       a new one starts (two competing loops was the other teleport source),
-       and v118's busyness fixes (offscreen video pause, idle prefetch) stay,
-       so the stall that motivated v118 is still mitigated. */
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    /* Cancel even when already near the new destination. A delayed first
+       frame must not restart the clock; finish by elapsed-time deadline. */
+    ahCancelScroll();
+    var myToken = ahScrollToken;
+    var startY = window.scrollY, dist = targetY - startY;
+    if (Math.abs(dist) < 4 || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
       window.scrollTo({ top: targetY, behavior: 'instant' }); return;
     }
-    var startY = window.scrollY, dist = targetY - startY;
-    if (Math.abs(dist) < 4) { window.scrollTo({ top: targetY, behavior: 'instant' }); return; }
     var dur = Math.min(620, Math.max(260, Math.abs(dist) * 0.22));
-    var myToken = ++ahScrollToken;
-    var t0 = null;
-    function step(ts) {
-      if (myToken !== ahScrollToken) return; /* a newer gesture took over */
-      if (!t0) t0 = ts;
-      var p = Math.min(1, (ts - t0) / dur);
-      var e = p < 0.5 ? 4*p*p*p : 1 - Math.pow(-2*p + 2, 3) / 2; /* easeInOutCubic */
-      window.scrollTo({ top: startY + dist * e, behavior: 'instant' });
-      if (p < 1) requestAnimationFrame(step);
+    var t0 = performance.now();
+    function finish() {
+      if (myToken !== ahScrollToken) return;
+      cancelAnimationFrame(ahScrollFrame);
+      clearTimeout(ahScrollDeadline);
+      window.scrollTo({ top: targetY, behavior: 'instant' });
     }
-    requestAnimationFrame(step);
+    function step() {
+      if (myToken !== ahScrollToken) return;
+      var p = Math.min(1, (performance.now() - t0) / dur);
+      var e = p < 0.5 ? 4*p*p*p : 1 - Math.pow(-2*p + 2, 3) / 2;
+      window.scrollTo({ top: startY + dist * e, behavior: 'instant' });
+      if (p < 1) ahScrollFrame = requestAnimationFrame(step);
+      else finish();
+    }
+    ahScrollDeadline = setTimeout(finish, dur);
+    ahScrollFrame = requestAnimationFrame(step);
   }
+  /* Manual input cancels both the glide and its pending layout correction. */
+  window.addEventListener('wheel', ahCancelScroll, { passive: true });
+  window.addEventListener('touchstart', ahCancelScroll, { passive: true });
+  window.addEventListener('keydown', function (e) {
+    if (/^(ArrowUp|ArrowDown|PageUp|PageDown|Home|End| )$/.test(e.key) &&
+        !/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) && !e.target.isContentEditable) ahCancelScroll();
+  });
 
   function ahOnHomePage() {
     return /\/index\.html?$/.test(location.pathname) || /\/$/.test(location.pathname);

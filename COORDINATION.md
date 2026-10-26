@@ -490,3 +490,9 @@ Executor: Avraham's side (this Instinct).
 
 ## 2026-10-26 data change (site stays v153) - Executor: Avraham's side
 - Lesson audio: audioUrl for "תשובה מאהבה" (en2V-9ulj7I), Archive item aleh-hadas-teshuva-meahava. Full file, size and MD5 verified. No design change.
+
+## 2026-10-26 v155 - focused owner-requested repairs
+- Voice 20:11:51: restore fast tab scrolling again. Existing v129 code was still present. Kept the same cubic easing and 260-620 ms timing, but start elapsed time at click (not first delivered animation frame), finish via a deadline if frames stall, and cancel prior motion even for near-top/reduced-motion clicks. Wheel, touch and scrolling keys cancel pending motion/correction. Added dependency-free tests for withheld/delayed frames and rapid retaps. Cloud frame stalls reproduced; exact cause on owner's device remains unverified.
+- Voice 20:13:30 + marked photo: removed only the "לכל התכניות" CTA from the 8 full program pages, both platforms. Back links, contact and group buttons retained.
+- Voice 20:14:51 + screenshot: removed Spotify iframe and "האזנה בלבד, ללא וידאו" label from lesson pages, both platforms. Eleven hosted lessons use our player. The unhosted "בוחרים בטוב" retains YouTube and outbound Spotify action; no public upload initiated. Detached stale prior-lesson player UI without stopping background audio, so it cannot be mistaken for the current unhosted lesson.
+- Local desktop/mobile browser checks passed: hosted playback, unhosted route, no stale prior lesson UI, no Spotify iframe/label; scroll regression tests passed. Live verification follows release. Pending draft/group-modal-structure and lesson catalog untouched.

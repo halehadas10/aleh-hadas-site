@@ -315,7 +315,7 @@
       cov.src = current.cover || './assets/covers/show.jpg';
       $('ahpTitle').textContent = current.title;
       $('ahpSub').textContent = current.rabbi;
-      bar.hidden = !bar.classList.contains('ahp-inflow');
+      bar.hidden = !bar.classList.contains('ahp-inflow') || (!!document.getElementById('lpTitle') && !mountOpts);
       if (audio.getAttribute('src') !== current.src) {
         audio.src = current.src;
         audio.load();
@@ -374,6 +374,12 @@
         return;
       }
       previewBar();
+    },
+    /* Detach old lesson UI without interrupting its background audio. */
+    unmount: function () {
+      mountOpts = null;
+      if (bar) { bar.remove(); bar = null; }
+      document.body.classList.remove('ahp-has-bar');
     },
     reshow: function () {
       if (!current) return;

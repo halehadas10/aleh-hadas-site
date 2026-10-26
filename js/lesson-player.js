@@ -1,4 +1,4 @@
-/* Lesson page: native YouTube player (YouTube settings: captions + speed), audio-only Spotify bar,
+/* Lesson page: native YouTube player (YouTube settings: captions + speed), own audio player,
    share/copy, platform links, resume, stop-on-leave, back-restore */
 (function () {
   const PS_KEY = 'ah-player';
@@ -26,8 +26,10 @@
     if (lesson.spotifyUrl) { $('lpSpotify').href = lesson.spotifyUrl; }
     else { $('lpSpotify').style.display = 'none'; }
 
-    /* audio-only bar: our own player when audioUrl exists (no listener login);
-       Spotify embed kept as fallback until audio files are hosted */
+    /* Own player only. Unhosted lessons keep the outbound Spotify action. */
+    if (window.AHPlayer && window.AHPlayer.unmount) window.AHPlayer.unmount();
+    $('lpAudio').innerHTML = '';
+    $('lpAudio').hidden = true;
     if (lesson.audioUrl && window.AHPlayer) {
       /* v91 (user 14:10:52): player sits INSIDE the audio frame from the start,
          visible and paused - no intermediate "נגן את השיעור" button;
@@ -38,23 +40,13 @@
       const cover = (lesson.spotifyUrl || '').match(/episode\/([A-Za-z0-9]+)/)
         ? './assets/covers/ep-' + lesson.spotifyUrl.match(/episode\/([A-Za-z0-9]+)/)[1] + '.jpg'
         : (lesson.thumbnail || './assets/covers/show.jpg');
-      bar2.innerHTML = '<span class="lp-audio-label">האזנה בלבד, ללא וידאו</span>' +
-        '<div class="lp-player-mount" id="lpPlayerMount"></div>';
+      bar2.innerHTML = '<div class="lp-player-mount" id="lpPlayerMount"></div>';
       window.AHPlayer.mount({
         id: lesson.id, src: lesson.audioUrl,
         title: lesson.topic, rabbi: lesson.rabbi || '', cover: cover,
         durationSec: lesson.durationSec || 0,
         host: $('lpPlayerMount')
       });
-    }
-    const m = (!lesson.audioUrl || !window.AHPlayer) ? (lesson.spotifyUrl || '').match(/episode\/([A-Za-z0-9]+)/) : null;
-    if (m) {
-      const bar = $('lpAudio');
-      bar.hidden = false;
-      bar.innerHTML = '<span class="lp-audio-label">האזנה בלבד, ללא וידאו</span>' +
-        '<iframe src="https://open.spotify.com/embed/episode/' + m[1] + '?utm_source=generator&theme=0" ' +
-        'width="100%" height="80" frameborder="0" title="האזנה בלבד" loading="lazy" ' +
-        'allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>';
     }
 
     /* עוד מהסדרה: this lesson's series first (nearest date after this lesson, wrapping),
