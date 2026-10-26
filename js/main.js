@@ -216,7 +216,7 @@ function ahPhotoPlaceholders() {
     };
 
     /* Nav clicks land with the section title just under the fixed header */
-    document.querySelectorAll('.main-nav a[href^="#"], .main-nav a[href*="index.html#"]').forEach(function (link) {
+    document.querySelectorAll('.main-nav a[href^="#"], .main-nav a[href*="index.html#"], .mobile-header-donate').forEach(function (link) {
       bindOnce(link, 'navAnchor', 'click', function (e) {
         var href = link.getAttribute('href');
         var h = href.indexOf('#');

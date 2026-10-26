@@ -537,3 +537,9 @@ Executor: Avraham's side (this Instinct).
 - Verified Roi23:28:54: replace PayBox hint with exact קופת עלה הדס.
 - Payment URLs, destinations, accounts, amounts and other labels unchanged.
 - Main script cache key updated so existing visitors receive new label.
+
+## 2026-10-26 v164 approved mobile header donation shortcut
+- Roi23:38:24 approves exact green-pill candidate plus gentle bounce, mobile only.
+- Header shortcut opens existing payment popup without changing page/URL/scroll.
+- Reduced motion respected; desktop, page body and payment targets unchanged.
+- Approval is specific to this batch, not general publication permission.
