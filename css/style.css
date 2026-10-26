@@ -1480,3 +1480,16 @@ button.social-link { font: inherit; cursor: pointer; text-align: start; width: 1
   .dn-pay-note { color: #6e8090; }
   .dn-pay-close { color: #50667a; }
 }
+
+/* v148 (owner approvals 26.10 16:41, wamid...M0E1OTFENTYyOEFBREIxMjkzQTMA and wamid...M0E1RUZBMTM5RDk0NUNCMTg4MDgA,
+   each "תעשה את זה" over the exact mockup screenshot, MOBILE ONLY):
+   item 5 - program cards go one column on phones so the description is readable;
+   item 8 - lessons carousel gets screen margins, a narrower peek and a wider button
+   inset so the next card's buttons are never clipped by the screen edge.
+   Desktop AND tablet layouts unchanged. */
+@media (max-width: 640px) {
+  #programs .news-grid { grid-template-columns: 1fr; }
+  .ls-grid { padding-inline: 18px; scroll-padding-inline: 18px; }
+  .ls-grid .ls-card { flex-basis: calc(100% - 20px); }
+  .ls-grid .ls-actions { padding-inline: 26px; }
+}
