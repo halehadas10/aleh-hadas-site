@@ -475,3 +475,6 @@ Executor: Avraham's side (this Instinct).
 
 ## 2026-10-26 v154 - Executor: Avraham's side (this Instinct)
 - Lesson audio: added audioUrl for "זה לא היעד זה הדרך" (DfmcbQ8GzlI), Archive item aleh-hadas-ze-lo-hayaad-ze-haderech. MD5 and size verified against hosting. No design change.
+
+## 2026-10-26 data change (site stays v153) - Executor: Avraham's side
+- Lesson audio: audioUrl for "בדרכו של אריאל" (bC_O6Lpxv5I), Archive item aleh-hadas-bdarko-shel-ariel. Size and MD5 verified. No design change.

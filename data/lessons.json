@@ -141,7 +141,8 @@
    "youtubeUrl": "https://www.youtube.com/watch?v=bC_O6Lpxv5I",
    "spotifyUrl": "https://open.spotify.com/episode/1ma8wPviXPe2YtUzR09ivF",
    "onSpotify": true,
-   "thumbnail": "https://i.ytimg.com/vi/bC_O6Lpxv5I/hq720.jpg"
+   "thumbnail": "https://i.ytimg.com/vi/bC_O6Lpxv5I/hq720.jpg",
+   "audioUrl": "https://archive.org/download/aleh-hadas-bdarko-shel-ariel/bC_O6Lpxv5I.mp3"
   },
   {
    "id": "DfmcbQ8GzlI",
