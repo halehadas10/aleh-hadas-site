@@ -214,7 +214,11 @@
           }); });
         }
         if (opts.pop && scrollMemory[currentNav] != null) {
-          window.scrollTo(0, scrollMemory[currentNav]);
+          /* v140 (owner 26.10 07:52, MOBILE ONLY): restore the exact prior spot
+             INSTANTLY on phones - a plain scrollTo runs as native CSS-smooth
+             and he watched the page glide. Desktop keeps the existing call. */
+          if (window.matchMedia && window.matchMedia('(max-width: 860px)').matches) window.scrollTo({ top: scrollMemory[currentNav], behavior: 'instant' });
+          else window.scrollTo(0, scrollMemory[currentNav]);
         }
         /* prefetch likely next pages (whole document: header/footer chrome
            links are the inner-page tab targets, not only the swapped main) */

@@ -409,3 +409,7 @@ Executor: Avraham's side (this Instinct).
 ## v139 (26.10, morning) - exact back-to-site position restore on mobile
 - Source: owner WhatsApp 26.10 07:52:16 (wamid.HBgMOTcyNTQ5OTE3MzcyFQIAEhgUM0E0Q0NBNzlEQzNBREM3RThDQzcA): חזרה לאתר must return to the exact spot he was at before opening the recommendations page. v136's shell-level hijack never fired: quotes.html's own backHome handler (Roi 25.10, bound on the button itself) preventDefaulted first and routed to the last-spied SECTION top instead. Fix (MOBILE ONLY): quotes.html/_verifyq.html backHome now prefers history.back() through shell history on phones (popstate -> swapTo pop -> scrollMemory exact restore); desktop keeps Roi's last-section behavior. The popstate scroll restore itself is now instant on phones (was native CSS-smooth glide); desktop unchanged.
 - Executor: Avraham's side (this Instinct).
+
+## v140 (26.10, morning) - instant mobile popstate scroll restore (completes v139)
+- Completes the owner 07:52:16 back-to-site item: the shell's popstate scrollMemory restore now lands INSTANTLY on phones (<=860px) instead of a native CSS-smooth glide; desktop behavior unchanged. v139's commit message mentioned this but the ah-shell.js edit itself was missed; shipped here. (_verifyq.html is a stale internal verification page on ?v=2, left as-is.)
+- Executor: Avraham's side (this Instinct).
