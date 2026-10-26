@@ -1465,3 +1465,18 @@ button.social-link { font: inherit; cursor: pointer; text-align: start; width: 1
 @media (max-width: 860px) {
   .dn-pay-btn { flex-direction: column; gap: 6px; }
 }
+
+/* v145 (owner voice 26.10 16:26, MOBILE ONLY): donation modal recolored from the
+   old dark/colorful palette to a clean white look matching the site. Structure,
+   wording, links, provider logos and the v143 logo-above-text layout unchanged.
+   Desktop look untouched until the owner confirms it too. */
+@media (max-width: 860px) {
+  .dn-pay-card { background: #ffffff; border-color: #d8e0e6; box-shadow: 0 18px 50px rgba(16,34,43,.18); }
+  .dn-pay-title { color: #14323f; }
+  .dn-pay-sub { color: #50667a; }
+  .dn-pay-btn { background: #ffffff; border: 1.5px solid #d8e0e6; color: #14323f; box-shadow: 0 2px 8px rgba(16,34,43,.06); }
+  .dn-pay-btn:hover { transform: none; border-color: #00506e; }
+  .dn-pay-hint { color: #50667a; opacity: 1; }
+  .dn-pay-note { color: #6e8090; }
+  .dn-pay-close { color: #50667a; }
+}
