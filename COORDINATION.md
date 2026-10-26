@@ -472,3 +472,6 @@ Executor: Avraham's side (this Instinct).
 ## 2026-10-26 v153 — Executor: Avraham's side (this Instinct)
 - השלמת סעיף 8 המאושר (wamid...M0E1RUZBMTM5RDk0NUNCMTg4MDgA, "תעשה את זה" על המוקאפ): רוחב הכרטיס בקרוסלת השיעורים בנייד הוגדל ל-calc(100% - 8px) והזחת הכפתורים ל-34px, כך שהכפתורים של הכרטיס הבא נשארים מחוץ למסך לגמרי (בדיקה מדודה בדפדפן חי: קודם הבזיקו ~15px מהכפתור, בניגוד למוקאפ שאושר). ≤640px בלבד; דסקטופ וטאבלט ללא שינוי.
 - refs: ?v=153 בכל העמודים.
+
+## 2026-10-26 v154 - Executor: Avraham's side (this Instinct)
+- Lesson audio: added audioUrl for "זה לא היעד זה הדרך" (DfmcbQ8GzlI), Archive item aleh-hadas-ze-lo-hayaad-ze-haderech. MD5 and size verified against hosting. No design change.
