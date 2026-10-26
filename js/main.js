@@ -451,7 +451,7 @@ function ahPhotoPlaceholders() {
           '<p class="dn-pay-title" id="dnPayTitle">תרומה</p>' +
           '<p class="dn-pay-sub">בחרו אמצעי תרומה:</p>' +
           '<a class="dn-pay-btn dn-pay-jgive" href="https://www.jgive.com/new/he/ils/donation-targets/60540" target="_blank" rel="noopener"><img class="dn-pay-logo" src="./assets/logo-jgive.png" alt="לוגו JGive"><span>JGive<span class="dn-pay-hint">דף התרומות הכללי של עלה הדס</span></span></a>' +
-          '<a class="dn-pay-btn dn-pay-paybox" href="https://links.payboxapp.com/XzfSfUmCq6b" target="_blank" rel="noopener"><img class="dn-pay-logo" src="./assets/logo-paybox.png" alt="לוגו PayBox"><span>PayBox<span class="dn-pay-hint">קופת ״כפרות עלה הדס״</span></span></a>' +
+          '<a class="dn-pay-btn dn-pay-paybox" href="https://links.payboxapp.com/XzfSfUmCq6b" target="_blank" rel="noopener"><img class="dn-pay-logo" src="./assets/logo-paybox.png" alt="לוגו PayBox"><span>PayBox<span class="dn-pay-hint">קופת עלה הדס</span></span></a>' +
           '<a class="dn-pay-btn dn-pay-bit" href="https://www.bitpay.co.il/app/share-info?i=RYfExz8N&amp;j=true" target="_blank" rel="noopener"><img class="dn-pay-logo" src="./assets/logo-bit.png" alt="לוגו Bit"><span>Bit<span class="dn-pay-hint">קישור התרומה של עלה הדס באפליקציית ביט</span></span></a>' +
           '<button type="button" class="dn-pay-close" id="dnPayClose">סגירה</button>' +
         '</div>' +

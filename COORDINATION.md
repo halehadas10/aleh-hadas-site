@@ -532,3 +532,8 @@ Executor: Avraham's side (this Instinct).
 - Owner23:23:01 supersedes capacity automation: show all five supplied links.
 - Existing homepage WhatsApp window now has updates1-4 and parents, all selectable.
 - No capacity claims, routing/rotation, account connection or program-specific modal changes.
+
+## 2026-10-26 v163 Roi PayBox label only
+- Verified Roi23:28:54: replace PayBox hint with exact קופת עלה הדס.
+- Payment URLs, destinations, accounts, amounts and other labels unchanged.
+- Main script cache key updated so existing visitors receive new label.
