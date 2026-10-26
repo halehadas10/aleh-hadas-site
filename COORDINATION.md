@@ -523,3 +523,7 @@ Executor: Avraham's side (this Instinct).
 ## 2026-10-26 v160 Roi follow-up coordinator placeholders
 - Explicit 23:05:39 follow-up: two always-visible homepage coordinator names also become יתמלא בקרוב.
 - Phones, links, program names and v158 modal sentence unchanged. Expanded 13 names preserved.
+
+## 2026-10-26 v161 Roi clarified program placeholder names
+- Explicit 23:06:00 yes to replacing all eight program-modal placeholder names with יתמלא בקרוב.
+- Supersedes earlier retain-name instruction only. Modal, title, v158 sentence and zeroed phone unchanged.
