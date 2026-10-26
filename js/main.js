@@ -220,15 +220,16 @@ function ahPhotoPlaceholders() {
           if (!onHomePage() || !document.getElementById('hero')) { goHomeIndex('#home'); return; }
           ahSmoothScroll(0); return;
         }
-        /* off-homepage the header's bare #anchors ALWAYS mean homepage sections,
-           even if some other page happens to reuse the same id (#donate) */
-        if (!onHomePage() || !document.getElementById(id)) { goHomeIndex('#' + id); return; }
-        /* v137 (owner 26.10 07:55, BOTH platforms): the donate nav tab opens
-           the payment mini window directly instead of gliding to the section */
+        /* v142 (owner 26.10 14:11, BOTH platforms): the donate nav tab opens
+           the payment mini window OVER THE CURRENT PAGE - inner pages no
+           longer navigate home for it (checked before the off-home redirect) */
         if (id === 'donate' && window.AHDonateOpen && window.AHDonateOpen()) {
           history.replaceState(null, '', '#donate');
           return;
         }
+        /* off-homepage the header's bare #anchors ALWAYS mean homepage sections,
+           even if some other page happens to reuse the same id (#donate) */
+        if (!onHomePage() || !document.getElementById(id)) { goHomeIndex('#' + id); return; }
         window.AHScrollToId(id);
         history.replaceState(null, '', '#' + id);
       });
@@ -430,8 +431,23 @@ function ahPhotoPlaceholders() {
     /* Donation payment mini window (v131; logic moved from a body-level
        inline script into main.js in v137: body scripts only run on a full
        index.html load, so after a shell swap from another page the CTA was
-       left dead. main.js init re-runs on every swap; markup already lives
-       inside <main> and travels with the swap). */
+       left dead. main.js init re-runs on every swap).
+       v142 (owner 26.10 14:11, BOTH platforms): the window opens OVER THE
+       CURRENT PAGE on every page, so its markup is injected at BODY level
+       (survives shell swaps, exists on inner pages) instead of living in the
+       homepage <main>. Markup/wording/links unchanged from v141. */
+    var DN_PAY_HTML =
+      '<div class="dn-pay-overlay" id="dnPayOverlay" role="dialog" aria-modal="true" aria-label="בחירת אמצעי תרומה">' +
+        '<div class="dn-pay-card">' +
+          '<p class="dn-pay-title" id="dnPayTitle">תרומה</p>' +
+          '<p class="dn-pay-sub">בחרו אמצעי תרומה:</p>' +
+          '<a class="dn-pay-btn dn-pay-jgive" href="https://www.jgive.com/new/he/ils/donation-targets/60540" target="_blank" rel="noopener"><img class="dn-pay-logo" src="./assets/logo-jgive.png" alt="לוגו JGive"><span>JGive<span class="dn-pay-hint">דף התרומות הכללי של עלה הדס</span></span></a>' +
+          '<a class="dn-pay-btn dn-pay-paybox" href="https://links.payboxapp.com/XzfSfUmCq6b" target="_blank" rel="noopener"><img class="dn-pay-logo" src="./assets/logo-paybox.png" alt="לוגו PayBox"><span>PayBox<span class="dn-pay-hint">קופת ״כפרות עלה הדס״</span></span></a>' +
+          '<a class="dn-pay-btn dn-pay-bit" href="https://www.bitpay.co.il/app/share-info?i=RYfExz8N&amp;j=true" target="_blank" rel="noopener"><img class="dn-pay-logo" src="./assets/logo-bit.png" alt="לוגו Bit"><span>Bit<span class="dn-pay-hint">קישור התרומה של עלה הדס באפליקציית ביט</span></span></a>' +
+          '<p class="dn-pay-note">הקטגוריה והסכום אינם מועברים לעמוד התשלום בשלב זה</p>' +
+          '<button type="button" class="dn-pay-close" id="dnPayClose">סגירה</button>' +
+        '</div>' +
+      '</div>';
     (function () {
       window.AHDonateOpen = function () {
         var o = document.getElementById('dnPayOverlay');
@@ -440,6 +456,10 @@ function ahPhotoPlaceholders() {
         return true;
       };
       var dnOverlay = document.getElementById('dnPayOverlay');
+      if (!dnOverlay) {
+        document.body.insertAdjacentHTML('beforeend', DN_PAY_HTML);
+        dnOverlay = document.getElementById('dnPayOverlay');
+      }
       if (!dnOverlay) return;
       function dnClose() { dnOverlay.classList.remove('open'); }
       bindOnce(document.getElementById('donateOpenBtn'), 'donateOpen', 'click', function () { window.AHDonateOpen(); });
@@ -451,10 +471,17 @@ function ahPhotoPlaceholders() {
           if (e.key === 'Escape') { var o = document.getElementById('dnPayOverlay'); if (o) o.classList.remove('open'); }
         });
       }
-      /* v137: the footer donate link is the same entry point - open the window */
+      /* v137: the footer donate link is the same entry point - open the window
+         v142: on EVERY page (the window opens over the current page now) */
       document.querySelectorAll('.footer-donate[href$="#donate"]').forEach(function (a) {
         bindOnce(a, 'footerDonate', 'click', function (e) {
-          if (!onHomePage()) return; /* cross-page: land on #donate, auto-open below */
+          e.preventDefault();
+          window.AHDonateOpen();
+        });
+      });
+      /* v142: inner-page תרמו עכשיו buttons open the window in place too */
+      document.querySelectorAll('a.btn-donate[href$="#donate"]').forEach(function (a) {
+        bindOnce(a, 'ctaDonate', 'click', function (e) {
           e.preventDefault();
           window.AHDonateOpen();
         });

@@ -12,7 +12,7 @@
   window.SITE_PHOTOS = false;
   if (!window.SITE_PHOTOS) document.documentElement.classList.add('no-photos');
 </script>
-<link rel="stylesheet" href="./css/style.css?v=141">
+<link rel="stylesheet" href="./css/style.css?v=142">
 <style>
   .quotes-preview { background: var(--navy-800); }
   .qp-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 10px; }
@@ -78,24 +78,7 @@
   .story .video-frame { margin-top: clamp(30px, 4vw, 54px); }
   @media (max-width: 860px) { .stats-strip { grid-template-columns: 1fr 1fr; gap: 14px; } }
 
-  /* v131 (owner 26.10 00:25): 3-provider payment mini window lives on the homepage donate section (separate donation page removed) */
-  .dn-pay-overlay { position: fixed; inset: 0; background: rgba(10,12,30,.72); display: grid; place-items: center; z-index: 200; opacity: 0; pointer-events: none; transition: opacity .25s ease; }
-  .dn-pay-overlay.open { opacity: 1; pointer-events: auto; }
-  .dn-pay-card { background: #232047; border: 1.5px solid #c9a227; border-radius: 18px; padding: 22px 26px; width: min(92vw, 420px); text-align: center; transform: translateY(14px) scale(.97); transition: transform .25s ease; }
-  .dn-pay-overlay.open .dn-pay-card { transform: none; }
-  .dn-pay-title { color: #e8c85a; font-size: 1.35rem; font-weight: 700; margin-bottom: 6px; }
-  .dn-pay-sub { color: #b9c0da; font-size: .92rem; margin-bottom: 20px; }
-  .dn-pay-btn { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; width: 88%; margin: 8px auto; padding: 10px 14px; border-radius: 10px; font-size: 1rem; font-weight: 700; text-decoration: none; text-align: center; transition: transform .15s ease; }
-  .dn-pay-btn:hover { transform: translateY(-2px); }
-  .dn-pay-jgive { background: #2e6e46; color: #fff; }
-  .dn-pay-paybox { background: #274b8f; color: #fff; }
-  .dn-pay-bit { background: #6c28d9; color: #fff; }
-  .dn-pay-btn .dn-pay-logo { width: 22px; height: 22px; border-radius: 6px; object-fit: cover; background: #fff; }
-  .dn-pay-hint { display: block; font-size: 0.72rem; font-weight: 400; opacity: 0.85; margin-top: 2px; }
-  .dn-pay-note { font-size: 0.72rem; color: #b9b3d4; margin: 10px 0 2px; }
-  .dn-pay-close { margin-top: 14px; background: none; border: none; color: #889; font-size: .95rem; cursor: pointer; text-decoration: underline; }
   button.btn-donate { cursor: pointer; }
-  @media (prefers-reduced-motion: reduce) { .dn-pay-card, .dn-pay-overlay { transition: none; } }
 </style>
 </head>
 <body>
@@ -486,17 +469,7 @@
       </div>
     </div>
   </section>
-  <div class="dn-pay-overlay" id="dnPayOverlay" role="dialog" aria-modal="true" aria-label="בחירת אמצעי תרומה">
-    <div class="dn-pay-card">
-      <p class="dn-pay-title" id="dnPayTitle">תרומה</p>
-      <p class="dn-pay-sub">בחרו אמצעי תרומה:</p>
-      <a class="dn-pay-btn dn-pay-jgive" href="https://www.jgive.com/new/he/ils/donation-targets/60540" target="_blank" rel="noopener"><img class="dn-pay-logo" src="./assets/logo-jgive.png" alt="לוגו JGive"><span>JGive<span class="dn-pay-hint">דף התרומות הכללי של עלה הדס</span></span></a>
-      <a class="dn-pay-btn dn-pay-paybox" href="https://links.payboxapp.com/XzfSfUmCq6b" target="_blank" rel="noopener"><img class="dn-pay-logo" src="./assets/logo-paybox.png" alt="לוגו PayBox"><span>PayBox<span class="dn-pay-hint">קופת ״כפרות עלה הדס״</span></span></a>
-      <a class="dn-pay-btn dn-pay-bit" href="https://www.bitpay.co.il/app/share-info?i=RYfExz8N&amp;j=true" target="_blank" rel="noopener"><img class="dn-pay-logo" src="./assets/logo-bit.png" alt="לוגו Bit"><span>Bit<span class="dn-pay-hint">קישור התרומה של עלה הדס באפליקציית ביט</span></span></a>
-      <p class="dn-pay-note">הקטגוריה והסכום אינם מועברים לעמוד התשלום בשלב זה</p>
-      <button type="button" class="dn-pay-close" id="dnPayClose">סגירה</button>
-    </div>
-  </div>
+  
 
 
 
@@ -567,11 +540,11 @@
   <img alt="מודעה בגודל מלא" id="lightboxImg">
 </div>
 
-<script src="./js/main.js?v=141"></script>
-<script src="./js/lessons.js?v=141"></script>
-<script src="./js/ext-overlay.js?v=141"></script>
-<script src="./js/ah-player.js?v=141"></script>
-<script src="./js/ah-shell.js?v=141"></script>
+<script src="./js/main.js?v=142"></script>
+<script src="./js/lessons.js?v=142"></script>
+<script src="./js/ext-overlay.js?v=142"></script>
+<script src="./js/ah-player.js?v=142"></script>
+<script src="./js/ah-shell.js?v=142"></script>
 
 </body>
 </html>

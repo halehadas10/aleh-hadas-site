@@ -149,9 +149,21 @@
       var curMain = document.querySelector('main');
       if (!newMain || !curMain) throw new Error('no main');
       return loadMissingScripts(doc, url).then(function () {
+        var imported = document.importNode(newMain, true);
+        /* v142 (owner 26.10 14:12, BOTH platforms - functional fix): update the
+           URL BEFORE adopting the new main. Relative resources in swapped
+           content (program-page <img src="../assets/...">) resolve against the
+           document URL at insertion time; adopting first fetched them from the
+           OLD page's path (root-level ../assets -> 404), which is why program
+           images stayed broken after in-site navigation while direct loads
+           were fine. Head styles import after the URL change too. */
+        if (!opts.pop) {
+          scrollMemory[currentNav] = window.scrollY;
+          currentNav = ++navId;
+          history.pushState({ ahShell: true, nav: currentNav, url: url }, '', url);
+        }
         importHeadStyles(doc);
         /* adopt the new main */
-        var imported = document.importNode(newMain, true);
         curMain.parentNode.replaceChild(imported, curMain);
         /* adopt site chrome when the page the session STARTED on ships none
            (program pages are main-only): a shell swap from them to a chrome
@@ -170,9 +182,6 @@
         document.title = doc.title || document.title;
         execInlineScripts(imported);
         if (!opts.pop) {
-          scrollMemory[currentNav] = window.scrollY;
-          currentNav = ++navId;
-          history.pushState({ ahShell: true, nav: currentNav, url: url }, '', url);
           /* hash target: reset INSTANTLY to top, then let AHScrollToId glide
              down - a plain scrollTo here runs as native CSS-smooth and races
              the custom animation (teleport-to-bottom bug, user 24.10).

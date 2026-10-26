@@ -419,3 +419,12 @@ Executor: Avraham's side (this Instinct).
 - Source 2: main + verifier agent-01M5VCKTVASX0E9CKZ5A20XQA8 (26.10 08:08): all 12 YouTube lessons confirmed Published on Spotify with exact episode mappings. data/spotify-map.json (the generator's durable input, read+rewritten nightly by scripts/build_lessons.py) gained the 5 missing mappings (DfmcbQ8GzlI, bC_O6Lpxv5I, _ZnDbs7bRHM, SCj1gKR3BZQ, I6VOCsHe__s); data/lessons.json aligned to the map (12/12 onSpotify). Nightly regeneration now reproduces the same state.
 - Source 3: main 26.10 08:14 (authorized wording accuracy fix within the approved mini-window change): stale subtitle "לחיצה תעביר אתכם לדף התרומות של בית המדרש" -> "לחיצה תפתח חלון לבחירת אמצעי תרומה" on quotes.html + all program pages.
 - Executor: Avraham's side (this Instinct).
+
+## 2026-10-26 v142 (בקשות הבעלים 14:11-14:16) — Executor: Avraham's side (this Instinct)
+- תרומה: חלון התרומה נפתח מעל העמוד הנוכחי בכל עמוד (לא ניווט לדף הבית) — markup מוזרק ל-body מ-main.js (שריד החלפות shell), ה-CSS עבר ל-style.css המשותף (כללים זהים, לא עיצוב חדש), נק' כניסה: לשונית ניווט + כפתור תרמו עכשיו + קישור פוטר + עמודי תוכניות (snippet מקומי). תוקנו כיתובים מיושנים (lessons/gallery/lesson): "לחיצה תפתח חלון לבחירת אמצעי תרומה". שני העולמות (mobile+desktop) — תיקון פונקציונלי לפי הבהרת main.
+- תמונות עמודי תוכניות: שורש התקלה — ah-shell החליף <main> לפני pushState, ולכן src יחסי (../assets) נטען מהנתיב הישן וקיבל 404 בניווט פנימי (בטעינה ישירה עבד). תוקן: pushState לפני ה-adoption. דיווח המשתמש 14:12 (לא נטענת בכל התוכניות, צילום מסך אמיתי).
+- חיצי קרוסלת תוכניות הוסרו במובייל בלבד (display:none ב-640px) בכל עמודי התוכניות; החלקה ונקודות נשארים. דסקטופ ללא שינוי.
+- קרוסלת שיעורים בדף הבית (mobile): חצים גוללים כרטיס אחד מדויק ל-snap edge במקום קפיצת 0.85 רוחב שננעצת באמצע כרטיס. swipe ודסקטופ ללא שינוי.
+- נגן יוטיוב בעמוד שיעור: watchdog אחד — 4sn בלי onReady -> nocookie, 6sn בלי load -> כרטיס תמונה לחיץ ליוטיוב (במקום קופסה לבנה קבועה). האודיו הפנימי לא נגוע.
+- חזרה לאתר בעמודי בית המדרש: יעד קבוע ./index.html#virtual (מקטע בית המדרש בדף הבית); הוסר ה-hijack של history.back/ah-return. עמוד ההמלצות שומר על לוגיקת החזרה שלו.
+- refs: כל ?v= עודכן ל-142 בכל העמודים.

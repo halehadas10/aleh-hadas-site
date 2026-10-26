@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>תוכנית 10 - עלה הדס</title>
-<link rel="stylesheet" href="../css/style.css?v=141">
+<link rel="stylesheet" href="../css/style.css?v=142">
 <style>
   body { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
   .stub-inner { max-width: 560px; padding: calc(var(--header-h) + 18px) 24px 40px; } /* v108: clear the fixed site header kept by the shell */
@@ -31,8 +31,38 @@
     </div>
   </section>
 
+  <!-- v142 (owner 26.10 14:11, BOTH platforms): donation mini window opens over THIS page -->
+  <div class="dn-pay-overlay" id="dnPayOverlay" role="dialog" aria-modal="true" aria-label="בחירת אמצעי תרומה">
+    <div class="dn-pay-card">
+      <p class="dn-pay-title" id="dnPayTitle">תרומה</p>
+      <p class="dn-pay-sub">בחרו אמצעי תרומה:</p>
+      <a class="dn-pay-btn dn-pay-jgive" href="https://www.jgive.com/new/he/ils/donation-targets/60540" target="_blank" rel="noopener"><img class="dn-pay-logo" src="../assets/logo-jgive.png" alt="לוגו JGive"><span>JGive<span class="dn-pay-hint">דף התרומות הכללי של עלה הדס</span></span></a>
+      <a class="dn-pay-btn dn-pay-paybox" href="https://links.payboxapp.com/XzfSfUmCq6b" target="_blank" rel="noopener"><img class="dn-pay-logo" src="../assets/logo-paybox.png" alt="לוגו PayBox"><span>PayBox<span class="dn-pay-hint">קופת ״כפרות עלה הדס״</span></span></a>
+      <a class="dn-pay-btn dn-pay-bit" href="https://www.bitpay.co.il/app/share-info?i=RYfExz8N&amp;j=true" target="_blank" rel="noopener"><img class="dn-pay-logo" src="../assets/logo-bit.png" alt="לוגו Bit"><span>Bit<span class="dn-pay-hint">קישור התרומה של עלה הדס באפליקציית ביט</span></span></a>
+      <p class="dn-pay-note">הקטגוריה והסכום אינם מועברים לעמוד התשלום בשלב זה</p>
+      <button type="button" class="dn-pay-close" id="dnPayClose">סגירה</button>
+    </div>
+  </div>
+  <script>
+  (function () {
+    var o = document.getElementById('dnPayOverlay');
+    if (!o) return;
+    function dnClose() { o.classList.remove('open'); }
+    document.querySelectorAll('a.btn-donate[href$="#donate"]').forEach(function (a) {
+      a.addEventListener('click', function (e) { e.preventDefault(); o.classList.add('open'); });
+    });
+    document.getElementById('dnPayClose').addEventListener('click', dnClose);
+    o.addEventListener('click', function (e) { if (e.target === o) dnClose(); });
+    if (!window.__ahDnEscProg) {
+      window.__ahDnEscProg = true;
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') { var x = document.getElementById('dnPayOverlay'); if (x) x.classList.remove('open'); }
+      });
+    }
+  })();
+  </script>
 </main>
-<script src="../js/ah-player.js?v=141"></script>
-<script src="../js/ah-shell.js?v=141"></script>
+<script src="../js/ah-player.js?v=142"></script>
+<script src="../js/ah-shell.js?v=142"></script>
 </body>
 </html>

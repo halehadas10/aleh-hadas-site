@@ -101,26 +101,47 @@
       const st = JSON.parse(localStorage.getItem(PS_KEY) || 'null');
       if (st && st.v === vid && st.t > 10) startAt = Math.floor(st.t);
     } catch (e) {}
-    let created = false;
+    let created = false, ready = false, swapped = false;
     function createPlayer() {
-      if (created) return; created = true;
+      if (created || swapped) return; created = true;
       player = new YT.Player('lpFrame', {
         videoId: vid,
         playerVars: { controls: 1, rel: 0, start: startAt, modestbranding: 1 },
-        events: { onStateChange: ev => { if (window.AHsaveState) AHsaveState(ev.target, vid); } }
+        events: {
+          onReady: function () { ready = true; },
+          onError: function () { swapNocookie(); },
+          onStateChange: ev => { if (window.AHsaveState) AHsaveState(ev.target, vid); }
+        }
       });
     }
-    /* v78 mobile fallback: if the IFrame API is blocked or slow (seen blank on
-       phone Safari/4G), inject a plain youtube-nocookie embed after 4s */
-    setTimeout(function () {
-      if (created) return; created = true;
+    /* v142 (owner 26.10 14:15, real iPhone retest still blank): ONE watchdog
+       for every dead path - v78's fallback only covered "API script never
+       loaded", leaving a permanent white box when the API loaded but the
+       player iframe never became ready (blocked embed), or when the nocookie
+       embed itself is blocked device-side. Chain: 4s without onReady ->
+       plain nocookie iframe; 6s without its load event -> tappable thumbnail
+       link. Audio player untouched. */
+    function swapNocookie() {
+      if (swapped) return; swapped = true; created = true;
       const host = document.getElementById('lpFrame');
-      if (!host || host.tagName !== 'DIV') return;
+      if (!host) return;
       host.outerHTML = '<iframe id="lpFrame" class="lp-frame" ' +
         'src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(vid) + '?rel=0&modestbranding=1" ' +
         'title="נגן וידאו" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ' +
         'allowfullscreen></iframe>';
-    }, 4000);
+      const f = document.getElementById('lpFrame');
+      let loaded = false;
+      if (f) f.addEventListener('load', function () { loaded = true; });
+      setTimeout(function () { if (!loaded) swapLinkCard(); }, 6000);
+    }
+    function swapLinkCard() {
+      const host = document.getElementById('lpFrame');
+      if (!host) return;
+      host.outerHTML = '<a id="lpFrame" class="lp-frame lp-yt-fallback" href="' + lesson.youtubeUrl + '" target="_blank" rel="noopener">' +
+        '<img src="https://i.ytimg.com/vi/' + encodeURIComponent(vid) + '/hqdefault.jpg" alt="' + lesson.title + '" loading="lazy">' +
+        '<span class="lp-yt-fallback-label">הווידאו לא נטען כאן - לחצו לצפייה ביוטיוב</span></a>';
+    }
+    setTimeout(function () { if (!ready) swapNocookie(); }, 4000);
     if (window.YT && window.YT.Player) { createPlayer(); return; }
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
@@ -142,16 +163,10 @@
   function ahBindChrome() {
     /* חזרה לאתר: return to the exact prior spot. Same-origin referrer -> history.back()
        restores the page WITH its scroll position; otherwise the stored ah-return url. */
-    const backBtn = document.querySelector('a.btn-back[href="./index.html"]');
-    try {
-      const ref = document.referrer ? new URL(document.referrer) : null;
-      if (backBtn && ref && ref.origin === location.origin && history.length > 1 && !window.AHShellActive) {
-        if (!backBtn.__ahBound) { backBtn.__ahBound = true; backBtn.addEventListener('click', function (e) { e.preventDefault(); history.back(); }); }
-      } else {
-        const st = JSON.parse(sessionStorage.getItem('ah-return') || 'null');
-        if (st && st.url && backBtn) backBtn.href = st.url;
-      }
-    } catch (e) {}
+    /* v142 (owner 26.10 14:16): חזרה לאתר has a FIXED target now
+       (./index.html#virtual, the homepage beit-midrash section) - the old
+       history.back()/ah-return hijack that sent users to arbitrary prior
+       spots is removed. The recommendations page keeps its own back logic. */
 
     const shareBtn = $('lpShare');
     if (shareBtn && !shareBtn.__ahBound) {

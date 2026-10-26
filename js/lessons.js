@@ -40,8 +40,29 @@
     const cnt = document.getElementById('lsCount');
     if (cnt) cnt.textContent = both.length + ' שיעורים זמינים לצפייה ולהאזנה';
     const next = document.getElementById('lsNext'), prev = document.getElementById('lsPrev');
-    if (next) next.onclick = () => host.scrollBy({ left: -host.clientWidth * 0.85, behavior: 'smooth' });
-    if (prev) prev.onclick = () => host.scrollBy({ left: host.clientWidth * 0.85, behavior: 'smooth' });
+    /* v142 (owner 26.10 14:14, MOBILE ONLY): button taps glide exactly one card
+       onto its snap edge. The 0.85-width jump landed MID-card on phones and
+       the mandatory scroll-snap yanked the row at the end ("swipe is great,
+       buttons are not"). Swipe and the desktop 0.85 paging are unchanged. */
+    function stepCard(idxDir, legacyLeft) {
+      const cards = host.children;
+      if (!cards.length || !window.matchMedia('(max-width: 860px)').matches) {
+        host.scrollBy({ left: legacyLeft, behavior: 'smooth' });
+        return;
+      }
+      const rowLeft = host.getBoundingClientRect().left;
+      let cur = 0, min = Infinity;
+      for (let i = 0; i < cards.length; i++) {
+        const d = Math.abs(cards[i].getBoundingClientRect().left - rowLeft);
+        if (d < min) { min = d; cur = i; }
+      }
+      let t = cur + idxDir;
+      if (t < 0) t = 0;
+      if (t > cards.length - 1) t = cards.length - 1;
+      host.scrollBy({ left: cards[t].getBoundingClientRect().left - rowLeft, behavior: 'smooth' });
+    }
+    if (next) next.onclick = () => stepCard(1, -host.clientWidth * 0.85);
+    if (prev) prev.onclick = () => stepCard(-1, host.clientWidth * 0.85);
   }
 
   function renderPage(data) {
