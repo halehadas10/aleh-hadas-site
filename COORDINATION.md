@@ -481,3 +481,6 @@ Executor: Avraham's side (this Instinct).
 
 ## 2026-10-26 data change (site stays v153) - Executor: Avraham's side
 - Lesson audio: audioUrl for "תפילת ראש השנה" (SCj1gKR3BZQ), Archive item aleh-hadas-tefilat-rosh-hashana. Full 50:25 file, size and MD5 verified. No design change.
+
+## 2026-10-26 data change (site stays v153) - Executor: Avraham's side
+- Lesson audio: audioUrl for "אלול מבפנים" (I6VOCsHe__s), Archive item aleh-hadas-elul-mibifnim. Size and MD5 verified. No design change.
