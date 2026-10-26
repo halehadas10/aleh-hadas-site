@@ -377,3 +377,9 @@ Executor: Avraham's side (this Instinct).
 - Change (css/style.css .story-text only): color #427651 -> #ffffff. Scope: the 4 body paragraphs of הסיפור שלנו. Statistics keep their own colors (.stat-num/.stat-label/.stat-pre unaffected), blue section title untouched, no other green touched. Supersedes the 25.10 17:00:28 user-approved green for this text.
 - Visual consequence: the paragraphs are now white-on-white (invisible) - owner's explicit choice after the warning, delivered per his words.
 - Executor: Avraham's side (this Instinct).
+
+## v134 (26.10, morning)
+- Source: owner WhatsApp 26.10 07:38:53 "לא לבן" (wamid.HBgMOTcyNTQ5OTE3MzcyFQIAEhgUM0E3QjYyRDZGRDIzM0E0MkM2NTkA) + 07:39:03 clarification (wamid.HBgMOTcyNTQ5OTE3MzcyFQIAEhgUM0E4RDBFNjM1QjQ3RDU1REFDRTEA): "התכוונתי שתחזיר לצבע שהיה שם לפני שהיה ירוק" - restore the color that was there before the green, NOT white. Supersedes the 07:14 white request (v133).
+- Recovered from git history: before the 25.10 17:00:28 green change, .story-text was color: var(--text-dim).
+- Change (css/style.css .story-text only): color #ffffff -> var(--text-dim). Font size/line-height from the 25.10 approval unchanged. Scope unchanged: only the story body paragraphs; heading and statistics untouched.
+- Executor: Avraham's side (this Instinct).
