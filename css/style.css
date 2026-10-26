@@ -1480,3 +1480,7 @@ button.social-link { font: inherit; cursor: pointer; text-align: start; width: 1
   .dn-pay-note { color: #6e8090; }
   .dn-pay-close { color: #50667a; }
 }
+
+/* DRAFT (owner voice 26.10 16:24, both platforms, NOT PUBLISHED): square inside the
+   group-link mini modal - awaits the content he will send (shape grounded, type unconfirmed). Mirrors tm-card look. */
+.gm-square { width: min(60vw, 240px); aspect-ratio: 1; margin: 18px auto 8px; border: 2px dashed #c3ced6; border-radius: 14px; background: #f7fafb; }

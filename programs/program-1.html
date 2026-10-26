@@ -80,7 +80,7 @@
     <div class="prog-ctas">
       <a class="btn btn-green" href="../index.html#programs">לכל התכניות</a>
       <button class="btn btn-ghost" id="talkBtn" type="button">דברו איתנו</button>
-      <button class="btn btn-ghost" type="button">קישור לקבוצה</button> <!-- v109 (user 25.10 17:31): inert placeholder - he will supply the group links later -->
+      <button class="btn btn-ghost" id="groupBtn" type="button">קישור לקבוצה</button> <!-- v109 (user 25.10 17:31): inert placeholder - he will supply the group links later -->
     </div>
     </div>
 
@@ -196,6 +196,37 @@
   }
 })();
 </script>
+
+  <!-- DRAFT (owner voice 26.10 16:24, BOTH platforms, NOT PUBLISHED): group-link mini modal structure.
+       The square awaits the content he will send (shape grounded; content type not yet confirmed); do not publish before it lands -->
+  <div class="tm-backdrop" id="groupModal" hidden>
+    <div class="tm-card" role="dialog" aria-modal="true" aria-labelledby="gmTitle">
+      <button class="tm-close" type="button" aria-label="סגירה">&times;</button>
+      <h2 class="tm-title" id="gmTitle">קישור לקבוצה</h2>
+      <p class="tm-prog">שיעור שבועי כיתות ט׳-יב׳</p>
+      <div class="gm-square" role="img" aria-label="כאן יופיע התוכן שיישלח"></div>
+    </div>
+  </div>
+  <script>
+  (function () {
+    var modal = document.getElementById('groupModal');
+    var openBtn = document.getElementById('groupBtn');
+    if (!modal || !openBtn) return;
+    function open() { modal.hidden = false; requestAnimationFrame(function () { modal.classList.add('is-open'); }); }
+    function close() { modal.classList.remove('is-open'); setTimeout(function () { modal.hidden = true; }, 320); }
+    openBtn.addEventListener('click', open);
+    modal.querySelector('.tm-close').addEventListener('click', close);
+    modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+    if (!window.__progGroupEsc) {
+      window.__progGroupEsc = true;
+      document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') return;
+        var m = document.getElementById('groupModal');
+        if (m && !m.hidden) { m.classList.remove('is-open'); setTimeout(function () { m.hidden = true; }, 320); }
+      });
+    }
+  })();
+  </script>
 </main><script src="../js/ah-player.js?v=146"></script>
 <script src="../js/ah-shell.js?v=146"></script>
 </body>
