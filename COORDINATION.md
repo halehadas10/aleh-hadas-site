@@ -371,3 +371,9 @@ Executor: Avraham's side (this Instinct).
 - Problem found in verification: first nav tap glided toward the click-time target, but lazy images/iframes below the fold load and claim height as the glide passes, so the page grows mid-animation and the scroll settled thousands of px short (donate is the last section).
 - Fix (js/main.js AHScrollToId): after the glide ends (~780ms), recompute the target from the live layout and run ONE corrective re-glide when the landing is off by more than 150px; skipped if a newer gesture took over (token). No continuous retargeting (24.10 lesson). Applies to all section anchors.
 - Executor: Avraham's side (this Instinct).
+
+## v133 (26.10, morning)
+- Source: owner WhatsApp 26.10 07:08:08 (wamid.HBgMOTcyNTQ5OTE3MzcyFQIAEhgUM0E4MUFCMTBGRTlDNzgzQzU4MTIA, screenshot circling the green story body paragraphs) + explicit confirmation 07:14:18 (wamid.HBgMOTcyNTQ5OTE3MzcyFQIAEhgUM0FCRUY0QzRFOEVGQjlDODg1RjUA) "הטקסט הירוק בתמונה אז תחזיר אותו ללבן" - repeated AFTER being warned that white text disappears on the section's white background.
+- Change (css/style.css .story-text only): color #427651 -> #ffffff. Scope: the 4 body paragraphs of הסיפור שלנו. Statistics keep their own colors (.stat-num/.stat-label/.stat-pre unaffected), blue section title untouched, no other green touched. Supersedes the 25.10 17:00:28 user-approved green for this text.
+- Visual consequence: the paragraphs are now white-on-white (invisible) - owner's explicit choice after the warning, delivered per his words.
+- Executor: Avraham's side (this Instinct).
