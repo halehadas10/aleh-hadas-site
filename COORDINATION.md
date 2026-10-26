@@ -400,3 +400,8 @@ Executor: Avraham's side (this Instinct).
 - Robustness (same report class, owner 07:54:39 wamid...0EwMTNBREJFQzcwOUEwMUU1QjcA: CTA did not open the window for him): the modal logic moved from a body-level inline script into js/main.js init - body scripts only run on a full index.html load, so after a shell swap from another page the CTA was left dead. Markup was already inside <main> and travels with swaps.
 - Source 2: owner WhatsApp 26.10 07:57:45 (wamid.HBgMOTcyNTQ5OTE3MzcyFQIAEhgUM0FEQjlEMjBCRjdEQzI2RTNGMDEA): closing the team list in יצירת קשר (the X button or the סגירת הרשימה toggle) returns the viewport to the top of the contact section, BOTH desktop and mobile (task-specific exception). Change: teamCollapse() now calls AHScrollToId('contact') (existing fast eased scroller).
 - Executor: Avraham's side (this Instinct).
+
+## v138 (26.10, morning) - gap selector cascade fix + footer heading wording
+- Gap fix correction (completes v136's owner 07:50:17 item): the v136 class-level mobile rule never applied - style.css:1066 "#quotes .section-sub" (ID specificity) outranks it. Mobile rule re-scoped to "#quotes .section-sub { margin-bottom: 16px }" inside the max-width 640px media query. Verified live with CSSOM probes (disabled/enabled sheets, insertRule) that the ID rule was the sole winner.
+- Source: owner WhatsApp 26.10 08:02:33 (wamid.HBgMOTcyNTQ5OTE3MzcyFQIAEhgUM0FCODcyMTI0M0M1RjA2NDgyM0QA): footer nav-column heading האתר -> קצת עלינו, BOTH desktop and mobile, all shared footer instances (index, quotes, lessons, lesson, gallery). Other occurrences of האתר / חזרה לאתר untouched.
+- Executor: Avraham's side (this Instinct).
