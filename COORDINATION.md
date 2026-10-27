@@ -548,3 +548,9 @@ Executor: Avraham's side (this Instinct).
 - Mobile shortcut animation specificity corrected to gentle4px bounce/2.8s and reduced-motion none.
 - Prior approved v163 PayBox label synchronized into inline program-popup copies.
 - Payment URLs and popup behavior unchanged.
+
+## 2026-10-27 v166 approved square memorial favicon
+- Roi10:26:06 approves exact private square-padded memorial candidate.
+- Existing favicon declarations now use96x96 PNG derived by downsampling approved640 master.
+- Original memorial image/logos untouched; no root, hosting, domain, DNS or account changes.
+- Google display is not verified or guaranteed by this change.
