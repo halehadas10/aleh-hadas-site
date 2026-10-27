@@ -554,3 +554,8 @@ Executor: Avraham's side (this Instinct).
 - Existing favicon declarations now use96x96 PNG derived by downsampling approved640 master.
 - Original memorial image/logos untouched; no root, hosting, domain, DNS or account changes.
 - Google display is not verified or guaranteed by this change.
+
+## 2026-10-27 v167 desktop program grid clipping
+- Roi16:06:59 explicitly authorizes focused immediate correction/publication.
+- Desktop four columns use zero-minimum fractional tracks; cards min-width0.
+- Mobile rules, content, design, links, root hosting and other features unchanged.

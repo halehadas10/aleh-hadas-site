@@ -1526,3 +1526,9 @@ button.social-link { font: inherit; cursor: pointer; text-align: start; width: 1
 @media (prefers-reduced-motion: reduce) {
   .nav-link.mobile-header-donate { animation: none; }
 }
+
+/* v167: approved focused desktop program-grid overflow fix. */
+@media (min-width: 821px) {
+  #programs .news-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  #programs .program-card { min-width: 0; }
+}
