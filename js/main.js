@@ -47,16 +47,17 @@ function ahPhotoPlaceholders() {
       if (onDone) onDone(myToken);
       return;
     }
-    var dur = Math.min(620, Math.max(260, Math.abs(dist) * 0.22));
-    var elapsed = 0, lastTime = null;
+    var dur = Math.min(420, Math.max(220, Math.abs(dist) * 0.16));
+    var firstTime = null, renderedSteps = 0;
     function step(ts) {
       if (myToken !== ahScrollToken) return;
-      /* Advance only on rendered frames. A wall-clock deadline teleports
-         when a busy browser withholds frames. Cap one frame's advance so
-         returning after a stall cannot swallow the whole visible glide. */
-      if (lastTime !== null) elapsed += Math.min(40, Math.max(0, ts - lastTime));
-      lastTime = ts;
-      var p = Math.min(1, elapsed / dur);
+      /* v168: use real elapsed time so a busy browser cannot stretch a
+         short tab glide into seconds. Start timing on the first actual
+         frame, then require three visible advances to avoid the former
+         zero-frame jump after a pre-animation stall. */
+      if (firstTime === null) firstTime = ts;
+      else ++renderedSteps;
+      var p = Math.min(1, Math.max(0, ts - firstTime) / dur, renderedSteps / 3);
       var e = p < 0.5 ? 4*p*p*p : 1 - Math.pow(-2*p + 2, 3) / 2;
       window.scrollTo({ top: startY + dist * e, behavior: 'instant' });
       if (p < 1) ahScrollFrame = requestAnimationFrame(step);

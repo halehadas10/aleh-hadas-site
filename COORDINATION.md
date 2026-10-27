@@ -559,3 +559,9 @@ Executor: Avraham's side (this Instinct).
 - Roi16:06:59 explicitly authorizes focused immediate correction/publication.
 - Desktop four columns use zero-minimum fractional tracks; cards min-width0.
 - Mobile rules, content, design, links, root hosting and other features unchanged.
+
+## 2026-10-27 v168 - restore fast tab glide (owner 17:38 explicit request)
+- Cause: v156 capped progress to40ms per frame; at250ms frame intervals a620ms glide became4+seconds. Later versions retained this code, not removed it.
+- Scroll only: real elapsed time from first rendered frame;420ms maximum nominal duration and three visible advances before completion. Keeps no pre-frame teleport timer, cancellation, reduced-motion choice, title offsets and one layout correction.
+- Controlled250ms frame delay: prior4.58s/17positions vs candidate1.19s/4positions; normal0.73s vs0.56s including click overhead. Desktop/mobile section routes, direct-inner shell return, rapid retarget, wheel cancellation and reduced-motion checks pass.
+- YouTube traffic blocked during scroll tests. Root identity and private video candidate remain unpublished; no other behavior changes.
