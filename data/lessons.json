@@ -1,11 +1,10 @@
 {
- "generated": "2026-10-26T03:50:37.165679+00:00",
+ "generated": "2026-10-27T03:48:57.727028+00:00",
  "showSpotifyUrl": "https://open.spotify.com/show/6t4UTEzvBWhBWbpb82krkd",
  "channelUrl": "https://www.youtube.com/channel/UCFkN6V5jTallY0UPD0Z4qMA",
  "lessons": [
   {
    "id": "1VzgtPKZg5g",
-   "audioUrl": "https://archive.org/download/aleh-hadas-bochrim-batov/1VzgtPKZg5g.mp3",
    "title": "הרב ספי וייל | בוחרים בטוב | בית מדרש \"עלה הדס\"",
    "topic": "בוחרים בטוב",
    "rabbi": "הרב ספי וייל",
@@ -17,7 +16,8 @@
    "youtubeUrl": "https://www.youtube.com/watch?v=1VzgtPKZg5g",
    "spotifyUrl": "https://open.spotify.com/episode/5VHvAdX8KkWBSzp6Ik6oBY",
    "onSpotify": true,
-   "thumbnail": "https://i.ytimg.com/vi/1VzgtPKZg5g/hq720.jpg"
+   "thumbnail": "https://i.ytimg.com/vi/1VzgtPKZg5g/hq720.jpg",
+   "audioUrl": "https://archive.org/download/aleh-hadas-bochrim-batov/1VzgtPKZg5g.mp3"
   },
   {
    "id": "XLRdDVe6Xfk",
