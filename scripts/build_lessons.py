@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Build data/lessons.json for the virtual midrash.
-Sources: YouTube channel RSS + watch pages (catalog), Spotify show embed (latest episode, both-platforms verification map)."""
+Sources: YouTube channel RSS + channel page ytInitialData (catalog), watch pages (details
+when reachable), Spotify show embed (latest episode, both-platforms verification map)."""
 import json, re, sys, time, html, urllib.request, datetime, os
 
 CH_ID = "UCFkN6V5jTallY0UPD0Z4qMA"
@@ -41,6 +42,90 @@ def hebrew_date(dt):
     except Exception as e:
         print("hebcal err", e); return ""
 
+# --- 06.11: helpers for the channel-page fallback -------------------------------
+# Why: the channel RSS feed started returning a hard 404 (verified 22.10 OK -> 25.10 404,
+# still 404), and watch pages served to datacenter IPs are a bot-variant
+# (playabilityStatus LOGIN_REQUIRED) with no publish date, so new lessons were skipped.
+# The channel /videos page still renders fully there, including ytInitialData with
+# lockupViewModel entries (YouTube's current grid renderer) carrying title, relative
+# publish text and duration badges. We now harvest that page properly.
+
+def parse_initial_data(page):
+    m = re.search(r'ytInitialData\s*=\s*', page)
+    if not m: return None
+    s = page.find('{', m.end() - 1)
+    raw = balanced(page, s)
+    if not raw: return None
+    try: return json.loads(raw)
+    except Exception: return None
+
+def _dur_from_text(txt):
+    p = [int(x) for x in txt.split(':') if x.isdigit()]
+    if not p: return 0
+    return p[-1] + 60 * (p[-2] if len(p) > 1 else 0) + 3600 * (p[0] if len(p) > 2 else 0)
+
+def channel_videos(page):
+    """{videoId: {'title','rel','dur'}} from the channel /videos page."""
+    out = {}
+    d = parse_initial_data(page)
+    if d:
+        def walk(o):
+            if isinstance(o, dict):
+                lv = o.get('lockupViewModel')
+                if isinstance(lv, dict) and re.fullmatch(r'[A-Za-z0-9_-]{11}', str(lv.get('contentId', ''))):
+                    vid = lv['contentId']
+                    md = lv.get('metadata', {}).get('lockupMetadataViewModel', {})
+                    title = md.get('title', {}).get('content', '')
+                    rel = ''
+                    for row in md.get('metadata', {}).get('contentMetadataViewModel', {}).get('metadataRows', []):
+                        for part in row.get('metadataParts', []):
+                            txt = part.get('text', {}).get('content', '')
+                            if re.search(r'\bago\b|לפני', txt): rel = txt
+                    out.setdefault(vid, {'title': title, 'rel': rel, 'dur': 0})
+                vr = o.get('videoRenderer') or o.get('gridVideoRenderer')
+                if isinstance(vr, dict) and vr.get('videoId'):
+                    vid = vr['videoId']
+                    title = ''.join(r.get('text', '') for r in vr.get('title', {}).get('runs', [])) or vr.get('title', {}).get('simpleText', '')
+                    rel = vr.get('publishedTimeText', {}).get('simpleText', '')
+                    dur = _dur_from_text(vr.get('lengthText', {}).get('simpleText', ''))
+                    out.setdefault(vid, {'title': title, 'rel': rel, 'dur': dur})
+                for v in o.values(): walk(v)
+            elif isinstance(o, list):
+                for v in o: walk(v)
+        walk(d)
+    # duration badges live outside the lockup metadata, keyed by the video id
+    for bm in re.finditer(r'"thumbnailBadgeViewModel":\{"text":"(\d+:\d+(?::\d+)?)"[^}]*?"animationActivationTargetId":"([A-Za-z0-9_-]{11})"', page):
+        dur, vid = _dur_from_text(bm.group(1)), bm.group(2)
+        if vid in out and dur: out[vid]['dur'] = dur
+    return out
+
+def resolve_rel_date(rel, now):
+    """Resolve YouTube's own relative publish text ('12h ago', '2w ago', 'לפני יומיים')
+    to a day-precision datetime. Approximation of YouTube's data, never an invented date."""
+    n, unit = None, None
+    m = re.search(r'(\d+)\s*(sec|min|mo|h|d|w|y)\s*ago', rel)
+    if m:
+        n = int(m.group(1))
+        unit = {'sec': 'seconds', 'min': 'minutes', 'h': 'hours', 'd': 'days', 'w': 'weeks', 'mo': 'months', 'y': 'years'}[m.group(2)]
+    else:
+        m = re.search(r'(\d+)\s+(second|minute|hour|day|week|month|year)s?\s+ago', rel)
+        if m:
+            n = int(m.group(1))
+            unit = m.group(2) + 's'
+        else:
+            m = re.search(r'לפני\s+(?:(\d+)\s+)?(שעה|שעות|שע׳|דקה|דקות|דק׳|יום|יומיים|ימים|שבוע|שבועיים|שבועות|חודש|חודשיים|שנה|שנתיים)', rel)
+            if not m: return None
+            n = int(m.group(1)) if m.group(1) else 1
+            w = m.group(2)
+            if w in ('יומיים', 'שבועיים', 'חודשיים', 'שנתיים'): n = 2
+            unit = {'דקה': 'minutes', 'דקות': 'minutes', 'דק׳': 'minutes', 'שע׳': 'hours', 'שעה': 'hours', 'שעות': 'hours',
+                    'יום': 'days', 'ימים': 'days', 'יומיים': 'days',
+                    'שבוע': 'weeks', 'שבועות': 'weeks', 'שבועיים': 'weeks',
+                    'חודש': 'months', 'חודשיים': 'months', 'שנה': 'years', 'שנתיים': 'years'}[w]
+    if unit == 'months': return now - datetime.timedelta(days=30 * n)
+    if unit == 'years': return now - datetime.timedelta(days=365 * n)
+    return now - datetime.timedelta(**{unit: n})
+
 def main():
     rss = None
     for attempt in range(3):
@@ -50,27 +135,35 @@ def main():
         except Exception as e:
             print(f"rss attempt {attempt+1} err:", e)
             time.sleep(2 * (attempt + 1))
-    if False:  # keep structure; rss None -> fallback
-        pass
-    try:
+    # 06.11: vids entries are dicts {vid,title,pub,rel,dur}; rel/dur are channel-page
+    # fallbacks used only when the watch page is unreachable/bot-walled.
+    vids = []
+    if rss is not None:
+        try:
+            entries = re.findall(r'<entry>(.*?)</entry>', rss, re.S)
+            for e in entries:
+                vid = re.search(r'<yt:videoId>(.*?)</yt:videoId>', e).group(1)
+                title = html.unescape(re.search(r'<title>(.*?)</title>', e).group(1))
+                pub = re.search(r'<published>(.*?)</published>', e).group(1)
+                vids.append({'vid': vid, 'title': title, 'pub': pub, 'rel': '', 'dur': 0})
+            print("rss videos:", len(vids))
+        except Exception as e:
+            print("rss parse err, falling back to channel page:", e)
+            vids = []
+    if not vids:
         if rss is None:
-            raise RuntimeError("rss unavailable after retries")
-        entries = re.findall(r'<entry>(.*?)</entry>', rss, re.S)
-        vids = []
-        for e in entries:
-            vid = re.search(r'<yt:videoId>(.*?)</yt:videoId>', e).group(1)
-            title = html.unescape(re.search(r'<title>(.*?)</title>', e).group(1))
-            pub = re.search(r'<published>(.*?)</published>', e).group(1)
-            vids.append((vid, title, pub))
-        print("rss videos:", len(vids))
-    except Exception as e:
-        # RSS can 404; fall back to the channel videos page (publish date comes from watch pages below)
-        print("rss err, falling back to channel page:", e)
-        ch = get("https://www.youtube.com/@%D7%A2%D7%9C%D7%94_%D7%94%D7%93%D7%A1/videos")
-        seen, vids = set(), []
-        for vid in dict.fromkeys(re.findall(r'watch\?v=([A-Za-z0-9_-]{11})', ch)):
-            seen.add(vid); vids.append((vid, "", ""))
+            print("rss err, falling back to channel page: rss unavailable after retries")
+        ch = get("https://www.youtube.com/@%D7%A2%D7%9C%D7%94_%D7%94%D7%93%D7%A1/videos?hl=en")
+        meta = channel_videos(ch)
+        for vid, m in meta.items():
+            vids.append({'vid': vid, 'title': m['title'], 'pub': '', 'rel': m['rel'], 'dur': m['dur']})
         print("channel-page videos:", len(vids))
+        if not vids:
+            # last resort: bare id scrape, no titles (kept from the pre-06.11 script)
+            seen = set()
+            for vid in dict.fromkeys(re.findall(r'watch\?v=([A-Za-z0-9_-]{11})', ch)):
+                seen.add(vid); vids.append({'vid': vid, 'title': '', 'pub': '', 'rel': '', 'dur': 0})
+            print("channel-page regex-only videos:", len(vids))
 
     # Spotify latest episode -> update verification map
     map_path = os.path.join(ROOT, "data", "spotify-map.json")
@@ -83,11 +176,11 @@ def main():
         ent = json.loads(m.group(1))["props"]["pageProps"]["state"]["data"]["entity"]
         sp_name, sp_id = norm(ent["name"]), ent["id"]
         print("spotify latest:", sp_name)
-        for vid, title, pub in vids:
-            nt = norm(title)
+        for v in vids:
+            nt = norm(v['title'])
             if nt and (nt in sp_name or sp_name in nt):
-                if smap.get(vid) != sp_id:
-                    smap[vid] = sp_id; print("mapped:", vid, "->", sp_id)
+                if smap.get(v['vid']) != sp_id:
+                    smap[v['vid']] = sp_id; print("mapped:", v['vid'], "->", sp_id)
     except Exception as e:
         print("spotify err", e)
     json.dump(smap, open(map_path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
@@ -106,18 +199,21 @@ def main():
             print("prev lessons read err", e)
 
     lessons = []
-    for vid, title, pub in vids:
+    for v in vids:
+        vid, title, pub = v['vid'], v['title'], v['pub']
+        badge_dur = v.get('dur') or 0
         desc, dur = "", 0
         try:
             w = get(f"https://www.youtube.com/watch?v={vid}")
             i = w.find("ytInitialPlayerResponse")
-            j = w.find('{', i)
-            pr = json.loads(balanced(w, j))
+            j = w.find('{', i) if i >= 0 else -1
+            raw = balanced(w, j) if j >= 0 else None
+            pr = json.loads(raw) if raw else {}
             vd = pr.get("videoDetails", {})
-            desc = vd.get("shortDescription", "")
-            dur = int(vd.get("lengthSeconds", 0) or 0)
-            title = vd.get("title", title)
-            if not pub:
+            if vd.get("videoId"):  # bot-variant pages carry no videoDetails - ignore them
+                desc = vd.get("shortDescription", "")
+                dur = int(vd.get("lengthSeconds", 0) or 0) or dur
+                title = vd.get("title", title) or title
                 mf = pr.get("microformat", {}).get("playerMicroformatRenderer", {})
                 pub = mf.get("publishDate") or mf.get("uploadDate") or pub
         except Exception as e:
@@ -153,16 +249,26 @@ def main():
         prev = prev_lessons.get(vid, {})
         if not pub:
             pub = prev.get("published", "")
+        if not pub and v.get('rel'):
+            # 06.11: new video, every exact source failed this run (RSS 404 + bot-variant
+            # watch page). Derive a day-precision date from YouTube's own relative text on
+            # the channel page instead of dropping the lesson; a later healthy run with a
+            # reachable watch page upgrades it to the exact timestamp.
+            approx = resolve_rel_date(v['rel'], datetime.datetime.now(datetime.timezone.utc))
+            if approx:
+                pub = approx.isoformat()
+                print("date derived from channel-page relative time:", vid, v['rel'], "->", pub[:10])
         if not desc and prev.get("description"):
             desc = prev["description"]
         if not dur and prev.get("durationSec"):
             dur = prev["durationSec"]
+        if not dur and badge_dur:
+            dur = badge_dur  # 06.11: channel-page badge, rounded to the second display
         if not title and prev.get("title"):
             title = prev["title"]
         if not pub:
-            # brand-new video but every date source failed this run (bot-variant
-            # pages): skip loudly, a later healthy run picks it up - never crash,
-            # never invent a date
+            # every date source failed this run: skip loudly, a later healthy run picks it
+            # up - never crash, never invent a date
             print("SKIP (no publish date available):", vid, title); continue
         # rabbi/topic derived from the FINAL title (after prev-data carry-over)
         rabbi = ""
