@@ -99,9 +99,20 @@ def channel_videos(page):
         if vid in out and dur: out[vid]['dur'] = dur
     return out
 
+try:
+    from zoneinfo import ZoneInfo
+    IL_TZ = ZoneInfo("Asia/Jerusalem")
+except Exception:  # runner without tzdata: Israel standard time as fallback
+    IL_TZ = datetime.timezone(datetime.timedelta(hours=2))
+
 def resolve_rel_date(rel, now):
     """Resolve YouTube's own relative publish text ('12h ago', '2w ago', 'לפני יומיים')
-    to a day-precision datetime. Approximation of YouTube's data, never an invented date."""
+    to a representative instant - but ONLY when the whole rounding interval maps to a
+    single civil date in Asia/Jerusalem, the convention hebrew_date() then displays.
+    YouTube rounds the relative text (observed: 12h24m elapsed shown as '12h ago'), so
+    the true publish time sits somewhere in an interval; if that interval touches a day
+    boundary we return None and the caller skips honestly instead of guessing a date.
+    Approximation of YouTube's data, never an invented date."""
     n, unit = None, None
     m = re.search(r'(\d+)\s*(sec|min|mo|h|d|w|y)\s*ago', rel)
     if m:
@@ -122,9 +133,21 @@ def resolve_rel_date(rel, now):
                     'יום': 'days', 'ימים': 'days', 'יומיים': 'days',
                     'שבוע': 'weeks', 'שבועות': 'weeks', 'שבועיים': 'weeks',
                     'חודש': 'months', 'חודשיים': 'months', 'שנה': 'years', 'שנתיים': 'years'}[w]
-    if unit == 'months': return now - datetime.timedelta(days=30 * n)
-    if unit == 'years': return now - datetime.timedelta(days=365 * n)
-    return now - datetime.timedelta(**{unit: n})
+    # conservative elapsed interval [lo, hi] behind "n <unit> ago": half a unit below
+    # n (round-to-nearest) through one full unit above (floor behavior)
+    sec = {'seconds': 1, 'minutes': 60, 'hours': 3600, 'days': 86400, 'weeks': 604800}
+    if unit == 'months':
+        lo_s, hi_s = 28 * n * 86400.0, 31 * (n + 1) * 86400.0
+    elif unit == 'years':
+        lo_s, hi_s = 365 * n * 86400.0, 366 * (n + 1) * 86400.0
+    else:
+        s = sec[unit]; lo_s, hi_s = max(0.0, (n - 0.5) * s), (n + 1) * s
+    earliest = now - datetime.timedelta(seconds=hi_s)
+    latest = now - datetime.timedelta(seconds=lo_s)
+    if earliest.astimezone(IL_TZ).date() != latest.astimezone(IL_TZ).date():
+        return None
+    mid = now - datetime.timedelta(seconds=(lo_s + hi_s) / 2)
+    return mid.astimezone(IL_TZ)
 
 def main():
     rss = None
@@ -251,13 +274,16 @@ def main():
             pub = prev.get("published", "")
         if not pub and v.get('rel'):
             # 06.11: new video, every exact source failed this run (RSS 404 + bot-variant
-            # watch page). Derive a day-precision date from YouTube's own relative text on
-            # the channel page instead of dropping the lesson; a later healthy run with a
-            # reachable watch page upgrades it to the exact timestamp.
+            # watch page). Derive a date from YouTube's own relative text ONLY when its
+            # whole rounding interval lands on one Israel civil date; otherwise skip and
+            # wait for an exact source. A later run with a reachable exact source (RSS or
+            # watch page) replaces the derived value with the exact timestamp.
             approx = resolve_rel_date(v['rel'], datetime.datetime.now(datetime.timezone.utc))
             if approx:
                 pub = approx.isoformat()
                 print("date derived from channel-page relative time:", vid, v['rel'], "->", pub[:10])
+            else:
+                print("relative date ambiguous across a day boundary, not assigning:", vid, v['rel'])
         if not desc and prev.get("description"):
             desc = prev["description"]
         if not dur and prev.get("durationSec"):
